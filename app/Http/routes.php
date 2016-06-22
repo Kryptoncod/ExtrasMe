@@ -1,0 +1,40 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|
+*/
+
+Route::get('/', ['as' => 'index', "uses" => "IndexController@index"]);
+Route::post('/authenticate', ['as' => 'authenticate', "uses" => "AuthController@authenticate"]);
+Route::get('/logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
+
+Route::group(['prefix' => 'u'], function($app) {
+   $app->get('/', ["uses" => "IndexController@redirect"]);
+
+   $app->get('{username}', ['as' => 'profile', "uses" => "ProfileController@show"]);
+});
+
+Route::get('extra/{id}', ['as' => 'extra', "uses" => "ProfileController@extra"]);
+Route::get('extra/{id}/apply', ['as' => 'extra_apply', "uses" => "ProfileController@extra_apply"]);
+Route::post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
+Route::post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
+
+Route::group(['prefix' => 'signup'], function($app) {
+   $app->get('/', ["uses" => "IndexController@redirect"]);
+
+   $app->get('professional',  ['as' => 'signup_professional',   "uses" => "SignupController@showProfessional"]);
+   $app->post('professional', ['as' => 'register_professional', "uses" => "SignupController@registerProfessional"]);
+
+   $app->get('student',  ['as' => 'signup_student',   "uses" => "SignupController@showStudent"]);
+   $app->post('student', ['as' => 'register_student', "uses" => "SignupController@registerStudent"]);
+
+});
+
+Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);

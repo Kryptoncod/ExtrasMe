@@ -1,0 +1,18 @@
+a {
+   color: inherit;
+   text-decoration: none;
+
+   &:hover, &:focus {
+      color: inherit;
+   }
+}
+
+.js-notice {
+   display: none;
+   width: 100%;
+   background-color: $alert-color;
+   text-align: center;
+}
+html.no-js .js-notice {
+   display: block;
+}

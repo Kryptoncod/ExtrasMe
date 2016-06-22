@@ -1,0 +1,33 @@
+div.form  {
+   background-color: $primary-color;
+   min-height: 100vh;
+   padding-top: rem-calc(20);
+
+   .form-title {
+      color: $white;
+      text-align: center;
+   }
+
+   form {
+      margin: rem-calc(20) 0;
+
+      .form-group {
+         padding-bottom: rem-calc(25);
+
+         &:last-child {
+            padding: 0;
+         }
+      }
+
+      input[type="checkbox"] {
+         margin: rem-calc(13) 0;
+
+         &.checkbox-right {
+            float: right;
+         }
+      }
+   }
+}
+
+
+@import "signup/student";

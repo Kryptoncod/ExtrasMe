@@ -1,0 +1,117 @@
+.sticky {
+   nav.top-bar {
+      text-transform: uppercase;
+      z-index: 50;
+
+      .name {
+         a {
+            display: inline-block;
+         }
+
+         .logo {
+            width: 45px;
+            height: 45px;
+            margin-right: 10px;
+         }
+      }
+
+      .top-bar-section {
+         overflow: hidden;
+
+         .right {
+            .signin-button-parent {
+               &.hidden {
+                  display: none;
+               }
+            }
+
+            .menu-button {
+
+               &::after {
+                  content: '';
+                  display: inline-block;
+                  height: rem-calc(13);
+                  width: rem-calc(13);
+
+                  position: relative;
+               	top: rem-calc(17);
+
+                  border-style: solid;
+                  border-color: $white;
+                  border-width: rem-calc(3) rem-calc(3) 0 0;
+
+                  transform: rotate(135deg);
+                  vertical-align: top;
+               }
+            }
+
+            .signin-section {
+               transform: translateX(0);
+               transition: transform 0.5s;
+               &.closed {
+                  transform: translateX(700px);
+               }
+            }
+         }
+      }
+   }
+
+   html.no-js {
+      .signin-button-parent {
+         display: none;
+      }
+
+      .signin-section {
+         transform: translateX(0)!important;
+
+         .exit-button {
+            display: none;
+         }
+      }
+   }
+
+   .menu-dropdown {
+      @include dropdown-container(
+         $content:list
+      );
+      border-radius: rem-calc(5);
+
+      li {
+         @include dropdown-style;
+         text-align: center;
+         border-radius: inherit;
+
+         &:last-child::after {
+            display: none;
+         }
+
+         &::after {
+            content: "";
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 0px;
+            width: 70%;
+            position: relative;
+            top: 1px;
+            border: solid 1px $jet;
+         }
+      }
+   }
+
+   .language-picker {
+      z-index: 100;
+      position: absolute;
+      top: 70px;
+      right: 30px;
+      font-size: 80%;
+      color: $white;
+
+      .separator {
+         height: 1em;
+         border: 1px solid $white;
+         margin: 15px;
+         margin-left: 13px;
+      }
+   }
+}

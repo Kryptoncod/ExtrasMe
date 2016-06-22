@@ -1,0 +1,85 @@
+#signupModal {
+   @include reveal-modal-style(
+    // Sets background color of reveal modal. Default: $reveal-modal-bg or #fff
+    $bg:rgba(0,0,0,0),
+    // Set reveal border style. Default: $reveal-border-style or solid
+    $border:false,
+    // Choose whether or not to include the default box-shadow. Default: true, Options: false
+    $box-shadow:false,
+    // Top offset
+    $top-offset:40vh
+  );
+
+
+   text-align: center;
+
+   .signup-button p {
+      color: $white;
+      margin-bottom: 0;
+   }
+
+   h2.title {
+      color: $white;
+      border-bottom: solid 1px #fff;
+   }
+}
+
+#extraModal {
+   @include reveal-modal-style(
+      // Sets background color of reveal modal. Default: $reveal-modal-bg or #fff
+      $bg: $primary-color,
+      // Set reveal border style. Default: $reveal-border-style or solid
+      $border:false,
+      // Choose whether or not to include the default box-shadow. Default: true, Options: false
+      $box-shadow:true,
+      // Default: $reveal-position-top or 50px
+      $top-offset: 30px
+   );
+
+   padding: 0;
+   color: $white;
+   width: 60%;
+
+   .background-image {
+      width: 100%;
+   }
+
+   .extra-title {
+      width: 100%;
+      font-size: rem-calc(20);
+      background-color: $jet;
+      padding: rem-calc(5);
+   }
+
+   .extra-description {
+      font-size: rem-calc(13);
+      margin: rem-calc(20) rem-calc(5);
+      background-color: $primary-color;
+
+      .details {
+         padding: rem-calc(15) rem-calc(10);
+         background-color: $jet;
+
+         ul {
+            list-style: none;
+            margin: 0;
+            font-size: inherit;
+
+            .title {
+               font-size: rem-calc(14);
+            }
+         }
+      }
+   }
+
+   .apply-button {
+      @include button(
+         // $padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+         $padding: rem-calc(12),
+         // Background color. We can set $bg:false for a transparent background. Default: $primary-color.
+         $bg: $jet
+      );
+      margin-right: rem-calc(10);
+      margin-bottom: rem-calc(10);
+   }
+}

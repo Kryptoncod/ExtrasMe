@@ -1,0 +1,180 @@
+.profile-container {
+   max-width: none;
+   height: 100%;
+
+   .panel-sidebar {
+      min-width: rem-calc(150);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      padding-top: 55px;
+      background-color: $primary-color;
+      position: fixed;
+      top: 0;
+      overflow-y: auto;
+      max-height: 100%;
+
+      span.separator {
+         display: block;
+         width: 70%;
+         height: 0;
+         margin: rem-calc(15) auto;
+         border: rem-calc(1) solid $jet;
+      }
+
+      .form {
+         padding: rem-calc(20) 0;
+         font-size: rem-calc(15);
+         margin: 0 rem-calc(15);
+
+         li {
+            margin-bottom: rem-calc(10);
+
+            select {
+               background: none;
+               color: $white;
+               border: none;
+            }
+
+            input, .postfix {
+               margin: 0;
+            }
+
+            &.head {
+               color: $white;
+               font-weight: bold;
+               margin-bottom: rem-calc(20);
+            }
+         }
+
+         .submit-button {
+            @include button(
+               $padding: rem-calc(6),
+               $bg: $jet
+            );
+            margin-top: rem-calc(10);
+         }
+      }
+
+      li {
+         list-style: none;
+
+         a {
+            color: $white;
+         }
+      }
+   }
+
+   .profile-date {
+      background-color: $jet;
+      color: $white;
+      float: right;
+      text-align: right;
+      width: 100%;
+      height: 100%;
+      font-size: rem-calc(14);
+      padding: rem-calc(5);
+   }
+
+   .panel-main {
+      background-color: $black;
+      min-height: 100%;
+
+      .empty-notice {
+         color: $white;
+      }
+
+      .extra-card {
+
+         img {
+            width: 100%;
+         }
+
+         .title {
+            text-indent: rem-calc(10);
+            display: block;
+            color: $white;
+            background-color: $jet;
+         }
+
+         .description {
+            padding: rem-calc(10);
+            font-size: rem-calc(14);
+            color: $white;
+            background-color: $primary-color;
+            margin: 0;
+         }
+      }
+
+      .details-button a {
+         float: right;
+         color: $white;
+         font-size: rem-calc(12);
+         margin-right: rem-calc(10);
+      }
+
+      .account-resume {
+         margin-top: rem-calc(20);
+         margin-bottom: rem-calc(20);
+
+         .picture-column {
+            .profile-picture {
+               width: 100%;
+            }
+         }
+
+         .personal-informations {
+            margin: 0;
+
+            li {
+               list-style: none;
+               color: $white;
+               font-size: rem-calc(13);
+               margin-bottom: rem-calc(5);
+
+               .info-label {
+                  padding-right: rem-calc(5);
+               }
+
+               .level-logo {
+                  display: inline-block;
+                  margin: 0;
+                  margin-bottom: rem-calc(-10);
+                  height: rem-calc(25);
+                  width: rem-calc(20);
+                  background-image: url("/assets/images/level-logo.svg");
+                  background-repeat: no-repeat;
+
+                  &.completed {
+                     background-image: url("/assets/images/level-logo-completed.svg");
+                  }
+               }
+
+               .level-error {
+                  color: $warning-color;
+                  font-size: rem-calc(20);
+                  margin-left: rem-calc(10);
+               }
+
+               &.title {
+                  font-size: rem-calc(25);
+                  margin-bottom: rem-calc(10);
+               }
+            }
+         }
+      }
+
+      .section-title {
+         margin: rem-calc(10) 0;
+         border-bottom: solid rem-calc(1) $jet;
+         border-top: solid rem-calc(1) $jet;
+         h2 {
+            margin-left: rem-calc(15);
+            color: $white;
+         }
+      }
+   }
+}
+
+@import "user/student";
+@import "user/pro";

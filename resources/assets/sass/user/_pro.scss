@@ -1,0 +1,23 @@
+.extra-search-form {
+   margin-bottom: rem-calc(100);
+
+   input, textarea {
+      background-color: $jet;
+      border: none;
+      color: $white;
+
+      &:focus {
+         color: $black;
+         background-color: $white;
+      }
+   }
+
+   .postfix {
+      border: none;
+   }
+}
+
+.credit-counter {
+   float: right;
+   color: $white;
+}

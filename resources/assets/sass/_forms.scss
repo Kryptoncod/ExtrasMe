@@ -1,0 +1,44 @@
+form {
+   .submit-button {
+      @include button($padding: rem-calc(5), $bg:$secondary-color);
+      display: block;
+      margin: 0 auto;
+   }
+
+   input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, .postfix {
+      margin: rem-calc(5) 0;
+      padding: rem-calc(4);
+      height: rem-calc(25);
+   }
+
+   .postfix {
+      line-height: normal;
+   }
+
+   label {
+      padding: rem-calc(4) 0!important;
+      margin: rem-calc(5) 0!important;
+   }
+
+   input[type="radio"].pretty {
+      position: absolute;
+      left: -9999%;
+   }
+
+   input[type="radio"].pretty:checked+label.pretty-label {
+         background-color: $secondary-color;
+         color: $black;
+   }
+
+   .pretty-label {
+      background-color: $darker-color;
+      height: rem-calc(25);
+      //padding: rem-calc(5) rem-calc(25);
+      width: 50%;
+      text-align: center;
+
+      &:not(:first-child) {
+         margin-right: -4px!important;
+      }
+   }
+}

@@ -1,0 +1,122 @@
+.index-section {
+   height: 92vh;
+   height: calc(100vh - 55px);
+   min-height: rem-calc(560);
+
+   .section-content {
+      .row {
+         max-width: 85rem;
+
+         .section-title {
+            margin-bottom: rem-calc(40);
+         }
+      }
+   }
+
+   &.section-1 {
+      //background-image: url('/assets/backgrounds/1.png');
+      background-color: #f0f;
+
+      .section-content {
+         position: relative;
+         top: 20vh;
+      }
+   }
+
+   &.section-2 {
+      //background-image: url('/assets/backgrounds/1.png');
+      background-color: #0f0;
+
+      .section-content {
+         position: relative;
+         top: 50vh;
+      }
+   }
+
+   &.section-3 {
+      //background-image: url('/assets/backgrounds/1.png');
+      background-color: #f00;
+
+      .section-content {
+         position: relative;
+         top: 30vh;
+
+         p {
+            margin-bottom: rem-calc(5);
+         }
+
+         .sub-title {
+            margin-top: rem-calc(20);
+         }
+
+         .row {
+            max-width: 70rem;
+         }
+
+         .section-title {
+            margin-bottom: rem-calc(10);;
+         }
+
+         .app-stores {
+            margin-top: rem-calc(30);
+
+            img {
+               height: rem-calc(40);
+            }
+         }
+      }
+   }
+
+   &.section-4 {
+      //background-image: url('/assets/backgrounds/1.png');
+      background-color: #0ff;
+
+      .section-content {
+         background-image: url(https://d1a3f4spazzrp4.cloudfront.net/web-fresh/home/map-web@1x.gif);
+         background-position: center;
+         width: 100%;
+         height: 100%;
+         text-align: center;
+
+         .section-title {
+            /*background-color: $primary-color;
+            width: rem-calc(240);
+            padding: rem-calc(10) 0;*/
+            margin: 0 auto;
+            position: relative;
+            top: 30vh;
+
+            p {
+               font-size: rem-calc(25);
+               margin: 0;
+               color: #fff;
+            }
+         }
+      }
+   }
+}
+
+.index-side-nav {
+   position: fixed;
+   top: 35%;
+   right: rem-calc(15);
+
+   li {
+      list-style: none;
+      margin: rem-calc(25) rem-calc(10);
+
+      a {
+         display: block;
+         border: 2px solid #fff;
+         background-color: #fff;
+
+         border-radius: 50%;
+         width: rem-calc(10);
+         height: rem-calc(10);
+
+         &.active {
+            border-color: $primary-color;
+         }
+      }
+   }
+}
