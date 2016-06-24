@@ -1,20 +1,20 @@
 <?php
 
-namespace ExtrasMe\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use ExtrasMe\Http\Requests;
-use ExtrasMe\Http\Controllers\Controller;
-use ExtrasMe\Http\Requests\RegisterStudentRequest;
-use ExtrasMe\Http\Requests\RegisterProfessionalRequest;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterStudentRequest;
+use App\Http\Requests\RegisterProfessionalRequest;
 use ExtrasMeApi;
 use Carbon\Carbon;
 
 use Auth;
 
-use ExtrasMe\ApiClient\Models\User;
-use ExtrasMe\ApiClient\Models\Student;
+use App\ApiClient\Models\User;
+use App\ApiClient\Models\Student;
 
 class SignupController extends Controller
 {
