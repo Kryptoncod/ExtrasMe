@@ -1,8 +1,8 @@
 <?php
 
-namespace ExtrasMe\Http\Requests;
+namespace App\Http\Requests;
 
-use ExtrasMe\Http\Requests\Request;
+use App\Http\Requests\Request;
 
 class RegisterProfessionalRequest extends Request
 {
