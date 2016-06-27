@@ -6597,7 +6597,7 @@ footer.footer .disclaimers ul li::after {
     border-color: #080c4a;
 }
 div.form {
-    background-color: #080c4a;
+    background-color: #040D2A;
     min-height: 100vh;
     padding-top: 1.25rem;
 }
@@ -6686,7 +6686,7 @@ div.form form input[type=checkbox].checkbox-right {
     transition: background-color .3s ease-out;
 }
 .profile-container .panel-sidebar .form .submit-button:focus, .profile-container .panel-sidebar .form .submit-button:hover {
-    background-color: #1b1b1b;
+    background-color: #040D2A;
     color: #FFF;
 }
 .profile-container .panel-sidebar li {
@@ -6721,7 +6721,7 @@ div.form form input[type=checkbox].checkbox-right {
     padding: .625rem;
     font-size: .875rem;
     color: #FFF;
-    background-color: #080c4a;
+    background-color: #040D2A;
     margin: 0;
 }
 .profile-container .panel-main .details-button a {
