@@ -2,7 +2,7 @@
 
 return [
 
-   'iAmPro'     => 'I\'m a professional',
-   'iAmStudent' => 'I\'m a student',
+  'iAmPro'     => 'I\'M A PROFESSIONAL',
+  'iAmStudent' => 'I\'M A STUDENT',
 
 ];

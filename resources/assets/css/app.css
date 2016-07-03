@@ -3723,8 +3723,7 @@ ul.pagination li.current a:focus, ul.pagination li.current a:hover, ul.paginatio
     background: #070b41;
 }
 .reveal-modal-bg {
-    background: #000;
-    background: rgba(0, 0, 0, .7);
+  background-color: rgba(0,0,0,0.4);
     bottom: 0;
     display: none;
     position: fixed;
@@ -3732,6 +3731,7 @@ ul.pagination li.current a:focus, ul.pagination li.current a:hover, ul.paginatio
     top: 0;
     z-index: 1004;
     left: 0;
+    filter: blur(5px);
 }
 .reveal-modal {
     border-radius: 0;
@@ -6516,9 +6516,11 @@ footer.footer .disclaimers ul li::after {
 }
 .index-section .section-content .row .section-title {
     margin-bottom: 2.5rem;
+    color: white;
 }
 .index-section.section-1 {
-    background-color: #f0f;
+    background: url(../images/temp_bg1.jpg) center center no-repeat;
+    transform: scale(1.1);
 }
 .index-section.section-1 .section-content {
     position: relative;
@@ -6793,4 +6795,28 @@ div.form form input[type=checkbox].checkbox-right {
 .credit-counter {
     float: right;
     color: #FFF;
+}
+
+.modal-buttons{
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.modal-buttons .button{
+  margin: auto;
+  width: 50%;
+  padding: 15px;;
+}
+
+.modal-buttons p{
+  margin-bottom: 0;
+}
+
+.blured{
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 }
