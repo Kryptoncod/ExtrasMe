@@ -12,7 +12,7 @@ class CreateProfessionalTable extends Migration
      */
     public function up()
     {
-      Schema::create('professionals', function(Blueprint $table){
+      Schema::create('professional', function(Blueprint $table){
         $table->increments('id');
         $table->string('company_name');
         $table->string('category');
@@ -23,6 +23,8 @@ class CreateProfessionalTable extends Migration
         $table->string('state');
         $table->string('country');
         $table->string('adress');
+        $table->string('email')->unique();
+        $table->string('password');
         $table->timestamps();
       });
     }
