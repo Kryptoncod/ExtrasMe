@@ -17,9 +17,10 @@ class CreateStudentTable extends Migration
         $table->string('last_name');
         $table->string('first_name');
         $table->string('nationality');
-        $table->string('year');
+        $table->string('school_year');
         $table->string('phone');
         $table->boolean('gender');
+        $table->date('birthdate');
         $table->timestamps();
       });
     }

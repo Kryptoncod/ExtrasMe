@@ -22,7 +22,7 @@ class CreateProfessionalTable extends Migration
         $table->integer('zipcode');
         $table->string('state');
         $table->string('country');
-        $table->string('adress');
+        $table->string('address');
         $table->timestamps();
       });
     }
