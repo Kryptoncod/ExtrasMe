@@ -55,13 +55,6 @@ class SignupController extends Controller
      */
     public function registerStudent(Request $request)
     {
-        $userInputs = array(
-            'email' => $request->input('email_address'),
-            'password' => $request->input('password'),
-            'type' => 0,
-            );
-        $user = $this->userRepository->store($userInputs);
-
         $studentInputs = array(
             'first_name' => $request->input('name'),
             'last_name' => $request->input('last_name'),
@@ -73,6 +66,17 @@ class SignupController extends Controller
             );
 
         $student = $this->studentRepository->store($studentInputs);
+        $id = $student->id;
+
+        $userInputs = array(
+            'email' => $request->input('email_address'),
+            'password' => $request->input('password'),
+            'type' => 0,
+            'student_id' => $id,
+            'professional_id' => 1,
+            );
+        
+        $user = $this->userRepository->store($userInputs);
 
         return redirect()->route('index');
     }
@@ -94,13 +98,6 @@ class SignupController extends Controller
      */
     public function registerProfessional(Request $request)
     {
-        $userInputs = array(
-            'email' => $request->input('email_address'),
-            'password' => $request->input('password'),
-            'type' => 1,
-            );
-        $user = $this->userRepository->store($userInputs);
-
         $category = config('international.professionals_categories')[$request->input('category')];
         $country = config('international.countries')[$request->input('country')];
 
@@ -115,46 +112,18 @@ class SignupController extends Controller
             );
 
         $professional = $this->professionalRepository->store($professionalInputs);
+        $id = $professional->id;
 
-        return redirect()->route('index');
-
-      /*try {
-         $category = config('international.professionals_categories')[$request->input('category')];
-         $country = config('international.countries')[$request->input('country')];
-
-         $professional = ExtrasMeApi::newProfessional([
-            'company_name'             => $request->input('company_name'),
-            'category'                 => $category,
-            'country'                  => $country,
-            'representative_name'      => $request->input('representative_name'),
-            'representative_last_name' => $request->input('representative_last_name'),
-            'contact_number'           => $request->input('contact_number'),
-            'address'                  => $request->input('address'),
-         ]);
-
-         $id = $professional->save();
-
-         $user = ExtrasMeApi::newUser([
-            'email'         => $request->input('email_address'),
-            'password'      => $request->input('password'),
-            'type'          => 1,
-            'group_id'      => $id,
-            'newsletter'    => $request->input('newsletter'),
-            'username'      => strtolower($request->input('company_name')),
-         ]);
-
-         $user->save();
-
-         Auth::attempt([
+        $userInputs = array(
             'email' => $request->input('email_address'),
             'password' => $request->input('password'),
-         ]);
+            'type' => 1,
+            'student_id' => 1,
+            'professional_id' => $id,
+            );
 
-         return redirect()->route('index');
+        $user = $this->userRepository->store($userInputs);
 
-      } catch (\Exception $e) {
-         dd($e);
-         return redirect()->back();
-      }*/
+        return redirect()->route('index');
     }
 }
