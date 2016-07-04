@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterStudentRequest;
 use App\Http\Requests\RegisterProfessionalRequest;
+
+use App\Repositories\UserRepository;
+
 use ExtrasMeApi;
 use Carbon\Carbon;
 
@@ -19,9 +22,12 @@ use App\ApiClient\Models\Student;
 class SignupController extends Controller
 {
 
-   public function __construct()
+    protected $userRepository;
+
+   public function __construct(UserRepository $userRepository)
    {
       $this->middleware('guest');
+      $this->userRepository = $userRepository;
    }
 
     /**
@@ -39,9 +45,17 @@ class SignupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function registerStudent(RegisterStudentRequest $request)
+    public function registerStudent(Request $request)
     {
-      try {
+        $inputs = array(
+            'email' => $request->input('email_address'),
+            'password' => $request->input('password'),
+            'type' => 0,
+            );
+        $user = $this->userRepository->store($inputs);
+        return redirect()->route('index');
+
+      /*try {
          $birthdate = Carbon::createFromDate($request->input('year'), $request->input('month'), $request->input('day'), 'GMT');
          $school_year = config('international.ehl_years')[$request->input('school_year')];
          $nationality = config('international.nationalities')[$request->input('nationality')];
@@ -78,7 +92,7 @@ class SignupController extends Controller
 
       } catch (\Exception $e) {
          return redirect()->back();
-      }
+      }*/
     }
 
     /**
@@ -96,9 +110,17 @@ class SignupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function registerProfessional(RegisterProfessionalRequest $request)
+    public function registerProfessional(Request $request)
     {
-      try {
+        $inputs = array(
+            'email' => $request->input('email_address'),
+            'password' => $request->input('password'),
+            'type' => 1,
+            );
+        $user = $this->userRepository->store($inputs);
+        return redirect()->route('index');
+
+      /*try {
          $category = config('international.professionals_categories')[$request->input('category')];
          $country = config('international.countries')[$request->input('country')];
 
@@ -135,6 +157,6 @@ class SignupController extends Controller
       } catch (\Exception $e) {
          dd($e);
          return redirect()->back();
-      }
+      }*/
     }
 }

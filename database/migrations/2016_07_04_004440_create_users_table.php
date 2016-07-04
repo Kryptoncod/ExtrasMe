@@ -16,15 +16,16 @@ class CreateUsersTable extends Migration
         $table->increments('id');
         $table->string('email')->unique();
         $table->string('password');
-        $table->boolean('type');
-        $table->integer('professional_id')->unsigned();
+        $table->boolean('type'); //0 pour student et 1 pour professional
+        $table->boolean('newsletter')->default(false); //0 pour non et 1 pour oui
+        /*$table->integer('professional_id')->unsigned();
         $table->foreign('professional_id')->references('id')
                 ->on('professionals')
                 ->onDelete('cascade');
         $table->integer('student_id')->unsigned();
         $table->foreign('student_id')->references('id')
                 ->on('students')
-                ->onDelete('cascade');
+                ->onDelete('cascade');*/
         $table->timestamps();
         });
     }
@@ -36,6 +37,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('users');
     }
 }

@@ -34,6 +34,6 @@ class CreateProfessionalTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('professionals');
     }
 }
