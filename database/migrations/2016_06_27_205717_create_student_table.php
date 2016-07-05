@@ -21,6 +21,10 @@ class CreateStudentTable extends Migration
         $table->string('phone');
         $table->boolean('gender');
         $table->date('birthdate');
+        $table->integer('user_id')->unsigned();
+        $table->foreign('user_id')->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         $table->timestamps();
       });
     }

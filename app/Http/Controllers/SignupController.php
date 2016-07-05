@@ -13,7 +13,6 @@ use App\Repositories\UserRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\ProfessionalRepository;
 
-use ExtrasMeApi;
 use Carbon\Carbon;
 
 use Auth;
@@ -55,6 +54,15 @@ class SignupController extends Controller
      */
     public function registerStudent(Request $request)
     {
+        $userInputs = array(
+            'email' => $request->input('email_address'),
+            'password' => $request->input('password'),
+            'type' => 0,
+            );
+
+        $user = $this->userRepository->store($userInputs);
+        $id = $user->id;
+
         $studentInputs = array(
             'first_name' => $request->input('name'),
             'last_name' => $request->input('last_name'),
@@ -63,20 +71,10 @@ class SignupController extends Controller
             'nationality'   => config('international.nationalities')[$request->input('nationality')],
             'school_year' => config('international.ehl_years')[$request->input('school_year')],
             'phone'  => $request->input('phone'),
+            'user_id' => $id,
             );
 
         $student = $this->studentRepository->store($studentInputs);
-        $id = $student->id;
-
-        $userInputs = array(
-            'email' => $request->input('email_address'),
-            'password' => $request->input('password'),
-            'type' => 0,
-            'student_id' => $id,
-            'professional_id' => 1,
-            );
-        
-        $user = $this->userRepository->store($userInputs);
 
         return redirect()->route('index');
     }
@@ -98,6 +96,15 @@ class SignupController extends Controller
      */
     public function registerProfessional(Request $request)
     {
+        $userInputs = array(
+            'email' => $request->input('email_address'),
+            'password' => $request->input('password'),
+            'type' => 1,
+            );
+
+        $user = $this->userRepository->store($userInputs);
+        $id = $user->id;
+
         $category = config('international.professionals_categories')[$request->input('category')];
         $country = config('international.countries')[$request->input('country')];
 
@@ -109,20 +116,10 @@ class SignupController extends Controller
             'last_name' => $request->input('representative_last_name'),
             'phone'           => $request->input('contact_number'),
             'address'                  => $request->input('address'),
+            'user_id' =>$id,
             );
 
         $professional = $this->professionalRepository->store($professionalInputs);
-        $id = $professional->id;
-
-        $userInputs = array(
-            'email' => $request->input('email_address'),
-            'password' => $request->input('password'),
-            'type' => 1,
-            'student_id' => 1,
-            'professional_id' => $id,
-            );
-
-        $user = $this->userRepository->store($userInputs);
 
         return redirect()->route('index');
     }

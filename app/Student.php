@@ -9,6 +9,7 @@ class Student extends Model
     protected $table = 'students';
 
     protected $fillable = [
-        'last_name', 'first_name', 'nationality', 'school_year', 'phone', 'gender', 'birthdate'
+        'last_name', 'first_name', 'nationality', 'school_year', 'phone', 
+        'gender', 'birthdate', 'user_id'
     ];
 }
