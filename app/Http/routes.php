@@ -14,7 +14,9 @@
 Route::get('/', ['as' => 'index', "uses" => "IndexController@index"]);
 Route::get('/login', ['as' => 'login_form', "uses" => "AuthController@showLoginForm"]);
 Route::post('/login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
-Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
+Route::get('/logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
+
+Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'u'], function($app) {
    $app->get('/', ["uses" => "IndexController@redirect"]);
