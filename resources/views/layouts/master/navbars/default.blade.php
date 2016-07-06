@@ -11,29 +11,7 @@
      <section class="top-bar-section">
       <ul class="right">
 
-         <li class="has-form signin-section closed">
-            <form class="" action="{{ route('authenticate')}}" method="post">
-
-               <div class="row collapse">
-                  <div class="small-4 columns">
-                     <input type="text" name="email" placeholder="Email">
-                  </div>
-                  <div class="small-4 columns">
-                     <input type="password" name="password" placeholder="Password">
-                  </div>
-                  <div class="small-3 columns">
-                     <button type="submit" class="button expand">Sign in</button>
-                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  </div>
-                  <div class="small-1 columns">
-                     <a href="" class="exit-button button secondary expand">X</a>
-                  </div>
-               </div>
-
-            </form>
-         </li>
-
-         <li class="signin-button-parent"><a href="/signin" class="signin-button">SIGN IN</a></li>
+         <li class="signin-button-parent"><a href="{{ url('/login') }}" class="signup-button">SIGN IN</a></li>
          <li><a href="/signup" data-reveal-id="signupModal" class="signup-button">SIGN UP</a></li>
       </ul>
      </section>

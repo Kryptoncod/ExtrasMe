@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
         $table->string('password');
         $table->boolean('type'); //0 pour student et 1 pour professional
         $table->boolean('newsletter')->default(false); //0 pour non et 1 pour oui
+        $table->rememberToken();
         $table->timestamps();
         });
     }
