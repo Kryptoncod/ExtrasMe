@@ -41,7 +41,3 @@ Route::group(['prefix' => 'signup'], function($app) {
 });
 
 Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');

@@ -28,4 +28,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function student()
+    {
+        return $this->hasOne('App\Student');
+    }
 }

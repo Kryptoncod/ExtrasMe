@@ -12,4 +12,9 @@ class Student extends Model
         'last_name', 'first_name', 'nationality', 'school_year', 'phone', 
         'gender', 'birthdate', 'user_id'
     ];
+
+    public function User()
+    {
+    	return $this->belongsTo('App\User');
+    }
 }
