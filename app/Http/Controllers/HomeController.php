@@ -28,7 +28,9 @@ class HomeController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        $name = User::find($id)->student->first_name;
+        $first_name = User::find($id)->student->first_name;
+        $last_name = User::find($id)->student->last_name;
+        $name = $first_name . " " . $last_name;
         return view('home')->with('name', $name);
     }
 }

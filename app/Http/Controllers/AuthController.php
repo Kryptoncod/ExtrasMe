@@ -69,30 +69,4 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
-
-    /**
-     * Authenticate the user
-     *
-     * @return \Illuminate\Http\Response
-     */
-   /* public function authenticate(Request $req)
-    {
-      $a = Auth::attempt(['email' => $req->input('email'), 'password' => $req->input('password')]);
-      if (!$a)
-      {
-         //return 'error';
-      }
-      return redirect()->route('index');
-    }
-
-    /**
-     * Log out the user from ExtrasMe
-     *
-     * @return \Illuminate\Http\Response
-     */
-   /* public function logout()
-    {
-      Auth::logout();
-      return redirect()->route('index');
-    }*/
 }
