@@ -2,7 +2,7 @@
 @section('content')
 
    <div class="row collapse profile profile-container">
-      @include('user.sidebar', ['nav' => ['DASHBOARD' => '', 'MY CREDIT' => ''], 'formType' => 1])
+      @include('user.sidebar', ['nav' => ['MY CREDIT' => ''], 'formType' => 1])
 
       <div class="medium-10 small-12 columns panel-main">
 
@@ -12,29 +12,28 @@
 
          <div class="row account-resume">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
-               <img class="profile-picture" src="{{ asset('assets/images/user-professional.png') }}" alt="" />
+               <img class="profile-picture" src="{{ asset('../resources/assets/images/user-professional.png') }}" alt="" />
             </div>
 
             <div class="medium-7 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title">{{ $professional->company_name }}</li>
+                  <li class="title">{{ strtoupper($professional->company_name) }}</li>
 
                   <li><span class="info-label">EMAIL:</span>
-                  {{ $user->email }}</li>
+                  {{ strtoupper($user->email) }}</li>
 
                   <li><span class="info-label">CONTACT NUMBER:</span>
-                  {{ $professional->contact_number }}</li>
+                  {{ strtoupper($professional->phone) }}</li>
 
                   <li><span class="info-label">REFERENCE PERSON:</span>
-                  {{ $professional->representative_name.' '.$professional->representative_last_name }}</li>
+                  {{ strtoupper($professional->first_name.' '.$professional->last_name) }}</li>
 
                   <li><span class="info-label">SECTOR:</span>
-                  {{ $professional->category }}</li>
-               </ul>
-            </div>
+                  {{ strtoupper($professional->category) }}</li>
 
-            <div class="medium-2 small-12 medium-uncentered small-centered columns">
-               <span class="credit-counter">{{ $professional->credits }} CREDITS LEFT</span>
+                  <li><span class="info-label">CREDITS LEFT:</span>
+                  {{ strtoupper($professional->credit) }}</li>
+               </ul>
             </div>
          </div>
 

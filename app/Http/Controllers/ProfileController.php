@@ -56,32 +56,6 @@ class ProfileController extends Controller
          dd($e);
          abort(404);
       }
-
-      /*try {
-         $user = ExtrasMeApi::getUser($id);
-         $type = $user->getTypeModel();
-
-         if ($user->isStudent())
-         {
-            $extras = ExtrasMeApi::getExtras();
-
-            return view('user.student', ['user' => $user, 'student' => $type, 'extras' => $extras]);
-         }
-         else if ($user->isProfessional())
-         {
-            $extras = Auth::user()->getUserModel()->getTypeModel()->getExtras();
-
-            if (Auth::user()->user->id == $user->id) {
-               abort(401);
-            }
-
-            return view('user.professional', ['user' => $user, 'professional' => $type, 'extras' => $extras]);
-         }
-
-      } catch (\Exception $e) {
-         dd($e);
-         abort(404);
-      }*/
     }
 
     public function extraSubmit(ExtraSubmitRequest $request)

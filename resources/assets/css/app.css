@@ -6519,7 +6519,7 @@ footer.footer .disclaimers ul li::after {
     color: white;
 }
 .index-section.section-1 {
-    background: url(../images/temp_bg1.jpg) center center no-repeat;
+    background: url(../images/section1_image.jpg) center center no-repeat;
     transform: scale(1.1);
 }
 .index-section.section-1 .section-content {
@@ -6527,7 +6527,7 @@ footer.footer .disclaimers ul li::after {
     top: 20vh;
 }
 .index-section.section-2 {
-    background-color: #0f0;
+    background: url(../images/section2_image.jpg) center center no-repeat;
 }
 .index-section.section-2 .section-content {
     position: relative;

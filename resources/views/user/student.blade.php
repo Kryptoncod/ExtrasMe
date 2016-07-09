@@ -2,7 +2,7 @@
 @section('content')
 
    <div class="row collapse profile profile-container">
-      @include('user.sidebar', ['nav' => ['MY CV' => '', 'MY TESTIMONIALS' => ''], 'formType' => 0])
+      @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
 
       <div class="medium-10 small-12 columns panel-main">
 
@@ -12,19 +12,19 @@
 
          <div class="row account-resume">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
-               <img class="profile-picture" src="{{ asset('assets/images/user-student.png') }}" alt="" />
+               <img class="profile-picture" src="{{ asset('../resources/assets/images/user-student.png') }}" alt="" />
             </div>
 
             <div class="medium-9 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title">{{ $student->first_name.' '.$student->last_name }}</li>
+                  <li class="title">{{ strtoupper($name) }}</li>
                   <li>
                      <span class="info-label">EMAIL:</span>
-                     {{ $user->email }}
+                     {{ strtoupper($user->email) }}
                   </li>
                   <li>
                      <span class="info-label">CONTACT NUMBER:</span>
-                      {{ $student->phone_number }}
+                      {{ $student->phone }}
                    </li>
                   <li>
                      <span class="info-label">SCHOOL:</span>
@@ -32,7 +32,7 @@
                   </li>
                   <li>
                      <span class="info-label">YEAR:</span>
-                     {{ $student->school_year }}
+                     {{ strtoupper($student->school_year) }}
                   </li>
                   <li>
                      <span class="info-label">EXTRASME LEVEL:</span>
@@ -41,8 +41,8 @@
                      <span class="level-logo {{ $student->level > 2 ? 'completed' : '' }}"></span>
                      <span class="level-logo {{ $student->level > 3 ? 'completed' : '' }}"></span>
                      <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
-                     @if($student->level == 0)
-                        <span data-tooltip aria-haspopup="true" class="has-tip level-error" title="You have never done any extra">!</span>
+                     @if($student->level <= 3)
+                        <span data-tooltip aria-haspopup="true" class="has-tip level-error" title="You haven't done enough extras yet">!</span>
                      @endif
                   </li>
                </ul>

@@ -16,15 +16,7 @@ Route::get('/login', ['as' => 'login_form', "uses" => "AuthController@showLoginF
 Route::post('/login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
 Route::get('/logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 
-//Route::get('/home', 'HomeController@index');
-
 Route::get('/home', 'ProfileController@show');
-
-/*Route::group(['prefix' => 'u'], function($app) {
-   $app->get('/', ["uses" => "IndexController@redirect"]);
-
-   $app->get('{username}', ['as' => 'profile', "uses" => "ProfileController@show"]);
-});*/
 
 Route::get('extra/{id}', ['as' => 'extra', "uses" => "ProfileController@extra"]);
 Route::get('extra/{id}/apply', ['as' => 'extra_apply', "uses" => "ProfileController@extra_apply"]);

@@ -2,12 +2,12 @@
    <ul class="side-nav">
       <li><a>YOUR EXTRASME</a></li>
       <li><a>ACCOUNT</a></li>
-      <li><a>MAIL</a></li>
-      <li><a>EXTRASME APP</a></li>
       @foreach($nav as $key => $link)
          <li><a href="{{ $link }}">{{ $key }}</a></li>
       @endforeach
       <li><a>MY FAV EXTRAS</a></li>
+      <li><a>DASHBOARD</a></li>
+      <li><a>EXTRASME APP</a></li>
    </ul>
 
    @if($formType == 0)
