@@ -10,4 +10,9 @@ class Professional extends Model
         'company_name', 'category', 'first_name', 'last_name', 'phone', 'zipcode', 'state', 
         'country', 'address', 'user_id'
     ];
+
+    public function user()
+    {
+    	return $this->belongsTo('App\User');
+    }
 }

@@ -1,13 +1,15 @@
 <?php
 
-namespace ExtrasMe\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use ExtrasMe\Http\Requests;
-use ExtrasMe\Http\Requests\ExtraSearchRequest;
-use ExtrasMe\Http\Requests\ExtraSubmitRequest;
-use ExtrasMe\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Requests\ExtraSearchRequest;
+use App\Http\Requests\ExtraSubmitRequest;
+use App\Http\Controllers\Controller;
+
+use App\User;
 
 use Carbon\Carbon;
 use ExtrasMeApi, Auth;
@@ -26,9 +28,36 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-      try {
+      try
+      {
+        $id = Auth::user()->id;
+        $type = User::find($id)->type;
+        $extras = NULL;
+
+        if($type == 0)
+        {
+
+          $first_name = User::find($id)->student->first_name;
+          $last_name = User::find($id)->student->last_name;
+          $name = $first_name . " " . $last_name;
+
+          return view('user.student', ['user' => Auth::user(), 'student' => User::find($id)->student, 'extras' => $extras])->with('name', $name);
+        }
+        else if($type == 1)
+        {
+
+          $name = User::find($id)->professional->company_name;
+
+          return view('user.professional', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras])->with('name', $name);
+        }
+      } catch (\Exception $e) {
+         dd($e);
+         abort(404);
+      }
+
+      /*try {
          $user = ExtrasMeApi::getUser($id);
          $type = $user->getTypeModel();
 
@@ -52,7 +81,7 @@ class ProfileController extends Controller
       } catch (\Exception $e) {
          dd($e);
          abort(404);
-      }
+      }*/
     }
 
     public function extraSubmit(ExtraSubmitRequest $request)

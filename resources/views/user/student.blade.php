@@ -95,9 +95,12 @@
 
          <div class="row">
             <div class="small-12 columns">
-               <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
+               <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1"
 
-                  @foreach ($extras as $extra)
+                  @if(empty($extras))
+                     <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+                  @else
+                     @foreach ($extras as $extra)
                      <li>@include('user.card', ["description" => $extra->getUserModel()->getTypeModel()->company_name." is looking for extras in ".
                                                                  $extra->extra_type.
                                                                  ' for '.$extra->getFormattedDatetime('D F jS Y').' at '.$extra->getFormattedDatetime('h:i A'),
@@ -105,10 +108,7 @@
                                                 "image" => asset("/assets/images/extra-card-example.png"),
                                                 "id"  => $extra->id])
                      </li>
-                  @endforeach
-
-                  @if(empty($extras))
-                     <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+                     @endforeach
                   @endif
 
                </ul>
