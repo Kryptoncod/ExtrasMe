@@ -18,6 +18,6 @@ class Professional extends Model
 
     public function extra()
     {
-    	return $this->belongsToMany('App\Extra');
+    	return $this->hasMany('App\Extra');
     }
 }

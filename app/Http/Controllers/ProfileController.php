@@ -82,17 +82,10 @@ class ProfileController extends Controller
           'requirements' => $request->input('requirements'),
           'benefits' => $request->input('benefits'),
           'informations' => $request->input('informations'),
+          'professional_id' => $professionalID,
       );
 
       $extra = $this->extraRepository->store($extraInput);
-      $extraID = $extra->id;
-
-      $IDs = array(
-        'professional_id' => $professionalID,
-        'extra_id' => $extraID,
-        );
-
-      DB::table('extras_professionals')->insert($IDs);
 
       return redirect()->route('home');
     }

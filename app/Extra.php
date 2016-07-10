@@ -8,7 +8,7 @@ class Extra extends Model
 {
     protected $fillable = [
         'broadcast', 'type', 'date', 'duration', 'salary', 'benefits', 'requirements', 
-        'informations'
+        'informations', 'professional_id'
     ];
 
     public function student()
@@ -18,6 +18,6 @@ class Extra extends Model
 
     public function professional()
     {
-    	return $this->belongsToMany('App\Professional');
+    	return $this->belongsTo('App\Professional');
     }
 }

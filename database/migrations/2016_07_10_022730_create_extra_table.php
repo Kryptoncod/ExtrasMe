@@ -22,6 +22,10 @@ class CreateExtraTable extends Migration
         $table->string('benefits');
         $table->string('requirements');
         $table->string('informations');
+        $table->integer('professional_id')->unsigned();
+        $table->foreign('professional_id')->references('id')
+                ->on('professionals')
+                ->onDelete('cascade');
         $table->timestamps();
         });
     }
