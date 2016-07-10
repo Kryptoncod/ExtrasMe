@@ -16,7 +16,7 @@ Route::get('login', ['as' => 'login_form', "uses" => "AuthController@showLoginFo
 Route::post('login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
 Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 
-Route::get('/home', 'ProfileController@show');
+Route::get('home', ['as' => 'home', "uses" => "ProfileController@show"]);
 
 Route::get('extra/{id}', ['as' => 'extra', "uses" => "ProfileController@extra"]);
 Route::get('extra/{id}/apply', ['as' => 'extra_apply', "uses" => "ProfileController@extra_apply"]);

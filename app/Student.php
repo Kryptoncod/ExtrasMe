@@ -17,4 +17,9 @@ class Student extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    public function extra()
+    {
+    	return $this->belongsToMany('App\Extra');
+    }
 }

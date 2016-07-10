@@ -10,16 +10,23 @@ use App\Http\Requests\ExtraSubmitRequest;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Extra;
+use App\Professional;
+
+use App\Repositories\ExtraRepository;
 
 use Carbon\Carbon;
-use ExtrasMeApi, Auth;
+use Auth, DB;
 
 class ProfileController extends Controller
 {
 
-    public function __construct()
+  protected $extraRepository;
+
+    public function __construct(ExtraRepository $extraRepository)
     {
-     $this->middleware('auth');
+      $this->middleware('auth');
+      $this->extraRepository = $extraRepository;
     }
 
     /**
@@ -60,26 +67,34 @@ class ProfileController extends Controller
 
     public function extraSubmit(ExtraSubmitRequest $request)
     {
-      $userID = Auth::user()->id;
+      $id = Auth::user()->id;
+      $professionalID = User::find($id)->professional->id;
       $type = config('international.last_minute_types')[$request->input('type')];
       $datetime = Carbon::createFromFormat('m/d/Y H:i', $request->input('date').' '.$request->input('time'));
       $last_minute = $request->input('broadcast') == 'last_minute';
 
-      $extra = ExtrasMeApi::newExtra([
-         'extra_type' => $type,
-         'datetime' => $datetime->format('Y-m-d H:i'),
-         'duration' => $request->input('duration'),
-         'salary' => $request->input('salary'),
-         'requirements' => $request->input('requirements'),
-         'benefits' => $request->input('benefits'),
-         'informations' => $request->input('informations'),
-         'last_minute' => $last_minute,
-         'user_id' => $userID,
-      ]);
+      $extraInput = array(
+          'broadcast' => $last_minute,
+          'type' => $type,
+          'date' => $datetime->format('Y-m-d H:i'),
+          'duration' => $request->input('duration'),
+          'salary' => $request->input('salary'),
+          'requirements' => $request->input('requirements'),
+          'benefits' => $request->input('benefits'),
+          'informations' => $request->input('informations'),
+      );
 
-      $extra->save();
+      $extra = $this->extraRepository->store($extraInput);
+      $extraID = $extra->id;
 
-      return redirect()->route('profile', $userID);
+      $IDs = array(
+        'professional_id' => $professionalID,
+        'extra_id' => $extraID,
+        );
+
+      DB::table('extras_professionals')->insert($IDs);
+
+      return redirect()->route('home');
     }
 
     public function extraSearch(ExtraSearchRequest $request)

@@ -1,8 +1,8 @@
 <?php
 
-namespace ExtrasMe\Http\Requests;
+namespace App\Http\Requests;
 
-use ExtrasMe\Http\Requests\Request;
+use App\Http\Requests\Request;
 use Carbon\Carbon;
 
 class ExtraSubmitRequest extends Request

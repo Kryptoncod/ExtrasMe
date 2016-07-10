@@ -1,6 +1,6 @@
 <div class="medium-2 small-12 columns panel-sidebar">
    <ul class="side-nav">
-      <li><a>YOUR EXTRASME</a></li>
+      <li><a href="{{ url('/home') }}">YOUR EXTRASME</a></li>
       <li><a>ACCOUNT</a></li>
       @foreach($nav as $key => $link)
          <li><a href="{{ $link }}">{{ $key }}</a></li>
