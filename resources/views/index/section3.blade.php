@@ -33,7 +33,7 @@
 
    <div class="row app-stores">
       <div class="large-2 medium-3 small-6 columns">
-         <a href="https://apple.com"><img alt="Get it on App Store" src="/assets/images/App_Store.svg" /></a>
+         <a href="https://apple.com"><img alt="Get it on App Store" src="../resources/assets/images/App_Store.svg" /></a>
       </div>
       <div class="large-2 medium-3 small-6 columns end">
          <a href="https://play.google.com"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" /></a>

@@ -6521,20 +6521,25 @@ footer.footer .disclaimers ul li::after {
 .index-section.section-1 {
     background: url(../images/section1_image.jpg) center center no-repeat;
     transform: scale(1.1);
+    background-size: cover;
 }
 .index-section.section-1 .section-content {
     position: relative;
     top: 20vh;
 }
 .index-section.section-2 {
-    background: url(../images/section2_image.jpg) center center no-repeat;
+    background: url(../images/section2_image.jpg) center top no-repeat;
+    transform: scale(1.1);
+    background-size: cover;
 }
 .index-section.section-2 .section-content {
     position: relative;
     top: 50vh;
 }
 .index-section.section-3 {
-    background-color: red;
+  background: url(../images/section3_image.jpg) center top no-repeat;
+  transform: scale(1.1);
+  background-size: cover;
 }
 .index-section.section-3 .section-content {
     position: relative;
