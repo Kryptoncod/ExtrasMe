@@ -1,6 +1,6 @@
 <div class="medium-2 small-12 columns panel-sidebar">
    <ul class="side-nav">
-      <li><a href="{{ url('/home') }}">YOUR EXTRASME</a></li>
+      <li class="highlight head" style="width:88%; margin-left:auto; margin-right:auto;">MY EXTRASME</li>
       <li><a>ACCOUNT</a></li>
       @foreach($nav as $key => $link)
          <li><a href="{{ $link }}">{{ $key }}</a></li>
@@ -15,7 +15,7 @@
 
       <form data-abide action="{{ route('extra_search') }}" method="post">
          <ul class="form">
-            <li class="head">FIND EXTRAS</li>
+            <li class="head highlight">FIND EXTRAS</li>
             <li>
                <select class="input" name="type" aria-label="Type of extra" required>
                   <option selected disabled value="">TYPE OF EXTRA</option>

@@ -6680,7 +6680,7 @@ div.form form input[type=checkbox].checkbox-right {
 .profile-container .panel-sidebar .form li .postfix, .profile-container .panel-sidebar .form li input {
     margin: 0;
 }
-.profile-container .panel-sidebar .form li.head {
+.profile-container .panel-sidebar li.head {
     color: #FFF;
     font-weight: 700;
     margin-bottom: 1.25rem;
@@ -6852,4 +6852,9 @@ div.form form input[type=checkbox].checkbox-right {
 
 .signup-modal-container form{
   width: 100%;
+}
+
+.highlight{
+  font-size: 20px !important;
+  font-weight: bold;
 }
