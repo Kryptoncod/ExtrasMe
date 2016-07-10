@@ -1,3 +1,20 @@
+@font-face {
+font-family: 'grotesqueregular';
+src: url('../fonts/Brandon_re.ttf');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+  font-family: 'gillsans';
+  src: url('../fonts/GillSans.ttc');
+}
+
+@font-face {
+  font-family: 'ostrich';
+  src: url('../fonts/ostrich-rounded.ttf');
+}
+
 .alert-box, body {
     position: relative;
     font-weight: 400;
@@ -65,7 +82,7 @@ meta.foundation-data-attribute-namespace {
     font-family: false;
 }
 .accordion .accordion-navigation>a, .accordion dd>a, .button, body, button {
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 body, html {
     height: 100%;
@@ -998,7 +1015,7 @@ textarea {
     padding: .875rem 1.5rem .875rem .875rem;
     -webkit-transition: opacity .3s ease-out;
     transition: opacity .3s ease-out;
-    background-color: #080c4a;
+    background-color: #060b2b;
     border-color: #070a40;
     color: #FFF;
 }
@@ -1460,7 +1477,7 @@ textarea {
     display: inline-block;
     padding: 1rem 2rem 1.0625rem;
     font-size: 1rem;
-    background-color: #080c4a;
+    background-color: #060b2b;
     border-color: #060a3b;
     color: #FFF;
     -webkit-transition: background-color .3s ease-out;
@@ -1549,7 +1566,7 @@ textarea {
     border-radius: 1000px;
 }
 .button.disabled, .button[disabled], button.disabled, button[disabled] {
-    background-color: #080c4a;
+    background-color: #060b2b;
     border-color: #060a3b;
     color: #FFF;
     box-shadow: none;
@@ -1558,7 +1575,7 @@ textarea {
 }
 .button.disabled:focus, .button.disabled:hover, .button[disabled]:focus, .button[disabled]:hover, button.disabled:focus, button.disabled:hover, button[disabled]:focus, button[disabled]:hover {
     color: #FFF;
-    background-color: #080c4a;
+    background-color: #060b2b;
 }
 .button.disabled.secondary, .button[disabled].secondary, button.disabled.secondary, button[disabled].secondary {
     background-color: #e7e7e7;
@@ -3157,7 +3174,7 @@ label.error {
     white-space: nowrap;
     padding: .25rem .5rem;
     font-size: .6875rem;
-    background-color: #080c4a;
+    background-color: #060b2b;
     color: #FFF;
 }
 .label.radius {
@@ -3518,7 +3535,7 @@ ul.pagination li.current a:focus, ul.pagination li.current a:hover, ul.paginatio
 .pricing-table .price, .pricing-table .title {
     font-weight: 400;
     padding: .9375rem 1.25rem;
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 .panel.callout>:last-child {
     margin-bottom: 0;
@@ -3832,7 +3849,7 @@ ul.pagination li.current a:focus, ul.pagination li.current a:hover, ul.paginatio
 }
 .side-nav {
     display: block;
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     list-style-type: none;
     margin: 0;
     padding: .875rem 0;
@@ -4514,7 +4531,7 @@ table tbody tr td, table tbody tr th, table tfoot tr td, table tfoot tr th, tabl
     padding-right: 1.14583rem;
 }
 .top-bar-section ul li>a.button {
-    background-color: #080c4a;
+    background-color: #060b2b;
     border-color: #060a3b;
     color: #FFF;
 }
@@ -4568,7 +4585,7 @@ table tbody tr td, table tbody tr th, table tfoot tr td, table tfoot tr th, tabl
     color: #FFF;
 }
 .top-bar-section ul li>button {
-    background-color: #080c4a;
+    background-color: #060b2b;
     border-color: #060a3b;
     color: #FFF;
 }
@@ -5057,6 +5074,7 @@ p {
     margin-bottom: 1.25rem;
     text-rendering: optimizeLegibility;
 }
+
 .subheader, h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
     margin-top: .2rem;
@@ -5072,7 +5090,7 @@ p aside {
 }
 h1, h2, h3, h4, h5, h6 {
     color: #222;
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     font-style: normal;
     line-height: 1.4;
     text-rendering: optimizeLegibility;
@@ -6229,7 +6247,7 @@ html.no-js .js-notice {
     text-align: center;
 }
 #extraModal {
-    background-color: #080c4a;
+    background-color: #060b2b;
     padding: 0;
     color: #FFF;
     width: 60%}
@@ -6248,7 +6266,7 @@ html.no-js .js-notice {
 #extraModal .extra-description {
     font-size: .8125rem;
     margin: 1.25rem .3125rem;
-    background-color: #080c4a;
+    background-color: #060b2b;
 }
 #extraModal .extra-description .details {
     padding: .9375rem .625rem;
@@ -6462,8 +6480,9 @@ footer.footer .informations ul li {
 footer.footer .informations ul li.title {
     text-decoration: underline;
     font-weight: 700;
-    font-size: .75rem;
+    font-size: 30px;
     margin-bottom: .625rem;
+    font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 footer.footer .informations ul.socials-medias li {
     display: inline-block;
@@ -6631,7 +6650,7 @@ div.form form input[type=checkbox].checkbox-right {
     min-height: 100vh;
     margin: 0;
     padding: 55px 0 0;
-    background-color: #080c4a;
+    background-color: #060b2b;
     position: fixed;
     top: 0;
     overflow-y: auto;
@@ -6748,17 +6767,18 @@ div.form form input[type=checkbox].checkbox-right {
 }
 .profile-container .panel-main .account-resume .personal-informations li .info-label {
     padding-right: .3125rem;
+    font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 .profile-container .panel-main .account-resume .personal-informations li .level-logo {
     display: inline-block;
     margin: 0 0 -.625rem;
     height: 1.5625rem;
     width: 1.25rem;
-    background-image: url(/assets/images/level-logo.svg);
+    background-image: url(../images/level-logo.svg);
     background-repeat: no-repeat;
 }
 .profile-container .panel-main .account-resume .personal-informations li .level-logo.completed {
-    background-image: url(/assets/images/level-logo-completed.svg);
+    background-image: url(../images/level-logo-completed.svg);
 }
 .profile-container .panel-main .account-resume .personal-informations li .level-error {
     color: #f08a24;
@@ -6766,8 +6786,9 @@ div.form form input[type=checkbox].checkbox-right {
     margin-left: .625rem;
 }
 .profile-container .panel-main .account-resume .personal-informations li.title {
-    font-size: 1.5625rem;
+    font-size: 45px;
     margin-bottom: .625rem;
+    font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 .profile-container .panel-main .section-title {
     margin: .625rem 0;
