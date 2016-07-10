@@ -24,6 +24,7 @@
          @include('layouts.master.footer')
       @endif
       @include('layouts.master.modals.signup')
+      @include('layouts.master.modals.signin')
       <div id="extraModal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"></div>
       @yield('foot')
 

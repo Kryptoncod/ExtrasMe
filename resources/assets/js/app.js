@@ -77,7 +77,7 @@ $(".signup-button").click(function(){
   $("#partners").addClass("blured");
 });
 
-var modal = $("#signupModal");
+var modal = $("#signupModal, #signinModal");
 
 $(document).mouseup(function (e)
 {

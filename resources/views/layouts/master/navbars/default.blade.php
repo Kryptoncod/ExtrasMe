@@ -11,7 +11,7 @@
      <section class="top-bar-section">
       <ul class="right">
 
-         <li class="signin-button-parent"><a href="{{ url('/login') }}" class="signup-button">SIGN IN</a></li>
+         <li class="signin-button-parent"><a href="/signin" data-reveal-id="signinModal" class="signup-button">SIGN IN</a></li>
          <li><a href="/signup" data-reveal-id="signupModal" class="signup-button">SIGN UP</a></li>
       </ul>
      </section>
