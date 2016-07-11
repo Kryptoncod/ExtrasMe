@@ -5,33 +5,33 @@
    @if(empty($extras))
       <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
    @else
-      @foreach ($extras as $extra)
+      @for($i=0; $i < count($extras); $i++)
          <img src="{{ asset('../resources/assets/images/extra-background.png') }}" class="background-image" />
-         <div class="extra-title">{{ $extra->type }} Extra: The Pauker Hotel</div>
+         <div class="extra-title">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</div>
 
          <div class="extra-description row">
             <div class="small-3 columns">
                <div class="details">
                   <ul>
                      <li class="title">KEY DETAILS</li>
-                     <li>SALARY: {{ $extra->salary }} CHF/Hr</li>
-                     <li>BENEFITS: {{ $extra->benefits }}</li>
+                     <li>SALARY: {{ $extras[$i]->salary }} CHF/Hr</li>
+                     <li>BENEFITS: {{ $extras[$i]->benefits }}</li>
                      <li>LANG: FRENCH</li>
-                     <li>TIME: {{ $extra->date.' at '.$extra->date_time }}</li>
+                     <li>TIME: {{ $extras[$i]->date.' at '.$extras[$i]->date_time }}</li>
                   </ul>
                </div>
             </div>
 
             <div class="small-9 columns">
                <p>
-                  DESCRIPTION : {{ $extra->requirements }}
+                  DESCRIPTION : {{ $extras[$i]->requirements }}
                </p>
             </div>
          </div>
          @if(Auth::user()->type == 0)
             <a href="" class="apply-button right">APPLY</a>
          @endif
-      @endforeach
+      @endfor
    @endif
 </div>
 

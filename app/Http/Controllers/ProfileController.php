@@ -106,8 +106,12 @@ class ProfileController extends Controller
       $name = $first_name . " " . $last_name;
 
       $extras = DB::table('extras')->get();
-
-      return view('user.extra', ['extras' => $extras, 'user' => Auth::user()])->with('name', $name);
+      //On récupère le nom des professionnels qui proposent des extras
+      $professionals = array();
+      for($i=0; $i < count($extras); $i++){
+        array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
+      }
+      return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals])->with('name', $name);
     }
 
     public function extra($id)
