@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Extra extends Model
 {
     protected $fillable = [
-        'broadcast', 'type', 'date', 'duration', 'salary', 'benefits', 'requirements', 
-        'informations', 'professional_id'
+        'broadcast', 'type', 'date', 'date_time', 'duration', 'salary', 'benefits', 'requirements', 'informations', 'professional_id'
     ];
 
     public function student()

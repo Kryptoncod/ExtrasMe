@@ -17,6 +17,7 @@ class CreateExtraTable extends Migration
         $table->boolean('broadcast'); //1 pour last minute et 0 pour normal
         $table->string('type');
         $table->date('date');
+        $table->time('date_time');
         $table->integer('duration');
         $table->integer('salary');
         $table->string('benefits');

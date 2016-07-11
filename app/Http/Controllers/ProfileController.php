@@ -41,7 +41,7 @@ class ProfileController extends Controller
       {
         $id = Auth::user()->id;
         $type = User::find($id)->type;
-        $extras = NULL;
+        $extras = DB::table('extras')->get(); 
 
         if($type == 0)
         {
@@ -70,13 +70,15 @@ class ProfileController extends Controller
       $id = Auth::user()->id;
       $professionalID = User::find($id)->professional->id;
       $type = config('international.last_minute_types')[$request->input('type')];
-      $datetime = Carbon::createFromFormat('m/d/Y H:i', $request->input('date').' '.$request->input('time'));
+      $date = Carbon::createFromFormat('m/d/Y', $request->input('date'));
+      $time = Carbon::createFromFormat('H:i', $request->input('time'));
       $last_minute = $request->input('broadcast') == 'last_minute';
 
       $extraInput = array(
           'broadcast' => $last_minute,
           'type' => $type,
-          'date' => $datetime->format('Y-m-d H:i'),
+          'date' => $date->format('Y-m-d'),
+          'date_time' => $time->format('H:i'),
           'duration' => $request->input('duration'),
           'salary' => $request->input('salary'),
           'requirements' => $request->input('requirements'),
@@ -92,8 +94,6 @@ class ProfileController extends Controller
 
     public function extraSearch(ExtraSearchRequest $request)
     {
-
-
 
       dd($request);
     }

@@ -101,11 +101,11 @@
                      <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
                   @else
                      @foreach ($extras as $extra)
-                     <li>@include('user.card', ["description" => $extra->getUserModel()->getTypeModel()->company_name." is looking for extras in ".
-                                                                 $extra->extra_type.
-                                                                 ' for '.$extra->getFormattedDatetime('D F jS Y').' at '.$extra->getFormattedDatetime('h:i A'),
-                                                "title" => $extra->getUserModel()->getTypeModel()->company_name,
-                                                "image" => asset("/assets/images/extra-card-example.png"),
+                     <li>@include('user.card', ["description" => "The pauker hotel is looking for extras in ".
+                                                                 $extra->type.
+                                                                 ' for '.$extra->date.' at '.$extra->date_time,
+                                                "title" => "The pauker hotel",
+                                                "image" => asset("../resources/assets/images/extra-card-example.png"),
                                                 "id"  => $extra->id])
                      </li>
                      @endforeach

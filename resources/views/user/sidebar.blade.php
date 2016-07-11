@@ -19,8 +19,8 @@
             <li>
                <select class="input" name="type" aria-label="Type of extra" required>
                   <option selected disabled value="">TYPE OF EXTRA</option>
-                  @foreach(config('international.last_minute_types') as $id => $name)
-                     <option value="{{ $id }}">{{ $name }}</option>
+                  @foreach(config('international.last_minute_types') as $id => $nameType)
+                     <option value="{{ $id }}">{{ $nameType }}</option>
                   @endforeach
                </select>
                <small class="error">Type of extra is required</small>
