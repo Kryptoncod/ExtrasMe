@@ -92,7 +92,7 @@ class ProfileController extends Controller
       return redirect()->route('home');
     }
 
-    public function extraSearch(ExtraSearchRequest $request)
+    public function extraSearch(Request $request)
     {
       return redirect()->route('extra_list');
     }
@@ -105,7 +105,9 @@ class ProfileController extends Controller
       $last_name = User::find($id)->student->last_name;
       $name = $first_name . " " . $last_name;
 
-      return view('user.extra')->with('name', $name);
+      $extras = DB::table('extras')->get();
+
+      return view('user.extra', ['extras' => $extras, 'user' => Auth::user()])->with('name', $name);
     }
 
     public function extra($id)

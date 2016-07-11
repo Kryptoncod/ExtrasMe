@@ -16,19 +16,12 @@ Route::get('login', ['as' => 'login_form', "uses" => "AuthController@showLoginFo
 Route::post('login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
 Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 
-//Route::get('home', ['as' => 'home', "uses" => "ProfileController@show"]);
-
-//Route::get('extra/{id}', ['as' => 'extra', "uses" => "ProfileController@extra"]);
-//Route::get('extra/{id}/apply', ['as' => 'extra_apply', "uses" => "ProfileController@extra_apply"]);
-//Route::post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
-//Route::get('extras', ['as' => 'extra_list', "uses" => "ProfileController@showExtraList"]);
-//Route::post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
-
 Route::group(['prefix' => 'home'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
 
    $app->get('extra/{id}/apply',  ['as' => 'extra_apply',   "uses" => "ProfileController@extra_apply"]);
    $app->get('extra/{id}',  ['as' => 'extra',   "uses" => "ProfileController@extra"]);
+   $app->get('extras',  ['as' => 'extra_list',   "uses" => "ProfileController@showExtraList"]);
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
 
