@@ -17,13 +17,12 @@
          <ul class="form">
             <li class="head highlight">FIND EXTRAS</li>
             <li>
-               <select class="input" name="type" aria-label="Type of extra" required>
+               <select class="input" name="type" aria-label="Type of extra">
                   <option selected disabled value="">TYPE OF EXTRA</option>
                   @foreach(config('international.last_minute_types') as $id => $nameType)
                      <option value="{{ $id }}">{{ $nameType }}</option>
                   @endforeach
                </select>
-               <small class="error">Type of extra is required</small>
             </li>
 
             <li>

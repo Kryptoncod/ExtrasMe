@@ -41,7 +41,7 @@ class ProfileController extends Controller
       {
         $id = Auth::user()->id;
         $type = User::find($id)->type;
-        $extras = DB::table('extras')->get(); 
+        $extras = DB::table('extras')->get();
 
         if($type == 0)
         {
@@ -94,8 +94,18 @@ class ProfileController extends Controller
 
     public function extraSearch(ExtraSearchRequest $request)
     {
+      return redirect()->route('extra_list');
+    }
 
-      dd($request);
+    public function showExtraList()
+    {
+
+      $id = Auth::user()->id;
+      $first_name = User::find($id)->student->first_name;
+      $last_name = User::find($id)->student->last_name;
+      $name = $first_name . " " . $last_name;
+
+      return view('user.extra')->with('name', $name);
     }
 
     public function extra($id)

@@ -101,7 +101,7 @@
                      <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
                   @else
                      @foreach ($extras as $extra)
-                     <li>@include('user.card', ["description" => "The pauker hotel is looking for extras in ".
+                     <li>@include('user.card', ["description" => "The Pauker Hotel"." in ".
                                                                  $extra->type.
                                                                  ' for '.$extra->date.' at '.$extra->date_time,
                                                 "title" => "The pauker hotel",

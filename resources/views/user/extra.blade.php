@@ -1,5 +1,8 @@
+@extends('layouts.master', ["title" => trans('profile.title.extra', ["name" => $user->username]), "footer" => false])
+@section('content')
+
 <div class="extra-container">
-   <img src="{{ asset('assets/images/extra-background.png') }}" class="background-image" />
+   <img src="{{ asset('../resource/assets/images/extra-background.png') }}" class="background-image" />
    <div class="extra-title">{{ $extra->extra_type }} Extra: {{ $extra->getUserModel()->getTypeModel()->company_name }} {{ $extra->getUserModel()->getTypeModel()->address }}</div>
 
    <div class="extra-description row">
@@ -25,3 +28,5 @@
       <a href="{{ route('extra_apply', $extra->id) }}" class="apply-button right">APPLY</a>
    @endif
 </div>
+
+@endsection
