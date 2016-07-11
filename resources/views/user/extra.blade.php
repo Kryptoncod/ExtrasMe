@@ -1,38 +1,39 @@
-@extends('layouts.master', ["title" => trans('profile.title.extra', ["name" => $user->username]), "footer" => false])
+@extends('layouts.master', ["title" => trans('profile.title.student', ["name" => $user->username]), "footer" => false])
 @section('content')
 
-<div class="extra-container">
-   @if(empty($extras))
-      <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
-   @else
-      @for($i=0; $i < count($extras); $i++)
-         <img src="{{ asset('../resources/assets/images/extra-background.png') }}" class="background-image" />
-         <div class="extra-title">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</div>
+   <div class="row collapse profile profile-container">
+      @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
 
-         <div class="extra-description row">
-            <div class="small-3 columns">
-               <div class="details">
-                  <ul>
-                     <li class="title">KEY DETAILS</li>
-                     <li>SALARY: {{ $extras[$i]->salary }} CHF/Hr</li>
-                     <li>BENEFITS: {{ $extras[$i]->benefits }}</li>
-                     <li>LANG: FRENCH</li>
-                     <li>TIME: {{ $extras[$i]->date.' at '.$extras[$i]->date_time }}</li>
-                  </ul>
-               </div>
-            </div>
+      <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
+        @if(empty($extras))
+          <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+        @else
 
-            <div class="small-9 columns">
-               <p>
-                  DESCRIPTION : {{ $extras[$i]->requirements }}
-               </p>
-            </div>
-         </div>
-         @if(Auth::user()->type == 0)
-            <a href="" class="apply-button right">APPLY</a>
-         @endif
-      @endfor
-   @endif
+        <div style="display:flex; flex-direction:column; width:40%">
+          <ul>
+              @for($i=0; $i < count($extras); $i++)
+                    <div style="width:100%; height:1px; background-color:white;"></div>
+                     <li style="list-style-type:none; padding-top:20px; padding-bottom :20px;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
+                     <div style="width:100%; height:1px; background-color:white;"></div>
+              @endfor
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; width:60%; align-items:center">
+        @for($i=0; $i < count($extras); $i++)
+        <img src="{{ asset('../resources/assets/images/extra-background.png') }}" class="background-image" style="width:50%;"/>
+           <ul>
+              <li class="title">KEY DETAILS</li>
+              <li>SALARY: {{ $extras[$i]->salary }} CHF/Hr</li>
+              <li>BENEFITS: {{ $extras[$i]->benefits }}</li>
+              <li>LANG: FRENCH</li>
+              <li>TIME: {{ $extras[$i]->date.' at '.$extras[$i]->date_time }}</li>
+           </ul>
+        <p>
+           DESCRIPTION : {{ $extras[$i]->requirements }}
+        </p>
+          @endfor
+      </div>
+@endif
+   </div>
 </div>
-
 @endsection
