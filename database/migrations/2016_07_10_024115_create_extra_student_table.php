@@ -15,12 +15,12 @@ class CreateExtraStudentTable extends Migration
         Schema::create('extras_students', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('extra_id')->unsigned();
-            $table->integer('students_id')->unsigned();
+            $table->integer('student_id')->unsigned();
             $table->foreign('extra_id')->references('id')->on('extras')
                         ->onDelete('cascade')
                         ->onUpdate('cascade');
 
-            $table->foreign('students_id')->references('id')->on('students')
+            $table->foreign('student_id')->references('id')->on('students')
                         ->onDelete('cascade')
                         ->onUpdate('cascade');
         });

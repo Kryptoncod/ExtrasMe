@@ -31,6 +31,7 @@
         <p>
            DESCRIPTION : {{ $extras[$i]->requirements }}
         </p>
+         <a href="{{ route('extra_apply', $extras[$i]->id) }}" class="apply-button right">APPLY</a>
           @endfor
       </div>
 @endif

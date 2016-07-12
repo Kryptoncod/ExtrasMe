@@ -1,18 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
 
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+class UserTableSeeder extends Seeder {
+
     public function run()
-    {
-        DB::table('users')->delete();
+	{
+		DB::table('users')->delete();
 
 		for($i = 0; $i < 5; ++$i)
 		{
@@ -32,6 +26,25 @@ class DatabaseSeeder extends Seeder
 			]);
 		}
 
+		DB::table('professionals')->delete();
+
+		for($i = 5; $i < 10; ++$i)
+		{
+			DB::table('professionals')->insert([
+				'company_name' => 'Nom'.$i,
+				'category' => 'hotel',
+				'first_name' => 'Jean',
+				'last_name' => 'Dupont',
+				'phone' => '0290942',
+				'zipcode' => 75007,
+				'state' => 'Ile-De-France',
+				'country' => 'France',
+				'address' => '31 avenue Victor Hugo',
+				'credit' => 100,
+				'user_id' => $i+1,
+			]);
+		}
+
 		DB::table('students')->delete();
 
 		for($i = 0; $i < 5; ++$i)
@@ -47,5 +60,5 @@ class DatabaseSeeder extends Seeder
 				'user_id' => $i+1,
 			]);
 		}
-    }
+	}
 }

@@ -133,11 +133,17 @@ class ProfileController extends Controller
     {
       try
       {
-         ExtrasMeApi::completeExtra($id, Auth::user()->id);
+
+        DB::table('extras_students')->insert(array(
+          'extra_id' => $id,
+          'student_id' => Auth::user()->student->id,
+          ));
+
+        return redirect()->route('home');
       }
       catch (Exception $e)
       {
-         abort(404);
+         //abort(404);
       }
     }
 
