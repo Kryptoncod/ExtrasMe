@@ -2,7 +2,7 @@
 @section('content')
 
    <div class="row collapse profile profile-container">
-      @include('user.sidebar', ['nav' => ['MY CREDIT' => '', 'MY EXTRAS' => 'home/myextras'], 'formType' => 1])
+      @include('user.sidebar', ['nav' => ['MY CREDIT' => '', 'MY EXTRAS' => '$username/myextras'], 'formType' => 1])
 
       <div class="medium-10 small-12 columns panel-main">
 
@@ -48,7 +48,7 @@
          </div>
 
          <div class="row">
-            <form data-abide class="extra-search-form" action="{{ route('extra_submit') }}" method="post">
+            <form data-abide class="extra-search-form" action="{{ route('extra_submit', $username) }}" method="post">
                <div class="large-8 small-12 columns">
 
                   <div class="row">

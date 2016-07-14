@@ -16,7 +16,7 @@ Route::get('login', ['as' => 'login_form', "uses" => "AuthController@showLoginFo
 Route::post('login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
 Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 
-Route::group(['prefix' => 'home'], function($app) {
+Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
    
    $app->get('extra/{id}/apply',  ['as' => 'extra_apply',   "uses" => "ProfileController@extra_apply"]);

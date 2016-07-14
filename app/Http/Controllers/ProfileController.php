@@ -50,7 +50,7 @@ class ProfileController extends Controller
           $last_name = User::find($id)->student->last_name;
           $name = $first_name . " " . $last_name;
 
-          return view('user.student', ['user' => Auth::user(), 'student' => User::find($id)->student, 'extras' => $extras])->with('name', $name);
+          return view('user.student', ['user' => Auth::user(), 'student' => User::find($id)->student, 'extras' => $extras, 'username' => $id])->with('name', $name);
         }
         else if($type == 1)
         {
@@ -59,7 +59,7 @@ class ProfileController extends Controller
 
           $name = User::find($id)->professional->company_name;
 
-          return view('user.professional', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras])->with('name', $name);
+          return view('user.professional', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id])->with('name', $name);
         }
       } catch (\Exception $e) {
          dd($e);
@@ -117,7 +117,7 @@ class ProfileController extends Controller
         for($i=0; $i < count($extras); $i++){
           array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
         }
-        return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals])->with('name', $name);
+        return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id])->with('name', $name);
       }
     }
 
@@ -127,7 +127,7 @@ class ProfileController extends Controller
       $professionalID = User::find($id)->professional->id;
       $extras = Professional::find($professionalID)->extra;
 
-      return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras]);
+      return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id]);
     }
 
     public function extra($id)
