@@ -41,7 +41,7 @@ class ProfileController extends Controller
       {
         $id = Auth::user()->id;
         $type = User::find($id)->type;
-        $extras = DB::table('extras')->get();
+        $extras = DB::table('extras')->get();;
 
         if($type == 0)
         {
@@ -54,6 +54,8 @@ class ProfileController extends Controller
         }
         else if($type == 1)
         {
+          $professionalID = User::find($id)->professional->id;
+          $extras = Professional::find($professionalID)->extra;
 
           $name = User::find($id)->professional->company_name;
 
@@ -101,17 +103,31 @@ class ProfileController extends Controller
     {
 
       $id = Auth::user()->id;
-      $first_name = User::find($id)->student->first_name;
-      $last_name = User::find($id)->student->last_name;
-      $name = $first_name . " " . $last_name;
+      $type = User::find($id)->type;
+      
+      if($type == 0)
+      {
+        $first_name = User::find($id)->student->first_name;
+        $last_name = User::find($id)->student->last_name;
+        $name = $first_name . " " . $last_name;
 
-      $extras = DB::table('extras')->get();
-      //On récupère le nom des professionnels qui proposent des extras
-      $professionals = array();
-      for($i=0; $i < count($extras); $i++){
-        array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
+        $extras = DB::table('extras')->get();
+        //On récupère le nom des professionnels qui proposent des extras
+        $professionals = array();
+        for($i=0; $i < count($extras); $i++){
+          array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
+        }
+        return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals])->with('name', $name);
       }
-      return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals])->with('name', $name);
+    }
+
+    public function myExtras()
+    {
+      $id = Auth::user()->id;
+      $professionalID = User::find($id)->professional->id;
+      $extras = Professional::find($professionalID)->extra;
+
+      return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras]);
     }
 
     public function extra($id)

@@ -2,7 +2,7 @@
 @section('content')
 
    <div class="row collapse profile profile-container">
-      @include('user.sidebar', ['nav' => ['MY CREDIT' => '', 'MY EXTRAS' => ''], 'formType' => 1])
+      @include('user.sidebar', ['nav' => ['MY CREDIT' => '', 'MY EXTRAS' => 'home/myextras'], 'formType' => 1])
 
       <div class="medium-10 small-12 columns panel-main">
 
@@ -191,10 +191,10 @@
                   <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
 
                      @foreach ($extras as $extra)
-                        <li>@include('user.card', ["description" => "The pauker hotel is looking for extras in ".
+                        <li>@include('user.card', ["description" => $extra->professional->company_name . " is looking for extras in ".
                                                                  $extra->type.
                                                                  ' for '.$extra->date.' at '.$extra->date_time,
-                                                "title" => "The pauker hotel",
+                                                "title" => $extra->professional->company_name,
                                                 "image" => asset("../resources/assets/images/extra-card-example.png"),
                                                 "id"  => $extra->id])
                         </li>

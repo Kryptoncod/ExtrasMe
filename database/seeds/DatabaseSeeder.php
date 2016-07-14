@@ -37,8 +37,8 @@ class DatabaseSeeder extends Seeder
 		for($i = 0; $i < 5; ++$i)
 		{
 			DB::table('students')->insert([
-				'last_name' => 'Pauker',
-				'first_name' => 'Bruce',
+				'last_name' => $i,
+				'first_name' => 'Nom',
 				'nationality' => 'French',
 				'school_year' => 'BOSC 2',
 				'phone' => '097398472',
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
 		for($i = 5; $i < 10; ++$i)
 		{
 			DB::table('professionals')->insert([
-				'company_name' => 'Nom'.$i,
+				'company_name' => 'Nom '.$i,
 				'category' => 'hotel',
 				'first_name' => 'Jean',
 				'last_name' => 'Dupont',

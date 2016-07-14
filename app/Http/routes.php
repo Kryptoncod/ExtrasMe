@@ -18,10 +18,11 @@ Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 
 Route::group(['prefix' => 'home'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
-
+   
    $app->get('extra/{id}/apply',  ['as' => 'extra_apply',   "uses" => "ProfileController@extra_apply"]);
    $app->get('extra/{id}',  ['as' => 'extra',   "uses" => "ProfileController@extra"]);
    $app->get('extras',  ['as' => 'extra_list',   "uses" => "ProfileController@showExtraList"]);
+   $app->get ('myextras', ['as' => 'my_extras', "uses" => "ProfileController@myExtras"]);
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
 

@@ -10,9 +10,9 @@ class Extra extends Model
         'broadcast', 'type', 'date', 'date_time', 'duration', 'salary', 'benefits', 'requirements', 'informations', 'professional_id'
     ];
 
-    public function student()
+    public function students()
     {
-    	return $this->belongsToMany('App\Student');
+    	return $this->belongsToMany('App\Student', 'extras_students');
     }
 
     public function professional()

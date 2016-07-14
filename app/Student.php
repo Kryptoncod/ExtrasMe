@@ -18,8 +18,8 @@ class Student extends Model
     	return $this->belongsTo('App\User');
     }
 
-    public function extra()
+    public function extras()
     {
-    	return $this->belongsToMany('App\Extra');
+    	return $this->belongsToMany('App\Extra', 'extras_students');
     }
 }
