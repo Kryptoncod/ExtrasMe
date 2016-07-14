@@ -6535,7 +6535,7 @@ footer.footer .disclaimers ul li::after {
 }
 .index-section.section-1 {
     background: url(../images/section1_image.jpg) center center no-repeat;
-    transform: scale(1.1);
+    //transform: scale(1.1);
     background-size: cover;
 }
 .index-section.section-1 .section-content {
@@ -6544,7 +6544,7 @@ footer.footer .disclaimers ul li::after {
 }
 .index-section.section-2 {
     background: url(../images/section2_image.jpg) center top no-repeat;
-    transform: scale(1.1);
+    //transform: scale(1.1);
     background-size: cover;
 }
 .index-section.section-2 .section-content {
@@ -6553,7 +6553,7 @@ footer.footer .disclaimers ul li::after {
 }
 .index-section.section-3 {
   background: url(../images/section3_image.jpg) center top no-repeat;
-  transform: scale(1.1);
+  //transform: scale(1.1);
   background-size: cover;
 }
 .index-section.section-3 .section-content {
@@ -6680,7 +6680,7 @@ div.form form input[type=checkbox].checkbox-right {
 .profile-container .panel-sidebar .form li .postfix, .profile-container .panel-sidebar .form li input {
     margin: 0;
 }
-.profile-container .panel-sidebar li.head {
+.profile-container .panel-sidebar .form li.head {
     color: #FFF;
     font-weight: 700;
     margin-bottom: 1.25rem;
@@ -6767,7 +6767,7 @@ div.form form input[type=checkbox].checkbox-right {
 }
 .profile-container .panel-main .account-resume .personal-informations li .info-label {
     padding-right: .3125rem;
-    font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    f
 }
 .profile-container .panel-main .account-resume .personal-informations li .level-logo {
     display: inline-block;
@@ -6852,9 +6852,4 @@ div.form form input[type=checkbox].checkbox-right {
 
 .signup-modal-container form{
   width: 100%;
-}
-
-.highlight{
-  font-size: 20px !important;
-  font-weight: bold;
 }
