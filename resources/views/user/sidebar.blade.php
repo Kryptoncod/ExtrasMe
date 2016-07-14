@@ -1,7 +1,7 @@
 <div class="medium-2 small-12 columns panel-sidebar">
    <ul class="side-nav">
       <li class="highlight head" style="width:88%; margin-left:auto; margin-right:auto;">MY EXTRASME</li>
-      <li><a href="{{ route('home') }}">HOME</a></li>
+      <li><a href="{{ route('home', $username) }}">HOME</a></li>
       <li><a>ACCOUNT</a></li>
       @foreach($nav as $key => $link)
          <li><a href="{{ $link }}">{{ $key }}</a></li>
@@ -14,7 +14,7 @@
    @if($formType == 0)
       <span class="separator"></span>
 
-      <form data-abide action="{{ route('extra_search') }}" method="post">
+      <form data-abide action="{{ route('extra_search', $username) }}" method="post">
          <ul class="form">
             <li class="head highlight">FIND EXTRAS</li>
             <li>
