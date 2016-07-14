@@ -40,3 +40,8 @@ Route::group(['prefix' => 'signup'], function($app) {
 });
 
 Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
+
+Route::get('ajax/getCardContent', [
+   'as' => 'getCard',
+   'uses' => 'AjaxController@loadCard'
+]);

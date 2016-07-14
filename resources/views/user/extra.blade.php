@@ -13,28 +13,18 @@
           <ul>
               @for($i=0; $i < count($extras); $i++)
                     <div style="width:100%; height:1px; background-color:white;"></div>
-                     <li style="list-style-type:none; padding-top:20px; padding-bottom :20px;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
+                    <li data-cardid="{{$i+1}}" class="showCard" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
                      <div style="width:100%; height:1px; background-color:white;"></div>
               @endfor
           </ul>
         </div>
-        <div style="display:flex; flex-direction:column; width:60%; align-items:center">
-        @for($i=0; $i < count($extras); $i++)
-        <img src="{{ asset('../resources/assets/images/extra-background.png') }}" class="background-image" style="width:50%;"/>
-           <ul>
-              <li class="title">KEY DETAILS</li>
-              <li>SALARY: {{ $extras[$i]->salary }} CHF/Hr</li>
-              <li>BENEFITS: {{ $extras[$i]->benefits }}</li>
-              <li>LANG: FRENCH</li>
-              <li>TIME: {{ $extras[$i]->date.' at '.$extras[$i]->date_time }}</li>
-           </ul>
-        <p>
-           DESCRIPTION : {{ $extras[$i]->requirements }}
-        </p>
-         <a href="{{ route('extra_apply', $extras[$i]->id) }}" class="apply-button right">APPLY</a>
-          @endfor
+        <div style="display:flex; flex-direction:column; width:60%; align-items:center" id="card-container">
+        
       </div>
 @endif
    </div>
 </div>
+   <script type="text/javascript">
+     var url = "{{route('getCard')}}"
+   </script>
 @endsection

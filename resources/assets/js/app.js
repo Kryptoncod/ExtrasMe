@@ -89,3 +89,16 @@ $(document).mouseup(function (e)
         $("#partners").removeClass("blured");
     }
 });
+
+$(".showCard").click(function(){
+    var idCard = $(this).data('cardid');
+    $.ajax({
+        url: url,
+        type: "GET",
+        data: {id: idCard},
+        success: function(card){
+            $card = $(card)
+            $("#card-container").fadeOut().html($card).fadeIn();
+        }
+    });
+});
