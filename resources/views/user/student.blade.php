@@ -2,7 +2,7 @@
 @section('content')
 
    <div class="row collapse profile profile-container">
-      @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
+      @include('user.sidebar')
 
       <div class="medium-10 small-12 columns panel-main">
 
@@ -17,15 +17,17 @@
 
             <div class="medium-9 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title">{{ strtoupper($name) }}</li>
-                  <li>
-                     <span class="info-label">EMAIL:</span>
-                     {{ strtoupper($user->email) }}
-                  </li>
-                  <li>
-                     <span class="info-label">CONTACT NUMBER:</span>
-                      {{ $student->phone }}
-                   </li>
+                  <li class="title">{{ strtoupper($student->first_name." ".$student->last_name) }}</li>
+                  @if(Auth::user()->type == 0)
+                     <li>
+                        <span class="info-label">EMAIL:</span>
+                        {{ strtoupper($user->email) }}
+                     </li>
+                     <li>
+                        <span class="info-label">CONTACT NUMBER:</span>
+                         {{ $student->phone }}
+                      </li>
+                  @endif
                   <li>
                      <span class="info-label">SCHOOL:</span>
                      ÉCOLE HÔTELIÈRE DE LAUSANNE
@@ -86,34 +88,35 @@
                </div>
             </div>
          @endif
-
-         <div class="row section-title">
-            <div class="small-12 columns">
-               <h2>EXTRAS AVAILABLE</h2>
+         @if(Auth::user()->type == 0)
+            <div class="row section-title">
+               <div class="small-12 columns">
+                  <h2>EXTRAS AVAILABLE</h2>
+               </div>
             </div>
-         </div>
 
-         <div class="row">
-            <div class="small-12 columns">
-               <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1"
+            <div class="row">
+               <div class="small-12 columns">
+                  <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1"
 
-                  @if(empty($extras))
-                     <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
-                  @else
-                     @foreach ($extras as $extra)
-                     <li>@include('user.card', ["description" =>"Hotel in ".
-                                                                 $extra->type.
-                                                                 ' for '.$extra->date.' at '.$extra->date_time,
-                                                "title" => "The pauker hotel",
-                                                "image" => asset("../resources/assets/images/extra-card-example.png"),
-                                                "id"  => $extra->id])
-                     </li>
-                     @endforeach
-                  @endif
+                     @if(empty($extras))
+                        <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+                     @else
+                        @foreach ($extras as $extra)
+                        <li>@include('user.card', ["description" =>"Hotel in ".
+                                                                    $extra->type.
+                                                                    ' for '.$extra->date.' at '.$extra->date_time,
+                                                   "title" => "The pauker hotel",
+                                                   "image" => asset("../resources/assets/images/extra-card-example.png"),
+                                                   "id"  => $extra->id])
+                        </li>
+                        @endforeach
+                     @endif
 
-               </ul>
+                  </ul>
+               </div>
             </div>
-         </div>
+          @endif
 
       </div>
 

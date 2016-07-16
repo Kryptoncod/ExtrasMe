@@ -25,7 +25,6 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get ('myextras', ['as' => 'my_extras', "uses" => "ProfileController@myExtras"]);
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
-
 });
 
 Route::group(['prefix' => 'signup'], function($app) {

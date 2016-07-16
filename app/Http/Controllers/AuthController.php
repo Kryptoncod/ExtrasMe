@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = 'route('home', Auth::user()->id)';
 
     /**
      * Create a new authentication controller instance.

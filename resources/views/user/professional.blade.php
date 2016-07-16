@@ -2,7 +2,7 @@
 @section('content')
 
    <div class="row collapse profile profile-container">
-      @include('user.sidebar', ['nav' => ['MY CREDIT' => '', 'MY EXTRAS' => '$username/myextras'], 'formType' => 1])
+      @include('user.sidebar')
 
       <div class="medium-10 small-12 columns panel-main">
 

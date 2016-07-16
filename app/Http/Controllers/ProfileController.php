@@ -35,31 +35,32 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+
+    public function show($username)
     {
       try
       {
         $id = Auth::user()->id;
-        $type = User::find($id)->type;
-        $extras = DB::table('extras')->get();;
+        $type = User::find($username)->type;
+        $extras = DB::table('extras')->get();
+
+        if(User::find($id)->type == 0)
+        {
+          $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
+        }
+        else if(User::find($id)->type == 1){
+          $name = User::find($id)->professional->company_name;
+          $professionalID = User::find($id)->professional->id;
+          $extras = Professional::find($professionalID)->extra;
+        }
 
         if($type == 0)
         {
-
-          $first_name = User::find($id)->student->first_name;
-          $last_name = User::find($id)->student->last_name;
-          $name = $first_name . " " . $last_name;
-
-          return view('user.student', ['user' => Auth::user(), 'student' => User::find($id)->student, 'extras' => $extras, 'username' => $id])->with('name', $name);
+          return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name])->with('username', $username);
         }
         else if($type == 1)
         {
-          $professionalID = User::find($id)->professional->id;
-          $extras = Professional::find($professionalID)->extra;
-
-          $name = User::find($id)->professional->company_name;
-
-          return view('user.professional', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id])->with('name', $name);
+          return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'username' => $username, 'AuthId' => $id, 'name' => $name]);
         }
       } catch (\Exception $e) {
          dd($e);
@@ -96,7 +97,8 @@ class ProfileController extends Controller
 
     public function extraSearch(Request $request)
     {
-      return redirect()->route('extra_list');
+      $id = Auth::user()->id;
+      return redirect()->route('extra_list', $id);
     }
 
     public function showExtraList()
@@ -126,8 +128,9 @@ class ProfileController extends Controller
       $id = Auth::user()->id;
       $professionalID = User::find($id)->professional->id;
       $extras = Professional::find($professionalID)->extra;
+      $name = User::find($id)->professional->company_name;
 
-      return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id]);
+      return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name]);
     }
 
     public function extra($id)

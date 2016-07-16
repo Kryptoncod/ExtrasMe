@@ -1,17 +1,20 @@
 <div class="medium-2 small-12 columns panel-sidebar">
    <ul class="side-nav">
       <li class="highlight head" style="width:88%; margin-left:auto; margin-right:auto;">MY EXTRASME</li>
-      <li><a href="{{ route('home', $username) }}">HOME</a></li>
+      <li><a href="{{ route('home', Auth::user()->id) }}">HOME</a></li>
       <li><a>ACCOUNT</a></li>
-      @foreach($nav as $key => $link)
-         <li><a href="{{ $link }}">{{ $key }}</a></li>
-      @endforeach
+      @if(Auth::user()->type == 0)
+         <li><a href="">MY PAST EXPERIENCE</a></li>
+      @elseif(Auth::user()->type == 1)
+         <li><a href="">MY CREDIT</a></li>
+      @endif
+      <li><a href="{{ route('my_extras', $username) }}">MY EXTRAS</a></li>
       <li><a>MY FAV EXTRAS</a></li>
       <li><a>DASHBOARD</a></li>
       <li><a>EXTRASME APP</a></li>
    </ul>
 
-   @if($formType == 0)
+   @if(Auth::user()->type == 0)
       <span class="separator"></span>
 
       <form data-abide action="{{ route('extra_search', $username) }}" method="post">
