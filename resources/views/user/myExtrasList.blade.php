@@ -2,7 +2,7 @@
 @section('content')
 
    <div class="row collapse profile profile-container">
-      @include('user.sidebar', ['nav' => ['MY CREDIT' => '', 'MY EXTRAS' => 'route(my_extras)'], 'formType' => 1])
+      @include('user.sidebar', ['nav' => ['MY CREDIT' => '', 'MY EXTRAS' => route('my_extras', $username)], 'formType' => 1])
 
       <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
         @if(empty($extras))
@@ -22,7 +22,7 @@
                           <ul>
                             <li class="title">STUDENTS WHO HAS APPLIED :</li>
                             @foreach($extra->students as $student)
-                              <li><a href = "">{{ $student->first_name . " " . $student->last_name }}</a></li>
+                              <li><a href = "{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>
                             @endforeach
                        </ul>
                        @endforeach

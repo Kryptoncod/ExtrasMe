@@ -25,6 +25,6 @@
    </div>
 </div>
    <script type="text/javascript">
-     var url = "{{route('getCard')}}"
+     var url = "{{ route('getCard') }}"
    </script>
 @endsection
