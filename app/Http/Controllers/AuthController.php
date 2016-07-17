@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = 'route('home', Auth::user()->id)';
+    //protected $redirectTo = '/rien';
 
     /**
      * Create a new authentication controller instance.
@@ -68,18 +68,5 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-
-    protected function handleUserWasAuthenticated(Request $request, $throttles)
-    {
-        if ($throttles) {
-            $this->clearLoginAttempts($request);
-        }
-
-        if (method_exists($this, 'authenticated')) {
-            return $this->authenticated($request, Auth::guard($this->getGuard())->user());
-        }
-
-        return redirect()->route('home', Auth::user()->id);
     }
 }
