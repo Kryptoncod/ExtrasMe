@@ -1,6 +1,9 @@
 <div class="medium-2 small-12 columns panel-sidebar">
    <ul class="side-nav">
-      <li class="highlight head" style="width:88%; margin-left:auto; margin-right:auto;">MY EXTRASME</li>
+      <li class="highlight head" style="width:88%; margin-left:auto; margin-right:auto;    color: #FFF;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    font-size: .875rem;">MY EXTRASME</li>
       <li><a href="{{ route('home', Auth::user()->id) }}">HOME</a></li>
       <li><a>ACCOUNT</a></li>
       @if(Auth::user()->type == 0)

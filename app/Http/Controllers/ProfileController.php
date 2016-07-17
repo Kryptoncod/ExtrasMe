@@ -158,7 +158,7 @@ class ProfileController extends Controller
           'student_id' => Auth::user()->student->id,
           ));
 
-        return redirect()->route('home');
+        return redirect()->route('home', Auth::user()->id);
       }
       catch (Exception $e)
       {

@@ -8,6 +8,7 @@ use ExtrasMe\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use ExtrasMeApi;
+use Auth;
 
 class AjaxController extends Controller
 {
@@ -15,6 +16,7 @@ class AjaxController extends Controller
 
 		$cardId = $request->input('id');
 		$extra = DB::select('select * from extras where id = :id', ['id' => $cardId]);
-		return view('user.card-content', ['extra' => $extra]);
+		$user = Auth::user()->id;
+		return view('user.card-content', ['extra' => $extra, 'user' => $user]);
 	}
 }

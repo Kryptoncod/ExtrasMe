@@ -9,17 +9,67 @@
           <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
         @else
 
-        <div style="display:flex; flex-direction:column; width:40%">
+        <div style="display:flex; flex-direction:column; width:40%" class="extra-list">
           <ul>
               @for($i=0; $i < count($extras); $i++)
                     <div style="width:100%; height:1px; background-color:white;"></div>
-                    <li data-cardid="{{$i+1}}" class="showCard" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
-                     <div style="width:100%; height:1px; background-color:white;"></div>
+                    <li data-cardid="{{$i+1}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
+                    <div style="width:100%; height:1px; background-color:white;"></div>
               @endfor
           </ul>
         </div>
-        <div style="display:flex; flex-direction:column; width:60%; align-items:center" id="card-container">
-        
+        <div style="width:5%;display:flex;">
+          <img src="../../resources/assets/images/right-arrow.png" style="margin:auto; width:90%;">
+        </div>
+        <div style="display:flex; flex-direction:column; width:55%; align-items:center" id="card-container">
+          <img src="{{ asset('../resources/assets/images/extra-background.png') }}" class="background-image" style="width:90%;"/>
+                        <table style="width:80%;" class="card-info">
+                          <thead>
+                            <tr>
+                              <td colspan="2" style="text-align:center; color:white;">
+                                KEY DETAILS
+                              </td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td style="width:25%;">
+                                SALARY
+                              </td>
+                              <td>
+                                {{ $extras[0]->salary }} CHF/Hr
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                BENEFITS
+                              </td>
+                              <td>
+                                {{ $extras[0]->benefits }}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                LANG
+                              </td>
+                              <td>
+                                French
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                TIME
+                              </td>
+                              <td>
+                                {{ $extras[0]->date.' at '.$extras[0]->date_time }}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  <p>
+                     DESCRIPTION :<br> {{ $extras[0]->requirements }}
+                  </p>
+          <a href="{{ route('extra_apply', $parameter = array('id' => $extras[0]->id, 'username' => $user)) }}" class="apply-button right">APPLY</a>
       </div>
 @endif
    </div>

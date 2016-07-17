@@ -6853,3 +6853,48 @@ div.form form input[type=checkbox].checkbox-right {
 .signup-modal-container form{
   width: 100%;
 }
+.extra-list ul{
+  margin: 0;
+}
+#card-container ul .title{
+  list-style-type: none;
+}
+.showCard{
+  text-align: center;
+}
+.showCard.active{
+  background-color: white;
+  color: black;
+  transition: all 0.3s;
+}
+.card-info{
+    margin-top:1.25em;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+.card-info td{
+    background-color: white;
+    border-bottom: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+.card-info thead{
+    background-color: #060b2b;
+}
+
+.card-info thead td{
+    background-color: #060b2b;
+}
+
+.apply-button{
+    padding: 10px;
+    background-color: #222;
+    border-radius: 10px;
+    color: white;
+    transition: all 0.2s;
+}
+
+.apply-button:hover{
+    background-color: #060b2b;
+}

@@ -92,13 +92,15 @@ $(document).mouseup(function (e)
 
 $(".showCard").click(function(){
     var idCard = $(this).data('cardid');
+    $(this).siblings("li").removeClass("active");
+    $(this).addClass("active");
     $.ajax({
         url: url,
         type: "GET",
         data: {id: idCard},
         success: function(card){
             $card = $(card)
-            $("#card-container").fadeOut().html($card).fadeIn();
+            $("#card-container").fadeOut(150).html($card).fadeIn(150);
         }
     });
 });
