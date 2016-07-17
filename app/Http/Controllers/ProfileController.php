@@ -106,7 +106,7 @@ class ProfileController extends Controller
 
       $id = Auth::user()->id;
       $type = User::find($id)->type;
-      
+
       if($type == 0)
       {
         $first_name = User::find($id)->student->first_name;
