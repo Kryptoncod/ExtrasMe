@@ -19,11 +19,13 @@
                <ul class="personal-informations">
                   <li class="title">{{ strtoupper($professional->company_name) }}</li>
 
+               @if(Auth::user()->id == $username)
                   <li><span class="info-label">EMAIL:</span>
                   {{ strtoupper($user->email) }}</li>
 
                   <li><span class="info-label">CONTACT NUMBER:</span>
                   {{ strtoupper($professional->phone) }}</li>
+               @endif
 
                   <li><span class="info-label">REFERENCE PERSON:</span>
                   {{ strtoupper($professional->first_name.' '.$professional->last_name) }}</li>
@@ -31,8 +33,10 @@
                   <li><span class="info-label">SECTOR:</span>
                   {{ strtoupper($professional->category) }}</li>
 
+               @if(Auth::user()->id == $username)
                   <li><span class="info-label">CREDITS LEFT:</span>
                   {{ strtoupper($professional->credit) }}</li>
+               @endif
                </ul>
             </div>
          </div>
@@ -40,7 +44,7 @@
          <div class="row details-button">
             <a href="">MORE DETAILS</a>
          </div>
-
+      @if(Auth::user()->id == $username)
          <div class="row section-title">
             <div class="small-12 columns">
                <h2>LOOKING FOR EXTRAS?</h2>
@@ -204,6 +208,7 @@
                </div>
             </div>
          @endif
+      @endif
 
       </div>
 

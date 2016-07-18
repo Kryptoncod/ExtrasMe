@@ -18,7 +18,7 @@
             <div class="medium-9 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
                   <li class="title">{{ strtoupper($student->first_name." ".$student->last_name) }}</li>
-                  @if(Auth::user()->type == 0)
+                  @if(Auth::user()->id == $username)
                      <li>
                         <span class="info-label">EMAIL:</span>
                         {{ strtoupper($user->email) }}
@@ -88,7 +88,7 @@
                </div>
             </div>
          @endif
-         @if(Auth::user()->type == 0)
+         @if(Auth::user()->id == $username)
             <div class="row section-title">
                <div class="small-12 columns">
                   <h2>EXTRAS AVAILABLE</h2>
