@@ -38,13 +38,14 @@
                   </li>
                   <li>
                      <span class="info-label">EXTRASME LEVEL:</span>
-                     <span class="level-logo {{ $student->level > 0 ? 'completed' : '' }}"></span>
-                     <span class="level-logo {{ $student->level > 1 ? 'completed' : '' }}"></span>
-                     <span class="level-logo {{ $student->level > 2 ? 'completed' : '' }}"></span>
-                     <span class="level-logo {{ $student->level > 3 ? 'completed' : '' }}"></span>
-                     <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
-                     @if($student->level <= 3)
-                        <span data-tooltip aria-haspopup="true" class="has-tip level-error" title="You haven't done enough extras yet">!</span>
+                     @if($student->level > 3)
+                        <span class="level-logo {{ $student->level > 0 ? 'completed' : '' }}"></span>
+                        <span class="level-logo {{ $student->level > 1 ? 'completed' : '' }}"></span>
+                        <span class="level-logo {{ $student->level > 2 ? 'completed' : '' }}"></span>
+                        <span class="level-logo {{ $student->level > 3 ? 'completed' : '' }}"></span>
+                        <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
+                     @else
+                        NOT ENOUGH EXTRAS DONE YET
                      @endif
                   </li>
                </ul>
@@ -92,27 +93,26 @@
             <div class="row section-title">
                <div class="small-12 columns">
                   <h2>EXTRAS AVAILABLE</h2>
+                  {!! $links !!}
                </div>
             </div>
 
             <div class="row">
                <div class="small-12 columns">
-                  <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1"
-
+                  <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
                      @if(empty($extras))
                         <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
                      @else
                         @foreach ($extras as $extra)
-                        <li>@include('user.card', ["description" =>"Hotel in ".
+                        <li>@include('user.card', ["description" => $extra->professional->company_name." in ".
                                                                     $extra->type.
                                                                     ' for '.$extra->date.' at '.$extra->date_time,
-                                                   "title" => "The pauker hotel",
+                                                   "title" => $extra->professional->company_name,
                                                    "image" => asset("../resources/assets/images/extra-card-example.png"),
                                                    "id"  => $extra->id])
                         </li>
                         @endforeach
                      @endif
-
                   </ul>
                </div>
             </div>

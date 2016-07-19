@@ -23,6 +23,7 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('extra/{id}',  ['as' => 'extra',   "uses" => "ProfileController@extra"]);
    $app->get('extras',  ['as' => 'extra_list',   "uses" => "ProfileController@showExtraList"]);
    $app->get ('myextras', ['as' => 'my_extras', "uses" => "ProfileController@myExtras"]);
+   $app->get ('myfavoriteextras', ['as' => 'my_favorite_extras', "uses" => "ProfileController@myFavoriteExtras"]);
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
 });

@@ -7,12 +7,12 @@
       <li><a href="{{ route('home', Auth::user()->id) }}">HOME</a></li>
       <li><a>ACCOUNT</a></li>
       @if(Auth::user()->type == 0)
-         <li><a href="">MY PAST EXPERIENCE</a></li>
+         <li><a href="">MY EXPERIENCES</a></li>
       @elseif(Auth::user()->type == 1)
          <li><a href="">MY CREDIT</a></li>
+         <li><a href="{{ route('my_extras', Auth::user()->id) }}">MY EXTRAS</a></li>
       @endif
-      <li><a href="{{ route('my_extras', $username) }}">MY EXTRAS</a></li>
-      <li><a>MY FAV EXTRAS</a></li>
+      <li><a href="{{ route('my_favorite_extras', Auth::user()->id) }}">MY FAV EXTRAS</a></li>
       <li><a>DASHBOARD</a></li>
       <li><a>EXTRASME APP</a></li>
    </ul>
@@ -20,7 +20,7 @@
    @if(Auth::user()->type == 0)
       <span class="separator"></span>
 
-      <form data-abide action="{{ route('extra_search', $username) }}" method="post">
+      <form data-abide action="{{ route('extra_search', Auth::user()->id) }}" method="post">
          <ul class="form">
             <li class="head highlight">FIND EXTRAS</li>
             <li>

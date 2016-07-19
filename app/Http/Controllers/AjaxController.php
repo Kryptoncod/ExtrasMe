@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use ExtrasMeApi;
 use Auth;
+use App\Extra;
+use App\Student;
 
 class AjaxController extends Controller
 {

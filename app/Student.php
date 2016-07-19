@@ -22,4 +22,9 @@ class Student extends Model
     {
     	return $this->belongsToMany('App\Extra', 'extras_students');
     }
+
+    public function professionals()
+    {
+        return $this->belongsToMany('App\Professional', 'favoris');
+    }
 }

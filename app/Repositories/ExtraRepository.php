@@ -11,4 +11,11 @@ class ExtraRepository extends ResourceRepository
 	{
 		$this->model = $extra;
 	}
+
+	public function getPaginate($n)
+	{
+		return $this->model->with('professional')
+		->orderBy('extras.created_at', 'desc')
+		->paginate($n);
+	}
 }

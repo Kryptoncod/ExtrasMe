@@ -26,5 +26,4 @@ abstract class ResourceRepository
 	{
 		$this->getById($id)->delete();
 	}
-
 }
