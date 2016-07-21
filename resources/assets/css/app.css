@@ -6890,7 +6890,6 @@ div.form form input[type=checkbox].checkbox-right {
 .apply-button{
     padding: 10px;
     background-color: #222;
-    border-radius: 10px;
     color: white;
     transition: all 0.2s;
 }
