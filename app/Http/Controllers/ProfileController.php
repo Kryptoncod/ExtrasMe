@@ -224,19 +224,31 @@ class ProfileController extends Controller
 
     if(User::find($AuthID)->type == 0)
     {
-      DB::table('favoris')->insert(array(
+      $studentID = User::find($AuthID)->student->id;
+      $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+
+      if(sizeof($results) < 5)
+      {
+        DB::table('favoris')->insert(array(
         'professional_id' => $id,
         'student_id' => Auth::user()->student->id,
         'type' => 0,
         ));
+      }
     }
     else if(User::find($AuthID)->type == 1)
     {
-      DB::table('favoris')->insert(array(
+      $professionalID = User::find($AuthID)->professional->id;
+      $results = Professional::find($professionalID)->students()->where('type', 1)->get();
+
+      if(sizeof($results) < 5)
+      {
+        DB::table('favoris')->insert(array(
         'professional_id' => Auth::user()->professional->id,
         'student_id' => $id,
         'type' => 1,
         ));
+      }
     }
 
     return redirect()->route('my_favorite_extras', Auth::user()->id);
