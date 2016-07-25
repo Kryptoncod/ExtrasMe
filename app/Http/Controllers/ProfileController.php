@@ -8,9 +8,11 @@ use App\Http\Requests;
 use App\Http\Requests\ExtraSearchRequest;
 use App\Http\Requests\ExtraSubmitRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FavoriteSearchRequest;
 
 use App\User;
 use App\Extra;
+use App\Student;
 use App\Professional;
 
 use App\Repositories\ExtraRepository;
@@ -53,6 +55,7 @@ class ProfileController extends Controller
         $name = User::find($id)->professional->company_name;
         $professionalID = User::find($id)->professional->id;
         $extras = Professional::find($professionalID)->extra;
+        $links = null;
       }
 
       if($type == 0)
@@ -164,23 +167,78 @@ class ProfileController extends Controller
     }
     catch (Exception $e)
     {
-       //abort(404);
+      dd($e);
+      abort(404);
     }
   }
 
   public function myFavoriteExtras()
   {
     $id = Auth::user()->id;
+    $results = null;
 
     if(User::find($id)->type == 0)
     {
       $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
+      $studentID = User::find($id)->student->id;
+      $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+
+      return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
     }
     else if(User::find($id)->type == 1)
     {
       $name = User::find($id)->professional->company_name;
+      $professionalID = User::find($id)->professional->id;
+      $results = Professional::find($professionalID)->students()->where('type', 1)->get();
+
+      return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
     }
 
-    return view('user.favExtras', ['name' => $name]);
+    return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
+  }
+
+  public function myFavoriteExtrasSearch(Request $favoriteSearchRequest)
+  {
+    $favoriteName = $favoriteSearchRequest->input('searchFav');
+
+    $id = Auth::user()->id;
+
+    if(User::find($id)->type == 0)
+    {
+      $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
+      $results = DB::table('professionals')->where('company_name', $favoriteName)->get();
+    }
+    else if(User::find($id)->type == 1)
+    {
+      $name = User::find($id)->professional->company_name;
+      list($first_name, $last_name) = explode(" ", $favoriteName);
+      $results = DB::table('students')->where('last_name', $last_name)->where('first_name', $first_name)->get();
+    }
+
+    return view('user.favExtrasSearch', ['name' => $name, 'results' => $results]);
+  }
+
+  public static function myFavoriteExtrasAdd($id)
+  {
+    $AuthID = Auth::user()->id;
+
+    if(User::find($AuthID)->type == 0)
+    {
+      DB::table('favoris')->insert(array(
+        'professional_id' => $id,
+        'student_id' => Auth::user()->student->id,
+        'type' => 0,
+        ));
+    }
+    else if(User::find($AuthID)->type == 1)
+    {
+      DB::table('favoris')->insert(array(
+        'professional_id' => Auth::user()->professional->id,
+        'student_id' => $id,
+        'type' => 1,
+        ));
+    }
+
+    return redirect()->route('my_favorite_extras', Auth::user()->id);
   }
 }

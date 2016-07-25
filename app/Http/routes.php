@@ -23,7 +23,12 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('extra/{id}',  ['as' => 'extra',   "uses" => "ProfileController@extra"]);
    $app->get('extras',  ['as' => 'extra_list',   "uses" => "ProfileController@showExtraList"]);
    $app->get ('myextras', ['as' => 'my_extras', "uses" => "ProfileController@myExtras"]);
-   $app->get ('myfavoriteextras', ['as' => 'my_favorite_extras', "uses" => "ProfileController@myFavoriteExtras"]);
+   $app->get ('myFavoriteExtras', ['as' => 'my_favorite_extras', "uses" => "ProfileController@myFavoriteExtras"]);
+   $app->get ('myFavoriteExtrasSearch', ['as' => 'my_favorite_extras_search', "uses" => "ProfileController@myFavoriteExtrasSearch"]);
+   $app->get ('myFavoriteExtras/{id}', function($username, $id){
+      //['as' => 'my_favorite_extras_add', "uses" => "ProfileController@myFavoriteExtrasAdd"]
+      return App\Http\Controllers\ProfileController::myFavoriteExtrasAdd($id);
+   });
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
 });

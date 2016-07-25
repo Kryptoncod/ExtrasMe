@@ -69,7 +69,7 @@
                   <p>
                      DESCRIPTION :<br> {{ $extras[0]->requirements }}
                   </p>
-          <a href="{{ route('extra_apply', $parameter = array('id' => $extras[0]->id, 'username' => $user)) }}" class="apply-button right">APPLY</a>
+          <a href="{{ route('extra_apply', $parameter = array('id' => $extras[0]->id, 'username' => Auth::user()->id)) }}" class="apply-button right">APPLY</a>
       </div>
 @endif
    </div>
