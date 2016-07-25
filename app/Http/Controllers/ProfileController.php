@@ -77,8 +77,10 @@ class ProfileController extends Controller
     $id = Auth::user()->id;
     $professionalID = User::find($id)->professional->id;
     $type = config('international.last_minute_types')[$request->input('type')];
-    $date = Carbon::createFromFormat('m/d/Y', $request->input('date'));
-    $time = Carbon::createFromFormat('H:i', $request->input('time'));
+    $date_time = $request->input('date').split(" ");
+    dd($date_time);
+    $date = Carbon::createFromFormat('m/d/Y', $date_time[0]);
+    $time = Carbon::createFromFormat('H:i', $date_time[1]);
     $last_minute = $request->input('broadcast') == 'last_minute';
 
     $extraInput = array(

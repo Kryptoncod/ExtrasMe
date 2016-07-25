@@ -91,18 +91,7 @@
                         <label for="date" class="right inline">DATE:</label>
                      </div>
                      <div class="large-9 end columns">
-                        <input type="text" name="date" id="date" placeholder="mm/dd/yyyy" value="{{ date('m/d/Y') }}" pattern="month_day_year" required>
-                        <small class="error">Date is required and must be mm/dd/yyyy (e.g 07/29/2016).</small>
-                     </div>
-                  </div>
-
-                  <div class="row">
-                     <div class="large-3 columns">
-                        <label for="time" class="right inline">TIME:</label>
-                     </div>
-                     <div class="large-9 end columns">
-                        <input type="text" name="time" id="time" placeholder="HH:MM" required pattern="time" />
-                        <small class="error">Time is required and must be HH:MM (e.g 17:51).</small>
+                        <input type="text" class="span2" id="date">
                      </div>
                   </div>
 
