@@ -104,3 +104,12 @@ $(".showCard").click(function(){
         }
     });
 });
+
+$(function(){
+    $('#date').fdatepicker({
+        language: 'fr',
+        format: 'dd/mm/yyyy hh:ii',
+        disableDblClickSelection: true,
+        pickTime: true
+    });
+});
