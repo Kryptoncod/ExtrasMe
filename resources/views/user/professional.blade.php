@@ -52,7 +52,7 @@
          </div>
 
          <div class="row">
-            <form data-abide class="extra-search-form" action="{{ route('extra_submit', $username) }}" method="post">
+            <form data-abide class="extra-search-form" action="{{ route('extra_submit', Auth::user()->id) }}" method="post">
                <div class="large-8 small-12 columns">
 
                   <div class="row">
