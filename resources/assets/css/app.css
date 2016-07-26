@@ -6786,4 +6786,7 @@ div.form {
   .apply-button:hover {
     background-color: #060b2b; }
 
+option {
+  background-color: black; }
+
 /*# sourceMappingURL=app.css.map */

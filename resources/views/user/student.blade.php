@@ -90,30 +90,32 @@
             </div>
          @endif
          @if(Auth::user()->id == $username)
-            <div class="row section-title">
-               <div class="small-12 columns">
-                  <h2>EXTRAS AVAILABLE</h2>
-                  {!! $links !!}
+            <div id="to-load">
+               <div class="row section-title">
+                  <div class="small-12 columns">
+                     <h2>EXTRAS AVAILABLE</h2>
+                     <div class="pagination">{!! $links !!}</div>
+                  </div>
                </div>
-            </div>
-
-            <div class="row">
-               <div class="small-12 columns">
-                  <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
-                     @if(empty($extras))
-                        <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
-                     @else
-                        @foreach ($extras as $extra)
-                        <li>@include('user.card', ["description" => $extra->professional->company_name." in ".
-                                                                    $extra->type.
-                                                                    ' for '.$extra->date.' at '.$extra->date_time,
-                                                   "title" => $extra->professional->company_name,
-                                                   "image" => asset("../resources/assets/images/extra-card-example.png"),
-                                                   "id"  => $extra->id])
-                        </li>
-                        @endforeach
-                     @endif
-                  </ul>
+               
+               <div class="row">
+                  <div class="small-12 columns">
+                     <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
+                        @if(empty($extras))
+                           <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+                        @else
+                           @foreach ($extras as $extra)
+                           <li class="extra-available">@include('user.card', ["description" => $extra->professional->company_name." in ".
+                                                                       $extra->type.
+                                                                       ' for '.$extra->date.' at '.$extra->date_time,
+                                                      "title" => $extra->professional->company_name,
+                                                      "image" => asset("../resources/assets/images/extra-card-example.png"),
+                                                      "id"  => $extra->id])
+                           </li>
+                           @endforeach
+                        @endif
+                     </ul>
+                  </div>
                </div>
             </div>
           @endif

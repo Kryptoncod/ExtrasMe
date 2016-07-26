@@ -113,3 +113,9 @@ $(function(){
         pickTime: true
     });
 });
+
+$(".pagination a").click(function(e){
+    e.preventDefault();
+    var url = $(this).attr('href');
+    $("#to-load").load(url + " #to-load");
+});
