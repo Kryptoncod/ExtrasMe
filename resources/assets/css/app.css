@@ -6787,6 +6787,7 @@ div.form {
     background-color: #060b2b; }
 
 option {
-  background-color: black; }
+  background-color: white;
+  color: black; }
 
 /*# sourceMappingURL=app.css.map */

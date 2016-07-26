@@ -72,7 +72,7 @@ class ProfileController extends Controller
     }
   }
 
-  public function extraSubmit(Request $request)
+  public function extraSubmit(ExtraSubmitRequest $request)
   {
     $id = Auth::user()->id;
     $professionalID = User::find($id)->professional->id;
