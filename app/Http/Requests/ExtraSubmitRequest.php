@@ -26,12 +26,10 @@ class ExtraSubmitRequest extends Request
     {
       $types = count(config('international.last_minute_types'))-1;
       $date = Carbon::now()->toDateString();
-
         return [
             'broadcast'    => 'required|in:last_minute,normal',
             'type'         => "required|between:0,$types",
-            'date'         => "required|date_format:m/d/Y|after:$date",
-            'time'         => "required|date_format:H:i",
+            'date'         => "required|date_format:d/m/Y H:i|after:$date",
             'duration'     => 'required|numeric|min:1',
             'salary'       => 'required|numeric|min:1',
             'requirements' => 'required',
