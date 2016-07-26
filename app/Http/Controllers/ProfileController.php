@@ -72,33 +72,39 @@ class ProfileController extends Controller
     }
   }
 
-  public function extraSubmit(ExtraSubmitRequest $request)
+  public function extraSubmit(Request $request)
   {
-    $id = Auth::user()->id;
-    $professionalID = User::find($id)->professional->id;
-    $type = config('international.last_minute_types')[$request->input('type')];
-    $date_time = $request->input('date').split(" ");
-    dd($date_time);
-    $date = Carbon::createFromFormat('m/d/Y', $date_time[0]);
-    $time = Carbon::createFromFormat('H:i', $date_time[1]);
-    $last_minute = $request->input('broadcast') == 'last_minute';
+    try{
+      $id = Auth::user()->id;
+      $professionalID = User::find($id)->professional->id;
+      $type = config('international.last_minute_types')[$request->input('type')];
+      $date_time = $request->input('date');
+      list($dateBis, $timeBis) = explode(" ", $date_time);
+      //dd($date_time);
+      $date = Carbon::createFromFormat('m/d/Y', $dateBis);
+      $time = Carbon::createFromFormat('H:i', $timeBis);
+      $last_minute = $request->input('broadcast') == 'last_minute';
 
-    $extraInput = array(
-        'broadcast' => $last_minute,
-        'type' => $type,
-        'date' => $date->format('Y-m-d'),
-        'date_time' => $time->format('H:i'),
-        'duration' => $request->input('duration'),
-        'salary' => $request->input('salary'),
-        'requirements' => $request->input('requirements'),
-        'benefits' => $request->input('benefits'),
-        'informations' => $request->input('informations'),
-        'professional_id' => $professionalID,
-    );
+      $extraInput = array(
+          'broadcast' => $last_minute,
+          'type' => $type,
+          'date' => $date->format('Y-m-d'),
+          'date_time' => $time->format('H:i'),
+          'duration' => $request->input('duration'),
+          'salary' => $request->input('salary'),
+          'requirements' => $request->input('requirements'),
+          'benefits' => $request->input('benefits'),
+          'informations' => $request->input('informations'),
+          'professional_id' => $professionalID,
+      );
 
-    $extra = $this->extraRepository->store($extraInput);
+      $extra = $this->extraRepository->store($extraInput);
 
-    return redirect()->route('home', Auth::user()->id);
+      return redirect()->route('home', Auth::user()->id);
+
+    } catch(\Exception $e){
+      dd($e);
+    }
   }
 
   public function extraSearch(Request $request)
