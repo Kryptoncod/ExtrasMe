@@ -91,7 +91,7 @@
                         <label for="date" class="right inline">DATE:</label>
                      </div>
                      <div class="large-9 end columns">
-                        <input type="text" class="span2" id="date">
+                        <input type="text" class="span2" id="date" name="date">
                      </div>
                   </div>
 
