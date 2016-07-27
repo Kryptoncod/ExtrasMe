@@ -48,8 +48,15 @@ class ProfileController extends Controller
       if(User::find($id)->type == 0)
       {
         $extras = $this->extraRepository->getPaginate(3);
+        $studentID = User::find($id)->student->id;
         $links = $extras->render();
         $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
+        $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+
+        foreach($results as $result)
+        {
+          $favExtras = Professional::find($result->id)->extra;
+        }
       }
       else if(User::find($id)->type == 1){
         $name = User::find($id)->professional->company_name;
@@ -60,7 +67,7 @@ class ProfileController extends Controller
 
       if($type == 0)
       {
-        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras])->with('username', $username);
       }
       else if($type == 1)
       {
@@ -221,13 +228,14 @@ class ProfileController extends Controller
   public static function myFavoriteExtrasAdd($id)
   {
     $AuthID = Auth::user()->id;
+    $test = NULL;
 
     if(User::find($AuthID)->type == 0)
     {
       $studentID = User::find($AuthID)->student->id;
       $results = Student::find($studentID)->professionals()->where('type', 0)->get();
 
-      if(sizeof($results) < 5)
+      if(sizeof($results) < 5 && $test == NULL)
       {
         DB::table('favoris')->insert(array(
         'professional_id' => $id,
@@ -239,9 +247,9 @@ class ProfileController extends Controller
     else if(User::find($AuthID)->type == 1)
     {
       $professionalID = User::find($AuthID)->professional->id;
-      $results = Professional::find($professionalID)->students()->where('type', 1)->get();
+      $results = Professional::find($professionalID)->students()->where('type', 1);
 
-      if(sizeof($results) < 5)
+      if(sizeof($results) < 5 && $test == NULL)
       {
         DB::table('favoris')->insert(array(
         'professional_id' => Auth::user()->professional->id,
@@ -250,7 +258,25 @@ class ProfileController extends Controller
         ));
       }
     }
-    
+
+    return redirect()->route('my_favorite_extras', Auth::user()->id);
+  }
+
+  public static function myFavoriteExtrasDelete($id)
+  {
+    $AuthID = Auth::user()->id;
+
+    if(User::find($AuthID)->type == 0)
+    {
+      $studentID = User::find($AuthID)->student->id;
+      $results = Student::find($studentID)->professionals()->where('type', 0)->detach($id);
+    }
+    else if(User::find($AuthID)->type == 1)
+    {
+      $professionalID = User::find($AuthID)->professional->id;
+      $results = Professional::find($professionalID)->students()->where('type', 1)->detach($id);
+    }
+
     return redirect()->route('my_favorite_extras', Auth::user()->id);
   }
 }

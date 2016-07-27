@@ -28,6 +28,9 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get ('myFavoriteExtras/{id}', function($username, $id){
       return App\Http\Controllers\ProfileController::myFavoriteExtrasAdd($id);
    });
+   $app->get ('myFavoriteExtras/{id}/delete', function($username, $id){
+      return App\Http\Controllers\ProfileController::myFavoriteExtrasDelete($id);
+   });
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
 });

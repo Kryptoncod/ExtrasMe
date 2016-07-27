@@ -52,7 +52,7 @@
 
                                           <li><span class="info-label">SECTOR:</span>
                                           {{ strtoupper($result->category) }}</li>
-                                          <button class="submit-button right">DELETE</button>
+                                          <button class="submit-button right"><a href="{{ 'myFavoriteExtras/'.$result->id.'/delete' }}">DELETE</button>
                                        </ul>
                                     </div>
                                  </div>

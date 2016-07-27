@@ -112,40 +112,36 @@
                </ul>
             </div>
          </div>
-         @if(false)
-            <div class="row section-title">
-               <div class="small-12 columns">
-                  <h2>EXTRAS IN SPOTLIGHT</h2>
-               </div>
-            </div>
 
-            <div class="row">
-               <div class="small-12 columns">
-                  <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
-
-                     <li>@include('user.card', ["description" => "Four Seasons Hotel des Bergues is looking for extra in all department
-                                                                  for several events upcoming in the month of December. If you have strong background ...",
-                                                "title" => "FOUR SEASONS HOTEL DES BERGUES",
-                                                "image" => asset("/assets/images/extra-card-example.png")])
-                     </li>
-
-                     <li>@include('user.card', ["description" => "Four Seasons Hotel des Bergues is looking for extra in all department
-                                                                  for several events upcoming in the month of December. If you have strong background ...",
-                                                "title" => "FOUR SEASONS HOTEL DES BERGUES",
-                                                "image" => asset("/assets/images/extra-card-example.png")])
-                     </li>
-
-                     <li>@include('user.card', ["description" => "Four Seasons Hotel des Bergues is looking for extra in all department
-                                                                  for several events upcoming in the month of December. If you have strong background ...",
-                                                "title" => "FOUR SEASONS HOTEL DES BERGUES",
-                                                "image" => asset("/assets/images/extra-card-example.png")])
-                     </li>
-
-                  </ul>
-               </div>
-            </div>
-         @endif
          @if(Auth::user()->id == $username)
+            <div id="to-load">
+               <div class="row section-title">
+                  <div class="small-12 columns">
+                     <h2>EXTRAS IN SPOTLIGHT</h2>
+                  </div>
+               </div>
+
+               <div class="row">
+                  <div class="small-12 columns">
+                     <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
+                        @if(empty($favExtras))
+                           <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+                        @else
+                           @foreach ($favExtras as $favExtra)
+                           <li class="extra-available">@include('user.card', ["description" => $favExtra->professional->company_name." in ".
+                                                                       $favExtra->type.
+                                                                       ' for '.$favExtra->date.' at '.$favExtra->date_time,
+                                                      "title" => $favExtra->professional->company_name,
+                                                      "image" => asset("../resources/assets/images/extra-card-example.png"),
+                                                      "id"  => $favExtra->id])
+                           </li>
+                           @endforeach
+                        @endif
+                     </ul>
+                  </div>
+               </div>
+            </div>
+
             <div id="to-load">
                <div class="row section-title">
                   <div class="small-12 columns">
