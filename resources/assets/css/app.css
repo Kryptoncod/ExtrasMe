@@ -6667,11 +6667,62 @@ div.form {
       color: #FFF;
       background-color: #040D2A;
       margin: 0; }
-    .profile-container .panel-main .details-button a {
+    .profile-container .panel-main .details-button div {
       float: right;
       color: #FFF;
       font-size: .75rem;
-      margin-right: .625rem; }
+      margin-right: .625rem;
+      cursor: pointer; }
+      .profile-container .panel-main .details-button div i {
+        width: 20px;
+        color: white; }
+    .profile-container .panel-main .details-container {
+      width: 70%;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 1s, opacity 2s;
+      overflow: hidden;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      color: #fff; }
+      .profile-container .panel-main .details-container h2, .profile-container .panel-main .details-container h3, .profile-container .panel-main .details-container h4 {
+        color: white; }
+      .profile-container .panel-main .details-container h2 {
+        margin: auto;
+        margin-bottom: 15px; }
+      .profile-container .panel-main .details-container h4 {
+        font-size: 1rem; }
+      .profile-container .panel-main .details-container div {
+        padding: 20px;
+        border: 1px solid grey;
+        margin-bottom: 40px;
+        background-color: #060b2b; }
+      .profile-container .panel-main .details-container .summary-container {
+        display: flex;
+        flex-direction: column; }
+      .profile-container .panel-main .details-container .experience-container {
+        display: flex;
+        flex-direction: column; }
+      .profile-container .panel-main .details-container .education-container {
+        display: flex;
+        flex-direction: column; }
+      .profile-container .panel-main .details-container .skills-container {
+        display: flex;
+        flex-direction: column; }
+      .profile-container .panel-main .details-container .languages-container {
+        display: flex;
+        flex-direction: column; }
+      .profile-container .panel-main .details-container ul {
+        list-style-type: none;
+        display: block;
+        display: flex;
+        justify-content: center; }
+        .profile-container .panel-main .details-container ul li {
+          display: inline;
+          padding: 10px;
+          background-color: #222;
+          margin-right: 30px; }
     .profile-container .panel-main .account-resume {
       margin-top: 1.25rem;
       margin-bottom: 1.25rem; }

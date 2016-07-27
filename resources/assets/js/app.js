@@ -119,3 +119,16 @@ $(".pagination a").click(function(e){
     var url = $(this).attr('href');
     $("#to-load").load(url + " #to-load");
 });
+
+$("#more-details").click(function(){
+    $this = $(this);
+    if($this.children("i").hasClass("fa-caret-down")){
+        $this.children("i").removeClass("fa-caret-down").addClass("fa-caret-up");
+        $this.children("span").text("LESS DETAILS");
+        $(".details-container").css({"max-height":"3000px", opacity:"1"});
+    }else{
+        $this.children("i").removeClass("fa-caret-up").addClass("fa-caret-down");
+        $this.children("span").text("MORE DETAILS");
+        $(".details-container").css({"max-height":"0", opacity:""});
+    } 
+});

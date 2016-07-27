@@ -53,9 +53,65 @@
          </div>
 
          <div class="row details-button">
-            <a href="">MORE DETAILS</a>
+            <div id="more-details"><span>MORE DETAILS</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
          </div>
-
+         <div class="details-container">
+            <div class="summary-container">
+               <h2>Résumé</h2>
+               <p>
+                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
+               </p>
+            </div>
+            <div class="experience-container">
+               <h2>Experience</h2>
+               <h3>experience 1</h3>
+               <h4>2013-2014</h4>
+               <p>
+                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
+               </p>
+               <h3>experience 2</h3>
+               <h4>2013-2014</h4>
+               <p>
+                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
+               </p>
+               <h3>experience 3</h3>
+               <h4>2013-2014</h4>
+               <p>
+                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
+               </p>
+            </div>
+            <div class="education-container">
+               <h2>Education</h2>
+               <h3>education 1</h3>
+               <h4>2013-2014</h4>
+               <p>
+                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
+               </p>
+               <h3>education 2</h3>
+               <h4>2013-2014</h4>
+               <p>
+                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
+               </p>
+            </div>
+            <div class="skills-container">
+            <h2 style="margin-bottom: 30px;">Compétences</h2>
+               <ul>
+                  <li>compétence1</li>
+                  <li>compétence1</li>
+                  <li>compétence1</li>
+                  <li>compétence1</li>
+                  <li>compétence1</li>
+               </ul>
+            </div>
+            <div class="languages-container">
+            <h2 style="margin-bottom: 30px;">Langues</h2>
+               <ul>
+                  <li>langue1</li>
+                  <li>langue1</li>
+                  <li>langue1</li>
+               </ul>
+            </div>
+         </div>
          @if(false)
             <div class="row section-title">
                <div class="small-12 columns">

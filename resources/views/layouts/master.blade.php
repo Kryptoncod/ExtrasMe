@@ -7,7 +7,7 @@
       <title>ExtrasMe</title>
       <link rel="stylesheet" href="{{ asset('../resources/assets/css/app.css') }}" />
       <link href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
-      <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
       <link rel="stylesheet" href="{{ asset('../resources/assets/css/foundation-datepicker.min.css') }}" />
       <script src="{{ asset('../resources/assets/js/modernizr.js') }}"></script>
    </head>
