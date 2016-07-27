@@ -44,6 +44,7 @@ class ProfileController extends Controller
     {
       $id = Auth::user()->id;
       $type = User::find($username)->type;
+      $favExtras = NULL;
 
       if(User::find($id)->type == 0)
       {
@@ -55,8 +56,12 @@ class ProfileController extends Controller
 
         foreach($results as $result)
         {
-          $favExtras = Professional::find($result->id)->extra;
+          $favExtras[] = Professional::find($result->id)->extra;
         }
+
+        /*for ($i=0; $i < count($extraTest) ; $i++) { 
+          $favExtras = $favExtras->merge($extraTest[$i]);
+        }*/
       }
       else if(User::find($id)->type == 1){
         $name = User::find($id)->professional->company_name;

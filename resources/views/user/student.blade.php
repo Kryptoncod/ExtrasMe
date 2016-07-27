@@ -127,15 +127,17 @@
                         @if(empty($favExtras))
                            <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
                         @else
-                           @foreach ($favExtras as $favExtra)
-                           <li class="extra-available">@include('user.card', ["description" => $favExtra->professional->company_name." in ".
-                                                                       $favExtra->type.
-                                                                       ' for '.$favExtra->date.' at '.$favExtra->date_time,
-                                                      "title" => $favExtra->professional->company_name,
-                                                      "image" => asset("../resources/assets/images/extra-card-example.png"),
-                                                      "id"  => $favExtra->id])
-                           </li>
-                           @endforeach
+                           @for($i = 0; $i < count($favExtras); $i++)
+                              @foreach ($favExtras[$i] as $favExtra)
+                                 <li class="extra-available">@include('user.card', ["description" => $favExtra->professional->company_name." in ".
+                                                                             $favExtra->type.
+                                                                             ' for '.$favExtra->date.' at '.$favExtra->date_time,
+                                                            "title" => $favExtra->professional->company_name,
+                                                            "image" => asset("../resources/assets/images/extra-card-example.png"),
+                                                            "id"  => $favExtra->id])
+                                 </li>
+                              @endforeach
+                           @endfor
                         @endif
                      </ul>
                   </div>
