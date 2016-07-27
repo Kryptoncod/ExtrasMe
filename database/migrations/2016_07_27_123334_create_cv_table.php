@@ -24,6 +24,7 @@ class CreateCvTable extends Migration
                 ->on('experiences')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+        $table->integer('education_id')->unsigned();
         $table->foreign('education_id')->references('id')
                 ->on('educations')
                 ->onDelete('cascade')
