@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\User;
-use App\Student;
+use App\Models\User;
+use App\Models\Student;
 use Auth;
 
 class HomeController extends Controller

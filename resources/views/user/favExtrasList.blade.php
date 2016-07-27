@@ -52,6 +52,7 @@
 
                                           <li><span class="info-label">SECTOR:</span>
                                           {{ strtoupper($result->category) }}</li>
+                                          <button class="submit-button right">DELETE</button>
                                        </ul>
                                     </div>
                                  </div>

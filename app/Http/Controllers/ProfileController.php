@@ -10,10 +10,10 @@ use App\Http\Requests\ExtraSubmitRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FavoriteSearchRequest;
 
-use App\User;
-use App\Extra;
-use App\Student;
-use App\Professional;
+use App\Models\User;
+use App\Models\Extra;
+use App\Models\Student;
+use App\Models\Professional;
 
 use App\Repositories\ExtraRepository;
 
@@ -250,7 +250,7 @@ class ProfileController extends Controller
         ));
       }
     }
-
+    
     return redirect()->route('my_favorite_extras', Auth::user()->id);
   }
 }

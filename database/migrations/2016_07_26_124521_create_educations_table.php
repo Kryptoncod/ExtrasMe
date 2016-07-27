@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExperiencesTable extends Migration
+class CreateEducationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,8 @@ class CreateExperiencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('experiences', function(Blueprint $table){
+        Schema::create('educations', function(Blueprint $table){
         $table->increments('id');
-        $table->integer('cv_id')->unsigned();
-        $table->foreign('cv_id')->references('id')
-                ->on('cvs')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         $table->string('title');
         $table->date('from_date');
         $table->date('to_date');
@@ -34,6 +29,6 @@ class CreateExperiencesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('experiences');
+        Schema::drop('educations');
     }
 }

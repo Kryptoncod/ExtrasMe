@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Professional;
+use App\Models\Professional;
 
 class ProfessionalRepository extends ResourceRepository
 {

@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Extra;
+use App\Models\Extra;
 
 class ExtraRepository extends ResourceRepository
 {

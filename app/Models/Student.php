@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,16 +15,16 @@ class Student extends Model
 
     public function user()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\Models\User');
     }
 
     public function extras()
     {
-    	return $this->belongsToMany('App\Extra', 'extras_students');
+    	return $this->belongsToMany('App\Models\Extra', 'extras_students');
     }
 
     public function professionals()
     {
-        return $this->belongsToMany('App\Professional', 'favoris');
+        return $this->belongsToMany('App\Models\Professional', 'favoris');
     }
 }

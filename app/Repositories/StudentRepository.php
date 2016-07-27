@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Student;
+use App\Models\Student;
 
 class StudentRepository extends ResourceRepository
 {

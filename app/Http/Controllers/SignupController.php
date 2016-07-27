@@ -17,9 +17,6 @@ use Carbon\Carbon;
 
 use Auth;
 
-use App\ApiClient\Models\User;
-use App\ApiClient\Models\Student;
-
 class SignupController extends Controller
 {
 
