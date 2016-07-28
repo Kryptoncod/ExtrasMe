@@ -18,7 +18,7 @@ use App\Models\Professional;
 use App\Repositories\ExtraRepository;
 
 use Carbon\Carbon;
-use Auth, DB;
+use Auth, DB, GeoIP;
 
 class ProfileController extends Controller
 {
@@ -45,6 +45,7 @@ class ProfileController extends Controller
       $id = Auth::user()->id;
       $type = User::find($username)->type;
       $favExtras = NULL;
+      $location = GeoIP::getLocation();
 
       if(User::find($id)->type == 0)
       {
@@ -58,10 +59,6 @@ class ProfileController extends Controller
         {
           $favExtras[] = Professional::find($result->id)->extra;
         }
-
-        /*for ($i=0; $i < count($extraTest) ; $i++) { 
-          $favExtras = $favExtras->merge($extraTest[$i]);
-        }*/
       }
       else if(User::find($id)->type == 1){
         $name = User::find($id)->professional->company_name;
@@ -72,7 +69,7 @@ class ProfileController extends Controller
 
       if($type == 0)
       {
-        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'location' => $location])->with('username', $username);
       }
       else if($type == 1)
       {

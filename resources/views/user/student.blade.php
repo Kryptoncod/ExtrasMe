@@ -48,6 +48,9 @@
                         NOT ENOUGH EXTRAS DONE YET
                      @endif
                   </li>
+                  <li>
+                     <span class="info-label">{{ $location["city"] }}</span>
+                  </li>
                </ul>
             </div>
          </div>
