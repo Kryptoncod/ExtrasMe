@@ -132,3 +132,41 @@ $("#more-details").click(function(){
         $(".details-container").css({"max-height":"0", opacity:""});
     } 
 });
+
+$("#id-file").change(function(){
+    $("#id-label").children("label").html("<b>ID importé : </b>" + $(this)[0].files[0].name);
+});
+ $("#avs-file").change(function(){
+    $("#avs-label").children("label").html("<b>AVS importée : </b>" + $(this)[0].files[0].name);
+});
+ $("#permit-file").change(function(){
+    $("#permit-label").children("label").html("<b>Permis importée : </b>" + $(this)[0].files[0].name);
+});
+
+ $(function(){
+    $("#id-file").hover(function(){
+        $("#cross1").css({transform: "rotate(90deg)" , transition : "0.3s"});
+        $("#cross-cont1").css({"background-color" : "white", color : "#060b2b", transition : "background-color 0.3s, color 0s"});
+    });
+    $("#id-file").mouseleave(function(){
+        $("#cross1").css({transform: "rotate(0deg)" , transition : "0.3s"});
+        $("#cross-cont1").css({"background-color" : "#060b2b", color : "white", transition : "background-color 0.3s, color 0s"});
+    });
+    $("#avs-file").hover(function(){
+        $("#cross2").css({transform: "rotate(90deg)" , transition : "0.3s"});
+        $("#cross-cont2").css({"background-color" : "white", color : "#060b2b", transition : "background-color 0.3s, color 0s"});
+    });
+    $("#avs-file").mouseleave(function(){
+        $("#cross2").css({transform: "rotate(0deg)" , transition : "0.3s"});
+        $("#cross-cont2").css({"background-color" : "#060b2b", color : "white", transition : "background-color 0.3s, color 0s"});
+    });
+    $("#permit-file").hover(function(){
+        $("#cross3").css({transform: "rotate(90deg)" , transition : "0.3s"});
+        $("#cross-cont3").css({"background-color" : "white", color : "#060b2b", transition : "background-color 0.3s, color 0s"});
+    });
+    $("#permit-file").mouseleave(function(){
+        $("#cross3").css({transform: "rotate(0deg)" , transition : "0.3s"});
+        $("#cross-cont3").css({"background-color" : "#060b2b", color : "white", transition : "background-color 0.3s, color 0s"});
+    });
+
+});

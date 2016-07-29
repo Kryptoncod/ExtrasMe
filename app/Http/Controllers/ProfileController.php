@@ -45,7 +45,7 @@ class ProfileController extends Controller
       $id = Auth::user()->id;
       $type = User::find($username)->type;
       $favExtras = NULL;
-      $location = GeoIP::getLocation();
+      //$location = GeoIP::getLocation();
 
       if(User::find($id)->type == 0)
       {
@@ -69,7 +69,7 @@ class ProfileController extends Controller
 
       if($type == 0)
       {
-        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'location' => $location])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras])->with('username', $username);
       }
       else if($type == 1)
       {
@@ -280,5 +280,14 @@ class ProfileController extends Controller
     }
 
     return redirect()->route('my_favorite_extras', Auth::user()->id);
+  }
+
+  public function account()
+  {
+    $id = Auth::user()->id;
+    $first_name = User::find($id)->student->first_name;
+    $last_name = User::find($id)->student->last_name;
+    $name = $first_name . " " . $last_name;
+    return view('user.account', ['user' => Auth::user()])->with('name', $name);
   }
 }

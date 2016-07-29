@@ -6655,7 +6655,8 @@ div.form {
     background-color: #000;
     min-height: 100%; }
     .profile-container .panel-main .empty-notice {
-      color: #FFF; }
+      color: #FFF;
+      text-align: center; }
     .profile-container .panel-main .extra-card .title {
       text-indent: .625rem;
       display: block;
@@ -6719,7 +6720,7 @@ div.form {
         display: flex;
         justify-content: center; }
         .profile-container .panel-main .details-container ul li {
-          display: inline;
+          display: flex;
           padding: 10px;
           background-color: #222;
           margin-right: 30px; }
@@ -6840,5 +6841,56 @@ div.form {
 option {
   background-color: white;
   color: black; }
+
+.file-container {
+  position: relative;
+  width: 70%;
+  height: 60px;
+  margin-bottom: 20px;
+  background-color: #D1D1D1;
+  margin-left: auto;
+  margin-right: auto; }
+  .file-container .input-file {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer; }
+  .file-container .input-file:hover + .fake-input-file {
+    outline: none;
+    border: 3px solid #636372; }
+  .file-container .fake-input-file {
+    height: 100%;
+    display: flex;
+    background-color: #D1D1D1;
+    border: 3px solid #D1D1D1;
+    transition: border 0.4s; }
+    .file-container .fake-input-file .cross-container {
+      width: 52px;
+      height: 100%;
+      display: flex;
+      background-color: #060b2b;
+      color: white; }
+      .file-container .fake-input-file .cross-container i {
+        font-size: 40px;
+        padding: 10px; }
+    .file-container .fake-input-file .file-label {
+      width: 85%;
+      height: 100%;
+      background-color: white;
+      color: black;
+      display: flex;
+      background-color: #D1D1D1;
+      margin-left: 20px; }
+      .file-container .fake-input-file .file-label label {
+        margin-top: auto;
+        margin-bottom: auto;
+        font-size: 20px;
+        color: #060b2b;
+        line-height: 35px; }
+
+.li-edit-cv input {
+  margin: auto; }
 
 /*# sourceMappingURL=app.css.map */

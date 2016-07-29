@@ -147,6 +147,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        'Torann\GeoIP\GeoIPServiceProvider',
 
         /*
          * Application Service Providers...
@@ -156,7 +157,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Torann\GeoIP\GeoIPServiceProvider::class,
 
     ],
 
@@ -205,7 +205,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form'  => Collective\Html\FormFacade::class,
         'Html'  => Collective\Html\HtmlFacade::class,
-        'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
+        'GeoIP' => 'Torann\GeoIP\GeoIPFacade',
 
     ],
 
