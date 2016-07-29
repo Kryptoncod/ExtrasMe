@@ -49,7 +49,7 @@
                      @endif
                   </li>
                   <li>
-                     <span class="info-label">{{ $location["city"] }}</span>
+                     <span class="info-label"></span>
                   </li>
                </ul>
             </div>
