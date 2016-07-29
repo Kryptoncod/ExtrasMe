@@ -113,8 +113,10 @@ class SignupController extends Controller
             'last_name' => $request->input('representative_last_name'),
             'phone'           => $request->input('contact_number'),
             'address'                  => $request->input('address'),
+            'zipcode' => $request->input('zipcode'),
+            'state' => $request->input('state'),
             'user_id' =>$id,
-            'credit' =>0,
+            'credit' => 100,
             );
 
         $professional = $this->professionalRepository->store($professionalInputs);

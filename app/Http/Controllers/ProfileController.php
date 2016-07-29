@@ -16,6 +16,7 @@ use App\Models\Student;
 use App\Models\Professional;
 
 use App\Repositories\ExtraRepository;
+use App\Repositories\ProfessionalRepository;
 
 use Carbon\Carbon;
 use Auth, DB, GeoIP;
@@ -24,11 +25,14 @@ class ProfileController extends Controller
 {
 
   protected $extraRepository;
+  protected $professionalRepository;
 
-  public function __construct(ExtraRepository $extraRepository)
+  public function __construct(ExtraRepository $extraRepository,
+                              ProfessionalRepository $professionalRepository)
   {
     $this->middleware('auth');
     $this->extraRepository = $extraRepository;
+    $this->professionalRepository = $professionalRepository;
   }
 
   /**
@@ -81,7 +85,7 @@ class ProfileController extends Controller
     }
   }
 
-  public function extraSubmit(ExtraSubmitRequest $request)
+  public function extraSubmit(Request $request)
   {
     $id = Auth::user()->id;
     $professionalID = User::find($id)->professional->id;
@@ -102,6 +106,16 @@ class ProfileController extends Controller
         'informations' => $request->input('informations'),
         'professional_id' => $professionalID,
     );
+
+    $credit_left = Professional::find($professionalID)->credit;
+
+    if($last_minute == 0)
+    {
+      $professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 1]);
+    } else
+    {
+      $professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 3]);
+    }
 
     $extra = $this->extraRepository->store($extraInput);
 

@@ -24,7 +24,7 @@
                   </div>
                   <div class="row">
                      <div class="small-centered columns">
-                        <button type="submit" class="submit-button">SEARCH</button>
+                        <button type="submit" class="submit-button right">SEARCH</button>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                      </div>
                   </div>
@@ -35,7 +35,6 @@
                  @if(!empty($results))
                   @foreach($results as $result)
                      <div style="width:100%; height:1px; background-color:white;"></div>
-                        <a href="{{ 'myFavoriteExtras/'.$result->id }}">
                            <li style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">
                               @if(Auth::user()->type == 0)
                                  <div class="row account-resume">
@@ -52,6 +51,7 @@
 
                                           <li><span class="info-label">SECTOR:</span>
                                           {{ strtoupper($result->category) }}</li>
+                                          <button class="submit-button right"><a href="{{ 'myFavoriteExtras/'.$result->id  }}">ADD TO MY FAVORITE</button>
                                        </ul>
                                     </div>
                                  </div>
@@ -72,6 +72,7 @@
                                              <span class="info-label">YEAR:</span>
                                              {{ strtoupper($result->school_year) }}
                                           </li>
+                                          <button class="submit-button right"><a href="{{ 'myFavoriteExtras/'.$result->id  }}">ADD TO MY FAVORITE</button>
                                        </ul>
                                     </div>
                                  </div>
