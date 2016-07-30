@@ -10148,7 +10148,7 @@ div.form {
       h4{
         font-size: 1rem;
       }
-      div{
+      .cv-div{
         padding: 20px;
         border: 1px solid grey;
         margin-bottom: 40px;
@@ -10426,4 +10426,15 @@ option{
   input{
     margin: auto;
   }
+}
+
+.submit-account{
+  width: 100px;
+  margin: auto;
+  padding: 10px;
+  font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  border: 1px solid grey;
+  background-color: #060b2b;
+  color: white;
+  cursor: pointer;
 }

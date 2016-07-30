@@ -11,7 +11,7 @@
                     </div>
         </div>
         <div class="row register-form-container">
-          <form>
+          <form method="post" action="">
             <div class="file-container">
                  <input type="file" name="cv" id="id-file" class="input-file">
                  <div class="fake-input-file">
@@ -39,6 +39,9 @@
               <div class="file-label" id="permit-label"><label>Permis de travail</label></div>
             </div>
           </div>
+          <div style="width:100%;display:flex;">
+            <input type="submit" name="go-register" class="submit-account" value="Update">
+          </div>
           </form>
           
         </div>
@@ -49,50 +52,72 @@
         </div>
         <div class="details-container" style="max-height: 3000px; opacity: 1;">
         <form>
-            <div class="summary-container">
+            <div class="summary-container cv-div">
                <h2>Résumé</h2>
                <textarea placeholder="Votre résumé" rows="4" style="margin:.3125rem 0"></textarea>
             </div>
-            <div class="experience-container">
+            <div class="experience-container cv-div">
                <h2>Experience</h2>
-               <input type="text" name="experience-title" placeholder="Titre de l'experience">
-               <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-                 <input type="text" name="from" placeholder="Date début" style="width: 20%; margin-right:10px;">
-                 <input type="text" name="to" placeholder="Date fin" style="width: 20%">
+               <div id="append-experience">
+                 <input type="text" name="experience-title" placeholder="Titre de l'experience">
+                 <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
+                   <input type="text" name="from" placeholder="Date début" style="width: 20%; margin-right:10px;">
+                   <input type="text" name="to" placeholder="Date fin" style="width: 20%">
+                 </div>
+                 <textarea placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0"></textarea>
                </div>
-               <textarea placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0"></textarea>
-               <button style="width:30%; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i> Ajouter une experience</button>
+               <button  id="add-experience" style="width:30%; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i> Ajouter une experience</button>
             </div>
-            <div class="education-container">
+            <div class="education-container cv-div">
                <h2>Education</h2>
-               <input type="text" name="education-title" placeholder="Titre de l'éducation (comment on dit lol)">
-               <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-                 <input type="text" name="from" placeholder="Date début" style="width: 20%; margin-right:10px;">
-                 <input type="text" name="to" placeholder="Date fin" style="width: 20%">
+               <div id="append-education">
+                 <input type="text" name="education-title" placeholder="Titre de l'éducation (comment on dit lol)">
+                 <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
+                   <input type="text" name="from" placeholder="Date début" style="width: 20%; margin-right:10px;">
+                   <input type="text" name="to" placeholder="Date fin" style="width: 20%">
+                 </div>
+                 <textarea placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
                </div>
-               <textarea placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
-               <button style="width:30%; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i> Ajouter une éducation</button>
+               <button id="add-education" style="width:30%; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i> Ajouter une éducation</button>
             </div>
-            <div class="skills-container">
+            <div class="skills-container cv-div">
             <h2 style="margin-bottom: 30px;">Compétences</h2>
                <ul>
-                  <li class="li-edit-cv" style="padding:0"><input type="text" name="skill" placeholder="Compétence"></li>
-                  <li style="padding:0"><button style="margin:auto; background-color: #222; padding :10px;"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i></button></li>
+                  <div id="append-skill" style="display:flex; flex-wrap: wrap;">
+                    <li class="li-edit-cv" style="padding:0"><input type="text" name="skill" placeholder="Compétence"></li>
+                  </div>
+                  <button id="add-skill" style="margin:auto; margin-left:0;background-color: #222; padding :10px;"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i></button>
                </ul>
             </div>
-            <div class="languages-container">
+            <div class="languages-container cv-div">
             <h2 style="margin-bottom: 30px;">Langues</h2>
                <ul>
-                  <li class="li-edit-cv" style="padding:0"><input type="text" name="skill" placeholder="Langue"></li>
-                  <li style="padding:0"><button style="margin:auto; background-color: #222; padding :8px;"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i></button></li>
+                  <div id="append-language" style="display:flex; flex-wrap: wrap;">
+                    <li class="li-edit-cv" style="padding:0"><input type="text" name="skill" placeholder="Langue"></li>
+                  </div>
+                  <button id="add-language" style="margin:auto; margin-left: 0; background-color: #222; padding :8px;"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i></button>
                </ul>
             </div>
          </div>
+           <div style="width:100%;display:flex;">
+            <input type="submit" name="go-register" class="submit-account" value="Update">
+          </div>
          </form>
         <div class="row section-title">
                     <div class="small-12 columns">
                        <h2>EDITER MON PROFIL</h2>
                     </div>
+        </div>
+        <div style="display:flex; width: 70%; margin:auto;">
+          <form style="width:100%;">
+            <label for="name">NAME : </label><input type="text" name="name">
+            <label for="email">EMAIL : </label><input type="text" name="email">
+            <label for="number">CONTACT NUMBER : </label><input type="text" name="number">
+            <label for="year">YEAR : </label><input type="text" name="year">
+            <div style="width:100%;display:flex; margin-top:30px; margin-bottom: 30px;">
+            <input type="submit" name="go-register" class="submit-account" value="Update">
+          </div>
+          </form>
         </div>
 
       </div>

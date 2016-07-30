@@ -59,13 +59,13 @@
             <div id="more-details"><span>MORE DETAILS</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
          </div>
          <div class="details-container">
-            <div class="summary-container">
+            <div class="summary-container cv-div">
                <h2>Résumé</h2>
                <p>
                   Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
                </p>
             </div>
-            <div class="experience-container">
+            <div class="experience-container cv-div">
                <h2>Experience</h2>
                <h3>experience 1</h3>
                <h4>2013-2014</h4>
@@ -83,7 +83,7 @@
                   Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
                </p>
             </div>
-            <div class="education-container">
+            <div class="education-container cv-div">
                <h2>Education</h2>
                <h3>education 1</h3>
                <h4>2013-2014</h4>
@@ -96,7 +96,7 @@
                   Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
                </p>
             </div>
-            <div class="skills-container">
+            <div class="skills-container cv-div">
             <h2 style="margin-bottom: 30px;">Compétences</h2>
                <ul>
                   <li>compétence1</li>
@@ -106,7 +106,7 @@
                   <li>compétence1</li>
                </ul>
             </div>
-            <div class="languages-container">
+            <div class="languages-container cv-div">
             <h2 style="margin-bottom: 30px;">Langues</h2>
                <ul>
                   <li>langue1</li>

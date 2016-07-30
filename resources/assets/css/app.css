@@ -6388,6 +6388,7 @@ form .pretty-label {
   background: #080c4a;
   border: 0 solid #ccc;
   font-size: .875rem;
+  font-family: 'ostrich';
   height: auto;
   max-height: none;
   width: 100%;
@@ -6694,7 +6695,7 @@ div.form {
         margin-bottom: 15px; }
       .profile-container .panel-main .details-container h4 {
         font-size: 1rem; }
-      .profile-container .panel-main .details-container div {
+      .profile-container .panel-main .details-container .cv-div {
         padding: 20px;
         border: 1px solid grey;
         margin-bottom: 40px;
@@ -6892,5 +6893,15 @@ option {
 
 .li-edit-cv input {
   margin: auto; }
+
+.submit-account {
+  width: 100px;
+  margin: auto;
+  padding: 10px;
+  font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  border: 1px solid grey;
+  background-color: #060b2b;
+  color: white;
+  cursor: pointer; }
 
 /*# sourceMappingURL=app.css.map */

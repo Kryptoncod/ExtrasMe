@@ -170,3 +170,35 @@ $("#id-file").change(function(){
     });
 
 });
+
+ $("#add-experience").click(function(e){
+    e.preventDefault();
+    //ici on fait des vérifs dynamique
+    //si c'est ok, on execute:
+    var toAppend = "<hr><input type=\"text\" name=\"experience-title\" placeholder=\"Titre de l'experience\"><div style=\"display: flex; padding: 0; border:none; margin-bottom:0;\"><input type=\"text\" name=\"from\" placeholder=\"Date début\" style=\"width: 20%; margin-right:10px;\"><input type=\"text\" name=\"to\" placeholder=\"Date fin\" style=\"width: 20%\"></div><textarea placeholder=\"Description de l'experience\" rows=\"4\" style=\"margin:.3125rem 0\"></textarea>";
+    $("#append-experience").append(toAppend);
+ });
+
+  $("#add-education").click(function(e){
+    e.preventDefault();
+    //ici on fait des vérifs dynamique
+    //si c'est ok, on execute:
+    var toAppend = "<hr><input type=\"text\" name=\"education-title\" placeholder=\"Titre de l'éducation\"><div style=\"display: flex; padding: 0; border:none; margin-bottom:0;\"><input type=\"text\" name=\"from\" placeholder=\"Date début\" style=\"width: 20%; margin-right:10px;\"><input type=\"text\" name=\"to\" placeholder=\"Date fin\" style=\"width: 20%\"></div><textarea placeholder=\"Description de l'éducation\" rows=\"4\" style=\"margin:.3125rem 0\"></textarea>";
+    $("#append-education").append(toAppend);
+ });
+
+    $("#add-skill").click(function(e){
+    e.preventDefault();
+    //ici on fait des vérifs dynamique
+    //si c'est ok, on execute:
+    var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input type=\"text\" name=\"skill\" placeholder=\"Compétence\"></li>";
+    $("#append-skill").append(toAppend);
+ });
+
+    $("#add-language").click(function(e){
+    e.preventDefault();
+    //ici on fait des vérifs dynamique
+    //si c'est ok, on execute:
+    var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input type=\"text\" name=\"skill\" placeholder=\"Langue\"></li>";
+    $("#append-language").append(toAppend);
+ });
