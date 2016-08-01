@@ -17,7 +17,10 @@
 
             <div class="medium-9 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title">{{ strtoupper($student->first_name." ".$student->last_name) }}</li>
+                  <li class="title" style="display: flex;">{{ strtoupper($student->first_name." ".$student->last_name) }} 
+                  @if(!$student->registration_done)
+                  <a href="{{ route('account', Auth::user()->id)}}" style=" display: flex;margin-left: 10px;"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin-top: auto; margin-bottom: auto; font-size: 25px; color: orange;"></i></a></li>
+                  @endif
                   @if(Auth::user()->id == $username)
                      <li>
                         <span class="info-label">EMAIL:</span>
