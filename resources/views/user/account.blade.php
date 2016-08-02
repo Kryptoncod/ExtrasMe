@@ -11,7 +11,7 @@
                     </div>
         </div>
         <div class="row register-form-container">
-          <form method="post" action="">
+          <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}">
             <div class="file-container">
                  <input type="file" name="cv" id="id-file" class="input-file">
                  <div class="fake-input-file">
@@ -51,20 +51,20 @@
                     </div>
         </div>
         <div class="details-container" style="max-height: 3000px; opacity: 1;">
-        <form>
+        <form action="{{ route('cv_update', Auth::user()->id) }}" method="POST">
             <div class="summary-container cv-div">
                <h2>Résumé</h2>
-               <textarea placeholder="Votre résumé" rows="4" style="margin:.3125rem 0"></textarea>
+               <textarea name="resume" placeholder="Votre résumé" rows="4" style="margin:.3125rem 0"></textarea>
             </div>
             <div class="experience-container cv-div">
                <h2>Experience</h2>
                <div id="append-experience">
                  <input type="text" name="experience-title" placeholder="Titre de l'experience">
                  <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-                   <input type="text" name="from" placeholder="Date début" style="width: 20%; margin-right:10px;">
-                   <input type="text" name="to" placeholder="Date fin" style="width: 20%">
+                   <input type="text" name="experience-from" placeholder="Date début" style="width: 20%; margin-right:10px;">
+                   <input type="text" name="experience-to" placeholder="Date fin" style="width: 20%">
                  </div>
-                 <textarea placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0"></textarea>
+                 <textarea name="experience-description" placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0"></textarea>
                </div>
                <button  id="add-experience" style="width:30%; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i> Ajouter une experience</button>
             </div>
@@ -73,10 +73,10 @@
                <div id="append-education">
                  <input type="text" name="education-title" placeholder="Titre de l'éducation (comment on dit lol)">
                  <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-                   <input type="text" name="from" placeholder="Date début" style="width: 20%; margin-right:10px;">
-                   <input type="text" name="to" placeholder="Date fin" style="width: 20%">
+                   <input type="text" name="education-from" placeholder="Date début" style="width: 20%; margin-right:10px;">
+                   <input type="text" name="education-to" placeholder="Date fin" style="width: 20%">
                  </div>
-                 <textarea placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
+                 <textarea name="education-description" placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
                </div>
                <button id="add-education" style="width:30%; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i> Ajouter une éducation</button>
             </div>
@@ -84,7 +84,7 @@
             <h2 style="margin-bottom: 30px;">Compétences</h2>
                <ul>
                   <div id="append-skill" style="display:flex; flex-wrap: wrap;">
-                    <li class="li-edit-cv" style="padding:0"><input type="text" name="skill" placeholder="Compétence"></li>
+                    <li class="li-edit-cv" style="padding:0"><input type="text" name="skill1" placeholder="Compétence"></li>
                   </div>
                   <button id="add-skill" style="margin:auto; margin-left:0;background-color: #222; padding :10px;"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i></button>
                </ul>
@@ -93,7 +93,7 @@
             <h2 style="margin-bottom: 30px;">Langues</h2>
                <ul>
                   <div id="append-language" style="display:flex; flex-wrap: wrap;">
-                    <li class="li-edit-cv" style="padding:0"><input type="text" name="skill" placeholder="Langue"></li>
+                    <li class="li-edit-cv" style="padding:0"><input type="text" name="language1" placeholder="Langue"></li>
                   </div>
                   <button id="add-language" style="margin:auto; margin-left: 0; background-color: #222; padding :8px;"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i></button>
                </ul>
@@ -109,7 +109,7 @@
                     </div>
         </div>
         <div style="display:flex; width: 70%; margin:auto;">
-          <form style="width:100%;">
+          <form style="width:100%;" action="{{ route('register_update', Auth::user()->id) }}" method="POST">
             <label for="name">NAME : </label><input type="text" name="name">
             <label for="email">EMAIL : </label><input type="text" name="email">
             <label for="number">CONTACT NUMBER : </label><input type="text" name="number">

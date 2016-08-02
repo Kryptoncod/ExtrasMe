@@ -33,6 +33,9 @@ Route::group(['prefix' => '{username}'], function($app) {
    });
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
+   $app->post('register_post', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
+   $app->post('cv_post', ['as' => 'cv_update', "uses" => "AccountController@cvUpdate"]);
+   $app->post('profile_post', ['as' => 'profile_update', "uses" => "AccountController@profileUpdate"]);
 });
 
 Route::group(['prefix' => 'signup'], function($app) {
