@@ -202,3 +202,14 @@ $("#id-file").change(function(){
     var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input type=\"text\" name=\"skill\" placeholder=\"Langue\"></li>";
     $("#append-language").append(toAppend);
  });
+
+    $("#login-submit").submit(function(e) {
+     var self = this;
+     e.preventDefault();
+     jQuery.fancybox('<div class="box">Some amazing wonderful content</div>', {
+           'onClosed' : function() { 
+                          self.submit();
+                        }
+     });
+     return false; //is superfluous, but I put it here as a fallback
+});

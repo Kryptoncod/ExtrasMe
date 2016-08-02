@@ -16,7 +16,7 @@
                  <input type="file" name="cv" id="id-file" class="input-file">
                  <div class="fake-input-file">
                    <div class="cross-container" id="cross-cont1">
-                    <i class="fa fa-plus" aria-hidden="true" id="cross1"></i>
+                    <i class="icon-plus-symbol" id="cross1"></i>
                   </div>
                   <div class="file-label" id="id-label"><label>Carte d'identité</label></div>
                 </div>
@@ -25,7 +25,7 @@
                <input type="file" name="lettre" id="avs-file" class="input-file">
                <div class="fake-input-file">
                  <div class="cross-container" id="cross-cont2">
-                  <i class="fa fa-plus" aria-hidden="true" id="cross2"></i>
+                  <i class="icon-plus-symbol" id="cross2"></i>
                 </div>
                 <div class="file-label" id="avs-label"><label>Carte AVS</label></div>
               </div>
@@ -34,7 +34,7 @@
              <input type="file" name="lettre" id="permit-file" class="input-file">
              <div class="fake-input-file">
                <div class="cross-container" id="cross-cont3">
-                <i class="fa fa-plus" aria-hidden="true" id="cross3"></i>
+                <i class="icon-plus-symbol" id="cross3"></i>
               </div>
               <div class="file-label" id="permit-label"><label>Permis de travail</label></div>
             </div>

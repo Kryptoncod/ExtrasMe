@@ -6874,8 +6874,10 @@ option {
       background-color: #060b2b;
       color: white; }
       .file-container .fake-input-file .cross-container i {
-        font-size: 40px;
-        padding: 10px; }
+        height: 100%;
+        font-size: 32px;
+        padding: 8px;
+        margin: auto; }
     .file-container .fake-input-file .file-label {
       width: 85%;
       height: 100%;
