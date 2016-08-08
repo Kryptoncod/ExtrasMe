@@ -124,11 +124,11 @@ class ProfileController extends Controller
 
   public function extraSearch(Request $request)
   {
-    $id = Auth::user()->id;
-    return redirect()->route('extra_list', $id);
+    $input = config('international.last_minute_types')[$request->input('type')];
+    return $this->showExtraList($input);
   }
 
-  public function showExtraList()
+  public function showExtraList($input)
   {
 
     $id = Auth::user()->id;
@@ -140,7 +140,7 @@ class ProfileController extends Controller
       $last_name = User::find($id)->student->last_name;
       $name = $first_name . " " . $last_name;
 
-      $extras = DB::table('extras')->get();
+      $extras = DB::table('extras')->where('type', $input)->get();
       //On récupère le nom des professionnels qui proposent des extras
       $professionals = array();
       for($i=0; $i < count($extras); $i++)

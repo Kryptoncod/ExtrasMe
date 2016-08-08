@@ -18,6 +18,11 @@ class CreateEducationsTable extends Migration
         $table->date('from_date');
         $table->date('to_date');
         $table->string('summary');
+        $table->integer('cv_id')->unsigned();
+        $table->foreign('cv_id')->references('id')
+                ->on('cvs')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         $table->timestamps();
         });
     }

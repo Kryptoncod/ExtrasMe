@@ -27,4 +27,9 @@ class Student extends Model
     {
         return $this->belongsToMany('App\Models\Professional', 'favoris');
     }
+
+    public function cv()
+    {
+        return $this->hasMany('App\Models\Cv');
+    }
 }

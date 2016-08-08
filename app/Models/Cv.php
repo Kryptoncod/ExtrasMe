@@ -14,4 +14,14 @@ class Cv extends Model
     {
     	return $this->belongsTo('App\Models\Student');
     }
+
+    public function education()
+    {
+    	return $this->hasMany('App\Models\Education');
+    }
+
+    public function experience()
+    {
+    	return $this->hasMany('App\Models\Experience');
+    }
 }

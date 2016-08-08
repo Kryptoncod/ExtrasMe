@@ -12,6 +12,6 @@ class Education extends Model
 
     public function cv()
     {
-    	return $this->belongsTo('App\Models\Student');
+    	return $this->belongsTo('App\Models\Cv');
     }
 }
