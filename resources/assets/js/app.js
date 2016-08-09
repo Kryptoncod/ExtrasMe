@@ -115,6 +115,11 @@ $(function(){
         disableDblClickSelection: true,
         pickTime: true
     });
+    $('.date').fdatepicker({
+        language: 'fr',
+        format: 'dd/mm/yyyy',
+        disableDblClickSelection: true
+    });
 });
 
 $(".pagination a").click(function(e){
@@ -177,33 +182,69 @@ $("#id-file").change(function(){
  $("#add-experience").click(function(e){
     e.preventDefault();
     //ici on fait des vérifs dynamique
-    //si c'est ok, on execute:
-    var toAppend = "<hr><input type=\"text\" name=\"experience-title\" placeholder=\"Titre de l'experience\"><div style=\"display: flex; padding: 0; border:none; margin-bottom:0;\"><input type=\"text\" name=\"from\" placeholder=\"Date début\" style=\"width: 20%; margin-right:10px;\"><input type=\"text\" name=\"to\" placeholder=\"Date fin\" style=\"width: 20%\"></div><textarea placeholder=\"Description de l'experience\" rows=\"4\" style=\"margin:.3125rem 0\"></textarea>";
-    $("#append-experience").append(toAppend);
+    if($(".experience-title:last").val() == "" || $(".experience-from:last").val() == "" || $(".experience-to:last").val() == "" || $(".experience-description:last").val() == ""){
+        alert("Tous les champs doivent être remplis avant d'ajouter une nouvelle Expérience");
+    }else{
+        //si c'est ok, on execute:
+        var nextId = parseInt($(".experience:last").data("experience"));
+        nextId++;
+        var toAppend = "<hr><input class=\"experience-title\" data-experience=\""+nextId+"\" type=\"text\" name=\"experience-title"+nextId+"\" placeholder=\"Titre de l'experience\"><div style=\"display: flex; padding: 0; border:none; margin-bottom:0;\"><input type=\"text\" name=\"experience-from"+nextId+"\" class=\"experience-from date\" placeholder=\"Date début\" style=\"width: 20%; margin-right:10px;\"><input type=\"text\" name=\"experience-to"+nextId+"\" class=\"experience-to date\" placeholder=\"Date fin\" style=\"width: 20%\"></div><textarea name=\"experience-description"+nextId+"\" class=\"experience-description\" placeholder=\"Description de l'experience\" rows=\"4\" style=\"margin:.3125rem 0\"></textarea>";
+        $("#append-experience").append(toAppend);
+        $('.date').fdatepicker({
+        language: 'fr',
+        format: 'dd/mm/yyyy',
+        disableDblClickSelection: true
+    });
+    }
  });
 
   $("#add-education").click(function(e){
     e.preventDefault();
     //ici on fait des vérifs dynamique
-    //si c'est ok, on execute:
-    var toAppend = "<hr><input type=\"text\" name=\"education-title\" placeholder=\"Titre de l'éducation\"><div style=\"display: flex; padding: 0; border:none; margin-bottom:0;\"><input type=\"text\" name=\"from\" placeholder=\"Date début\" style=\"width: 20%; margin-right:10px;\"><input type=\"text\" name=\"to\" placeholder=\"Date fin\" style=\"width: 20%\"></div><textarea placeholder=\"Description de l'éducation\" rows=\"4\" style=\"margin:.3125rem 0\"></textarea>";
-    $("#append-education").append(toAppend);
+    if($(".education-title:last").val() == "" || $(".education-from:last").val() == "" || $(".education-to:last").val() == "" || $(".education-description:last").val() == ""){
+        alert("Tous les champs doivent être remplis avant d'ajouter une nouvelle Education");
+    }else{
+       //si c'est ok, on execute:
+        var nextId = parseInt($(".education-title:last").data("education"));
+        nextId++;
+        var toAppend = "<hr><input class=\"education-tile\" data-education=\""+nextId+"\" type=\"text\" name=\"education-title"+nextId+"\" placeholder=\"Titre de l'éducation\"><div style=\"display: flex; padding: 0; border:none; margin-bottom:0;\"><input type=\"text\" name=\"education-from"+nextId+"\" class=\"education-from date\" placeholder=\"Date début\" style=\"width: 20%; margin-right:10px;\"><input type=\"text\" name=\"education-to"+nextId+"\" class=\"education-to date\" placeholder=\"Date fin\" style=\"width: 20%\"></div><textarea name=\"education-description"+nextId+"\" class=\"education-description\" placeholder=\"Description de l'éducation\" rows=\"4\" style=\"margin:.3125rem 0\"></textarea>";
+        $("#append-education").append(toAppend);
+        $('.date').fdatepicker({
+        language: 'fr',
+        format: 'dd/mm/yyyy',
+        disableDblClickSelection: true
+    }); 
+    }
+    
  });
 
     $("#add-skill").click(function(e){
     e.preventDefault();
     //ici on fait des vérifs dynamique
-    //si c'est ok, on execute:
-    var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input type=\"text\" name=\"skill\" placeholder=\"Compétence\"></li>";
-    $("#append-skill").append(toAppend);
+    if($(".competence:last").val() == ""){
+        alert("Vous devez remplir le champ avant d'en ajouter un autre");
+    }else{
+       //si c'est ok, on execute:
+        var nextId = parseInt($(".competence-title:last").data("competence"));
+        nextId++;
+        var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input class=\"competence\" data-competence=\""+nextId+"\"type=\"text\" name=\"skill"+nextId+"\" placeholder=\"Compétence\"></li>";
+        $("#append-skill").append(toAppend); 
+    }
+    
  });
 
     $("#add-language").click(function(e){
     e.preventDefault();
     //ici on fait des vérifs dynamique
-    //si c'est ok, on execute:
-    var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input type=\"text\" name=\"skill\" placeholder=\"Langue\"></li>";
-    $("#append-language").append(toAppend);
+    if($(".langue:last").val() == ""){
+        alert("Vous devez remplir le champ avant d'en ajouter un autre");
+    }else{
+        //si c'est ok, on execute:
+        var nextId = parseInt($(".langue:last").data("langue"));
+        nextId++;
+        var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input class=\"langue\" data-langue=\""+nextId+"\"type=\"text\" name=\"language"+nextId+"\" placeholder=\"Langue\"></li>";
+        $("#append-language").append(toAppend);
+    }
  });
 
     $("#login-submit").submit(function(e) {

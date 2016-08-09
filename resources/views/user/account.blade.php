@@ -65,24 +65,24 @@
           <div class="experience-container cv-div">
             <h2>Experience</h2>
               <div id="append-experience">
-                <input type="text" name="experience-title" placeholder="Titre de l'experience">
+                <input type="text" name="experience-title1" placeholder="Titre de l'experience" class="experience-title" data-experience="1">
                 <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-                  <input type="text" name="experience-from" placeholder="Date début" style="width: 20%; margin-right:10px;">
-                  <input type="text" name="experience-to" placeholder="Date fin" style="width: 20%">
+                  <input type="text" name="experience-from1" class="experience-from date" placeholder="Date début" style="width: 20%; margin-right:10px;">
+                  <input type="text" name="experience-to1" class="experience-to date" placeholder="Date fin" style="width: 20%">
                 </div>
-                <textarea name="experience-description" placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0"></textarea>
+                <textarea name="experience-description1" class="experience-description" placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0"></textarea>
               </div>
               <button  id="add-experience" style="width:30%; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i> Ajouter une experience</button>
           </div>
           <div class="education-container cv-div">
             <h2>Education</h2>
               <div id="append-education">
-                <input type="text" name="education-title" placeholder="Titre de l'éducation (comment on dit lol)">
+                <input type="text" name="education-title1" placeholder="Titre de l'éducation (comment on dit lol)" class="education-title" data-education="1">
                 <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-                  <input type="text" name="education-from" placeholder="Date début" style="width: 20%; margin-right:10px;">
-                  <input type="text" name="education-to" placeholder="Date fin" style="width: 20%">
+                  <input type="text" name="education-from1" class="education-from date" placeholder="Date début" style="width: 20%; margin-right:10px;">
+                  <input type="text" name="education-to1" class="education-to date" placeholder="Date fin" style="width: 20%">
                 </div>
-                <textarea name="education-description" placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
+                <textarea name="education-description1" class="education-description" placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
               </div>
               <button id="add-education" style="width:30%; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i> Ajouter une éducation</button>
           </div>
@@ -90,7 +90,7 @@
           <h2 style="margin-bottom: 30px;">Compétences</h2>
             <ul>
               <div id="append-skill" style="display:flex; flex-wrap: wrap;">
-                <li class="li-edit-cv" style="padding:0"><input type="text" name="skill1" placeholder="Compétence"></li>
+                <li class="li-edit-cv" style="padding:0"><input type="text" name="skill1" placeholder="Compétence" class="competence" data-competence="1"></li>
               </div>
               <button id="add-skill" style="margin:auto; margin-left:0;background-color: #222; padding :10px;"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i></button>
             </ul>
@@ -99,7 +99,7 @@
           <h2 style="margin-bottom: 30px;">Langues</h2>
             <ul>
               <div id="append-language" style="display:flex; flex-wrap: wrap;">
-                <li class="li-edit-cv" style="padding:0"><input type="text" name="language1" placeholder="Langue"></li>
+                <li class="li-edit-cv" style="padding:0"><input type="text" name="language1" placeholder="Langue" class="langue" data-langue="1"></li>
               </div>
               <button id="add-language" style="margin:auto; margin-left: 0; background-color: #222; padding :8px;"><i class="fa fa-plus" aria-hidden="true" id="cross3"></i></button>
             </ul>
