@@ -6441,7 +6441,8 @@ form .pretty-label {
 footer.footer {
   background-color: #000;
   color: #fff;
-  padding: 1.875rem 0; }
+  padding: 1.875rem 0;
+  transform: scale(1.02); }
   footer.footer .informations {
     border-top: 1px solid #fff;
     padding-top: 1.25rem; }
@@ -6498,18 +6499,21 @@ footer.footer {
       color: white; }
   .index-section.section-1 {
     background: url(../images/section1_image.jpg) center center no-repeat;
+    transform: scale(1.02);
     background-size: cover; }
     .index-section.section-1 .section-content {
       position: relative;
       top: 20vh; }
   .index-section.section-2 {
     background: url(../images/section2_image.jpg) center top no-repeat;
+    transform: scale(1.02);
     background-size: cover; }
     .index-section.section-2 .section-content {
       position: relative;
       top: 50vh; }
   .index-section.section-3 {
     background: url(../images/section3_image.jpg) center top no-repeat;
+    transform: scale(1.02);
     background-size: cover; }
     .index-section.section-3 .section-content {
       position: relative;
@@ -6527,7 +6531,8 @@ footer.footer {
         .index-section.section-3 .section-content .app-stores img {
           height: 2.5rem; }
   .index-section.section-4 {
-    background-color: #0ff; }
+    background-color: #0ff;
+    transform: scale(1.02); }
     .index-section.section-4 .section-content {
       background-image: url(https://d1a3f4spazzrp4.cloudfront.net/web-fresh/home/map-web@1x.gif);
       background-position: center;
