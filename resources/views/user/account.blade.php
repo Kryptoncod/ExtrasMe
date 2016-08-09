@@ -3,9 +3,10 @@
 
   <div class="row collapse profile profile-container">
     @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
-
     <div class="medium-10 small-12 columns panel-main">
-
+      @if(isset($error))
+      <h1>OK ERREUR</h1>
+      @endif
       <div class="row section-title">
         <div class="small-12 columns">
           <h2>S'ENREGISTRER</h2>
@@ -13,9 +14,10 @@
       </div>
 
       <div class="row register-form-container">
-        <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}">
+        <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}" enctype="multipart/form-data">
+          <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
           <div class="file-container">
-            <input type="file" name="cv" id="id-file" class="input-file">
+            <input type="file" name="carte-id" id="id-file" class="input-file">
             <div class="fake-input-file">
               <div class="cross-container" id="cross-cont1">
                 <i class="icon-plus-symbol" id="cross1"></i>
@@ -26,7 +28,7 @@
             </div>
           </div>
           <div class="file-container">
-           <input type="file" name="lettre" id="avs-file" class="input-file">
+           <input type="file" name="avs" id="avs-file" class="input-file">
            <div class="fake-input-file">
               <div class="cross-container" id="cross-cont2">
                 <i class="icon-plus-symbol" id="cross2"></i>
@@ -35,7 +37,7 @@
             </div>
           </div>
           <div class="file-container">
-           <input type="file" name="lettre" id="permit-file" class="input-file">
+           <input type="file" name="permit" id="permit-file" class="input-file">
             <div class="fake-input-file">
               <div class="cross-container" id="cross-cont3">
                 <i class="icon-plus-symbol" id="cross3"></i>
@@ -57,6 +59,7 @@
 
       <div class="details-container" style="max-height: 3000px; opacity: 1;">
         <form action="{{ route('cv_update', Auth::user()->id) }}" method="POST">
+          <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
           <div class="summary-container cv-div">
             <h2>Résumé</h2>
               <textarea name="resume" placeholder="Votre résumé" rows="4" style="margin:.3125rem 0">
@@ -117,6 +120,7 @@
       </div>
       <div style="display:flex; width: 70%; margin:auto;">
         <form style="width:100%;" action="{{ route('register_update', Auth::user()->id) }}" method="POST">
+        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
           <label for="name">NAME : </label><input type="text" name="name">
           <label for="email">EMAIL : </label><input type="text" name="email">
           <label for="number">CONTACT NUMBER : </label><input type="text" name="number">
