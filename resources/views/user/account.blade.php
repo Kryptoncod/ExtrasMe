@@ -3,7 +3,8 @@
 
    <div class="row collapse profile profile-container">
       @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
-
+      @if(isset($error))
+      @endif
       <div class="medium-10 small-12 columns panel-main">
          <div class="row section-title">
                     <div class="small-12 columns">
