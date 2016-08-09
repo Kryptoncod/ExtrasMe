@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cv extends Model
 {
+    protected $table = 'cvs';
+
     protected $fillable = [
-        'languages', 'skills', 'summary'
+        'languages', 'skills', 'summary', 'student_id'
     ];
 
     public function student()
