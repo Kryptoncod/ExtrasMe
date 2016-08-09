@@ -4,9 +4,7 @@
   <div class="row collapse profile profile-container">
     @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
     <div class="medium-10 small-12 columns panel-main">
-      @if(isset($error))
-      <h1>OK ERREUR</h1>
-      @endif
+      <div class="erreur-update">OK ERREUR</div>
       <div class="row section-title">
         <div class="small-12 columns">
           <h2>S'ENREGISTRER</h2>
