@@ -2,6 +2,7 @@
 @section('content')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
    <div class="row collapse profile profile-container">
       @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
       @if(isset($error))
@@ -12,6 +13,8 @@
                        <h2>S'ENREGISTRER</h2>
                     </div>
 =======
+=======
+>>>>>>> e219a4eb67a09fde32f6d050d125cdd4b61b26ea
   <div class="row collapse profile profile-container">
     @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
 
@@ -20,7 +23,10 @@
       <div class="row section-title">
         <div class="small-12 columns">
           <h2>S'ENREGISTRER</h2>
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> e219a4eb67a09fde32f6d050d125cdd4b61b26ea
         </div>
       </div>
 
