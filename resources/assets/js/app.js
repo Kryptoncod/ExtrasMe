@@ -75,6 +75,7 @@ $(".signup-button").click(function(){
   $("#details").addClass("blured");
   $("#apps").addClass("blured");
   $("#partners").addClass("blured");
+  $(".footer").addClass("blured");
 });
 
 var modal = $("#signupModal, #signinModal");
@@ -87,6 +88,8 @@ $(document).mouseup(function (e)
         $("#details").removeClass("blured");
         $("#apps").removeClass("blured");
         $("#partners").removeClass("blured");
+        $(".footer").removeClass("blured");
+
     }
 });
 
