@@ -22,7 +22,6 @@ use App\Repositories\EducationRepository;
 use Carbon\Carbon;
 
 use Auth, DB;
-use Redirect;
 
 class AccountController extends Controller
 {
@@ -92,7 +91,7 @@ class AccountController extends Controller
 		    	$error = "Extension du fichier pour le permis de travail non valide (format autorisés : jpg, jpeg, png, gif, tiff, pdf, doc, docx, odt).";
 		    }
 		}
-		return Redirect::route('account', $id)->with('error', $error);
+		return redirect()->route('account', $id)->with('error', $error);
 	}
 
 	public function cvUpdate(Request $request){
