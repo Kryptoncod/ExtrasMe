@@ -55,6 +55,7 @@ class AccountController extends Controller
 		    		$path = "uploads/$id/carte_id";
 		    		$name = "carte_id.".$carte_id->guessExtension();
 		    		$carte_id->move($path, $name);
+		    		$error = "success";
 		    	}else{
 		    		$error = "Taille du fichier pour la carte d'identité trop grande (Max : 8Mo).";
 		    	}
@@ -70,6 +71,7 @@ class AccountController extends Controller
 		    		$path = "uploads/$id/carte_avs";
 		    		$name = "avs.".$avs->guessExtension();
 		    		$avs->move($path, $name);
+		    		$error = "success";
 		    	}else{
 		    		$error = "Taille du fichier pour la carte AVS trop grande (Max : 8Mo).";
 		    	}
@@ -84,6 +86,7 @@ class AccountController extends Controller
 		    		$path = "uploads/$id/permit";
 		    		$name = "permit.".$permit->guessExtension();
 		    		$permit->move($path, $name);
+		    		$error = "success";
 		    	}else{
 		    		$error = "Taille du fichier pour le permis de travail trop grande (Max : 8Mo).";
 		    	}

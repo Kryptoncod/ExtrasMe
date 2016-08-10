@@ -4,8 +4,14 @@
   <div class="row collapse profile profile-container">
     @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
     <div class="medium-10 small-12 columns panel-main">
-      <div class="erreur-update">OK ERREUR</div>
-      <div class="row section-title">
+      @if(Session::has('error'))
+        @if(Session::get('error') != "" && Session::get('error') != "success")
+          <div class="erreur-update" style="background-color: #960E0E;">{{Session::get('error')}}</div>
+        @elseif(Session::get('error') == "success")
+          <div class="erreur-update" style="background-color: #00B143;">Vos données ont bien été mises à jour.</div>
+        @endif
+      @endif
+      <div class="row section-title" style="margin-top:0px;">
         <div class="small-12 columns">
           <h2>S'ENREGISTRER</h2>
         </div>
