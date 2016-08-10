@@ -4,7 +4,7 @@
   <div class="row collapse profile profile-container">
     @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
     <div class="medium-10 small-12 columns panel-main">
-      @if(Session::has('error') || Session::has('message'))
+      @if(Session::has('message'))
         @if(count($errors) > 0)
           <div class="erreur-update" style="background-color: #960E0E;">@foreach ($errors->all() as $error){{ $error }}@endforeach</div>
         @elseif(Session::get('message') != "")
@@ -21,7 +21,7 @@
 
       <div class="row register-form-container">
         <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}" enctype="multipart/form-data">
-          <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+          {{ csrf_field() }}
           <div class="file-container">
             @if(session()->has('error'))
               <div>{!! session('error') !!}</div>
