@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\CvUpdateRequest;
+use App\Http\Requests\CardAvsRequest;
+
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProfileController;
 
 use App\Models\User;
 use App\Models\Extra;
@@ -40,61 +43,54 @@ class AccountController extends Controller
       $this->educationRepository = $educationRepository;
    }
 
-	public function registerUpdate(Request $request){
+	public function registerUpdate(CardAvsRequest $request){
 		$id = Auth::user()->id;
 		$first_name = User::find($id)->student->first_name;
     	$last_name = User::find($id)->student->last_name;
    		$name = $first_name . " " . $last_name;
-		$extensions_valides = array("jpg", "png", "pdf", "gif", "jpeg", "tiff", "doc", "docx", "odt");
-		$file_max_size = 8388608;
-		$error = "";
-		if ($request->hasFile('carte-id')){
-			$carte_id = $request->file('carte-id');
-		    if(in_array($carte_id->guessExtension(), $extensions_valides)){
-		    	if($carte_id->getClientSize() <= $file_max_size){
-		    		$path = "uploads/$id/carte_id";
-		    		$name = "carte_id.".$carte_id->guessExtension();
-		    		$carte_id->move($path, $name);
-		    		$error = "success";
-		    	}else{
-		    		$error = "Taille du fichier pour la carte d'identité trop grande (Max : 8Mo).";
-		    	}
-		    }else{
-		    	$error = "Extension du fichier pour la carte d'identité non valide (format autorisés : jpg, jpeg, png, gif, tiff, pdf, doc, docx, odt).";
-		    }
+   		$ok_register = 0;
+   		$message = "";
+		if ($request->hasFile('carte-id'))
+		{
+			$image1 = $request->file('carte-id');
+			if($image1->isValid())
+			{
+				$ok_register++;
+			}
+			
 		}
-		
-		if ($request->hasFile('avs')) {
-			$avs = $request->file('avs');
-		    if(in_array($avs->guessExtension(), $extensions_valides)){
-		    	if($avs->getClientSize() <= $file_max_size){
-		    		$path = "uploads/$id/carte_avs";
-		    		$name = "avs.".$avs->guessExtension();
-		    		$avs->move($path, $name);
-		    		$error = "success";
-		    	}else{
-		    		$error = "Taille du fichier pour la carte AVS trop grande (Max : 8Mo).";
-		    	}
-		    }else{
-		    	$error = "Extension du fichier pour la carte AVS non valide (format autorisés : jpg, jpeg, png, gif, tiff, pdf, doc, docx, odt).";
-		    }
+		if ($request->hasFile('avs'))
+		{
+			$image2 = $request->file('avs');
+
+			if($image2->isValid())
+			{
+				$ok_register++;
+			}
 		}
-		if ($request->hasFile('permit')) {
-			$permit = $request->file('permit');
-		    if(in_array($permit->guessExtension(), $extensions_valides)){
-		    	if($permit->getClientSize() <= $file_max_size){
-		    		$path = "uploads/$id/permit";
-		    		$name = "permit.".$permit->guessExtension();
-		    		$permit->move($path, $name);
-		    		$error = "success";
-		    	}else{
-		    		$error = "Taille du fichier pour le permis de travail trop grande (Max : 8Mo).";
-		    	}
-		    }else{
-		    	$error = "Extension du fichier pour le permis de travail non valide (format autorisés : jpg, jpeg, png, gif, tiff, pdf, doc, docx, odt).";
-		    }
+		if ($request->hasFile('permit'))
+		{
+			$image3 = $request->file('permit');
+
+			if($image3->isValid())
+			{
+				$ok_register++;
+			}
 		}
-		return redirect()->route('account', $id)->with('error', $error);
+		if($ok_register == 3){
+			$path = config('card.path')."/$id";
+		    $name = "carte-id.".$image1->getClientOriginalExtension();
+		    $image1->move($path, $name);
+		    $path = config('card.path')."/$id";
+		    $name = "avs.".$image2->getClientOriginalExtension();
+		    $image2->move($path, $name);
+		    $path = config('card.path')."/$id";
+		    $name = "permit.".$image3->getClientOriginalExtension();
+		    $image3->move($path, $name);
+			$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
+			//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
+		}
+		return redirect()->route('account', $id)->with('message', $message);
 	}
 
 	public function cvUpdate(Request $request){

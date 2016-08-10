@@ -4,11 +4,13 @@
   <div class="row collapse profile profile-container">
     @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
     <div class="medium-10 small-12 columns panel-main">
-      @if(Session::has('error'))
-        @if(Session::get('error') != "" && Session::get('error') != "success")
-          <div class="erreur-update" style="background-color: #960E0E;">{{Session::get('error')}}</div>
-        @elseif(Session::get('error') == "success")
-          <div class="erreur-update" style="background-color: #00B143;">Vos données ont bien été mises à jour.</div>
+      @if(Session::has('error') || Session::has('message'))
+        @if(count($errors) > 0)
+          <div class="erreur-update" style="background-color: #960E0E;">@foreach ($errors->all() as $error){{ $error }}@endforeach</div>
+        @elseif(Session::get('message') != "")
+          <div class="erreur-update" style="background-color: #00B143;">{{Session::get('message')}}</div>
+        @else
+           <div class="erreur-update" style="background-color: #960E0E;">Vous devez importer les 3 fichiers pour que les modifications soient prises en compte.</div>
         @endif
       @endif
       <div class="row section-title" style="margin-top:0px;">
@@ -21,6 +23,9 @@
         <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}" enctype="multipart/form-data">
           <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
           <div class="file-container">
+            @if(session()->has('error'))
+              <div>{!! session('error') !!}</div>
+            @endif
             <input type="file" name="carte-id" id="id-file" class="input-file">
             <div class="fake-input-file">
               <div class="cross-container" id="cross-cont1">

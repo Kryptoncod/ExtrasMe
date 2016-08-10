@@ -73,7 +73,7 @@ class ProfileController extends Controller
 
       if($type == 0)
       {
-        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'favPro' => $results])->with('username', $username);
       }
       else if($type == 1)
       {
@@ -141,6 +141,7 @@ class ProfileController extends Controller
       $name = $first_name . " " . $last_name;
 
       $extras = DB::table('extras')->where('type', $input)->get();
+      
       //On récupère le nom des professionnels qui proposent des extras
       $professionals = array();
       for($i=0; $i < count($extras); $i++)
@@ -302,6 +303,7 @@ class ProfileController extends Controller
     $first_name = User::find($id)->student->first_name;
     $last_name = User::find($id)->student->last_name;
     $name = $first_name . " " . $last_name;
-    return view('user.account', ['user' => Auth::user()])->with('name', $name);
+
+    return view('user.account', ['user' => Auth::user(), 'name' => $name]);
   }
 }
