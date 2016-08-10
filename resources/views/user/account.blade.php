@@ -6,7 +6,7 @@
     <div class="medium-10 small-12 columns panel-main">
       @if(Session::has('message'))
         @if(count($errors) > 0)
-          <div class="erreur-update" style="background-color: #960E0E;">@foreach ($errors->all() as $error){{ $error }}@endforeach</div>
+          <div class="erreur-update" style="background-color: #960E0E;">@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</div>
         @elseif(Session::get('message') != "")
           <div class="erreur-update" style="background-color: #00B143;">{{Session::get('message')}}</div>
         @else

@@ -24,7 +24,7 @@ use App\Repositories\EducationRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB;
+use Auth, DB, Validator;
 
 class AccountController extends Controller
 {
@@ -43,12 +43,26 @@ class AccountController extends Controller
       $this->educationRepository = $educationRepository;
    }
 
-	public function registerUpdate(CardAvsRequest $request){
+	public function registerUpdate(Request $request){
 		$id = Auth::user()->id;
 		$first_name = User::find($id)->student->first_name;
     	$last_name = User::find($id)->student->last_name;
    		$name = $first_name . " " . $last_name;
    		$message = "";
+   		
+   		
+   		$rule = 'required|file|mimes:jpg,png,pdf,gif,jpeg,tiff,doc,docx,odt|max:10000';
+	    $validator = Validator::make($request->all(), [
+	          'carte-id'   => $rule,
+	          'avs'   => $rule,
+	          'permit' => $rule,
+	      ]);
+
+	    if ($validator->fails()) {
+	        return redirect()->route('account', $id)->with('message', $message)->withErrors($validator)->withInput();
+	      }
+
+
 		if ($request->hasFile('carte-id'))
 		{
 			$image1 = $request->file('carte-id');
