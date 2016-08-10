@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\CvUpdateRequest;
+use App\Http\Requests\CardAvsRequest;
+
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProfileController;
 
 use App\Models\User;
 use App\Models\Extra;
@@ -40,14 +43,14 @@ class AccountController extends Controller
       $this->educationRepository = $educationRepository;
    }
 
-	public function registerUpdate(Request $request){
+	public function registerUpdate(CardAvsRequest $request){
 		$id = Auth::user()->id;
 		$first_name = User::find($id)->student->first_name;
     	$last_name = User::find($id)->student->last_name;
    		$name = $first_name . " " . $last_name;
-		$extensions_valides = array("jpg", "png", "pdf", "gif", "jpeg", "tiff", "doc", "docx", "odt");
+		/*$extensions_valides = array("jpg", "png", "pdf", "gif", "jpeg", "tiff", "doc", "docx", "odt");
 		$file_max_size = 8388608;
-		$error = "";
+		$error = null;
 		if ($request->hasFile('carte-id')){
 			$carte_id = $request->file('carte-id');
 		    if(in_array($carte_id->guessExtension(), $extensions_valides)){
@@ -90,8 +93,29 @@ class AccountController extends Controller
 		    }else{
 		    	$error = "Extension du fichier pour le permis de travail non valide (format autorisés : jpg, jpeg, png, gif, tiff, pdf, doc, docx, odt).";
 		    }
+		}*/
+
+		if ($request->hasFile('carte-id'))
+		{
+			$image = $request->file('carte-id');
+
+			if($image->isValid())
+			{
+				$chemin = config('card.path');
+
+				$extension = $image->getClientOriginalExtension();
+
+				do {
+					$nom = 'carte_id.' . $extension;
+				} while(file_exists($chemin . '/' . $nom));
+
+				if($image->move($chemin, $nom)) {
+					return redirect()->route('account', $id);
+				}
+			}
 		}
-		return redirect()->route('account', $id)->with('error', $error);
+
+		return redirect()->route('account', $id)->with('error', 'Désolé mais impossible');
 	}
 
 	public function cvUpdate(Request $request){

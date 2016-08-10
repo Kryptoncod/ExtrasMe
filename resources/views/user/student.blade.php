@@ -130,20 +130,24 @@
                <div class="row">
                   <div class="small-12 columns">
                      <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
-                        @if(empty($favExtras))
-                           <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+                        @if(empty($favPro))
+                           <p class="empty-notice">You don't have favorite professionals.</p>
                         @else
-                           @for($i = 0; $i < count($favExtras); $i++)
-                              @foreach ($favExtras[$i] as $favExtra)
-                                 <li class="extra-available">@include('user.card', ["description" => $favExtra->professional->company_name." in ".
-                                                                             $favExtra->type.
-                                                                             ' for '.$favExtra->date.' at '.$favExtra->date_time,
-                                                            "title" => $favExtra->professional->company_name,
-                                                            "image" => asset("../resources/assets/images/extra-card-example.png"),
-                                                            "id"  => $favExtra->id])
-                                 </li>
-                              @endforeach
-                           @endfor
+                           @if(empty($favExtras))
+                              <p class="empty-notice">Sorry, no extra available at the moment. Come back later.</p>
+                           @else
+                              @for($i = 0; $i < count($favExtras); $i++)
+                                 @foreach ($favExtras[$i] as $favExtra)
+                                    <li class="extra-available">@include('user.card', ["description" => $favExtra->professional->company_name." in ".
+                                                                                $favExtra->type.
+                                                                                ' for '.$favExtra->date.' at '.$favExtra->date_time,
+                                                               "title" => $favExtra->professional->company_name,
+                                                               "image" => asset("../resources/assets/images/extra-card-example.png"),
+                                                               "id"  => $favExtra->id])
+                                    </li>
+                                 @endforeach
+                              @endfor
+                           @endif
                         @endif
                      </ul>
                   </div>

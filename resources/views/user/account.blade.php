@@ -17,6 +17,9 @@
         <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}" enctype="multipart/form-data">
           <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
           <div class="file-container">
+            @if(session()->has('error'))
+              <div>{!! session('error') !!}</div>
+            @endif
             <input type="file" name="carte-id" id="id-file" class="input-file">
             <div class="fake-input-file">
               <div class="cross-container" id="cross-cont1">
