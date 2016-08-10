@@ -48,47 +48,41 @@ class AccountController extends Controller
 		$first_name = User::find($id)->student->first_name;
     	$last_name = User::find($id)->student->last_name;
    		$name = $first_name . " " . $last_name;
-   		$ok_register = 0;
    		$message = "";
 		if ($request->hasFile('carte-id'))
 		{
 			$image1 = $request->file('carte-id');
 			if($image1->isValid())
 			{
-				$ok_register++;
+				if ($request->hasFile('avs'))
+				{
+					$image2 = $request->file('avs');
+
+					if($image2->isValid())
+					{
+						if ($request->hasFile('permit'))
+						{
+							$image3 = $request->file('permit');
+
+							if($image3->isValid())
+							{
+								$path = config('card.path')."/$id";
+							    $name = "carte-id.".$image1->getClientOriginalExtension();
+							    $image1->move($path, $name);
+							    $path = config('card.path')."/$id";
+							    $name = "avs.".$image2->getClientOriginalExtension();
+							    $image2->move($path, $name);
+							    $path = config('card.path')."/$id";
+							    $name = "permit.".$image3->getClientOriginalExtension();
+							    $image3->move($path, $name);
+								$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
+								//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
+							}
+						}
+					}
+				}
 			}
 			
-		}
-		if ($request->hasFile('avs'))
-		{
-			$image2 = $request->file('avs');
-
-			if($image2->isValid())
-			{
-				$ok_register++;
-			}
-		}
-		if ($request->hasFile('permit'))
-		{
-			$image3 = $request->file('permit');
-
-			if($image3->isValid())
-			{
-				$ok_register++;
-			}
-		}
-		if($ok_register == 3){
-			$path = config('card.path')."/$id";
-		    $name = "carte-id.".$image1->getClientOriginalExtension();
-		    $image1->move($path, $name);
-		    $path = config('card.path')."/$id";
-		    $name = "avs.".$image2->getClientOriginalExtension();
-		    $image2->move($path, $name);
-		    $path = config('card.path')."/$id";
-		    $name = "permit.".$image3->getClientOriginalExtension();
-		    $image3->move($path, $name);
-			$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
-			//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
 		}
 		return redirect()->route('account', $id)->with('message', $message);
 	}

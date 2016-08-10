@@ -21,7 +21,7 @@
 
       <div class="row register-form-container">
         <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}" enctype="multipart/form-data">
-          <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+          <input type="hidden" name="_token" value="{{ csrf_token() }}" />
           <div class="file-container">
             @if(session()->has('error'))
               <div>{!! session('error') !!}</div>
