@@ -247,6 +247,8 @@ $("#id-file").change(function(){
     }
  });
 
+
+
     $("#login-submit").submit(function(e) {
      var self = this;
      e.preventDefault();

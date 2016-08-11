@@ -34,6 +34,7 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
+   $app->get('modifFiles', ['as' => 'modif_files', "uses" => "AccountController@filesReset"]);
    $app->post('cvPost', ['as' => 'cv_update', "uses" => "AccountController@cvUpdate"]);
    $app->post('profilePost', ['as' => 'profile_update', "uses" => "AccountController@profileUpdate"]);
 });

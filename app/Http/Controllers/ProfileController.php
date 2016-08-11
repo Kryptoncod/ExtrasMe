@@ -325,10 +325,11 @@ class ProfileController extends Controller
   public function account()
   {
     $id = Auth::user()->id;
+    $student = Student::find(User::find($id)->student->id);
     $first_name = User::find($id)->student->first_name;
     $last_name = User::find($id)->student->last_name;
     $name = $first_name . " " . $last_name;
 
-    return view('user.account', ['user' => Auth::user(), 'name' => $name]);
+    return view('user.account', ['user' => Auth::user(), 'name' => $name, 'student' => $student]);
   }
 }
