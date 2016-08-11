@@ -161,6 +161,8 @@ class AccountController extends Controller
 	    	$i++;
 	    }
 
+	    $i = 1;
+
 	    while ($request->input('skill'.$i)) {
 
 	    	$skillInput = array(
@@ -172,6 +174,8 @@ class AccountController extends Controller
 
 	    	$i++;
 	    }
+
+	    $i = 1;
 
 	    while ($request->input('language'.$i)) {
 
