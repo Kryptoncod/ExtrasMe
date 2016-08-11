@@ -179,6 +179,10 @@ $("#id-file").change(function(){
 
 });
 
+$("#modif-files").click(function(){
+    return (confirm('Etes-vous sûrs de vouloir modifier vos fichiers ? Ceux déjà importés seront alors supprimés de la base de donnée.'));
+});
+
  $("#add-experience").click(function(e){
     e.preventDefault();
     //ici on fait des vérifs dynamique
