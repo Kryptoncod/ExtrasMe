@@ -18,6 +18,7 @@ use App\Models\Education;
 use App\Models\Experience;
 
 use App\Repositories\CvRepository;
+use App\Repositories\StudentRepository;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\EducationRepository;
 use App\Repositories\SkillRepository;
@@ -36,7 +37,8 @@ class AccountController extends Controller
     protected $skillRepository;
     protected $languageRepository;
 
-   public function __construct(CvRepository $cvRepository, 
+   public function __construct(CvRepository $cvRepository,
+   								StudentRepository $studentRepository, 
                                 ExperienceRepository $experienceRepository,
                                 EducationRepository $educationRepository,
                                 SkillRepository $skillRepository,
