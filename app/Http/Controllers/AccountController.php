@@ -20,6 +20,8 @@ use App\Models\Experience;
 use App\Repositories\CvRepository;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\EducationRepository;
+use App\Repositories\SkillRepository;
+use App\Repositories\LanguageRepository;
 
 use Carbon\Carbon;
 
@@ -31,15 +33,22 @@ class AccountController extends Controller
 	protected $cvRepository;
     protected $experienceRepository;
     protected $educationRepository;
+    protected $skillRepository;
+    protected $languageRepository;
 
    public function __construct(CvRepository $cvRepository, 
                                 ExperienceRepository $experienceRepository,
-                                EducationRepository $educationRepository)
+                                EducationRepository $educationRepository,
+                                SkillRepository $skillRepository,
+                                LanguageRepository $languageRepository)
    {
       $this->middleware('auth');
       $this->cvRepository = $cvRepository;
       $this->experienceRepository = $experienceRepository;
       $this->educationRepository = $educationRepository;
+      $this->skillRepository = $skillRepository;
+      $this->languageRepository = $languageRepository;
+
    }
 
 	public function registerUpdate(Request $request){
@@ -144,6 +153,30 @@ class AccountController extends Controller
 	    		);
 
 	    	$education = $this->educationRepository->store($educationInput);
+
+	    	$i++;
+	    }
+
+	    while ($request->input('skill'.$i)) {
+
+	    	$skillInput = array(
+	    		'title' => $request->input('skill'.$i),
+	    		'cv_id' => $cv->id,
+	    		);
+
+	    	$skill = $this->skillRepository->store($skillInput);
+
+	    	$i++;
+	    }
+
+	    while ($request->input('language'.$i)) {
+
+	    	$languageInput = array(
+	    		'title' => $request->input('language'.$i),
+	    		'cv_id' => $cv->id,
+	    		);
+
+	    	$language = $this->languageRepository->store($languageInput);
 
 	    	$i++;
 	    }

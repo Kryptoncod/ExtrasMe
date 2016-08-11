@@ -225,7 +225,7 @@ $("#id-file").change(function(){
         alert("Vous devez remplir le champ avant d'en ajouter un autre");
     }else{
        //si c'est ok, on execute:
-        var nextId = parseInt($(".competence-title:last").data("competence"));
+        var nextId = parseInt($(".competence:last").data("competence"));
         nextId++;
         var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input class=\"competence\" data-competence=\""+nextId+"\"type=\"text\" name=\"skill"+nextId+"\" placeholder=\"Compétence\"></li>";
         $("#append-skill").append(toAppend); 

@@ -65,56 +65,63 @@
             <div class="summary-container cv-div">
                <h2>Résumé</h2>
                <p>
-                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
+                  @if(!empty($student->cv->summary))
+                     {{ $student->cv->summary }}
+                  @else
+                     Pas de résumé.
+                  @endif
                </p>
             </div>
             <div class="experience-container cv-div">
                <h2>Experience</h2>
-               <h3>experience 1</h3>
-               <h4>2013-2014</h4>
-               <p>
-                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
-               </p>
-               <h3>experience 2</h3>
-               <h4>2013-2014</h4>
-               <p>
-                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
-               </p>
-               <h3>experience 3</h3>
-               <h4>2013-2014</h4>
-               <p>
-                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
-               </p>
+               @if(!empty($experiences))
+                  @foreach($experiences as $experience)
+                     <h3>{{ $experience->title }}</h3>
+                     <h4>{{ $experience->from_date - $experience->to_date }}</h4>
+                     <p>
+                        {{ $experience->summary }}
+                     </p>
+                  @endforeach
+               @else
+                  <p>Pas d'expérience.</p>
+               @endif
             </div>
             <div class="education-container cv-div">
                <h2>Education</h2>
-               <h3>education 1</h3>
-               <h4>2013-2014</h4>
-               <p>
-                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
-               </p>
-               <h3>education 2</h3>
-               <h4>2013-2014</h4>
-               <p>
-                  Latius iam disseminata licentia onerosus bonis omnibus Caesar nullum post haec adhibens modum orientis latera cuncta vexabat nec honoratis parcens nec urbium primatibus nec plebeiis.
-               </p>
+               @if(!empty($educations))
+                  @foreach($educations as $education)
+                     <h3>{{ $education->title }}</h3>
+                     <h4>{{ $education->from_date - $education->to_date }}</h4>
+                     <p>
+                        {{ $education->summary }}
+                     </p>
+                  @endforeach
+               @else
+                  <p>Pas d'éducation.</p>
+               @endif
             </div>
             <div class="skills-container cv-div">
-            <h2 style="margin-bottom: 30px;">Compétences</h2>
+               <h2 style="margin-bottom: 30px;">Compétences</h2>
                <ul>
-                  <li>compétence1</li>
-                  <li>compétence1</li>
-                  <li>compétence1</li>
-                  <li>compétence1</li>
-                  <li>compétence1</li>
+                  @if(!empty($competences))
+                     @foreach($competences as $competence)
+                        <li>{{ $competence->title }}</li>
+                     @endforeach
+                  @else
+                     <p>Pas de compétence.</p>
+                  @endif
                </ul>
             </div>
             <div class="languages-container cv-div">
-            <h2 style="margin-bottom: 30px;">Langues</h2>
+               <h2 style="margin-bottom: 30px;">Langues</h2>
                <ul>
-                  <li>langue1</li>
-                  <li>langue1</li>
-                  <li>langue1</li>
+                  @if(!empty($languages))
+                     @foreach($languages as $language)
+                        <li>{{ $language->title }}</li>
+                     @endforeach
+                  @else
+                     <p>Pas de langues.</p>
+                  @endif
                </ul>
             </div>
          </div>
