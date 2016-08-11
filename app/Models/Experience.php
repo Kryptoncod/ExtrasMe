@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Experience extends Model
 {
+
     protected $fillable = [
-        'title', 'from_date', 'to_date', 'summary'
+        'title', 'from_date', 'to_date', 'summary', 'cv_id'
     ];
 
     public function cv()

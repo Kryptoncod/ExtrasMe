@@ -186,7 +186,7 @@ $("#id-file").change(function(){
         alert("Tous les champs doivent être remplis avant d'ajouter une nouvelle Expérience");
     }else{
         //si c'est ok, on execute:
-        var nextId = parseInt($(".experience:last").data("experience"));
+        var nextId = parseInt($(".experience-title:last").data("experience"));
         nextId++;
         var toAppend = "<hr><input class=\"experience-title\" data-experience=\""+nextId+"\" type=\"text\" name=\"experience-title"+nextId+"\" placeholder=\"Titre de l'experience\"><div style=\"display: flex; padding: 0; border:none; margin-bottom:0;\"><input type=\"text\" name=\"experience-from"+nextId+"\" class=\"experience-from date\" placeholder=\"Date début\" style=\"width: 20%; margin-right:10px;\"><input type=\"text\" name=\"experience-to"+nextId+"\" class=\"experience-to date\" placeholder=\"Date fin\" style=\"width: 20%\"></div><textarea name=\"experience-description"+nextId+"\" class=\"experience-description\" placeholder=\"Description de l'experience\" rows=\"4\" style=\"margin:.3125rem 0\"></textarea>";
         $("#append-experience").append(toAppend);
