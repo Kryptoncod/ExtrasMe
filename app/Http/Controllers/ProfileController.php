@@ -14,6 +14,11 @@ use App\Models\User;
 use App\Models\Extra;
 use App\Models\Student;
 use App\Models\Professional;
+use App\Models\Cv;
+use App\Models\Experience;
+use App\Models\Education;
+use App\Models\Language;
+use App\Models\Competence;
 
 use App\Repositories\ExtraRepository;
 use App\Repositories\ProfessionalRepository;
@@ -73,7 +78,14 @@ class ProfileController extends Controller
 
       if($type == 0)
       {
-        return view('user.student', ['user' => User::find($username), 'student' => User::find($username)->student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'favPro' => $results])->with('username', $username);
+        $student = User::find($username)->student;
+        $cvID = $student->cv->id;
+        $experiences = Cv::find($cvID)->experiences;
+        $educations = Cv::find($cvID)->educations;
+        $languages = Cv::find($cvID)->languages;
+        $competences = Cv::find($cvID)->competences;
+
+        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'competences' => $competences])->with('username', $username);
       }
       else if($type == 1)
       {

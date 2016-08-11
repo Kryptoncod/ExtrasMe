@@ -17,13 +17,23 @@ class Cv extends Model
     	return $this->belongsTo('App\Models\Student');
     }
 
-    public function education()
+    public function educations()
     {
     	return $this->hasMany('App\Models\Education');
     }
 
-    public function experience()
+    public function experiences()
     {
     	return $this->hasMany('App\Models\Experience');
+    }
+
+    public function competences()
+    {
+        return $this->hasMany('App\Models\Competence');
+    }
+
+    public function languages()
+    {
+        return $this->hasMany('App\Models\Language');
     }
 }

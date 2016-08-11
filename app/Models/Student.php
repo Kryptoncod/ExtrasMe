@@ -30,6 +30,6 @@ class Student extends Model
 
     public function cv()
     {
-        return $this->hasMany('App\Models\Cv');
+        return $this->hasOne('App\Models\Cv');
     }
 }
