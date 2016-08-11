@@ -99,6 +99,10 @@ class AccountController extends Controller
 							    $image3->move($path, $name);
 								$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
 								//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
+								$studentInput = array(
+							        'registration_done' => 1,
+							    );
+							    $student = $this->studentRepository->update($id, $studentInput);
 							}
 						}
 					}

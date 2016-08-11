@@ -11,4 +11,9 @@ class StudentRepository extends ResourceRepository
 	{
 		$this->model = $student;
 	}
+	
+	public function update($id, Array $inputs)
+	{
+		$this->getById($id)->update($inputs);
+	}
 }
