@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 
 use App\Models\User;
-use App\Models\Extra;
 use App\Models\Student;
 use App\Models\Professional;
 use App\Models\Cv;
@@ -98,10 +97,13 @@ class AccountController extends Controller
 			}
 			
 		}
+		
 		return redirect()->route('account', $id)->with('message', $message);
 	}
 
 	public function cvUpdate(Request $request){
+
+		$i = 1;
 		
 		$id = Auth::user()->id;
 	    $studentID = User::find($id)->student->id;
@@ -114,7 +116,39 @@ class AccountController extends Controller
 
 	    $cv = $this->cvRepository->store($cvInput);
 
-	    return redirect()->route('home', Auth::user()->id);
+	    while ($request->input('experience-title'.$i)) {
+
+	    	$experienceInput = array(
+	    		'title' => $request->input('experience-title'.$i),
+	    		'from_date' => Carbon::createFromFormat('m/d/Y', $request->input('experience-from'.$i)),
+	    		'to_date' => Carbon::createFromFormat('m/d/Y', $request->input('experience-to'.$i)),
+	    		'summary' => $request->input('experience-description'.$i),
+	    		'cv_id' => $cv->id,
+	    		);
+
+	    	$experience = $this->experienceRepository->store($experienceInput);
+
+	    	$i++;
+	    }
+
+	    $i = 1;
+
+	    while ($request->input('education-title'.$i)) {
+
+	    	$educationInput = array(
+	    		'title' => $request->input('education-title'.$i),
+	    		'from_date' => Carbon::createFromFormat('m/d/Y', $request->input('education-from'.$i)),
+	    		'to_date' => Carbon::createFromFormat('m/d/Y', $request->input('education-to'.$i)),
+	    		'summary' => $request->input('education-description'.$i),
+	    		'cv_id' => $cv->id,
+	    		);
+
+	    	$education = $this->educationRepository->store($educationInput);
+
+	    	$i++;
+	    }
+
+	    return redirect()->route('account', Auth::user()->id);
 	}
 
 	public function profileUpdate(Request $request){

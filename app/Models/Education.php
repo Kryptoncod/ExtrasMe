@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Education extends Model
 {
+	protected $table = 'educations';
+
     protected $fillable = [
-        'title', 'from_date', 'to_date', 'summary'
+        'title', 'from_date', 'to_date', 'summary', 'cv_id'
     ];
 
     public function cv()

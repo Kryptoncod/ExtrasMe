@@ -13,6 +13,7 @@ return [
    |
    */
   'last_minute_types' => [
+     'Tout',
      'Service en restaurant',
      'Réception',
      'Housekeeping',

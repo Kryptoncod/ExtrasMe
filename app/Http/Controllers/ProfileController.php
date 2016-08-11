@@ -140,7 +140,13 @@ class ProfileController extends Controller
       $last_name = User::find($id)->student->last_name;
       $name = $first_name . " " . $last_name;
 
-      $extras = DB::table('extras')->where('type', $input)->get();
+      if($input == 'Tout')
+      {
+        $extras = DB::table('extras')->get();
+
+      } else {
+        $extras = DB::table('extras')->where('type', $input)->get();
+      }
       
       //On récupère le nom des professionnels qui proposent des extras
       $professionals = array();
@@ -172,7 +178,6 @@ class ProfileController extends Controller
     {
        abort(404);
     }
-
 
     return view('user.extra', ['extra' => $extra]);
   }
