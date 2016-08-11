@@ -71,8 +71,7 @@
           <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
           <div class="summary-container cv-div">
             <h2>Résumé</h2>
-              <textarea name="resume" placeholder="Votre résumé" rows="4" style="margin:.3125rem 0">
-              </textarea>
+              <textarea name="resume" placeholder="Votre résumé" rows="4" style="margin:.3125rem 0"></textarea>
           </div>
           <div class="experience-container cv-div">
             <h2>Experience</h2>
