@@ -36,6 +36,7 @@ class AccountController extends Controller
     protected $educationRepository;
     protected $skillRepository;
     protected $languageRepository;
+    protected $studentRepository;
 
    public function __construct(CvRepository $cvRepository,
    								StudentRepository $studentRepository, 
@@ -50,11 +51,13 @@ class AccountController extends Controller
       $this->educationRepository = $educationRepository;
       $this->skillRepository = $skillRepository;
       $this->languageRepository = $languageRepository;
+      $this->studentRepository = $studentRepository;
 
    }
 
 	public function registerUpdate(Request $request){
 		$id = Auth::user()->id;
+		$studentID = User::find($id)->student->id;
 		$first_name = User::find($id)->student->first_name;
     	$last_name = User::find($id)->student->last_name;
    		$name = $first_name . " " . $last_name;
@@ -104,7 +107,7 @@ class AccountController extends Controller
 								$studentInput = array(
 							        'registration_done' => 1,
 							    );
-							    $student = $this->studentRepository->update($id, $studentInput);
+							    $student = $this->studentRepository->update($studentID, $studentInput);
 							}
 						}
 					}

@@ -74,6 +74,7 @@ class ProfileController extends Controller
         $professionalID = User::find($id)->professional->id;
         $extras = Professional::find($professionalID)->extra;
         $links = null;
+        $results = null;
       }
 
       if($type == 0)
