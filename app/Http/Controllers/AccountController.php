@@ -36,6 +36,7 @@ class AccountController extends Controller
     protected $educationRepository;
     protected $skillRepository;
     protected $languageRepository;
+    protected $studentRepository;
 
    public function __construct(CvRepository $cvRepository,
    								StudentRepository $studentRepository, 
@@ -51,11 +52,13 @@ class AccountController extends Controller
       $this->educationRepository = $educationRepository;
       $this->skillRepository = $skillRepository;
       $this->languageRepository = $languageRepository;
+      $this->studentRepository = $studentRepository;
 
    }
 
 	public function registerUpdate(Request $request){
 		$id = Auth::user()->id;
+		$studentID = User::find($id)->student->id;
 		$first_name = User::find($id)->student->first_name;
     	$last_name = User::find($id)->student->last_name;
    		$name = $first_name . " " . $last_name;
@@ -102,9 +105,16 @@ class AccountController extends Controller
 							    $image3->move($path, $name);
 								$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
 								//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
+<<<<<<< HEAD
 								$student = Student::findOrFail($id);
 								$student->registration_done = 1;
 								$student->save();
+=======
+								$studentInput = array(
+							        'registration_done' => 1,
+							    );
+							    $student = $this->studentRepository->update($studentID, $studentInput);
+>>>>>>> 924a178e614733c87da0391d6b81e5afc4608d00
 							}
 						}
 					}
