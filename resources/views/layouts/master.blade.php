@@ -11,6 +11,10 @@
       <link rel="stylesheet" href="{{ asset('../resources/assets/css/foundation-datepicker.min.css') }}" />
       <link href="https://file.myfontastic.com/fs74A8Cbf6nJnfRAq6qC7j/icons.css" rel="stylesheet">
       <script src="{{ asset('../resources/assets/js/modernizr.js') }}"></script>
+      <link rel='stylesheet' href='../fullcalendar-2.9.1/fullcalendar.css' />
+      <script src='../fullcalendar-2.9.1/lib/jquery.min.js'></script>
+      <script src='../fullcalendar-2.9.1/lib/moment.min.js'></script>
+      <script src='../fullcalendar-2.9.1/fullcalendar.js'></script>
    </head>
 
    <body>
