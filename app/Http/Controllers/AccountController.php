@@ -202,4 +202,14 @@ class AccountController extends Controller
 
 	}
 
+	public function filesReset(){
+		$id = Auth::user()->id;
+		$studentID = User::find($id)->student->id;
+		$studentInput = array(
+			'registration_done' => 0,
+		);
+		$student = $this->studentRepository->update($studentID, $studentInput);
+		return redirect()->route('account', $id);
+	}
+
 }

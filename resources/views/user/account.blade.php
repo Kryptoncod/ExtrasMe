@@ -18,7 +18,7 @@
           <h2>S'ENREGISTRER</h2>
         </div>
       </div>
-
+      @if(!$student->registration_done)
       <div class="row register-form-container">
         <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}" enctype="multipart/form-data">
           {{ csrf_field() }}
@@ -59,7 +59,12 @@
           </div>
         </form>
       </div>
-
+      @else
+        <div style="width: 70%; display: flex; justify-content:center; flex-direction:column; margin:auto;">
+          <h3 style="color: white;margin:auto;">Vous avez déjà importé les fichiers necessaires pour contacter des professionnels.</h3>
+          <a href="{{ route('modif_files' , Auth::user()->id) }}" style="margin:auto; margin-top: 20px;" id="modif-files"><button  style="width:300px;  background-color: #222; padding :10px; ">Modifier mes fichiers importés</button></a>
+        </div>
+      @endif
       <div class="row section-title">
         <div class="small-12 columns">
            <h2>EDITER MON CV</h2>
