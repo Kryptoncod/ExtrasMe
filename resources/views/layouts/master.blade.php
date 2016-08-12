@@ -10,6 +10,7 @@
       <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
       <link rel="stylesheet" href="{{ asset('../resources/assets/css/foundation-datepicker.min.css') }}" />
       <link href="https://file.myfontastic.com/fs74A8Cbf6nJnfRAq6qC7j/icons.css" rel="stylesheet">
+      <script src="{{ asset('../resources/assets/js/jquery.min.js') }}"></script>
       <script src="{{ asset('../resources/assets/js/modernizr.js') }}"></script>
    </head>
 
@@ -31,7 +32,7 @@
       <div id="extraModal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"></div>
       @yield('foot')
 
-      <script src="{{ asset('../resources/assets/js/jquery.min.js') }}"></script>
+      
       <script src="{{ asset('../resources/assets/js/foundation-datepicker.min.js') }}"></script>
       <script src="{{ asset('../resources/assets/js/foundation-datepicker.fr.js') }}"></script>
       <script src="{{ asset('../resources/assets/js/foundation.min.js') }}"></script>
