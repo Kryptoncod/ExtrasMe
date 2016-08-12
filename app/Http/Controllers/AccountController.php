@@ -105,16 +105,10 @@ class AccountController extends Controller
 							    $image3->move($path, $name);
 								$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
 								//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
-<<<<<<< HEAD
-								$student = Student::findOrFail($id);
-								$student->registration_done = 1;
-								$student->save();
-=======
 								$studentInput = array(
 							        'registration_done' => 1,
 							    );
 							    $student = $this->studentRepository->update($studentID, $studentInput);
->>>>>>> 924a178e614733c87da0391d6b81e5afc4608d00
 							}
 						}
 					}
