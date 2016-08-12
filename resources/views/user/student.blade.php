@@ -189,10 +189,12 @@
                   </div>
                </div>
             </div>
-          @endif
-
+            <div id='calendar'>
+               {!! $calendar->calendar() !!}
+               {!! $calendar->script() !!}
+            </div>
+         @endif
       </div>
-
    </div>
 
 @endsection
