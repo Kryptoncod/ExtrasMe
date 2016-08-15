@@ -132,13 +132,13 @@ class ProfileController extends Controller
     }
   }
 
-  public function extraSubmit(Request $request)
+  public function extraSubmit(ExtraSubmitRequest $request)
   {
     $id = Auth::user()->id;
     $professionalID = User::find($id)->professional->id;
     $type = config('international.last_minute_types')[$request->input('type')];
     $date_time = preg_split("/[\s,]+/", $request->input('date'));
-    $date = Carbon::createFromFormat('m/d/Y', $date_time[0]);
+    $date = Carbon::createFromFormat('d/m/Y', $date_time[0]);
     $time = Carbon::createFromFormat('H:i', $date_time[1]);
     $last_minute = $request->input('broadcast') == 'last_minute';
     $extraInput = array(
