@@ -18,7 +18,7 @@ Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
-   $app->get('account', ['as' => 'account', "uses" => "ProfileController@account"]);
+   $app->get('account', ['as' => 'account', "uses" => "AccountController@show"]);
    $app->get('extra/{id}/apply',  ['as' => 'extra_apply',   "uses" => "ProfileController@extra_apply"]);
    $app->get('extra/{id}',  ['as' => 'extra',   "uses" => "ProfileController@extra"]);
    $app->get('extras',  ['as' => 'extra_list',   "uses" => "ProfileController@showExtraList"]);

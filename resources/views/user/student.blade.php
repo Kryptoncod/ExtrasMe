@@ -74,10 +74,10 @@
             </div>
             <div class="experience-container cv-div">
                <h2>Experience</h2>
-               @if(!empty($experiences))
+               @if(count($experiences) != 0)
                   @foreach($experiences as $experience)
                      <h3>{{ $experience->title }}</h3>
-                     <h4>{{ $experience->from_date - $experience->to_date }}</h4>
+                     <h4>{{ $experience->from_date->toFormattedDateString(). " - " .$experience->to_date->toFormattedDateString() }}</h4>
                      <p>
                         {{ $experience->summary }}
                      </p>
@@ -88,10 +88,10 @@
             </div>
             <div class="education-container cv-div">
                <h2>Education</h2>
-               @if(!empty($educations))
+               @if(count($educations) != 0)
                   @foreach($educations as $education)
                      <h3>{{ $education->title }}</h3>
-                     <h4>{{ $education->from_date - $education->to_date }}</h4>
+                     <h4>{{ $education->from_date->toFormattedDateString(). " - " .$education->to_date->toFormattedDateString() }}</h4>
                      <p>
                         {{ $education->summary }}
                      </p>
@@ -102,27 +102,30 @@
             </div>
             <div class="skills-container cv-div">
                <h2 style="margin-bottom: 30px;">Compétences</h2>
+               @if(count($skills) != 0)
                <ul>
-                  @if(!empty($skills))
+                  
                      @foreach($skills as $skill)
                         <li>{{ $skill->title }}</li>
                      @endforeach
                   @else
                      <p>Pas de compétence.</p>
-                  @endif
+                  
                </ul>
+               @endif
             </div>
             <div class="languages-container cv-div">
                <h2 style="margin-bottom: 30px;">Langues</h2>
+               @if(count($languages) != 0)
                <ul>
-                  @if(!empty($languages))
                      @foreach($languages as $language)
                         <li>{{ $language->title }}</li>
                      @endforeach
                   @else
                      <p>Pas de langues.</p>
-                  @endif
+                  
                </ul>
+               @endif
             </div>
          </div>
 
