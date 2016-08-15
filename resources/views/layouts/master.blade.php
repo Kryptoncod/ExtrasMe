@@ -10,10 +10,9 @@
       <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
       <link rel="stylesheet" href="{{ asset('../resources/assets/css/foundation-datepicker.min.css') }}" />
       <link href="https://file.myfontastic.com/fs74A8Cbf6nJnfRAq6qC7j/icons.css" rel="stylesheet">
-      <script src="{{ asset('../resources/assets/js/jquery.min.js') }}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
       <script src="{{ asset('../resources/assets/js/modernizr.js') }}"></script>
       <link rel='stylesheet' href='../fullcalendar-2.9.1/fullcalendar.css' />
-      <script src='../fullcalendar-2.9.1/lib/jquery.min.js'></script>
       <script src='../fullcalendar-2.9.1/lib/moment.min.js'></script>
       <script src='../fullcalendar-2.9.1/fullcalendar.js'></script>
    </head>
