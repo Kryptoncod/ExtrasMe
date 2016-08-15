@@ -25,6 +25,7 @@ use App\Repositories\ExtraRepository;
 use App\Repositories\ProfessionalRepository;
 
 use Carbon\Carbon;
+
 use Auth, DB, GeoIP;
 
 class ProfileController extends Controller
