@@ -11,4 +11,9 @@ class CvRepository extends ResourceRepository
 	{
 		$this->model = $cv;
 	}
+	
+	public function destroy($id)
+	{
+		$this->getById($id)->delete();
+	}
 }

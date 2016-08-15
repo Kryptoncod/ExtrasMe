@@ -113,7 +113,7 @@ class ProfileController extends Controller
     $professionalID = User::find($id)->professional->id;
     $type = config('international.last_minute_types')[$request->input('type')];
     $date_time = preg_split("/[\s,]+/", $request->input('date'));
-    $date = Carbon::createFromFormat('m/d/Y', $date_time[0]);
+    $date = Carbon::createFromFormat('d/m/Y', $date_time[0]);
     $time = Carbon::createFromFormat('H:i', $date_time[1]);
     $last_minute = $request->input('broadcast') == 'last_minute';
     $extraInput = array(
@@ -322,16 +322,5 @@ class ProfileController extends Controller
     }
 
     return redirect()->route('my_favorite_extras', Auth::user()->id);
-  }
-
-  public function account()
-  {
-    $id = Auth::user()->id;
-    $student = Student::find(User::find($id)->student->id);
-    $first_name = User::find($id)->student->first_name;
-    $last_name = User::find($id)->student->last_name;
-    $name = $first_name . " " . $last_name;
-
-    return view('user.account', ['user' => Auth::user(), 'name' => $name, 'student' => $student]);
   }
 }

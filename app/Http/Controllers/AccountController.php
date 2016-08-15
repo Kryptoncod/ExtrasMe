@@ -32,49 +32,75 @@ class AccountController extends Controller
 {
 
 	protected $cvRepository;
-    protected $experienceRepository;
-    protected $educationRepository;
-    protected $skillRepository;
-    protected $languageRepository;
-    protected $studentRepository;
+	protected $experienceRepository;
+	protected $educationRepository;
+	protected $skillRepository;
+	protected $languageRepository;
+	protected $studentRepository;
 
-   public function __construct(CvRepository $cvRepository,
-   								StudentRepository $studentRepository, 
-                                ExperienceRepository $experienceRepository,
-                                EducationRepository $educationRepository,
-                                SkillRepository $skillRepository,
-                                LanguageRepository $languageRepository)
-   {
-      $this->middleware('auth');
-      $this->cvRepository = $cvRepository;
-      $this->studentRepository = $studentRepository;
-      $this->experienceRepository = $experienceRepository;
-      $this->educationRepository = $educationRepository;
-      $this->skillRepository = $skillRepository;
-      $this->languageRepository = $languageRepository;
-      $this->studentRepository = $studentRepository;
+	public function __construct(CvRepository $cvRepository,
+		StudentRepository $studentRepository, 
+		ExperienceRepository $experienceRepository,
+		EducationRepository $educationRepository,
+		SkillRepository $skillRepository,
+		LanguageRepository $languageRepository)
+	{
+		$this->middleware('auth');
+		$this->cvRepository = $cvRepository;
+		$this->studentRepository = $studentRepository;
+		$this->experienceRepository = $experienceRepository;
+		$this->educationRepository = $educationRepository;
+		$this->skillRepository = $skillRepository;
+		$this->languageRepository = $languageRepository;
+		$this->studentRepository = $studentRepository;
 
-   }
+	}
 
-	public function registerUpdate(Request $request){
+
+	public function show()
+	{
+		$id = Auth::user()->id;
+		$student = Student::find(User::find($id)->student->id);
+		$first_name = User::find($id)->student->first_name;
+		$last_name = User::find($id)->student->last_name;
+		$name = $first_name . " " . $last_name;
+
+		try{
+          $cvID = $student->cv->id;
+          $experiences = Cv::find($cvID)->experiences;
+          $educations = Cv::find($cvID)->educations;
+          $languages = Cv::find($cvID)->languages;
+          $skills = Cv::find($cvID)->skills;
+        } catch(\Exception $e){
+          $experiences = null;
+          $educations = null;
+          $languages = null;
+          $skills = null;
+        }
+
+		return view('user.account', ['user' => Auth::user(), 'name' => $name, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
+	}
+
+	public function registerUpdate(Request $request)
+	{
 		$id = Auth::user()->id;
 		$studentID = User::find($id)->student->id;
 		$first_name = User::find($id)->student->first_name;
-    	$last_name = User::find($id)->student->last_name;
-   		$name = $first_name . " " . $last_name;
-   		$message = "";
-   		
-   		
-   		$rule = 'required|file|mimes:jpg,png,pdf,gif,jpeg,tiff,doc,docx,odt|max:10000';
-	    $validator = Validator::make($request->all(), [
-	          'carte-id'   => $rule,
-	          'avs'   => $rule,
-	          'permit' => $rule,
-	      ]);
+		$last_name = User::find($id)->student->last_name;
+		$name = $first_name . " " . $last_name;
+		$message = "";
 
-	    if ($validator->fails()) {
-	        return redirect()->route('account', $id)->with('message', $message)->withErrors($validator)->withInput();
-	      }
+
+		$rule = 'required|file|mimes:jpg,png,pdf,gif,jpeg,tiff,doc,docx,odt|max:10000';
+		$validator = Validator::make($request->all(), [
+			'carte-id'   => $rule,
+			'avs'   => $rule,
+			'permit' => $rule,
+			]);
+
+		if ($validator->fails()) {
+			return redirect()->route('account', $id)->with('message', $message)->withErrors($validator)->withInput();
+		}
 
 
 		if ($request->hasFile('carte-id'))
@@ -95,20 +121,20 @@ class AccountController extends Controller
 							if($image3->isValid())
 							{
 								$path = config('card.path')."/$id";
-							    $name = "carte-id.".$image1->getClientOriginalExtension();
-							    $image1->move($path, $name);
-							    $path = config('card.path')."/$id";
-							    $name = "avs.".$image2->getClientOriginalExtension();
-							    $image2->move($path, $name);
-							    $path = config('card.path')."/$id";
-							    $name = "permit.".$image3->getClientOriginalExtension();
-							    $image3->move($path, $name);
+								$name = "carte-id.".$image1->getClientOriginalExtension();
+								$image1->move($path, $name);
+								$path = config('card.path')."/$id";
+								$name = "avs.".$image2->getClientOriginalExtension();
+								$image2->move($path, $name);
+								$path = config('card.path')."/$id";
+								$name = "permit.".$image3->getClientOriginalExtension();
+								$image3->move($path, $name);
 								$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
 								//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
 								$studentInput = array(
-							        'registration_done' => 1,
-							    );
-							    $student = $this->studentRepository->update($studentID, $studentInput);
+									'registration_done' => 1,
+									);
+								$student = $this->studentRepository->update($studentID, $studentInput);
 							}
 						}
 					}
@@ -120,92 +146,99 @@ class AccountController extends Controller
 		return redirect()->route('account', $id)->with('message', $message);
 	}
 
-	public function cvUpdate(Request $request){
+	public function cvUpdate(Request $request)
+	{
 
 		$i = 1;
 		
 		$id = Auth::user()->id;
-	    $studentID = User::find($id)->student->id;
-	    $cvInput = array(
-	        'summary' => $request->input('resume'),
-	        'student_id' => $studentID,
-	    );
+		$student = User::find($id)->student;
+		$studentID = $student->id;
+		if($student->cv != null){
+			$student->cv->delete();
+		}
+		$cvInput = array(
+			'summary' => $request->input('resume'),
+			'student_id' => $studentID,
+			);
 
-	    $cv = $this->cvRepository->store($cvInput);
+		$cv = $this->cvRepository->store($cvInput);
 
-	    while ($request->input('experience-title'.$i)) {
+		while ($request->input('experience-title'.$i)) {
+			//dd($request->input('experience-from'.$i));
+			$experienceInput = array(
+				'title' => $request->input('experience-title'.$i),
+				'from_date' => Carbon::createFromFormat('d/m/Y', $request->input('experience-from'.$i)),
+				'to_date' => Carbon::createFromFormat('d/m/Y', $request->input('experience-to'.$i)),
+				'summary' => $request->input('experience-description'.$i),
+				'cv_id' => $cv->id,
+				);
 
-	    	$experienceInput = array(
-	    		'title' => $request->input('experience-title'.$i),
-	    		'from_date' => Carbon::createFromFormat('m/d/Y', $request->input('experience-from'.$i)),
-	    		'to_date' => Carbon::createFromFormat('m/d/Y', $request->input('experience-to'.$i)),
-	    		'summary' => $request->input('experience-description'.$i),
-	    		'cv_id' => $cv->id,
-	    		);
+			$experience = $this->experienceRepository->store($experienceInput);
 
-	    	$experience = $this->experienceRepository->store($experienceInput);
+			$i++;
+		}
 
-	    	$i++;
-	    }
+		$i = 1;
 
-	    $i = 1;
+		while ($request->input('education-title'.$i)) {
 
-	    while ($request->input('education-title'.$i)) {
+			$educationInput = array(
+				'title' => $request->input('education-title'.$i),
+				'from_date' => Carbon::createFromFormat('d/m/Y', $request->input('education-from'.$i)),
+				'to_date' => Carbon::createFromFormat('d/m/Y', $request->input('education-to'.$i)),
+				'summary' => $request->input('education-description'.$i),
+				'cv_id' => $cv->id,
+				);
 
-	    	$educationInput = array(
-	    		'title' => $request->input('education-title'.$i),
-	    		'from_date' => Carbon::createFromFormat('m/d/Y', $request->input('education-from'.$i)),
-	    		'to_date' => Carbon::createFromFormat('m/d/Y', $request->input('education-to'.$i)),
-	    		'summary' => $request->input('education-description'.$i),
-	    		'cv_id' => $cv->id,
-	    		);
+			$education = $this->educationRepository->store($educationInput);
 
-	    	$education = $this->educationRepository->store($educationInput);
+			$i++;
+		}
 
-	    	$i++;
-	    }
+		$i = 1;
 
-	    $i = 1;
+		while ($request->input('skill'.$i)) {
 
-	    while ($request->input('skill'.$i)) {
+			$skillInput = array(
+				'title' => $request->input('skill'.$i),
+				'cv_id' => $cv->id,
+				);
 
-	    	$skillInput = array(
-	    		'title' => $request->input('skill'.$i),
-	    		'cv_id' => $cv->id,
-	    		);
+			$skill = $this->skillRepository->store($skillInput);
 
-	    	$skill = $this->skillRepository->store($skillInput);
+			$i++;
+		}
 
-	    	$i++;
-	    }
+		$i = 1;
 
-	    $i = 1;
+		while ($request->input('language'.$i)) {
 
-	    while ($request->input('language'.$i)) {
+			$languageInput = array(
+				'title' => $request->input('language'.$i),
+				'cv_id' => $cv->id,
+				);
 
-	    	$languageInput = array(
-	    		'title' => $request->input('language'.$i),
-	    		'cv_id' => $cv->id,
-	    		);
+			$language = $this->languageRepository->store($languageInput);
 
-	    	$language = $this->languageRepository->store($languageInput);
+			$i++;
+		}
 
-	    	$i++;
-	    }
-
-	    return redirect()->route('account', Auth::user()->id);
+		return redirect()->route('account', Auth::user()->id);
 	}
 
-	public function profileUpdate(Request $request){
+	public function profileUpdate(Request $request)
+	{
 
 	}
 
-	public function filesReset(){
+	public function filesReset()
+	{
 		$id = Auth::user()->id;
 		$studentID = User::find($id)->student->id;
 		$studentInput = array(
 			'registration_done' => 0,
-		);
+			);
 		$student = $this->studentRepository->update($studentID, $studentInput);
 		return redirect()->route('account', $id);
 	}
