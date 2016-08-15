@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Education extends Model
 {
 	protected $table = 'educations';
-
+	protected $dates = ['from_date', 'to_date'];
     protected $fillable = [
         'title', 'from_date', 'to_date', 'summary', 'cv_id'
     ];
