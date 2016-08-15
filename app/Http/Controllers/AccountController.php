@@ -19,6 +19,7 @@ use App\Models\Experience;
 
 use App\Repositories\CvRepository;
 use App\Repositories\StudentRepository;
+use App\Repositories\UserRepository;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\EducationRepository;
 use App\Repositories\SkillRepository;
@@ -37,13 +38,15 @@ class AccountController extends Controller
 	protected $skillRepository;
 	protected $languageRepository;
 	protected $studentRepository;
+	protected $userRepository;
 
 	public function __construct(CvRepository $cvRepository,
 		StudentRepository $studentRepository, 
 		ExperienceRepository $experienceRepository,
 		EducationRepository $educationRepository,
 		SkillRepository $skillRepository,
-		LanguageRepository $languageRepository)
+		LanguageRepository $languageRepository,
+		UserRepository $userRepository)
 	{
 		$this->middleware('auth');
 		$this->cvRepository = $cvRepository;
@@ -53,6 +56,7 @@ class AccountController extends Controller
 		$this->skillRepository = $skillRepository;
 		$this->languageRepository = $languageRepository;
 		$this->studentRepository = $studentRepository;
+		$this->userRepository = $userRepository;
 
 	}
 
@@ -67,8 +71,8 @@ class AccountController extends Controller
 
 		try{
           $cvID = $student->cv->id;
-          $experiences = Cv::find($cvID)->experiences;
-          $educations = Cv::find($cvID)->educations;
+          $experiences = Cv::find($cvID)->experiences->sortByDesc('date_to');
+          $educations = Cv::find($cvID)->educations->sortByDesc('date_to');
           $languages = Cv::find($cvID)->languages;
           $skills = Cv::find($cvID)->skills;
         } catch(\Exception $e){
@@ -223,13 +227,28 @@ class AccountController extends Controller
 
 			$i++;
 		}
-
-		return redirect()->route('account', Auth::user()->id);
+		$message = "Vos modification ont bien été prises en compte";
+		return redirect()->route('account', $id)->with('message', $message);
 	}
 
 	public function profileUpdate(Request $request)
 	{
+		$userId = Auth::user()->id;
+		$studentId = User::find($userId)->student->id;
+		$studentInput = array(
+			'first_name' => $request->input('first-name'),
+			'last_name' => $request->input('last-name'),
+			'phone' => $request->input('phone'),
+			'school_year' => config('international.ehl_years')[$request->input('school_year')],
+		);
+		$student = $this->studentRepository->update($studentId, $studentInput);
 
+		$userInput = array(
+			'email' => $request->input('email'),
+		);
+		$user = $this->userRepository->update($userId, $userInput);
+		$message = "Vos modification ont bien été prises en compte";
+		return redirect()->route('account', $userId)->with('message', $message);
 	}
 
 	public function filesReset()

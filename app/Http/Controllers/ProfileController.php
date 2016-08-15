@@ -84,8 +84,8 @@ class ProfileController extends Controller
         $student = User::find($username)->student;
         try{
           $cvID = $student->cv->id;
-          $experiences = Cv::find($cvID)->experiences;
-          $educations = Cv::find($cvID)->educations;
+          $experiences = Cv::find($cvID)->experiences->sortByDesc('date_to');
+          $educations = Cv::find($cvID)->educations->sortByDesc('date_to');
           $languages = Cv::find($cvID)->languages;
           $skills = Cv::find($cvID)->skills;
         } catch(\Exception $e){

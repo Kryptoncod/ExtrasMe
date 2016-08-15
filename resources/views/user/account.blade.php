@@ -72,7 +72,7 @@
       </div>
 
       <div class="details-container" style="max-height: 3000px; opacity: 1;">
-        <form action="{{ route('cv_update', Auth::user()->id) }}" method="POST">
+        <form action="{{ route('cv_update', Auth::user()->id) }}" method="POST" data-abide id="cv-form">
           <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
           <div class="summary-container cv-div">
             <h2>Résumé</h2>
@@ -180,21 +180,39 @@
         </div>
       </div>
       <div style="display:flex; width: 70%; margin:auto;">
-        <form style="width:100%;" action="{{ route('register_update', Auth::user()->id) }}" method="POST">
+        <form style="width:100%;" data-abide action="{{ route('profile_update', Auth::user()->id) }}" method="POST">
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-          <label for="name">FIRST NAME : </label><input type="text" name="first-name" value="{{$student->first_name}}">
-          <label for="name">LAST NAME : </label><input type="text" name="last-name" value="{{$student->last_name}}">
-          <label for="email">EMAIL : </label><input type="text" name="email" value="{{$user->email}}">
-          <label for="number">CONTACT NUMBER : </label><input type="text" name="number" value="{{$student->phone}}">
-          <label for="year">YEAR : </label><select name="school_year">
-               <option selected disabled value="">{{$student->school_year}}</option>
-               @foreach(config('international.ehl_years') as $id => $year)
-                  <option value="{{ $id }}">{{ $year }}</option>
-               @endforeach
-            </select>
-          <div style="width:100%;display:flex; margin-top:30px; margin-bottom: 30px;">
-          <input type="submit" name="go-register" class="submit-account" value="Update">
-        </div>
+          <div>
+            <label for="name">FIRST NAME : </label><input type="text" name="first-name" value="{{$student->first_name}}" required pattern="[a-zA-Z]+">
+            <small class="error">First name is required and must contain only alphanumerics characters.</small>
+          </div>
+          <div>
+            <label for="name">LAST NAME : </label><input type="text" name="last-name" value="{{$student->last_name}}" required pattern="[a-zA-Z]+">
+            <small class="error">Last name is required and must contain only alphanumerics characters.</small>
+          </div>
+          <div>
+            <label for="email">EMAIL : </label><input type="text" name="email" value="{{$user->email}}" required pattern=".+@ehl.ch$">
+            <small class="error">Email is required and must end with @ehl.ch.</small>
+          </div>
+          <div>
+            <label for="number">CONTACT NUMBER : </label><input type="text" name="phone" value="{{$student->phone}}" required pattern="[1-9]+">
+            <small class="error">Contact number is required and must be valid</small>
+          </div>
+          <div id="next-to-password">
+            <label for="year">YEAR : </label><select name="school_year">
+                 <option selected disabled value="">{{$student->school_year}}</option>
+                 @foreach(config('international.ehl_years') as $id => $year)
+                    <option value="{{ $id }}">{{ $year }}</option>
+                 @endforeach
+              </select>
+              <small class="error">EHL's year is required.</small>
+          </div>
+          <div id="change-password-div">
+            <button style="padding:10px; margin:10px auto 0px auto; background-color:#222;" id="change-password">Modifier mon mot de passe</button>
+          </div>
+          <div style="width:100%;display:flex; margin-top:10px; margin-bottom: 30px;">
+            <input type="submit" name="go-register" class="submit-account" value="Update">
+          </div>
         </form>
       </div>
 

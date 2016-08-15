@@ -26,7 +26,6 @@ class CreateEducationsTable extends Migration
         $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
