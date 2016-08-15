@@ -103,9 +103,9 @@
             <div class="skills-container cv-div">
                <h2 style="margin-bottom: 30px;">Compétences</h2>
                <ul>
-                  @if(!empty($competences))
-                     @foreach($competences as $competence)
-                        <li>{{ $competence->title }}</li>
+                  @if(!empty($skills))
+                     @foreach($skills as $skill)
+                        <li>{{ $skill->title }}</li>
                      @endforeach
                   @else
                      <p>Pas de compétence.</p>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Competences extends Migration
+class Skills extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class Competences extends Migration
      */
     public function up()
     {
-        Schema::create('competences', function(Blueprint $table){
+        Schema::create('skills', function(Blueprint $table){
         $table->increments('id');
         $table->string('title');
         $table->integer('cv_id')->unsigned();
@@ -31,6 +31,6 @@ class Competences extends Migration
      */
     public function down()
     {
-        Schema::drop('competences');
+        Schema::drop('skills');
     }
 }

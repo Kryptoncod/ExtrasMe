@@ -27,9 +27,9 @@ class Cv extends Model
     	return $this->hasMany('App\Models\Experience');
     }
 
-    public function competences()
+    public function skills()
     {
-        return $this->hasMany('App\Models\Competence');
+        return $this->hasMany('App\Models\Skill');
     }
 
     public function languages()
