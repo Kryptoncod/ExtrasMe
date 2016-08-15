@@ -95,32 +95,7 @@ class ProfileController extends Controller
           $skills = null;
         }
 
-        $events = [];
-
-        $events[] = \Calendar::event(
-            'Event One', //event title
-            false, //full day event?
-            '2015-02-11T0800', //start time (you can also use Carbon instead of DateTime)
-            '2015-02-12T0800', //end time (you can also use Carbon instead of DateTime)
-            0 //optionally, you can specify an event ID
-        );
-
-        $events[] = \Calendar::event(
-            "Valentine's Day", //event title
-            true, //full day event?
-            new \DateTime('2015-02-14'), //start time (you can also use Carbon instead of DateTime)
-            new \DateTime('2015-02-14'), //end time (you can also use Carbon instead of DateTime)
-            'stringEventId' //optionally, you can specify an event ID
-        );
-
-        $calendar = \Calendar::addEvents($events)->setOptions([ //set fullcalendar options
-            'firstDay' => 1
-        ])->setCallbacks([ //set fullcalendar callback options (will not be JSON encoded)
-            'viewRender' => 'function() {alert("Callbacks!");}'
-        ]); //add an array with addEvents 
-        
-
-        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'calendar' => $calendar])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills])->with('username', $username);
       }
       else if($type == 1)
       {
