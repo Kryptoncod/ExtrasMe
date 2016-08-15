@@ -87,12 +87,12 @@ class ProfileController extends Controller
           $experiences = Cv::find($cvID)->experiences;
           $educations = Cv::find($cvID)->educations;
           $languages = Cv::find($cvID)->languages;
-          $competences = Cv::find($cvID)->competences;
+          $skills = Cv::find($cvID)->skills;
         } catch(\Exception $e){
           $experiences = null;
           $educations = null;
           $languages = null;
-          $competences = null;
+          $skills = null;
         }
 
         $events = [];
@@ -120,7 +120,7 @@ class ProfileController extends Controller
         ]); //add an array with addEvents 
         
 
-        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'competences' => $competences, 'calendar' => $calendar])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'calendar' => $calendar])->with('username', $username);
       }
       else if($type == 1)
       {

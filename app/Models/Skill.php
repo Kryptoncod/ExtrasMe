@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Competence extends Model
+class Skill extends Model
 {
-	protected $table = 'competences';
+	protected $table = 'skills';
 
     protected $fillable = [
         'title', 'cv_id'

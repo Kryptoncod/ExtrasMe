@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\Competence;
+use App\Models\Skill;
 
 class SkillRepository extends ResourceRepository
 {
 
-    public function __construct(Competence $competence)
+    public function __construct(Skill $skill)
 	{
-		$this->model = $competence;
+		$this->model = $skill;
 	}
 }

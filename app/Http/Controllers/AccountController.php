@@ -128,8 +128,6 @@ class AccountController extends Controller
 	    $studentID = User::find($id)->student->id;
 	    $cvInput = array(
 	        'summary' => $request->input('resume'),
-	        'languages' => '0',
-	        'skills' => '0',
 	        'student_id' => $studentID,
 	    );
 

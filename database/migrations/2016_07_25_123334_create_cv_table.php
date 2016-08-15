@@ -19,8 +19,6 @@ class CreateCvTable extends Migration
                 ->on('students')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-        $table->string('languages');
-        $table->string('skills');
         $table->string('summary');
         $table->timestamps();
         });
