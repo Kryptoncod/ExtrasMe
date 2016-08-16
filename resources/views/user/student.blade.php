@@ -148,7 +148,7 @@
                         @if(count($favPro) == 0)
                            <p class="empty-notice">You don't have favorite professionals.</p>
                         @else
-                           @if(count($favPro) == 0)
+                           @if(count($favExtras) == 0)
                               <p class="empty-notice">Sorry, no extra available at the moment. Come back later.</p>
                            @else
                               @for($i = 0; $i < count($favExtras); $i++)

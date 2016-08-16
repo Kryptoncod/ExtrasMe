@@ -23,6 +23,7 @@
           @include('account.edit-profile')
           @include('account.edit-file-upload')
         @endif
+
       @else
         @include('account.edit-profile-pro')
         @include('account.edit-description')

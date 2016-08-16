@@ -32,6 +32,8 @@ Route::group(['prefix' => '{username}'], function($app) {
       return App\Http\Controllers\ProfileController::myFavoriteExtrasDelete($id);
    });
    $app->get('calendar', ['as' => 'calendar', "uses" => "CalendarController@showCalendar"]);
+   $app->get('experiences', ['as' => 'experiences', "uses" => "ProfileController@showExperiences"]);
+   $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
