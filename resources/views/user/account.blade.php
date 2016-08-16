@@ -22,11 +22,11 @@
           @include('account.edit-cv')
           @include('account.edit-profile')
           @include('account.edit-file-upload')
-      @endif
+        @endif
       @else
-        @include('account.edit-profile')
+        @include('account.edit-profile-pro')
         @include('account.edit-description')
-    @endif
+      @endif
+      </div>
   </div>
-</div>
 @endsection

@@ -12,7 +12,11 @@
 
          <div class="row account-resume">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
-               <img class="profile-picture" src="{{ asset('../resources/assets/images/user-professional.png') }}" alt="" />
+               @if(file_exists("uploads/pp/".$user->id.".png"))
+                  <img class="profile-picture" src=" uploads/pp/{{$user->id}}.png" alt="" />
+               @else
+                  <img class="profile-picture" src="{{ asset('../resources/assets/images/user-professional.png') }}" alt="" />
+               @endif
             </div>
 
             <div class="medium-7 small-12 medium-uncentered small-centered columns">
@@ -186,13 +190,13 @@
             </form>
          </div>
 
-         @if(!empty($extras))
             <div class="row section-title">
                <div class="small-12 columns">
                   <h2>MY EXTRAS</h2>
                </div>
             </div>
 
+         @if(count($extras) != 0)
             <div class="row">
                <div class="small-12 columns">
                   <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
@@ -210,6 +214,8 @@
                   </ul>
                </div>
             </div>
+         @else
+            You didn't submit any extra.
          @endif
       @endif
 

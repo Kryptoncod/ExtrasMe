@@ -255,42 +255,79 @@ class AccountController extends Controller
 	public function profileUpdate(Request $request)
 	{
 		$userId = Auth::user()->id;
-		$studentId = User::find($userId)->student->id;
-		if($request->input('school_year') != null){
-			$studentInput = array(
-			'first_name' => $request->input('first-name'),
-			'last_name' => $request->input('last-name'),
-			'phone' => $request->input('phone'),
-			'school_year' => config('international.ehl_years')[$request->input('school_year')],
-		);
-		}else{
-			$studentInput = array(
-			'first_name' => $request->input('first-name'),
-			'last_name' => $request->input('last-name'),
-			'phone' => $request->input('phone'),
-		);
-		}
-		
-		$student = $this->studentRepository->update($studentId, $studentInput);
+		if(Auth::user()->type == 0)
+		{
+			$studentId = User::find($userId)->student->id;
+			if($request->input('school_year') != null){
+				$studentInput = array(
+				'first_name' => $request->input('first-name'),
+				'last_name' => $request->input('last-name'),
+				'phone' => $request->input('phone'),
+				'school_year' => config('international.ehl_years')[$request->input('school_year')],
+			);
+			}else{
+				$studentInput = array(
+				'first_name' => $request->input('first-name'),
+				'last_name' => $request->input('last-name'),
+				'phone' => $request->input('phone'),
+			);
+			}
+			
+			$student = $this->studentRepository->update($studentId, $studentInput);
 
-		$userInput = array(
-			'email' => $request->input('email'),
-		);
-		$user = $this->userRepository->update($userId, $userInput);
-		if($request->input('image-data') != ""){
-			//save your data into a variable - last part is the base64 encoded image
-		    $encoded = $request->input('image-data');
+			$userInput = array(
+				'email' => $request->input('email'),
+			);
+			$user = $this->userRepository->update($userId, $userInput);
+			if($request->input('image-data') != ""){
+				//save your data into a variable - last part is the base64 encoded image
+			    $encoded = $request->input('image-data');
 
-		    $exp = explode(',', $encoded);
-		    //decode the image and finally save it
-		    $data = base64_decode($exp[1]);
-		    $file = "uploads/pp/$userId.png";
-		    //make sure you are the owner and have the rights to write content
-		    file_put_contents($file, $data);
+			    $exp = explode(',', $encoded);
+			    //decode the image and finally save it
+			    $data = base64_decode($exp[1]);
+			    $file = "uploads/pp/$userId.png";
+			    //make sure you are the owner and have the rights to write content
+			    file_put_contents($file, $data);
+			}
+			
+			$message = "Vos modification ont bien été prises en compte";
+			return redirect()->route('account', $userId)->with('message', $message);
 		}
-		
-		$message = "Vos modification ont bien été prises en compte";
-		return redirect()->route('account', $userId)->with('message', $message);
+		else
+		{
+			$professionalId = User::find($userId)->professional->id;
+			$professionalInput = array(
+				'company_name' => $request->input('company-name'),
+				'category' => config('international.professionals_categories')[$request->input('category')],
+				'first_name' => $request->input('first-name'),
+				'last_name' => $request->input('last-name'),
+				'phone' => $request->input('phone'),
+				'address' => $request->input('address'),
+				'zipcode' => $request->input('zipcode'),
+				'state' => $request->input('state'),
+				'country' => config('international.countries')[$request->input('country')],
+			);
+			$student = $this->professionalRepository->update($professionalId, $professionalInput);
+
+			$userInput = array(
+				'email' => $request->input('email'),
+			);
+			$user = $this->userRepository->update($userId, $userInput);
+			if($request->input('image-data') != ""){
+				//save your data into a variable - last part is the base64 encoded image
+			    $encoded = $request->input('image-data');
+
+			    $exp = explode(',', $encoded);
+			    //decode the image and finally save it
+			    $data = base64_decode($exp[1]);
+			    $file = "uploads/pp/$userId.png";
+			    //make sure you are the owner and have the rights to write content
+			    file_put_contents($file, $data);
+			}
+			$message = "Vos modification ont bien été prises en compte";
+			return redirect()->route('account', $userId)->with('message', $message);
+		}
 	}
 
 	public function filesReset()
