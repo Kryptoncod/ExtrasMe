@@ -263,3 +263,13 @@ $("#modif-files").click(function(){
      });
      return false; //is superfluous, but I put it here as a fallback
 });
+
+$(document).ready(function(){
+    if(location.pathname.split('/').slice(-1)[0] == "login"){
+        $("body").css({
+            "display":"flex",
+            "flex-direction":"column",
+            "min-height":"100vh"
+        })
+    }
+})
