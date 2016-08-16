@@ -69,7 +69,13 @@
                   <p>
                      DESCRIPTION :<br> {{ $extras[0]->requirements }}
                   </p>
-          <a href="{{ route('extra_apply', $parameter = array('id' => $extras[0]->id, 'username' => Auth::user()->id)) }}" class="apply-button right">APPLY</a>
+          @if($student->registration_done == 1)
+            <a href="{{ route('extra_apply', $parameter = array('id' => $extras[0]->id, 'username' => Auth::user()->id)) }}" class="apply-button right">APPLY</a>
+          @else
+            <div class="apply-button right">
+              You didn't submit the document needed. Go in your account.
+            </div>
+          @endif
       </div>
 @endif
    </div>

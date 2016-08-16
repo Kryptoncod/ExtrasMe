@@ -202,7 +202,7 @@
             </div>
             <div id="next-to-password">
               <label for="year">YEAR : </label><select name="school_year">
-                   <option selected disabled value="">{{$student->school_year}}</option>
+                   <option selected disabled value="{{$student->school_year}}">{{$student->school_year}}</option>
                    @foreach(config('international.ehl_years') as $id => $year)
                       <option value="{{ $id }}">{{ $year }}</option>
                    @endforeach

@@ -176,7 +176,7 @@ class ProfileController extends Controller
       {
         array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
       }
-      return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id])->with('name', $name);
+      return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => User::find($id)->student])->with('name', $name);
     }
   }
 
@@ -322,5 +322,34 @@ class ProfileController extends Controller
     }
 
     return redirect()->route('my_favorite_extras', Auth::user()->id);
+  }
+
+  public function showExperiences()
+  {
+    $AuthID = Auth::user()->id;
+    $student = User::find($AuthID)->student;
+    $name = $student->first_name." ".$student->last_name;
+
+    return view('user.experience', ['name' => $name]);
+  }
+
+  public function showApplicationDownload()
+  {
+    $AuthID = Auth::user()->id;
+    
+    if(Auth::user()->type == 0)
+    {
+
+      $student = User::find($AuthID)->student;
+      $name = $student->first_name." ".$student->last_name;
+
+    } elseif(Auth::user()->type == 1){
+
+      $professional = User::find($AuthID)->professional;
+      $name = $professional->company_name;
+
+    }
+
+    return view('user.applicationDownload', ['name' => $name]);
   }
 }

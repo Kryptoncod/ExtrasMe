@@ -81,6 +81,12 @@
                         </a>
                      <div style="width:100%; height:1px; background-color:white;"></div>
                   @endforeach
+                  @else
+                     <div style="width:100%; height:1px; background-color:white;"></div>
+                        <div class="medium-7 small-12 medium-uncentered small-centered columns">
+                           No results.
+                        </div>
+                     <div style="width:100%; height:1px; background-color:white;"></div>
                  @endif
                </ul>
             </div>

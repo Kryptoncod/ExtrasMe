@@ -277,7 +277,7 @@ class AccountController extends Controller
 		}
 		elseif(Auth::user()->type == 1)
 		{
-			$professional = User::find($userId)->professional->id;
+			$professionalID = User::find($userId)->professional->id;
 			$professionalInput = array(
 				'company_name' => $request->input('company-name'),
 				'category' => config('international.professionals_categories')[$request->input('category')],
@@ -289,7 +289,7 @@ class AccountController extends Controller
 				'state' => $request->input('state'),
 				'country' => config('international.countries')[$request->input('country')],
 			);
-			$student = $this->studentRepository->update($studentId, $studentInput);
+			$professional = $this->professionalRepository->update($professionalID, $professionalInput);
 
 			$userInput = array(
 				'email' => $request->input('email'),
