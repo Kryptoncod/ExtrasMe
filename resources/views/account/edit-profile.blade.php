@@ -38,9 +38,8 @@
           </div>
           <div id="next-to-password">
             <label for="year">YEAR : </label><select name="school_year">
-                 <option selected disabled value="">{{$student->school_year}}</option>
                  @foreach(config('international.ehl_years') as $id => $year)
-                    <option value="{{ $id }}">{{ $year }}</option>
+                    <option value="{{ $id }}" <?php if($student->school_year == $year){ echo"selected";} ?>>{{ $year }}</option>
                  @endforeach
               </select>
               <small class="error">EHL's year is required.</small>

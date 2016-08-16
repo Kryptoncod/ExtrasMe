@@ -258,20 +258,12 @@ class AccountController extends Controller
 		if(Auth::user()->type == 0)
 		{
 			$studentId = User::find($userId)->student->id;
-			if($request->input('school_year') != null){
-				$studentInput = array(
+			$studentInput = array(
 				'first_name' => $request->input('first-name'),
 				'last_name' => $request->input('last-name'),
 				'phone' => $request->input('phone'),
 				'school_year' => config('international.ehl_years')[$request->input('school_year')],
 			);
-			}else{
-				$studentInput = array(
-				'first_name' => $request->input('first-name'),
-				'last_name' => $request->input('last-name'),
-				'phone' => $request->input('phone'),
-			);
-			}
 			
 			$student = $this->studentRepository->update($studentId, $studentInput);
 
