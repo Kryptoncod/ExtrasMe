@@ -92,12 +92,16 @@ class CalendarController extends Controller
 
     foreach ($extras as $extra) {
 
+
+      $start = new Carbon($extra->date.' '.$extra->date_time);
+      $end = $start;
+      $end->addHours($extra->duration);
+
       $events[] = \Calendar::event(
           $extra->type, //event title
-          true, //full day event?
-          new \DateTime($extra->date), //start time (you can also use Carbon instead of DateTime)
-          new \DateTime($extra->date), //end time (you can also use Carbon instead of DateTime)
-          'stringEventId' //optionally, you can specify an event ID
+          false, //full day event?
+          $start,
+          $end
       );
     }
 
