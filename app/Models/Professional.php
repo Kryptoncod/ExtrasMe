@@ -8,7 +8,7 @@ class Professional extends Model
 {
     protected $fillable = [
         'company_name', 'category', 'first_name', 'last_name', 'phone', 'zipcode', 'state', 
-        'country', 'address', 'user_id', 'credit'
+        'country', 'address', 'user_id', 'credit', 'description',
     ];
 
     public function user()

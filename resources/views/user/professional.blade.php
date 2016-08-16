@@ -42,8 +42,22 @@
          </div>
 
          <div class="row details-button">
-            <a href="">MORE DETAILS</a>
+            <div id="more-details"><span>MORE DETAILS</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
          </div>
+
+         <div class="details-container">
+            <div class="summary-container cv-div">
+               <h2>Description</h2>
+               <p>
+                  @if(!empty($professional->description))
+                     {{ $professional->description }}
+                  @else
+                     Pas de description.
+                  @endif
+               </p>
+            </div>
+         </div>
+
       @if(Auth::user()->id == $username)
          <div class="row section-title">
             <div class="small-12 columns">

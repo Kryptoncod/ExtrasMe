@@ -19,6 +19,7 @@ use App\Models\Experience;
 
 use App\Repositories\CvRepository;
 use App\Repositories\StudentRepository;
+use App\Repositories\ProfessionalRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\EducationRepository;
@@ -39,6 +40,7 @@ class AccountController extends Controller
 	protected $languageRepository;
 	protected $studentRepository;
 	protected $userRepository;
+	protected $professionalRepository;
 
 	public function __construct(CvRepository $cvRepository,
 		StudentRepository $studentRepository, 
@@ -46,7 +48,8 @@ class AccountController extends Controller
 		EducationRepository $educationRepository,
 		SkillRepository $skillRepository,
 		LanguageRepository $languageRepository,
-		UserRepository $userRepository)
+		UserRepository $userRepository,
+		ProfessionalRepository $professionalRepository)
 	{
 		$this->middleware('auth');
 		$this->cvRepository = $cvRepository;
@@ -57,6 +60,7 @@ class AccountController extends Controller
 		$this->languageRepository = $languageRepository;
 		$this->studentRepository = $studentRepository;
 		$this->userRepository = $userRepository;
+		$this->professionalRepository = $professionalRepository;
 
 	}
 
@@ -64,25 +68,42 @@ class AccountController extends Controller
 	public function show()
 	{
 		$id = Auth::user()->id;
-		$student = Student::find(User::find($id)->student->id);
-		$first_name = User::find($id)->student->first_name;
-		$last_name = User::find($id)->student->last_name;
-		$name = $first_name . " " . $last_name;
+		$experiences = null;
+        $educations = null;
+        $languages = null;
+        $skills = null;
+        $student = null;
 
-		try{
-          $cvID = $student->cv->id;
-          $experiences = Cv::find($cvID)->experiences->sortByDesc('date_to');
-          $educations = Cv::find($cvID)->educations->sortByDesc('date_to');
-          $languages = Cv::find($cvID)->languages;
-          $skills = Cv::find($cvID)->skills;
-        } catch(\Exception $e){
-          $experiences = null;
-          $educations = null;
-          $languages = null;
-          $skills = null;
-        }
+		if(Auth::user()->type == 0)
+		{
+			$student = Student::find(User::find($id)->student->id);
+			$first_name = User::find($id)->student->first_name;
+			$last_name = User::find($id)->student->last_name;
+			$name = $first_name . " " . $last_name;
+
+			try{
+	          $cvID = $student->cv->id;
+	          $experiences = Cv::find($cvID)->experiences->sortByDesc('date_to');
+	          $educations = Cv::find($cvID)->educations->sortByDesc('date_to');
+	          $languages = Cv::find($cvID)->languages;
+	          $skills = Cv::find($cvID)->skills;
+	        } catch(\Exception $e){
+	          $experiences = null;
+	          $educations = null;
+	          $languages = null;
+	          $skills = null;
+	        }
 
 		return view('user.account', ['user' => Auth::user(), 'name' => $name, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
+		}
+		elseif(Auth::user()->type == 1)
+		{
+			$name = User::find($id)->professional->company_name;
+        	$professionalID = User::find($id)->professional->id;
+        	$professional = Professional::find(User::find($id)->professional->id);
+
+        	return view('user.account', ['user' => Auth::user(), 'name' => $name, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'professional' => $professional]);
+		}
 	}
 
 	public function registerUpdate(Request $request)
@@ -283,4 +304,17 @@ class AccountController extends Controller
 		return redirect()->route('account', $id);
 	}
 
+	public function descriptionUpdate(Request $request)
+	{
+		$id = Auth::user()->id;
+		$professionalID = User::find($id)->professional->id;
+		
+		$professionalInput = array(
+			'description' => $request->input('description'),
+			);
+
+		$professional = $this->professionalRepository->update($professionalID, $professionalInput);
+
+		return redirect()->route('account', $id); 
+	}
 }
