@@ -48,6 +48,20 @@ class DatabaseSeeder extends Seeder
 			]);
 		}
 
+		DB::table('dashboards')->delete();
+
+		for($i = 0; $i < 5; ++$i)
+		{
+			DB::table('dashboards')->insert([
+				'total_earned' => 0,
+				'total_hours' => 0,
+				'numbers_extras' => 0,
+				'numbers_establishement' => 0,
+				'level' => 0,
+				'student_id' => $i+1,
+			]);
+		}
+
 		DB::table('professionals')->delete();
 
 		for($i = 5; $i < 10; ++$i)

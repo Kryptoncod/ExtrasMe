@@ -12,6 +12,7 @@ use App\Http\Requests\RegisterProfessionalRequest;
 use App\Repositories\UserRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\ProfessionalRepository;
+use App\Repositories\DashboardRepository;
 
 use Carbon\Carbon;
 
@@ -23,15 +24,18 @@ class SignupController extends Controller
     protected $userRepository;
     protected $studentRepository;
     protected $professionalRepository;
+    protected $dashboardRepository;
 
    public function __construct(UserRepository $userRepository, 
                                 StudentRepository $studentRepository,
-                                ProfessionalRepository $professionalRepository)
+                                ProfessionalRepository $professionalRepository
+                                DashboardRepository $dashboardRepository)
    {
       $this->middleware('guest');
       $this->userRepository = $userRepository;
       $this->studentRepository = $studentRepository;
       $this->professionalRepository = $professionalRepository;
+      $this->dashboardRepository = $dashboardRepository;
    }
 
     /**
@@ -72,6 +76,17 @@ class SignupController extends Controller
             );
 
         $student = $this->studentRepository->store($studentInputs);
+
+        $dashBoardInput = array(
+            'total_earned' => 0,
+            'total_hours' => 0,
+            'numbers_extras' => 0,
+            'numbers_establishement' => 0, 
+            'level' => 0, 
+            'student_id' => $student->id,
+            );
+
+        $dashBoard = $this->dashBoardRepository->store($dashBoardInput);
 
         return redirect()->route('index');
     }

@@ -32,4 +32,9 @@ class Student extends Model
     {
         return $this->hasOne('App\Models\Cv');
     }
+
+    public function dashboard()
+    {
+        return $this->hasOne('App\Models\Dashboard');
+    }
 }
