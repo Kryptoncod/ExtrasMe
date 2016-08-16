@@ -235,18 +235,39 @@ class AccountController extends Controller
 	{
 		$userId = Auth::user()->id;
 		$studentId = User::find($userId)->student->id;
-		$studentInput = array(
+		if($request->input('school_year') != null){
+			$studentInput = array(
 			'first_name' => $request->input('first-name'),
 			'last_name' => $request->input('last-name'),
 			'phone' => $request->input('phone'),
 			'school_year' => config('international.ehl_years')[$request->input('school_year')],
 		);
+		}else{
+			$studentInput = array(
+			'first_name' => $request->input('first-name'),
+			'last_name' => $request->input('last-name'),
+			'phone' => $request->input('phone'),
+		);
+		}
+		
 		$student = $this->studentRepository->update($studentId, $studentInput);
 
 		$userInput = array(
 			'email' => $request->input('email'),
 		);
 		$user = $this->userRepository->update($userId, $userInput);
+		if($request->input('image-data') != ""){
+			//save your data into a variable - last part is the base64 encoded image
+		    $encoded = $request->input('image-data');
+
+		    $exp = explode(',', $encoded);
+		    //decode the image and finally save it
+		    $data = base64_decode($exp[1]);
+		    $file = "uploads/pp/$userId.png";
+		    //make sure you are the owner and have the rights to write content
+		    file_put_contents($file, $data);
+		}
+		
 		$message = "Vos modification ont bien été prises en compte";
 		return redirect()->route('account', $userId)->with('message', $message);
 	}

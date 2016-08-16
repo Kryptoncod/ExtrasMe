@@ -272,4 +272,15 @@ $(document).ready(function(){
             "min-height":"100vh"
         })
     }
-})
+});
+
+$(function() {
+    $('.image-editor').cropit();
+
+    $('#profile-form').submit(function() {
+          // Move cropped image data to hidden input
+          var imageData = $('.image-editor').cropit('export');
+          $('.hidden-image-data').val(imageData);
+          return true;
+      });
+});

@@ -38,6 +38,7 @@
       
       <script src="{{ asset('../resources/assets/js/foundation-datepicker.min.js') }}"></script>
       <script src="{{ asset('../resources/assets/js/foundation-datepicker.fr.js') }}"></script>
+      <script src="{{ asset('../node_modules/cropit/dist/jquery.cropit.js') }}"></script>
       <script src="{{ asset('../resources/assets/js/foundation.min.js') }}"></script>
       <script src="{{ asset('../resources/assets/js/app.js') }}"></script>
    </body>
