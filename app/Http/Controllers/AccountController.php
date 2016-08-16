@@ -92,10 +92,9 @@ class AccountController extends Controller
 	          $educations = null;
 	          $languages = null;
 	          $skills = null;
-	          $professional = null;
 	        }
 
-		return view('user.account', ['user' => Auth::user(), 'name' => $name, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'professional' => $professional]);
+		return view('user.account', ['user' => Auth::user(), 'name' => $name, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
 		}
 		elseif(Auth::user()->type == 1)
 		{
@@ -256,7 +255,6 @@ class AccountController extends Controller
 	public function profileUpdate(Request $request)
 	{
 		$userId = Auth::user()->id;
-		
 		if(Auth::user()->type == 0)
 		{
 			$studentId = User::find($userId)->student->id;
@@ -266,16 +264,29 @@ class AccountController extends Controller
 				'phone' => $request->input('phone'),
 				'school_year' => config('international.ehl_years')[$request->input('school_year')],
 			);
+			
 			$student = $this->studentRepository->update($studentId, $studentInput);
 
 			$userInput = array(
 				'email' => $request->input('email'),
 			);
 			$user = $this->userRepository->update($userId, $userInput);
+			if($request->input('image-data') != ""){
+				//save your data into a variable - last part is the base64 encoded image
+			    $encoded = $request->input('image-data');
+
+			    $exp = explode(',', $encoded);
+			    //decode the image and finally save it
+			    $data = base64_decode($exp[1]);
+			    $file = "uploads/pp/$userId.png";
+			    //make sure you are the owner and have the rights to write content
+			    file_put_contents($file, $data);
+			}
+			
 			$message = "Vos modification ont bien été prises en compte";
 			return redirect()->route('account', $userId)->with('message', $message);
 		}
-		elseif(Auth::user()->type == 1)
+		else
 		{
 			$professionalID = User::find($userId)->professional->id;
 			$professionalInput = array(
@@ -289,12 +300,24 @@ class AccountController extends Controller
 				'state' => $request->input('state'),
 				'country' => config('international.countries')[$request->input('country')],
 			);
+
 			$professional = $this->professionalRepository->update($professionalID, $professionalInput);
 
 			$userInput = array(
 				'email' => $request->input('email'),
 			);
 			$user = $this->userRepository->update($userId, $userInput);
+			if($request->input('image-data') != ""){
+				//save your data into a variable - last part is the base64 encoded image
+			    $encoded = $request->input('image-data');
+
+			    $exp = explode(',', $encoded);
+			    //decode the image and finally save it
+			    $data = base64_decode($exp[1]);
+			    $file = "uploads/pp/$userId.png";
+			    //make sure you are the owner and have the rights to write content
+			    file_put_contents($file, $data);
+			}
 			$message = "Vos modification ont bien été prises en compte";
 			return redirect()->route('account', $userId)->with('message', $message);
 		}

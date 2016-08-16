@@ -19,7 +19,7 @@
 .alert-box, body {
   position: relative;
   font-weight: 400;
-  
+
 }
 
 .accordion:after, .clearfix:after {
@@ -156,7 +156,7 @@ a:hover {
 }
 
 img {
-  max-width: 100%;
+  //max-width: 100%;
   height: auto;
   -ms-interpolation-mode: bicubic;
 }
@@ -10445,4 +10445,22 @@ option{
 .erreur-update{
   color: white;
   text-align: center;
+}
+
+.cropit-preview {
+  background-color: #f8f8f8;
+  background-size: cover;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-top: 7px;
+  width: 250px;
+  height: 250px;
+}
+
+.cropit-preview-image-container {
+  cursor: move;
+}
+
+.image-size-label {
+  margin-top: 10px;
 }
