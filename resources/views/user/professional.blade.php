@@ -215,7 +215,7 @@
                </div>
             </div>
          @else
-            You didn't submit any extra.
+            <p class="empty-notice">You didn't submit any extra.</p>
          @endif
       @endif
 

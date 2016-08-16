@@ -19,7 +19,9 @@ Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
    $app->get('account', ['as' => 'account', "uses" => "AccountController@show"]);
-   $app->get('extra/{id}/apply',  ['as' => 'extra_apply',   "uses" => "ProfileController@extra_apply"]);
+   $app->get('extra/{id}/apply',  function($username, $id){
+      return App\Http\Controllers\ProfileController::extra_apply($id);
+   });
    $app->get('extra/{id}',  ['as' => 'extra',   "uses" => "ProfileController@extra"]);
    $app->get('extras',  ['as' => 'extra_list',   "uses" => "ProfileController@showExtraList"]);
    $app->get ('myextras', ['as' => 'my_extras', "uses" => "ProfileController@myExtras"]);
@@ -34,6 +36,7 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('calendar', ['as' => 'calendar', "uses" => "CalendarController@showCalendar"]);
    $app->get('experiences', ['as' => 'experiences', "uses" => "ProfileController@showExperiences"]);
    $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
+   $app->get('dashboard', ['as' => 'dashboard', "uses" => "ProfileController@showDashboard"]);
    $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
    $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);

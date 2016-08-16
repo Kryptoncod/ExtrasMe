@@ -204,7 +204,7 @@ class ProfileController extends Controller
     return view('user.extra', ['extra' => $extra]);
   }
 
-  public function extra_apply($id)
+  public static function extra_apply($id)
   {
     try
     {
@@ -351,5 +351,14 @@ class ProfileController extends Controller
     }
 
     return view('user.applicationDownload', ['name' => $name]);
+  }
+
+  public function showDashboard()
+  {
+    $AuthID = Auth::user()->id;
+    $student = User::find($AuthID)->student;
+    $name = $student->first_name." ".$student->last_name;
+
+    return view('user.dashboard', ['name' => $name, 'dashboard' => Student::find($student->id)->dashboard]);
   }
 }
