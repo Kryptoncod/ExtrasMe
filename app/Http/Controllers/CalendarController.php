@@ -91,17 +91,13 @@ class CalendarController extends Controller
     $extras = Professional::find($professionalID)->extra;
 
     foreach ($extras as $extra) {
-
-
       $start = new Carbon($extra->date.' '.$extra->date_time);
-      $end = $start;
-      $end->addHours($extra->duration);
 
       $events[] = \Calendar::event(
           $extra->type, //event title
           false, //full day event?
-          $start,
-          $end
+          $start->toDateTimeString(),
+          $start->addHours($extra->duration)->toDateTimeString()
       );
     }
 
