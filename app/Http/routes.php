@@ -38,6 +38,7 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('modifFiles', ['as' => 'modif_files', "uses" => "AccountController@filesReset"]);
    $app->post('cvPost', ['as' => 'cv_update', "uses" => "AccountController@cvUpdate"]);
    $app->post('profilePost', ['as' => 'profile_update', "uses" => "AccountController@profileUpdate"]);
+   $app->post('descriptionPost', ['as' => 'description_update', "uses" => "AccountController@descriptionUpdate"]);
 });
 
 Route::group(['prefix' => 'signup'], function($app) {
