@@ -282,7 +282,6 @@ class AccountController extends Controller
 			    //make sure you are the owner and have the rights to write content
 			    file_put_contents($file, $data);
 			}
-			
 			$message = "Vos modification ont bien été prises en compte";
 			return redirect()->route('account', $userId)->with('message', $message);
 		}
