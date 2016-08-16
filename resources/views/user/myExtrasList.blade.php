@@ -5,7 +5,7 @@
       @include('user.sidebar', ['nav' => ['MY CREDIT' => '', 'MY EXTRAS' => route('my_extras', $username)], 'formType' => 1])
 
       <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
-        @if(empty($extras))
+        @if(count($extras) == 0)
           <p class="empty-notice">You didn't submit extras</p>
         @else
 

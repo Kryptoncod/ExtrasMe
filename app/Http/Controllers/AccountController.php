@@ -256,21 +256,48 @@ class AccountController extends Controller
 	public function profileUpdate(Request $request)
 	{
 		$userId = Auth::user()->id;
-		$studentId = User::find($userId)->student->id;
-		$studentInput = array(
-			'first_name' => $request->input('first-name'),
-			'last_name' => $request->input('last-name'),
-			'phone' => $request->input('phone'),
-			'school_year' => config('international.ehl_years')[$request->input('school_year')],
-		);
-		$student = $this->studentRepository->update($studentId, $studentInput);
+		
+		if(Auth::user()->type == 0)
+		{
+			$studentId = User::find($userId)->student->id;
+			$studentInput = array(
+				'first_name' => $request->input('first-name'),
+				'last_name' => $request->input('last-name'),
+				'phone' => $request->input('phone'),
+				'school_year' => config('international.ehl_years')[$request->input('school_year')],
+			);
+			$student = $this->studentRepository->update($studentId, $studentInput);
 
-		$userInput = array(
-			'email' => $request->input('email'),
-		);
-		$user = $this->userRepository->update($userId, $userInput);
-		$message = "Vos modification ont bien été prises en compte";
-		return redirect()->route('account', $userId)->with('message', $message);
+			$userInput = array(
+				'email' => $request->input('email'),
+			);
+			$user = $this->userRepository->update($userId, $userInput);
+			$message = "Vos modification ont bien été prises en compte";
+			return redirect()->route('account', $userId)->with('message', $message);
+		}
+		elseif(Auth::user()->type == 1)
+		{
+			$professional = User::find($userId)->professional->id;
+			$professionalInput = array(
+				'company_name' => $request->input('company-name'),
+				'category' => config('international.professionals_categories')[$request->input('category')],
+				'first_name' => $request->input('first-name'),
+				'last_name' => $request->input('last-name'),
+				'phone' => $request->input('phone'),
+				'address' => $request->input('address'),
+				'zipcode' => $request->input('zipcode'),
+				'state' => $request->input('state'),
+				'country' => config('international.countries')[$request->input('country')],
+			);
+			$student = $this->studentRepository->update($studentId, $studentInput);
+
+			$userInput = array(
+				'email' => $request->input('email'),
+			);
+			$user = $this->userRepository->update($userId, $userInput);
+			$message = "Vos modification ont bien été prises en compte";
+			return redirect()->route('account', $userId)->with('message', $message);
+		}
 	}
 
 	public function filesReset()

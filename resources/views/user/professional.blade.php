@@ -186,13 +186,13 @@
             </form>
          </div>
 
-         @if(!empty($extras))
             <div class="row section-title">
                <div class="small-12 columns">
                   <h2>MY EXTRAS</h2>
                </div>
             </div>
 
+         @if(count($extras) != 0)
             <div class="row">
                <div class="small-12 columns">
                   <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
@@ -210,6 +210,8 @@
                   </ul>
                </div>
             </div>
+         @else
+            You didn't submit any extra.
          @endif
       @endif
 
