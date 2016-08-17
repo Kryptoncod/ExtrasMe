@@ -7042,4 +7042,34 @@ option {
     margin-bottom: 15px;
     font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
 
+.warning_register {
+  display: flex;
+  margin-left: 10px;
+  position: relative; }
+  .warning_register i {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+    color: orange; }
+  .warning_register .warning_box {
+    position: absolute;
+    width: 400px;
+    height: 70px;
+    background-color: #222;
+    border: 1px solid orange;
+    left: 40px;
+    top: 5px;
+    display: FLEX;
+    opacity: 0;
+    transition: opacity .2s; }
+    .warning_register .warning_box p {
+      font-size: 25px;
+      line-height: normal;
+      margin: auto;
+      padding: 5px; }
+
+.warning_register:hover > .warning_box {
+  opacity: 1;
+  transition: opacity .2s; }
+
 /*# sourceMappingURL=app.css.map */

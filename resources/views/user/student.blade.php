@@ -24,7 +24,11 @@
                <ul class="personal-informations">
                   <li class="title" style="display: flex;">{{ strtoupper($student->first_name." ".$student->last_name) }} 
                   @if(Auth::user()->id == $username && !$student->registration_done)
-                  <a href="{{ route('account', Auth::user()->id)}}" style=" display: flex;margin-left: 10px;"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin-top: auto; margin-bottom: auto; font-size: 25px; color: orange;"></i></a></li>
+                  <a href="{{ route('account', Auth::user()->id)}}" class="warning_register"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                  <div class="warning_box">
+                     <p>VOUS DEVEZ IMPORTER DES FICHIERS NECESSAIRES POUR POUVOIR POSTULER A DES EXTRAS</p>
+                  </div>
+                  </a></li>
                   @endif
                   @if(Auth::user()->id == $username)
                      <li>
