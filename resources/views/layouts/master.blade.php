@@ -9,7 +9,7 @@
       <link href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
       <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
       <link rel="stylesheet" href="{{ asset('../resources/assets/css/foundation-datepicker.min.css') }}" />
-      <link href="https://file.myfontastic.com/fs74A8Cbf6nJnfRAq6qC7j/icons.css" rel="stylesheet">
+      <link href="https://file.myfontastic.com/UbG5ssV57cNYroYCjkUMdm/icons.css" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
       <script src="{{ asset('../resources/assets/js/modernizr.js') }}"></script>
       <link rel='stylesheet' href='../fullcalendar-2.9.1/fullcalendar.css' />

@@ -5568,7 +5568,8 @@ ul.pagination {
       font-size: 1em;
       font-weight: 400;
       line-height: inherit;
-      padding: .0625rem .625rem;
+      padding-left:4px;
+      padding-right:4px;
     }
   }
 }
@@ -10024,7 +10025,6 @@ div.form {
 
       li {
         margin-bottom: .625rem;
-
         select {
           background: 0 0;
           color: #FFF;
@@ -10073,7 +10073,7 @@ div.form {
 
     li {
       list-style: none;
-
+      letter-spacing: 5px;
       a {
         color: #FFF;
       }
@@ -10463,4 +10463,127 @@ option{
 
 .image-size-label {
   margin-top: 10px;
+}
+
+.dashboard-container{
+  display: flex;
+  .dashboard-leftpan{
+    display:flex; 
+    flex-direction:column; 
+    width: 30%; 
+    hr{
+      border: 1px solid #222;
+      margin: 30px auto 30px auto;
+      width: 90%;
+    }
+    h2, h3{
+      color: white;
+      font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      letter-spacing: 5px;
+      margin: 0;
+    }
+    h2{
+      font-weight: normal;
+      font-size: .875rem;
+    }
+    h3{
+      font-size: .8rem;
+      height: 20px;
+      margin: auto;
+    }
+    .search-bar{
+      display: flex;
+      transition: border .2s;
+      border:1px solid black;
+      input[type=search]{
+        background-color:#0E0E0E;
+        border:none;
+        margin: 0;
+        letter-spacing: 5px;
+        color:white;
+      }
+      label{
+        display: flex;
+        background-color:#0E0E0E;
+        cursor:default;
+        .icon-search{
+          font-size:20px;
+          color: white;
+          margin: auto;
+          padding-top:7px;
+          margin-left: 20px;
+          margin-right: 10px;
+        }
+      }
+      
+    }
+    .border-blur{
+      border:1px solid white;
+    }
+    .extra{
+      display: flex;
+      height: 40px;
+      width: 90%;
+      margin: auto;
+      margin-bottom: 10px;
+      .level-logo{
+        display: inline-block;
+        margin: 0 0 -.625rem;
+        height: 40px;
+        width: 40px;
+        background-image: url(../images/level-logo.svg);
+        background-repeat: no-repeat;
+        &.completed {
+              background-image: url(../images/level-logo-completed.svg);
+            }
+      }
+      
+    }
+    
+    
+  }
+  .dashboard-rightpan{
+    display:flex; 
+    flex-direction:column; 
+    justify-content: space-around;
+    width: 70%; 
+    background-color: #171717;
+    .two-blocks{
+      display: flex;
+      justify-content: space-around;
+      height: 260px;
+      width: 100%;
+      .one-block{
+        width: 260px;
+        height: 260px;
+        display: flex;
+        flex-direction: column;
+        h2{
+          font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          color: white;
+          letter-spacing: 5px;
+          font-size: 22px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .stat-content{
+          width: 100%;
+          height: 90%;
+          background-color: #0E0E0E;
+          display: flex;
+          justify-content: center;
+          blockquote{
+                padding: 0;
+                border: none;
+                line-height: normal;
+                color: white;
+                font-size: 70px;
+                font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+                margin:0;
+                letter-spacing: 5px;
+          }
+        }
+      }
+    }
+  }
 }

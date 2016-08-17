@@ -46,15 +46,13 @@
                   </li>
                   <li>
                      <span class="info-label">EXTRASME LEVEL:</span>
-                     @if($student->level > 3)
+                     
                         <span class="level-logo {{ $student->level > 0 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 1 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 2 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 3 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
-                     @else
-                        NOT ENOUGH EXTRAS DONE YET
-                     @endif
+                     
                   </li>
                   <li>
                      <span class="info-label"></span>
@@ -135,7 +133,7 @@
          </div>
 
          @if(Auth::user()->id == $username)
-            <div id="to-load">
+            <div>
                <div class="row section-title">
                   <div class="small-12 columns">
                      <h2>EXTRAS IN SPOTLIGHT</h2>
@@ -173,7 +171,7 @@
                <div class="row section-title">
                   <div class="small-12 columns">
                      <h2>EXTRAS AVAILABLE</h2>
-                     <div class="pagination">{!! $links !!}</div>
+                     <div class="pagination">{{ $links }}</div>
                   </div>
                </div>
                

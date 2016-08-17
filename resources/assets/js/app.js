@@ -284,3 +284,12 @@ $(function() {
           return true;
       });
 });
+
+$(function() {
+    $('#search').focus(function(){
+        $(this).parent("div").addClass("border-blur");
+    });
+    $('#search').blur(function(){
+        $(this).parent("div").removeClass("border-blur");
+    });
+});
