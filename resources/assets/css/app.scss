@@ -10586,3 +10586,18 @@ option{
     }
   }
 }
+
+.export-ids{
+  display: flex;
+  flex-direction: column;
+  a{
+    padding:15px;
+    width: 100%;
+    text-align:center;
+    background-color: #222;
+    border: 1px solid white;
+    margin: auto;
+    margin-bottom: 15px;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  }
+}

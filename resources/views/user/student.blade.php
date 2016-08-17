@@ -23,7 +23,7 @@
             <div class="medium-9 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
                   <li class="title" style="display: flex;">{{ strtoupper($student->first_name." ".$student->last_name) }} 
-                  @if(!$student->registration_done)
+                  @if(Auth::user()->id == $username && !$student->registration_done)
                   <a href="{{ route('account', Auth::user()->id)}}" style=" display: flex;margin-left: 10px;"><i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin-top: auto; margin-bottom: auto; font-size: 25px; color: orange;"></i></a></li>
                   @endif
                   @if(Auth::user()->id == $username)
@@ -132,8 +132,15 @@
                </ul>
                @endif
             </div>
+            @if(Auth::user()->type == 1 && $student->registration_done == 1)
+               <div class="export-ids">
+                  <a href="uploads/{{$username}}/carte_id.jpg" download="carte_id_{{$student->first_name}}_{{$student->last_name}}">Download ID Card</a>
+                  <a href="uploads/{{$username}}/avs.jpg" download="carte_avs_{{$student->first_name}}_{{$student->last_name}}">Download AVS Card</a>
+                  <a href="uploads/{{$username}}/permit.jpg" download="permit_{{$student->first_name}}_{{$student->last_name}}">Download Work Permit</a>
+               </div>
+            @endif
          </div>
-
+         
          @if(Auth::user()->id == $username)
             <div>
                <div class="row section-title">
