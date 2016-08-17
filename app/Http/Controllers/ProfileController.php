@@ -57,7 +57,6 @@ class ProfileController extends Controller
       $type = User::find($username)->type;
       $favExtras = NULL;
       //$location = GeoIP::getLocation();
-      //Photo de profil existe ?
       if(User::find($id)->type == 0)
       {
         $extras = $this->extraRepository->getPaginate(3);
@@ -81,11 +80,12 @@ class ProfileController extends Controller
 
       if($type == 0)
       {
-        $student = User::find($username)->student;
+        $user_student = User::find($username);
+        $student = $user_student->student;
         try{
           $cvID = $student->cv->id;
-          $experiences = Cv::find($cvID)->experiences->sortByDesc('date_to');
-          $educations = Cv::find($cvID)->educations->sortByDesc('date_to');
+          $experiences = Cv::find($cvID)->experiences;
+          $educations = Cv::find($cvID)->educations;
           $languages = Cv::find($cvID)->languages;
           $skills = Cv::find($cvID)->skills;
         } catch(\Exception $e){

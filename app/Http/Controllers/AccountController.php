@@ -116,7 +116,7 @@ class AccountController extends Controller
 		$message = "";
 
 
-		$rule = 'required|file|mimes:jpg,png,pdf,gif,jpeg,tiff,doc,docx,odt|max:10000';
+		$rule = 'required|file|mimes:jpeg,jpg|max:10000';
 		$validator = Validator::make($request->all(), [
 			'carte-id'   => $rule,
 			'avs'   => $rule,
@@ -147,13 +147,13 @@ class AccountController extends Controller
 							{
 								$path = config('card.path')."/$id";
 								$name = "carte-id.".$image1->getClientOriginalExtension();
-								$image1->move($path, $name);
+								$image1->move("$path", $name);
 								$path = config('card.path')."/$id";
 								$name = "avs.".$image2->getClientOriginalExtension();
-								$image2->move($path, $name);
+								$image2->move("$path", $name);
 								$path = config('card.path')."/$id";
 								$name = "permit.".$image3->getClientOriginalExtension();
-								$image3->move($path, $name);
+								$image3->move("$path", $name);
 								$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
 								//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
 								$studentInput = array(
@@ -330,6 +330,9 @@ class AccountController extends Controller
 			'registration_done' => 0,
 			);
 		$student = $this->studentRepository->update($studentID, $studentInput);
+		unlink("uploads/$id/carte-id.jpg");
+		unlink("uploads/$id/avs.jpg");
+		unlink("uploads/$id/permit.jpg");
 		return redirect()->route('account', $id);
 	}
 
