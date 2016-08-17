@@ -46,13 +46,15 @@
                   </li>
                   <li>
                      <span class="info-label">EXTRASME LEVEL:</span>
-                     
+                     @if($student->level > 3)
                         <span class="level-logo {{ $student->level > 0 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 1 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 2 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 3 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
-                     
+                     @else
+                        NOT ENOUGH EXTRAS DONE YET
+                     @endif
                   </li>
                   <li>
                      <span class="info-label"></span>
