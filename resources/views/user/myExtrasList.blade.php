@@ -38,7 +38,7 @@
                                 CATEGORY
                               </td>
                               <td>
-                                {{ $extras[0]->requirements }}
+                                {{ $extras[0]->type }}
                               </td>
                             </tr>
                             <tr>
@@ -46,7 +46,7 @@
                                 REQUIREMENTS
                               </td>
                               <td>
-                                {{ $extras[0]->type }}
+                                {{ $extras[0]->requirements }}
                               </td>
                             </tr>
                             <tr>

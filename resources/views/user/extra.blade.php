@@ -33,6 +33,22 @@
                           </thead>
                           <tbody>
                             <tr>
+                              <td>
+                                CATEGORY
+                              </td>
+                              <td>
+                                {{ $extras[0]->type }}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                REQUIREMENTS
+                              </td>
+                              <td>
+                                {{ $extras[0]->requirements }}
+                              </td>
+                            </tr>
+                            <tr>
                               <td style="width:25%;">
                                 SALARY
                               </td>
@@ -64,13 +80,26 @@
                                 {{ $extras[0]->date.' at '.$extras[0]->date_time }}
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                OTHER INFORMATIONS
+                              </td>
+                              <td>
+                                @if(empty($extras[0]->informations))
+                                    ANY
+                                @else
+                                  {{ $extras[0]->informations}}
+                                @endif
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
-                  <p>
-                     DESCRIPTION :<br> {{ $extras[0]->requirements }}
-                  </p>
           @if($student->registration_done == 1)
-            <a href="{{ 'extra/'.$extras[0]->id.'/apply' }}" class="apply-button right">APPLY</a>
+            @foreach($student->extras as $extra)
+              @if($extra->id != $extras[0]->id)
+                <a href="{{ 'extra/'.$extras[0]->id.'/apply' }}" class="apply-button right">APPLY</a>
+              @endif
+            @endforeach
           @else
             <div class="apply-button right">
               You didn't submit the document needed. Go in your account.

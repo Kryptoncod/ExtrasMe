@@ -99,6 +99,7 @@ class ProfileController extends Controller
       }
       else if($type == 1)
       {
+
         return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'username' => $username, 'AuthId' => $id, 'name' => $name]);
       }
     } catch (\Exception $e) {
