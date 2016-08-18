@@ -102,7 +102,7 @@
                                 <a href = "{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a>
                                 <button class="submit-button right">Decline</button>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button class="submit-button right">Accept</button>
+                                <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">Accept</a></button>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                               </li>
                             @endforeach

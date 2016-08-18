@@ -107,6 +107,7 @@ class ProfileController extends Controller
        abort(404);
     }
   }
+  
   public function showExperiences()
   {
     $AuthID = Auth::user()->id;
