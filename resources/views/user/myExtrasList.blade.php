@@ -46,7 +46,7 @@
                                 REQUIREMENTS
                               </td>
                               <td>
-                                {{ $extras[0]->requirements }}
+                                {{ $extra->requirements }}
                               </td>
                             </tr>
                             <tr>
@@ -54,7 +54,7 @@
                                 SALARY
                               </td>
                               <td>
-                                {{ $extras[0]->salary }} CHF/Hr
+                                {{ $extra->salary }} CHF/Hr
                               </td>
                             </tr>
                             <tr>
@@ -62,7 +62,7 @@
                                 BENEFITS
                               </td>
                               <td>
-                                {{ $extras[0]->benefits }}
+                                {{ $extra->benefits }}
                               </td>
                             </tr>
                             <tr>
@@ -78,7 +78,7 @@
                                 TIME
                               </td>
                               <td>
-                                {{ $extras[0]->date.' at '.$extras[0]->date_time }}
+                                {{ $extra->date.' at '.$extras->date_time }}
                               </td>
                             </tr>
                             <tr>
@@ -86,10 +86,10 @@
                                 OTHER INFORMATIONS
                               </td>
                               <td>
-                                @if(empty($extras[0]->informations))
+                                @if(empty($extra->informations))
                                     ANY
                                 @else
-                                  {{ $extras[0]->informations}}
+                                  {{ $extra->informations}}
                                 @endif
                               </td>
                             </tr>
@@ -97,7 +97,7 @@
                         </table>
                         <ul>
                             <li class="title">STUDENTS WHO HAS APPLIED :</li>
-                            @foreach($extras[0]->students as $student)
+                            @foreach($extra->students as $student)
                               <li>
                                 <a href = "{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a>
                                 <button class="submit-button right">Decline</button>
