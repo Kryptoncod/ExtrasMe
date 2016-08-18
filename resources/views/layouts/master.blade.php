@@ -13,8 +13,11 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
       <script src="{{ asset('js/modernizr.js') }}"></script>
       <link rel='stylesheet' href="{{ asset('css/fullcalendar.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.css') }}">
       <script src="{{ asset('js/moment.min.js') }}"></script>
       <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
+      <script src="{{ asset('js/sweetalert.min.js') }}"></script> 
+
       
    </head>
 

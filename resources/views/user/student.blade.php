@@ -16,7 +16,6 @@
                   <img class="profile-picture" src=" uploads/pp/{{$user->id}}.png" alt="" />
                @else
                   <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
-                  {{$user->id}}
                @endif
             </div>
 

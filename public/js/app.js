@@ -179,15 +179,17 @@ $("#id-file").change(function(){
 
 });
 
-$("#modif-files").click(function(){
-    return (confirm('Etes-vous sûrs de vouloir modifier vos fichiers ? Ceux déjà importés seront alors supprimés de la base de donnée.'));
+$("#modif-files").click(function(e){
+    var href = $(this).attr('href');
+    swal({  title: "Etes-vous sûrs ?",   text: "Les fichiers déjà importés seront alors supprimés de la base de donnée.",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#060b2b",   confirmButtonText: "Oui!",   closeOnConfirm: false }, function(){   window.location.href = href; });
+    return false;
 });
 
  $("#add-experience").click(function(e){
     e.preventDefault();
     //ici on fait des vérifs dynamique
     if($(".experience-title:last").val() == "" || $(".experience-from:last").val() == "" || $(".experience-to:last").val() == "" || $(".experience-description:last").val() == ""){
-        alert("Tous les champs doivent être remplis avant d'ajouter une nouvelle Expérience");
+        swal({   title: "Error!",   text: "Tous les champs doivent être remplis avant d'ajouter une nouvelle Expérience",   type: "error",   confirmButtonText: "Ok" });
     }else{
         //si c'est ok, on execute:
         var nextId = parseInt($(".experience-title:last").data("experience"));
