@@ -15,7 +15,7 @@
                @if(file_exists("uploads/pp/".$user->id.".png"))
                   <img class="profile-picture" src=" uploads/pp/{{$user->id}}.png" alt="" />
                @else
-                  <img class="profile-picture" src="{{ asset('../resources/assets/images/user-student.png') }}" alt="" />
+                  <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
                   {{$user->id}}
                @endif
             </div>
@@ -168,7 +168,7 @@
                                                                                 $favExtra->type.
                                                                                 ' for '.$favExtra->date.' at '.$favExtra->date_time,
                                                                "title" => $favExtra->professional->company_name,
-                                                               "image" => asset("../resources/assets/images/extra-card-example.png"),
+                                                               "image" => asset("images/extra-card-example.png"),
                                                                "id"  => $favExtra->id])
                                     </li>
                                  @endforeach
@@ -199,7 +199,7 @@
                                                                        $extra->type.
                                                                        ' for '.$extra->date.' at '.$extra->date_time,
                                                       "title" => $extra->professional->company_name,
-                                                      "image" => asset("../resources/assets/images/extra-card-example.png"),
+                                                      "image" => asset("images/extra-card-example.png"),
                                                       "id"  => $extra->id])
                            </li>
                            @endforeach

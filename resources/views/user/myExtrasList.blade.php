@@ -20,10 +20,10 @@
           </ul>
         </div>
         <div style="width:5%;display:flex;">
-          <img src="../../resources/assets/images/right-arrow.png" style="margin:auto; width:90%;">
+          <img src="../images/right-arrow.png" style="margin:auto; width:90%;">
         </div>
         <div style="display:flex; flex-direction:column; width:55%; align-items:center" id="card-container">
-          <img src="{{ asset('../resources/assets/images/extra-background.png') }}" class="background-image" style="width:90%;"/>
+          <img src="{{ asset('images/extra-background.png') }}" class="background-image" style="width:90%;"/>
                         <table style="width:80%;" class="card-info">
                           <thead>
                             <tr>
