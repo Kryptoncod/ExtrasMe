@@ -22,7 +22,6 @@ Route::group(['prefix' => '{username}'], function($app) {
 
    Route::group(['prefix' => 'extra'], function($app) {
       $app->get('{id}/apply', ['as' => 'extra_apply', 'uses' => 'ExtraController@apply']);
-      $app->get('{id}',  ['as' => 'extra',   "uses" => "ExtraController@show"]);
       $app->get('list/{type_extra}',  ['as' => 'extra_list',   "uses" => "ExtraController@showList"]);
       $app->post('search', ['as' => 'extra_search', "uses" => "ExtraController@search"]);
       $app->post('submit', ['as' => 'extra_submit', "uses" => "ExtraController@submit"]);

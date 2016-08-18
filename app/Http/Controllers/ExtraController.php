@@ -33,19 +33,6 @@ use Auth, DB, Validator;
 
 class ExtraController extends Controller
 {
-	public function show($id)
-	{
-		try
-		{
-			$extra = ExtrasMeApi::getExtra($id);
-		}
-		catch (Exception $e)
-		{
-			abort(404);
-		}
-
-		return view('user.extra', ['extra' => $extra]);
-	}
 
 	public function showList($username, $type_extra)
 	{
