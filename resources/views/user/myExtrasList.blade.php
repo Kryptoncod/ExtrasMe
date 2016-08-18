@@ -6,7 +6,7 @@
 
       <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
 
-        @if(empty($extras))
+        @if(count($extras) == 0)
           <p class="empty-notice">You didn't submit any extra.</p>
         @else
 
@@ -46,7 +46,7 @@
                                 REQUIREMENTS
                               </td>
                               <td>
-                                {{ $extra->requirements }}
+                                {{ $extras[0]->requirements }}
                               </td>
                             </tr>
                             <tr>
@@ -54,7 +54,7 @@
                                 SALARY
                               </td>
                               <td>
-                                {{ $extra->salary }} CHF/Hr
+                                {{ $extras[0]->salary }} CHF/Hr
                               </td>
                             </tr>
                             <tr>
@@ -62,7 +62,7 @@
                                 BENEFITS
                               </td>
                               <td>
-                                {{ $extra->benefits }}
+                                {{ $extras[0]->benefits }}
                               </td>
                             </tr>
                             <tr>
@@ -78,7 +78,7 @@
                                 TIME
                               </td>
                               <td>
-                                {{ $extra->date.' at '.$extras->date_time }}
+                                {{ $extras[0]->date.' at '.$extras[0]->date_time }}
                               </td>
                             </tr>
                             <tr>
@@ -86,10 +86,10 @@
                                 OTHER INFORMATIONS
                               </td>
                               <td>
-                                @if(empty($extra->informations))
+                                @if(empty($extras[0]->informations))
                                     ANY
                                 @else
-                                  {{ $extra->informations}}
+                                  {{ $extras[0]->informations}}
                                 @endif
                               </td>
                             </tr>
@@ -97,7 +97,7 @@
                         </table>
                         <ul>
                             <li class="title">STUDENTS WHO HAS APPLIED :</li>
-                            @foreach($extra->students as $student)
+                            @foreach($extras[0]->students as $student)
                               <li>
                                 <a href = "{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a>
                                 <button class="submit-button right">Decline</button>

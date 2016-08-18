@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CvUpdateRequest;
 use App\Http\Requests\CardAvsRequest;
+use App\Http\Requests\ExtraSubmitRequest;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
@@ -21,6 +22,7 @@ use App\Repositories\CvRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\ProfessionalRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\ExtraRepository;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\EducationRepository;
 use App\Repositories\SkillRepository;
@@ -32,6 +34,16 @@ use Auth, DB, Validator;
 
 class ExtraController extends Controller
 {
+	protected $extraRepository;
+	protected $professionalRepository;
+
+	public function __construct(ExtraRepository $extraRepository,
+	                          ProfessionalRepository $professionalRepository)
+	{
+		$this->middleware('auth');
+		$this->extraRepository = $extraRepository;
+		$this->professionalRepository = $professionalRepository;
+	}
 	public function showList($username, $type_extra)
 	{
 
