@@ -193,8 +193,8 @@ class AccountController extends Controller
 			//dd($request->input('experience-from'.$i));
 			$experienceInput = array(
 				'title' => $request->input('experience-title'.$i),
-				'from_date' => Carbon::createFromFormat('d/m/Y', $request->input('experience-from'.$i)),
-				'to_date' => Carbon::createFromFormat('d/m/Y', $request->input('experience-to'.$i)),
+				'from_date' => Carbon::createFromFormat('m/Y', $request->input('experience-from'.$i)),
+				'to_date' => Carbon::createFromFormat('m/Y', $request->input('experience-to'.$i)),
 				'summary' => $request->input('experience-description'.$i),
 				'cv_id' => $cv->id,
 				);
@@ -207,11 +207,10 @@ class AccountController extends Controller
 		$i = 1;
 
 		while ($request->input('education-title'.$i)) {
-
 			$educationInput = array(
 				'title' => $request->input('education-title'.$i),
-				'from_date' => Carbon::createFromFormat('d/m/Y', $request->input('education-from'.$i)),
-				'to_date' => Carbon::createFromFormat('d/m/Y', $request->input('education-to'.$i)),
+				'from_date' => Carbon::createFromFormat('m/Y', $request->input('education-from'.$i)),
+				'to_date' => Carbon::createFromFormat('m/Y', $request->input('education-to'.$i)),
 				'summary' => $request->input('education-description'.$i),
 				'cv_id' => $cv->id,
 				);

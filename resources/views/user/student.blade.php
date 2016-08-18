@@ -85,7 +85,7 @@
                @if(count($experiences) != 0)
                   @foreach($experiences as $experience)
                      <h3>{{ $experience->title }}</h3>
-                     <h4>{{ $experience->from_date->toFormattedDateString(). " - " .$experience->to_date->toFormattedDateString() }}</h4>
+                     <h4>{{ $experience->from_date->format('F Y'). " - " .$experience->to_date->format('F Y') }}</h4>
                      <p>
                         {{ $experience->summary }}
                      </p>
@@ -99,7 +99,7 @@
                @if(count($educations) != 0)
                   @foreach($educations as $education)
                      <h3>{{ $education->title }}</h3>
-                     <h4>{{ $education->from_date->toFormattedDateString(). " - " .$education->to_date->toFormattedDateString() }}</h4>
+                     <h4>{{ $education->from_date->format('F Y'). " - " .$education->to_date->format('F Y') }}</h4>
                      <p>
                         {{ $education->summary }}
                      </p>
