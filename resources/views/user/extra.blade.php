@@ -5,7 +5,7 @@
       @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
 
       <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
-        @if(empty($extras))
+        @if(!$extras->first())
           <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
         @else
 
