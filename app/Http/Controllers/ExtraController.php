@@ -46,9 +46,8 @@ class ExtraController extends Controller
 			if($type_extra == 'Tout')
 			{
 				$extras = Extra::all();
-
 			} else {
-				$extras = Extra::where('type', $type_extra);
+				$extras = Extra::where('type', $type_extra)->get();
 			}
 
       //On récupère le nom des professionnels qui proposent des extras

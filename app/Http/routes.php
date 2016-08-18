@@ -43,7 +43,7 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('calendar', ['as' => 'calendar', "uses" => "CalendarController@showCalendar"]);
    $app->get('experiences', ['as' => 'experiences', "uses" => "ProfileController@showExperiences"]);
 
-   $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]); 
+   $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
 
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
    $app->get('modifFiles', ['as' => 'modif_files', "uses" => "AccountController@filesReset"]);

@@ -5,7 +5,7 @@
       @include('user.sidebar', ['nav' => ['MY PAST EXPERIENCE' => ''], 'formType' => 0])
 
       <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
-        @if(empty($extras))
+        @if(!$extras->first())
           <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
         @else
 
@@ -94,10 +94,6 @@
                             </tr>
                           </tbody>
                         </table>
-<<<<<<< HEAD
-          @if($student->registration_done == 1)
-                <a href="{{ 'extra/'.$extras[0]->id.'/apply' }}" class="apply-button right">APPLY</a>
-=======
           @if($student->registration_done == 1)   
             @if($student->extras->first())
                 @if($can_apply == 1)
@@ -106,7 +102,6 @@
             @else
               <a href="{{ route('extra_apply',  ['id' => $extras[0]->id, 'username' => $user->id]) }}" class="apply-button right">APPLY</a>
             @endif
->>>>>>> 0e301c667ffe94e0e44726fbd700cf3054241a49
           @else
             <div class="apply-button right">
               <a href="{{ route('account', Auth::user()->id)}}">You didn't submit the document needed. Go in your account.</a>
