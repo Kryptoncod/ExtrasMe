@@ -16,6 +16,7 @@ class CreateExtraStudentTable extends Migration
             $table->increments('id');
             $table->integer('extra_id')->unsigned();
             $table->integer('student_id')->unsigned();
+            $table->boolean('done');
             $table->foreign('extra_id')->references('id')->on('extras')
                         ->onDelete('cascade')
                         ->onUpdate('cascade');

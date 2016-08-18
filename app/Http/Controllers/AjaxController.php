@@ -11,14 +11,16 @@ use ExtrasMeApi;
 use Auth;
 use App\Models\Extra;
 use App\Models\Student;
+use App\Models\User;
 
 class AjaxController extends Controller
 {
 	public function loadCard(Request $request){
 
 		$cardId = $request->input('id');
-		$extra = DB::select('select * from extras where id = :id', ['id' => $cardId]);
+		$extra = Extra::find($cardId);
 		$user = Auth::user()->id;
-		return view('user.card-content', ['extra' => $extra, 'user' => $user]);
+		$student = User::find(Auth::user()->id)->student;
+		return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student]);
 	}
 }

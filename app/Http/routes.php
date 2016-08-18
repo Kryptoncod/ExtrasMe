@@ -20,30 +20,33 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
    $app->get('account', ['as' => 'account', "uses" => "AccountController@show"]);
    $app->get('extra/{id}/apply',  function($username, $id){
-      return App\Http\Controllers\ProfileController::extra_apply($id);
+      return App\Http\Controllers\ExtraController::extra_apply($id);
    });
-   $app->get('extra/{id}',  ['as' => 'extra',   "uses" => "ProfileController@extra"]);
-   $app->get('extras',  ['as' => 'extra_list',   "uses" => "ProfileController@showExtraList"]);
-   $app->get ('myextras', ['as' => 'my_extras', "uses" => "ProfileController@myExtras"]);
-   $app->get ('myFavoriteExtras', ['as' => 'my_favorite_extras', "uses" => "ProfileController@myFavoriteExtras"]);
-   $app->get ('myFavoriteExtrasSearch', ['as' => 'my_favorite_extras_search', "uses" => "ProfileController@myFavoriteExtrasSearch"]);
+   $app->get('extra/{id}',  ['as' => 'extra',   "uses" => "ExtraController@extra"]);
+   $app->get('extras',  ['as' => 'extra_list',   "uses" => "ExtraController@showExtraList"]);
+   $app->get ('myextras', ['as' => 'my_extras', "uses" => "ExtraController@myExtras"]);
+   $app->get ('myFavoriteExtras', ['as' => 'my_favorite_extras', "uses" => "ExtraController@myFavoriteExtras"]);
+   $app->get ('myFavoriteExtrasSearch', ['as' => 'my_favorite_extras_search', "uses" => "ExtraController@myFavoriteExtrasSearch"]);
    $app->get ('myFavoriteExtras/{id}', function($username, $id){
-      return App\Http\Controllers\ProfileController::myFavoriteExtrasAdd($id);
+      return App\Http\Controllers\ExtraController::myFavoriteExtrasAdd($id);
    });
    $app->get ('myFavoriteExtras/{id}/delete', function($username, $id){
-      return App\Http\Controllers\ProfileController::myFavoriteExtrasDelete($id);
+      return App\Http\Controllers\ExtraController::myFavoriteExtrasDelete($id);
    });
    $app->get('calendar', ['as' => 'calendar', "uses" => "CalendarController@showCalendar"]);
    $app->get('experiences', ['as' => 'experiences', "uses" => "ProfileController@showExperiences"]);
    $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
    $app->get('dashboard', ['as' => 'dashboard', "uses" => "ProfileController@showDashboard"]);
-   $app->post('extra', ['as' => 'extra_submit', "uses" => "ProfileController@extraSubmit"]);
-   $app->post('search', ['as' => 'extra_search', "uses" => "ProfileController@extraSearch"]);
+   $app->post('extra', ['as' => 'extra_submit', "uses" => "ExtraController@extraSubmit"]);
+   $app->post('search', ['as' => 'extra_search', "uses" => "ExtraController@extraSearch"]);
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
    $app->get('modifFiles', ['as' => 'modif_files', "uses" => "AccountController@filesReset"]);
    $app->post('cvPost', ['as' => 'cv_update', "uses" => "AccountController@cvUpdate"]);
    $app->post('profilePost', ['as' => 'profile_update', "uses" => "AccountController@profileUpdate"]);
    $app->post('descriptionPost', ['as' => 'description_update', "uses" => "AccountController@descriptionUpdate"]);
+   $app->get('{ExtraID}/accept/{studentID}', function($extraID, $studentID){
+      return App\Http\Controllers\ExtraController::acceptExtra($extraID, $studentID);
+   });
 });
 
 Route::group(['prefix' => 'signup'], function($app) {

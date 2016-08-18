@@ -95,14 +95,10 @@
                           </tbody>
                         </table>
           @if($student->registration_done == 1)
-            @foreach($student->extras as $extra)
-              @if($extra->id != $extras[0]->id)
                 <a href="{{ 'extra/'.$extras[0]->id.'/apply' }}" class="apply-button right">APPLY</a>
-              @endif
-            @endforeach
           @else
             <div class="apply-button right">
-              You didn't submit the document needed. Go in your account.
+              <a href="{{ route('account', Auth::user()->id)}}">You didn't submit the document needed. Go in your account.</a>
             </div>
           @endif
       </div>
