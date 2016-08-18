@@ -5,16 +5,21 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>ExtrasMe</title>
-      <link rel="stylesheet" href="{{ asset('../resources/assets/css/app.css') }}" />
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
       <link href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
-      <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
-      <link rel="stylesheet" href="{{ asset('../resources/assets/css/foundation-datepicker.min.css') }}" />
+      <link rel="stylesheet" href="{{ asset('css/foundation-datepicker.min.css') }}" />
       <link href="https://file.myfontastic.com/UbG5ssV57cNYroYCjkUMdm/icons.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+      <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-      <script src="{{ asset('../resources/assets/js/modernizr.js') }}"></script>
-      <link rel='stylesheet' href='../fullcalendar-2.9.1/fullcalendar.css' />
-      <script src='../fullcalendar-2.9.1/lib/moment.min.js'></script>
-      <script src='../fullcalendar-2.9.1/fullcalendar.js'></script>
+      <script src="{{ asset('js/modernizr.js') }}"></script>
+      <link rel='stylesheet' href="{{ asset('css/fullcalendar.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.css') }}">
+      <script src="{{ asset('js/moment.min.js') }}"></script>
+      <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
+      <script src="{{ asset('js/sweetalert.min.js') }}"></script> 
+
+      
    </head>
 
    <body>
@@ -36,11 +41,11 @@
       @yield('foot')
 
       
-      <script src="{{ asset('../resources/assets/js/foundation-datepicker.min.js') }}"></script>
-      <script src="{{ asset('../resources/assets/js/foundation-datepicker.fr.js') }}"></script>
-      <script src="{{ asset('../node_modules/cropit/dist/jquery.cropit.js') }}"></script>
-      <script src="{{ asset('../resources/assets/js/foundation.min.js') }}"></script>
-      <script src="{{ asset('../resources/assets/js/app.js') }}"></script>
+      <script src="{{ asset('js/foundation-datepicker.min.js') }}"></script>
+      <script src="{{ asset('js/foundation-datepicker.fr.js') }}"></script>
+      <script src="{{ asset('js/jquery.cropit.js') }}"></script>
+      <script src="{{ asset('js/foundation.min.js') }}"></script>
+      <script src="{{ asset('js/app.js') }}"></script>
    </body>
 
 </html>

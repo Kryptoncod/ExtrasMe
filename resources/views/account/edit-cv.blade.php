@@ -19,8 +19,8 @@
         <?php $i++ ?>
         <input type="text" name="experience-title{{$i}}" placeholder="Titre de l'experience" class="experience-title" data-experience="{{$i}}" value="{{$experience->title}}">
         <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-          <input type="text" name="experience-from{{$i}}" class="experience-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" value="{{$experience->from_date->format('d/m/Y')}}">
-          <input type="text" name="experience-to{{$i}}" class="experience-to date" placeholder="Date fin" style="width: 20%" value="{{$experience->to_date->format('d/m/Y')}}">
+          <input type="text" name="experience-from{{$i}}" class="experience-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" value="{{$experience->from_date->format('m/Y')}}" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
+          <input type="text" name="experience-to{{$i}}" class="experience-to date" placeholder="Date fin" style="width: 20%" value="{{$experience->to_date->format('m/Y')}}" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
         </div>
         <textarea name="experience-description{{$i}}" class="experience-description" placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0">{{$experience->summary}}</textarea>
         @if(!($i == count($experiences)))
@@ -30,8 +30,8 @@
         @else
         <input type="text" name="experience-title1" placeholder="Titre de l'experience" class="experience-title" data-experience="1">
         <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-          <input type="text" name="experience-from1" class="experience-from date" placeholder="Date début" style="width: 20%; margin-right:10px;">
-          <input type="text" name="experience-to1" class="experience-to date" placeholder="Date fin" style="width: 20%">
+          <input type="text" name="experience-from1" class="experience-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
+          <input type="text" name="experience-to1" class="experience-to date" placeholder="Date fin" style="width: 20%" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
         </div>
         <textarea name="experience-description1" class="experience-description" placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0"></textarea>
         @endif
@@ -47,8 +47,8 @@
         <?php $i++ ?>
         <input type="text" name="education-title{{$i}}" placeholder="Titre de l'éducation (comment on dit lol)" class="education-title" data-education="{{$i}}" value="{{$education->title}}">
         <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-          <input type="text" name="education-from{{$i}}" class="education-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" value="{{$education->from_date->format('d/m/Y')}}">
-          <input type="text" name="education-to{{$i}}" class="education-to date" placeholder="Date fin" style="width: 20%" value="{{$education->to_date->format('d/m/Y')}}">
+          <input type="text" name="education-from{{$i}}" class="education-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" value="{{$education->from_date->format('m/Y')}}" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
+          <input type="text" name="education-to{{$i}}" class="education-to date" placeholder="Date fin" style="width: 20%" value="{{$education->to_date->format('m/Y')}}" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
         </div>
         <textarea name="education-description{{$i}}" class="education-description" placeholder="Description de l'education" rows="4" style="margin:.3125rem 0">{{$education->summary}}</textarea>
         @if(!($i == count($education)))
@@ -58,8 +58,8 @@
         @else
         <input type="text" name="education-title1" placeholder="Titre de l'éducation (comment on dit lol)" class="education-title" data-education="1">
         <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
-          <input type="text" name="education-from1" class="education-from date" placeholder="Date début" style="width: 20%; margin-right:10px;">
-          <input type="text" name="education-to1" class="education-to date" placeholder="Date fin" style="width: 20%">
+          <input type="text" name="education-from1" class="education-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
+          <input type="text" name="education-to1" class="education-to date" placeholder="Date fin" style="width: 20%" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
         </div>
         <textarea name="education-description1" class="education-description" placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
         @endif

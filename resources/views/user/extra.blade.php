@@ -19,10 +19,10 @@
           </ul>
         </div>
         <div style="width:5%;display:flex;">
-          <img src="../../resources/assets/images/right-arrow.png" style="margin:auto; width:90%;">
+          <img src="{{ asset('images/right-arrow.png') }}" style="margin:auto; width:90%;">
         </div>
         <div style="display:flex; flex-direction:column; width:55%; align-items:center" id="card-container">
-          <img src="{{ asset('../resources/assets/images/extra-background.png') }}" class="background-image" style="width:90%;"/>
+          <img src="{{ asset('images/extra-background.png') }}" class="background-image" style="width:90%;"/>
                         <table style="width:80%;" class="card-info">
                           <thead>
                             <tr>
@@ -94,13 +94,25 @@
                             </tr>
                           </tbody>
                         </table>
+<<<<<<< HEAD
           @if($student->registration_done == 1)
                 <a href="{{ 'extra/'.$extras[0]->id.'/apply' }}" class="apply-button right">APPLY</a>
+=======
+          @if($student->registration_done == 1)   
+            @if($student->extras->first())
+                @if($can_apply == 1)
+                  <a href="{{ route('extra_apply',  ['id' => $extras[0]->id, 'username' => $user->id]) }}" class="apply-button right">APPLY</a>
+                @endif
+            @else
+              <a href="{{ route('extra_apply',  ['id' => $extras[0]->id, 'username' => $user->id]) }}" class="apply-button right">APPLY</a>
+            @endif
+>>>>>>> 0e301c667ffe94e0e44726fbd700cf3054241a49
           @else
             <div class="apply-button right">
               <a href="{{ route('account', Auth::user()->id)}}">You didn't submit the document needed. Go in your account.</a>
             </div>
           @endif
+
       </div>
 @endif
    </div>

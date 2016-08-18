@@ -3,271 +3,258 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CvUpdateRequest;
+use App\Http\Requests\CardAvsRequest;
 
-use App\Http\Requests;
-use App\Http\Requests\ExtraSearchRequest;
-use App\Http\Requests\ExtraSubmitRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FavoriteSearchRequest;
+use App\Http\Controllers\ProfileController;
 
 use App\Models\User;
-use App\Models\Extra;
 use App\Models\Student;
 use App\Models\Professional;
 use App\Models\Cv;
-use App\Models\Experience;
 use App\Models\Education;
-use App\Models\Language;
-use App\Models\Competence;
-use App\Models\EventModel;
+use App\Models\Experience;
+use App\Models\Extra;
 
-use App\Repositories\ExtraRepository;
+use App\Repositories\CvRepository;
+use App\Repositories\StudentRepository;
 use App\Repositories\ProfessionalRepository;
+use App\Repositories\UserRepository;
+use App\Repositories\ExperienceRepository;
+use App\Repositories\EducationRepository;
+use App\Repositories\SkillRepository;
+use App\Repositories\LanguageRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB, GeoIP;
+use Auth, DB, Validator;
 
 class ExtraController extends Controller
 {
-  protected $extraRepository;
-  protected $professionalRepository;
+	public function show($id)
+	{
+		try
+		{
+			$extra = ExtrasMeApi::getExtra($id);
+		}
+		catch (Exception $e)
+		{
+			abort(404);
+		}
 
-  public function __construct(ExtraRepository $extraRepository,
-                              ProfessionalRepository $professionalRepository)
-  {
-    $this->middleware('auth');
-    $this->extraRepository = $extraRepository;
-    $this->professionalRepository = $professionalRepository;
-  }
-  
-  public function extraSubmit(ExtraSubmitRequest $request)
-  {
-    $id = Auth::user()->id;
-    $professionalID = User::find($id)->professional->id;
-    $type = config('international.last_minute_types')[$request->input('type')];
-    $date_time = preg_split("/[\s,]+/", $request->input('date'));
-    $date = Carbon::createFromFormat('d/m/Y', $date_time[0]);
-    $time = Carbon::createFromFormat('H:i', $date_time[1]);
-    $last_minute = $request->input('broadcast') == 'last_minute';
-    $extraInput = array(
-        'broadcast' => $last_minute,
-        'type' => $type,
-        'date' => $date->format('Y-m-d'),
-        'date_time' => $time->format('H:i'),
-        'duration' => $request->input('duration'),
-        'salary' => $request->input('salary'),
-        'requirements' => $request->input('requirements'),
-        'benefits' => $request->input('benefits'),
-        'informations' => $request->input('informations'),
-        'professional_id' => $professionalID,
-        'find' => 0,
-    );
+		return view('user.extra', ['extra' => $extra]);
+	}
 
-    $credit_left = Professional::find($professionalID)->credit;
+	public function showList($username, $type_extra)
+	{
 
-    if($last_minute == 0)
-    {
-      $professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 1]);
-    } else
-    {
-      $professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 3]);
-    }
+		$id = Auth::user()->id;
+		$type = User::find($id)->type;
+		if($type == 0)
+		{
+			$student = User::find($id)->student;
+			$first_name = $student->first_name;
+			$last_name = $student->last_name;
+			$name = $first_name . " " . $last_name;
+			if($type_extra == 'Tout')
+			{
+				$extras = Extra::all();
 
-    $extra = $this->extraRepository->store($extraInput);
+			} else {
+				$extras = Extra::where('type', $type_extra);
+			}
 
-    return redirect()->route('home', Auth::user()->id);
-  }
-
-  public function extraSearch(Request $request)
-  {
-    $input = config('international.last_minute_types')[$request->input('type')];
-    return $this->showExtraList($input);
-  }
-
-  public function showExtraList($input)
-  {
-
-    $id = Auth::user()->id;
-    $type = User::find($id)->type;
-
-    if($type == 0)
-    {
-      $first_name = User::find($id)->student->first_name;
-      $last_name = User::find($id)->student->last_name;
-      $name = $first_name . " " . $last_name;
-
-      if($input == 'Tout')
-      {
-        $extras = DB::table('extras')->get();
-
-      } else {
-        $extras = DB::table('extras')->where('type', $input)->get();
-      }
-      
       //On récupère le nom des professionnels qui proposent des extras
-      $professionals = array();
-      for($i=0; $i < count($extras); $i++)
-      {
-        array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
-      }
-      return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => User::find($id)->student])->with('name', $name);
-    }
-  }
+			$professionals = array();
+			for($i=0; $i < count($extras); $i++)
+			{
+				array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
+			}
+			$can_apply = 0;
+			if(!$student->extras->contains('id', $extras[0]->id)){
+				$can_apply = 1;
+			}
+			return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply])->with('name', $name);
+		}
+	}
 
-  public function myExtras()
-  {
-    $id = Auth::user()->id;
-    $professionalID = User::find($id)->professional->id;
-    $extras = Professional::find($professionalID)->extra;
-    $name = User::find($id)->professional->company_name;
+	public function submit(ExtraSubmitRequest $request)
+	{
+		$id = Auth::user()->id;
+		$professionalID = User::find($id)->professional->id;
+		$type = config('international.last_minute_types')[$request->input('type')];
+		$date_time = preg_split("/[\s,]+/", $request->input('date'));
+		$date = Carbon::createFromFormat('d/m/Y', $date_time[0]);
+		$time = Carbon::createFromFormat('H:i', $date_time[1]);
+		$last_minute = $request->input('broadcast') == 'last_minute';
+		$extraInput = array(
+			'broadcast' => $last_minute,
+			'type' => $type,
+			'date' => $date->format('Y-m-d'),
+			'date_time' => $time->format('H:i'),
+			'duration' => $request->input('duration'),
+			'salary' => $request->input('salary'),
+			'requirements' => $request->input('requirements'),
+			'benefits' => $request->input('benefits'),
+			'informations' => $request->input('informations'),
+			'professional_id' => $professionalID,
+			);
 
-    return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name]);
-  }
+		$credit_left = Professional::find($professionalID)->credit;
 
-  public function extra($id)
-  {
-    try
-    {
-       $extra = ExtrasMeApi::getExtra($id);
-    }
-    catch (Exception $e)
-    {
-       abort(404);
-    }
+		if($last_minute == 0)
+		{
+			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 1]);
+		} else
+		{
+			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 3]);
+		}
 
-    return view('user.extra', ['extra' => $extra]);
-  }
+		$extra = $this->extraRepository->store($extraInput);
 
-  public static function extra_apply($id)
-  {
-    try
-    {
+		return redirect()->route('home', Auth::user()->id);
+	}
 
-      DB::table('extras_students')->insert(array(
-        'extra_id' => $id,
-        'student_id' => Auth::user()->student->id,
-        'done' => 0,
-        ));
+	public static function apply($username, $id)
+	{
+		try
+		{
 
-      return redirect()->route('home', Auth::user()->id);
-    }
-    catch (Exception $e)
-    {
-      dd($e);
-      abort(404);
-    }
-  }
+			DB::table('extras_students')->insert(array(
+				'extra_id' => $id,
+				'student_id' => Auth::user()->student->id,
+				));
 
-  public function myFavoriteExtras()
-  {
-    $id = Auth::user()->id;
-    $results = null;
+			return redirect()->route('home', Auth::user()->id);
+		}
+		catch (Exception $e)
+		{
+			dd($e);
+			abort(404);
+		}
+	}
 
-    if(User::find($id)->type == 0)
-    {
-      $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
-      $studentID = User::find($id)->student->id;
-      $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+	public function search(Request $request)
+	{
+		$input = config('international.last_minute_types')[$request->input('type')];
+		return redirect()->route('extra_list', ['username' => Auth::user()->id, 'type_extra' => $input]);
+	}
 
-      return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
-    }
-    else if(User::find($id)->type == 1)
-    {
-      $name = User::find($id)->professional->company_name;
-      $professionalID = User::find($id)->professional->id;
-      $results = Professional::find($professionalID)->students()->where('type', 1)->get();
+	
 
-      return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
-    }
+	public function myExtras()
+	{
+		$id = Auth::user()->id;
+		$professionalID = User::find($id)->professional->id;
+		$extras = Professional::find($professionalID)->extra;
+		$name = User::find($id)->professional->company_name;
 
-    return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
-  }
+		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name]);
+	}
 
-  public function myFavoriteExtrasSearch(Request $favoriteSearchRequest)
-  {
-    $favoriteName = $favoriteSearchRequest->input('searchFav');
+	
 
-    $id = Auth::user()->id;
+	
 
-    if(User::find($id)->type == 0)
-    {
-      $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
-      $results = DB::table('professionals')->where('company_name', $favoriteName)->get();
-    }
-    else if(User::find($id)->type == 1)
-    {
-      $name = User::find($id)->professional->company_name;
-      list($first_name, $last_name) = explode(" ", $favoriteName);
-      $results = DB::table('students')->where('last_name', $last_name)->where('first_name', $first_name)->get();
-    }
+	public function showFavorite()
+	{
+		$id = Auth::user()->id;
+		$results = null;
 
-    return view('user.favExtrasSearch', ['name' => $name, 'results' => $results]);
-  }
+		if(User::find($id)->type == 0)
+		{
+			$name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
+			$studentID = User::find($id)->student->id;
+			$results = Student::find($studentID)->professionals()->where('type', 0)->get();
 
-  public static function myFavoriteExtrasAdd($id)
-  {
-    $AuthID = Auth::user()->id;
-    $test = NULL;
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
+		}
+		else if(User::find($id)->type == 1)
+		{
+			$name = User::find($id)->professional->company_name;
+			$professionalID = User::find($id)->professional->id;
+			$results = Professional::find($professionalID)->students()->where('type', 1)->get();
 
-    if(User::find($AuthID)->type == 0)
-    {
-      $studentID = User::find($AuthID)->student->id;
-      $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
+		}
 
-      if(sizeof($results) < 5 && $test == NULL)
-      {
-        DB::table('favoris')->insert(array(
-        'professional_id' => $id,
-        'student_id' => Auth::user()->student->id,
-        'type' => 0,
-        ));
-      }
-    }
-    else if(User::find($AuthID)->type == 1)
-    {
-      $professionalID = User::find($AuthID)->professional->id;
-      $results = Professional::find($professionalID)->students()->where('type', 1);
+		return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
+	}
 
-      if(sizeof($results) < 5 && $test == NULL)
-      {
-        DB::table('favoris')->insert(array(
-        'professional_id' => Auth::user()->professional->id,
-        'student_id' => $id,
-        'type' => 1,
-        ));
-      }
-    }
+	public function showFavoriteSearch(Request $favoriteSearchRequest)
+	{
+		$favoriteName = $favoriteSearchRequest->input('searchFav');
 
-    return redirect()->route('my_favorite_extras', Auth::user()->id);
-  }
+		$id = Auth::user()->id;
 
-  public static function myFavoriteExtrasDelete($id)
-  {
-    $AuthID = Auth::user()->id;
+		if(User::find($id)->type == 0)
+		{
+			$name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
+			$results = DB::table('professionals')->where('company_name', $favoriteName)->get();
+		}
+		else if(User::find($id)->type == 1)
+		{
+			$name = User::find($id)->professional->company_name;
+			list($first_name, $last_name) = explode(" ", $favoriteName);
+			$results = DB::table('students')->where('last_name', $last_name)->where('first_name', $first_name)->get();
+		}
 
-    if(User::find($AuthID)->type == 0)
-    {
-      $studentID = User::find($AuthID)->student->id;
-      $results = Student::find($studentID)->professionals()->where('type', 0)->detach($id);
-    }
-    else if(User::find($AuthID)->type == 1)
-    {
-      $professionalID = User::find($AuthID)->professional->id;
-      $results = Professional::find($professionalID)->students()->where('type', 1)->detach($id);
-    }
+		return view('user.favExtrasSearch', ['name' => $name, 'results' => $results]);
+	}
 
-    return redirect()->route('my_favorite_extras', Auth::user()->id);
-  }
+	public static function favoriteAdd($id)
+	{
+		$AuthID = Auth::user()->id;
+		$test = NULL;
 
-  public static function acceptExtra($extraID, $studentID)
-  {
-    DB::table('extras_students')
-            ->where('extra_id', $extraID)->where('student_id', $studentID)
-            ->update(['done' => 1]);
+		if(User::find($AuthID)->type == 0)
+		{
+			$studentID = User::find($AuthID)->student->id;
+			$results = Student::find($studentID)->professionals()->where('type', 0)->get();
 
-    DB::table('extras')->where('id', $extraID)->update(['find' => 1]);
+			if(sizeof($results) < 5 && $test == NULL)
+			{
+				DB::table('favoris')->insert(array(
+					'professional_id' => $id,
+					'student_id' => Auth::user()->student->id,
+					'type' => 0,
+					));
+			}
+		}
+		else if(User::find($AuthID)->type == 1)
+		{
+			$professionalID = User::find($AuthID)->professional->id;
+			$results = Professional::find($professionalID)->students()->where('type', 1);
 
-    return redirect()->route('home', Auth::user()->id);
-  }
+			if(sizeof($results) < 5 && $test == NULL)
+			{
+				DB::table('favoris')->insert(array(
+					'professional_id' => Auth::user()->professional->id,
+					'student_id' => $id,
+					'type' => 1,
+					));
+			}
+		}
+
+		return redirect()->route('my_favorite_extras', Auth::user()->id);
+	}
+
+	public static function favoriteDelete($id)
+	{
+		$AuthID = Auth::user()->id;
+
+		if(User::find($AuthID)->type == 0)
+		{
+			$studentID = User::find($AuthID)->student->id;
+			$results = Student::find($studentID)->professionals()->where('type', 0)->detach($id);
+		}
+		else if(User::find($AuthID)->type == 1)
+		{
+			$professionalID = User::find($AuthID)->professional->id;
+			$results = Professional::find($professionalID)->students()->where('type', 1)->detach($id);
+		}
+
+		return redirect()->route('my_favorite_extras', Auth::user()->id);
+	}
 }

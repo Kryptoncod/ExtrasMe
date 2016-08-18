@@ -20,7 +20,11 @@ class AjaxController extends Controller
 		$cardId = $request->input('id');
 		$extra = Extra::find($cardId);
 		$user = Auth::user()->id;
-		$student = User::find(Auth::user()->id)->student;
-		return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student]);
+		$student = User::find($user)->student;
+		$can_apply = 0;
+		if(!$student->extras->contains('id', $extra->id)){
+			$can_apply = 1;
+		}
+		return view('user.card-content', ['extra' => $extra, 'user_id' => $user, 'student' => $student, 'can_apply' => $can_apply]);
 	}
 }

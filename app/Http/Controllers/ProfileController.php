@@ -107,7 +107,7 @@ class ProfileController extends Controller
        abort(404);
     }
   }
-
+  
   public function showExperiences()
   {
     $AuthID = Auth::user()->id;
@@ -135,14 +135,5 @@ class ProfileController extends Controller
     }
 
     return view('user.applicationDownload', ['name' => $name]);
-  }
-
-  public function showDashboard()
-  {
-    $AuthID = Auth::user()->id;
-    $student = User::find($AuthID)->student;
-    $name = $student->first_name." ".$student->last_name;
-
-    return view('user.dashboard', ['name' => $name, 'dashboard' => Student::find($student->id)->dashboard]);
   }
 }

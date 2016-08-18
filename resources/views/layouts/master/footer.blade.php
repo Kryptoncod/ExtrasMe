@@ -35,19 +35,19 @@
          <ul class="socials-medias">
 
             <li><a href="https://www.facebook.com/pages/ExtrasMe/512698772202407?ref=hl">
-               <img src="{{ asset('../resources/assets/images/social-medias/facebook.png') }}" alt="ExtrasMe's Facebook" />
+               <img src="{{ asset('images/social-medias/facebook.png') }}" alt="ExtrasMe's Facebook" />
             </a></li>
 
             <li><a href="https://twitter.com/Extras_Me">
-               <img src="{{ asset('../resources/assets/images/social-medias/twitter.png') }}" alt="ExtrasMe's Twitter" />
+               <img src="{{ asset('images/social-medias/twitter.png') }}" alt="ExtrasMe's Twitter" />
             </a></li>
 
             <li><a href="https://linkedin.com">
-               <img src="{{ asset('../resources/assets/images/social-medias/linkedin.png') }}" alt="ExtrasMe's Linkedin" />
+               <img src="{{ asset('images/social-medias/linkedin.png') }}" alt="ExtrasMe's Linkedin" />
             </a></li>
 
             <li><a href="https://instagram.com/extras_me/">
-               <img src="{{ asset('../resources/assets/images/social-medias/instagram.png') }}" alt="ExtrasMe's Instagram" />
+               <img src="{{ asset('images/social-medias/instagram.png') }}" alt="ExtrasMe's Instagram" />
             </a></li>
 
          </ul>

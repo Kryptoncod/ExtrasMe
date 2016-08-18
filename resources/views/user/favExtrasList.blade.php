@@ -40,7 +40,7 @@
                               @if(Auth::user()->type == 0)
                                  <div class="row account-resume">
                                     <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
-                                       <img class="profile-picture" src="{{ asset('../resources/assets/images/user-professional.png') }}" alt="" />
+                                       <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
                                     </div>
 
                                     <div class="medium-7 small-12 medium-uncentered small-centered columns">
@@ -59,7 +59,7 @@
                               @else
                                  <div class="row account-resume">
                                     <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
-                                       <img class="profile-picture" src="{{ asset('../resources/assets/images/user-student.png') }}" alt="" />
+                                       <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
                                     </div>
 
                                     <div class="medium-9 small-12 medium-uncentered small-centered columns">
