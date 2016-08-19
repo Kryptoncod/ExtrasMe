@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use ExtrasMe\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use ExtrasMeApi;
+use ExtrasMeApi, DB;
 
 class IndexController extends Controller
 {

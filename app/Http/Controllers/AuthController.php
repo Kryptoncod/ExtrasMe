@@ -83,6 +83,13 @@ class AuthController extends Controller
             return $this->authenticated($request, Auth::guard($this->getGuard())->user());
         }
 
-        return redirect()->route('home', Auth::user()->id);
+        if(Auth::user()->admin == 0)
+        {
+            return redirect()->route('home', Auth::user()->id);
+        }
+        elseif(Auth::user()->admin == 1)
+        {
+            return redirect()->route('index_admin', Auth::user()->id);
+        }
     }
 }

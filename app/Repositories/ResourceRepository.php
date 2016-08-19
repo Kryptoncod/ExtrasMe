@@ -26,4 +26,9 @@ abstract class ResourceRepository
 	{
 		$this->getById($id)->delete();
 	}
+
+	public function getPaginate($n)
+	{
+	    return $this->user->paginate($n);
+	}
 }
