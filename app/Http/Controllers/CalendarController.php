@@ -37,7 +37,7 @@ class CalendarController extends Controller
         $studentID = User::find($id)->student->id;
         $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
 
-        $calendar = $this->getCalendarProfessional($studentID);
+        $calendar = $this->getCalendarStudent($studentID);
 
         return view('user.calendar', ['user' => User::find($username), 'student' => User::find($id)->student, 'AuthId' => $id, 'name' => $name, 'calendar' => $calendar])->with('username', $username);
       }
@@ -60,21 +60,19 @@ class CalendarController extends Controller
   {
     $events = [];
 
-    $events[] = \Calendar::event(
-        'Event One', //event title
-        false, //full day event?
-        '2015-02-11T0800', //start time (you can also use Carbon instead of DateTime)
-        '2015-02-12T0800', //end time (you can also use Carbon instead of DateTime)
-        0 //optionally, you can specify an event ID
-    );
+    $student = Student::find($studentID);
+    $extras = $student->extras()->where('find', 1)->get();
 
-    $events[] = \Calendar::event(
-        "Valentine's Day", //event title
-        true, //full day event?
-        new \DateTime('2015-02-14'), //start time (you can also use Carbon instead of DateTime)
-        new \DateTime('2015-02-14'), //end time (you can also use Carbon instead of DateTime)
-        'stringEventId' //optionally, you can specify an event ID
-    );
+    foreach ($extras as $extra) {
+      $start = new Carbon($extra->date.' '.$extra->date_time);
+
+      $events[] = \Calendar::event(
+          $extra->type, //event title
+          false, //full day event?
+          $start->toDateTimeString(),
+          $start->addHours($extra->duration)->toDateTimeString()
+      );
+    }
 
     $calendar = \Calendar::addEvents($events) //add an array with addEvents
         ->setOptions([ //set fullcalendar options
