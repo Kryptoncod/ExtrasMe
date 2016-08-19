@@ -103,7 +103,7 @@ class AjaxController extends Controller
 			$first_name = $student->first_name;
 			$last_name = $student->last_name;
 			$name = $first_name . " " . $last_name;
-		    $extras = $student->extras()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+		    $extras = $student->extras()->where('find', 0)->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
 		    $professionals = array();
 		    if(count($extras) > 0){
 				for($i=0; $i < count($extras); $i++)

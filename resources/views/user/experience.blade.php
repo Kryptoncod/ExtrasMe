@@ -11,13 +11,19 @@
          </div>
 
          <div class="experience-container"><div class="chrono-container">
-               <div style="width: 30%; display: flex; justify-content:space-between;">
-                  <a href="" id="past" data-chrono-id = "1" class="showChrono">Past</a>
-                  <div style="width:1px; height: 60%; background-color: grey; margin-top: auto; margin-bottom: auto;"></div>
-                  <a href="" id="present" data-chrono-id = "2" class="active showChrono">Future</a>
-                  <div style="width:1px; height: 60%; background-color: grey; margin-top: auto; margin-bottom: auto;"></div>
-                  <a href="" id="future" data-chrono-id = "3" class="showChrono">Applied</a>
-               </div>
+                  <a href="" id="past" data-chrono-id = "1" class="showChrono"><label>Past</label></a>
+                  <div style="display:flex; flex-direction:column;">
+                    <div style="width:1px; height: 20%; background-color: #222"></div>
+                    <div style="width:1px; height: 60%; background-color: grey"></div>
+                    <div style="width:1px; height: 20%; background-color: #222"></div>
+                  </div>
+                  <a href="" id="present" data-chrono-id = "2" class="active showChrono"><label>Future</label></a>
+                  <div style="display:flex; flex-direction:column;">
+                    <div style="width:1px; height: 20%; background-color: #222; margin-top: auto; margin-bottom: auto;"></div>
+                    <div style="width:1px; height: 60%; background-color: grey; "></div>
+                    <div style="width:1px; height: 20%; background-color: #222"></div>
+                  </div>
+                  <a href="" id="future" data-chrono-id = "3" class="showChrono"><label>Applied</label></a>
             </div>
             <div id="list-to-append" style="display: flex; flex-direction:column;">
               <h1>Future Extras</h1>
