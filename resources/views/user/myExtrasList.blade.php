@@ -6,7 +6,7 @@
 
       <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
 
-        @if(empty($extras))
+        @if(count($extras) == 0)
           <p class="empty-notice">You didn't submit any extra.</p>
         @else
 

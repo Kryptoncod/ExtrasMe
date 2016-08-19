@@ -128,7 +128,6 @@ class ExtraController extends Controller
 	}
 
 	
-
 	public function myExtras()
 	{
 		$id = Auth::user()->id;
@@ -140,9 +139,6 @@ class ExtraController extends Controller
 	}
 
 	
-
-	
-
 	public function showFavorite()
 	{
 		$id = Auth::user()->id;
