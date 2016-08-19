@@ -23,6 +23,7 @@ use App\Models\EventModel;
 
 use App\Repositories\ExtraRepository;
 use App\Repositories\ProfessionalRepository;
+use App\Repositories\UserRepository;
 
 use Carbon\Carbon;
 
@@ -33,13 +34,16 @@ class AdminController extends Controller
 
   protected $extraRepository;
   protected $professionalRepository;
+  protected $userRepository;
 
   public function __construct(ExtraRepository $extraRepository,
-                              ProfessionalRepository $professionalRepository)
+                              ProfessionalRepository $professionalRepository,
+                              UserRepository $userRepository)
   {
     $this->middleware('auth');
     $this->extraRepository = $extraRepository;
     $this->professionalRepository = $professionalRepository;
+    $this->userRepository = $userRepository;
   }
 
   /**
@@ -51,9 +55,9 @@ class AdminController extends Controller
 
   public function index()
   {
-    $users = $this->userRepository->getPaginate($this->nbrPerPage);
+    $users = $this->userRepository->getPaginate(6);
     $links = $users->render();
 
-    return view('index', compact('users', 'links'));
+    return view('admin.index', compact('users', 'links'));
   }
 }

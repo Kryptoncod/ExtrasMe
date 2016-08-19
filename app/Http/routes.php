@@ -18,6 +18,10 @@ Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 
 Route::group(['prefix' => '{username}/admin'], function($app){
    $app->get('index', ['as' => 'index_admin', "uses" => "AdminController@index"]);
+   $app->get('show', ['as' => 'show_admin', "uses" => "AdminController@show"]);
+   $app->get('edit', ['as' => 'edit_admin', "uses" => "AdminController@edit"]);
+   $app->get('destroy', ['as' => 'destroy_admin', "uses" => "AdminController@destroy"]);
+   $app->get('create', ['as' => 'create_admin', "uses" => "AdminController@create"]);
 });
 
 Route::group(['prefix' => '{username}'], function($app) {

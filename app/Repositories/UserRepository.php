@@ -11,8 +11,4 @@ class UserRepository extends ResourceRepository
 	{
 		$this->model = $user;
 	}
-	public function update($id, Array $inputs)
-	{
-		$this->getById($id)->update($inputs);
-	}
 }

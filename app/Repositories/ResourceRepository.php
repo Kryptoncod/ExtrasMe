@@ -29,6 +29,6 @@ abstract class ResourceRepository
 
 	public function getPaginate($n)
 	{
-	    return $this->user->paginate($n);
+	    return $this->model->paginate($n);
 	}
 }
