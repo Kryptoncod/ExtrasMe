@@ -162,7 +162,6 @@ class ExtraController extends Controller
 				}
 			}
 		}
-
 		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'student' => $student]);
 	}
 

@@ -23,7 +23,7 @@
         </div>
         <div style="display:flex; flex-direction:column; width:55%; align-items:center" id="card-container">
           <img src="{{ asset('images/extra-background.png') }}" class="background-image" style="width:90%;"/>
-                        <table style="width:80%;" class="card-info">
+                        <table style="width:90%;" class="card-info">
                           <thead>
                             <tr>
                               <td colspan="2" style="text-align:center; color:white;">

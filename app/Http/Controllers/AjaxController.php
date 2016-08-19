@@ -12,19 +12,40 @@ use Auth;
 use App\Models\Extra;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\Professional;
 
 class AjaxController extends Controller
 {
 	public function loadCard(Request $request){
-
+		$user = Auth::user();
 		$cardId = $request->input('id');
-		$extra = Extra::find($cardId);
-		$user = Auth::user()->id;
-		$student = User::find($user)->student;
-		$can_apply = 0;
-		if(!$student->extras->contains('id', $extra->id)){
-			$can_apply = 1;
+		if($user->type == 0){
+			$extra = Extra::find($cardId);
+			$student = User::find($user->id)->student;
+			$can_apply = 0;
+			if(!$student->extras->contains('id', $extra->id)){
+				$can_apply = 1;
+			}
+			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply]);
+		}else{
+			$id = $user->id;
+			$professionalID = User::find($id)->professional->id;
+			$extra = Extra::find($cardId);
+			$name = User::find($id)->professional->company_name;
+			$student = null;
+			$find = DB::table('extras_students')->where('extra_id', $extra->id)
+				->where('done', 1)->get();
+
+			if(!empty($find))
+			{
+				if($find[0]->done == 1)
+				{
+					$student = Student::find($find[0]->student_id);
+				}
+			}
+			$can_apply = 0;
+			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply]);
 		}
-		return view('user.card-content', ['extra' => $extra, 'user_id' => $user, 'student' => $student, 'can_apply' => $can_apply]);
+		
 	}
 }
