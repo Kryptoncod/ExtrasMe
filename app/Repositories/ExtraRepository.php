@@ -16,6 +16,7 @@ class ExtraRepository extends ResourceRepository
 	{
 		return $this->model->with('professional')
 		->orderBy('extras.created_at', 'desc')
+		->where('find', 0)
 		->paginate($n);
 	}
 }
