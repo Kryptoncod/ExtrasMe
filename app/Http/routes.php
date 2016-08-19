@@ -26,6 +26,9 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->post('search', ['as' => 'extra_search', "uses" => "ExtraController@search"]);
       $app->post('submit', ['as' => 'extra_submit', "uses" => "ExtraController@submit"]);
       $app->get ('myextras', ['as' => 'my_extras', "uses" => "ExtraController@myExtras"]);
+      $app->get('{ExtraID}/accept/{studentID}', function($username, $extraID, $studentID){
+      return App\Http\Controllers\ExtraController::acceptExtra($extraID, $studentID);
+   });
       Route::group(['prefix' => 'favorite'], function($app) {
          $app->get ('/', ['as' => 'my_favorite_extras', "uses" => "ExtraController@showFavorite"]);
          $app->get ('search', ['as' => 'my_favorite_extras_search', "uses" => "ExtraController@showFavoriteSearch"]);
@@ -42,15 +45,14 @@ Route::group(['prefix' => '{username}'], function($app) {
 
    $app->get('calendar', ['as' => 'calendar', "uses" => "CalendarController@showCalendar"]);
    $app->get('experiences', ['as' => 'experiences', "uses" => "ProfileController@showExperiences"]);
+
    $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
+
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
    $app->get('modifFiles', ['as' => 'modif_files', "uses" => "AccountController@filesReset"]);
    $app->post('cvPost', ['as' => 'cv_update', "uses" => "AccountController@cvUpdate"]);
    $app->post('profilePost', ['as' => 'profile_update', "uses" => "AccountController@profileUpdate"]);
    $app->post('descriptionPost', ['as' => 'description_update', "uses" => "AccountController@descriptionUpdate"]);
-   $app->get('{ExtraID}/accept/{studentID}', function($extraID, $studentID){
-      return App\Http\Controllers\ExtraController::acceptExtra($extraID, $studentID);
-   });
 });
 
 Route::group(['prefix' => 'signup'], function($app) {

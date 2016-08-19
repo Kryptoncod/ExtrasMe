@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CvUpdateRequest;
 use App\Http\Requests\CardAvsRequest;
+use App\Http\Requests\ExtraSubmitRequest;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
@@ -21,6 +22,7 @@ use App\Repositories\CvRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\ProfessionalRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\ExtraRepository;
 use App\Repositories\ExperienceRepository;
 use App\Repositories\EducationRepository;
 use App\Repositories\SkillRepository;
@@ -32,7 +34,16 @@ use Auth, DB, Validator;
 
 class ExtraController extends Controller
 {
+	protected $extraRepository;
+	protected $professionalRepository;
 
+	public function __construct(ExtraRepository $extraRepository,
+	                          ProfessionalRepository $professionalRepository)
+	{
+		$this->middleware('auth');
+		$this->extraRepository = $extraRepository;
+		$this->professionalRepository = $professionalRepository;
+	}
 	public function showList($username, $type_extra)
 	{
 
@@ -46,9 +57,9 @@ class ExtraController extends Controller
 			$name = $first_name . " " . $last_name;
 			if($type_extra == 'Tout')
 			{
-				$extras = Extra::all();
+				$extras = Extra::where('find', 0)->get();
 			} else {
-				$extras = Extra::where('type', $type_extra)->get();
+				$extras = Extra::where('type', $type_extra)->where('find', 0)->get();
 			}
 
       //On récupère le nom des professionnels qui proposent des extras
@@ -85,6 +96,7 @@ class ExtraController extends Controller
 			'benefits' => $request->input('benefits'),
 			'informations' => $request->input('informations'),
 			'professional_id' => $professionalID,
+			'find' => 0,
 			);
 
 		$credit_left = Professional::find($professionalID)->credit;
@@ -110,6 +122,7 @@ class ExtraController extends Controller
 			DB::table('extras_students')->insert(array(
 				'extra_id' => $id,
 				'student_id' => Auth::user()->student->id,
+				'done' => 0,
 				));
 
 			return redirect()->route('home', Auth::user()->id);
@@ -134,8 +147,34 @@ class ExtraController extends Controller
 		$professionalID = User::find($id)->professional->id;
 		$extras = Professional::find($professionalID)->extra;
 		$name = User::find($id)->professional->company_name;
+		$student = null;
 
-		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name]);
+		if(count($extras) > 0)
+		{
+			$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
+				->where('done', 1)->get();
+
+			if(!empty($find))
+			{
+				if($find[0]->done == 1)
+				{
+					$student = Student::find($find[0]->student_id);
+				}
+			}
+		}
+
+		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'student' => $student]);
+	}
+
+	public static function acceptExtra($extraID, $studentID)
+	{
+		DB::table('extras_students')->where('extra_id', $extraID)
+			->where('student_id', $studentID)
+			->update(['done' => 1]);
+
+		DB::table('extras')->where('id', $extraID)->update(['find' => 1]);
+
+		return redirect()->route('home', Auth::user()->id);
 	}
 
 	
