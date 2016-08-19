@@ -1,7 +1,13 @@
 <h1>{{$title}}</h1>
               <div class="liste-container">
                  @if(!$extras->first())
-                     <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+                    @if($title == 'Past Extras')
+                     <p class="empty-notice">You don't have a past experience.</p>
+                    @elseif($title == 'Applied Extras')
+                      <p class="empty-notice">You don't applied to extras.</p>
+                    @elseif($title == 'Future Extras')
+                      <p class="empty-notice">You didn't get accept to any extras yet.</p>
+                    @endif
                    @else
               
                    <div style="display:flex; flex-direction:column; width:40%" class="extra-list">

@@ -80,5 +80,27 @@ class DatabaseSeeder extends Seeder
 				'user_id' => $i+1,
 			]);
 		}
+
+		DB::table('extras')->delete();
+
+		for($i = 0; $i < 50; $i++)
+		{
+			$typeArray = Config::get('international.last_minute_types');
+			$type = $typeArray[rand(0,9)];
+			
+			DB::table('extras')->insert([
+				'broadcast' => rand(0,1),
+				'type' => $type,
+				'date' => Carbon::createFromDate(2016, rand(1, 12), rand(1, 28)),
+				'date_time' => Carbon::createFromTime(rand(0, 23), rand(0, 59), null),
+				'duration' => rand(1,10),
+				'salary' => rand(9, 89),
+				'benefits' => 'Benefits' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+				'requirements' => 'Requirements' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+				'informations' => 'informations' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+				'find' => 0,
+				'professional_id' => rand(1, 5),
+				]);
+		}
     }
 }
