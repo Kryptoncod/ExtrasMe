@@ -10635,3 +10635,47 @@ option{
   opacity: 1;
   transition: opacity .2s;
 }
+
+.experience-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .chrono-container{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    background-color: #0E0E0E;
+    justify-content: center;
+    margin-bottom: 20px;
+    a{
+
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-left:10px;
+      padding-right: 10px;
+      width: 80px;
+      color: white;
+      background-color: #222;
+      text-align: center;
+      border-radius:2px;
+      transition: all .2s;
+    }
+    a:hover{
+      background-color: #060b2b;
+      color: white;
+    }
+    .active{
+      pointer-events: none;
+      background-color: #060b2b;
+    }
+  }
+  .liste-container{
+    color: white;
+    display: flex;
+  }
+  h1{
+    color: white;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+}

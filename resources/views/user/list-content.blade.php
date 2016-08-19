@@ -1,33 +1,11 @@
-@extends('layouts.master', ["title" => trans('profile.title.favExtras'), "footer" => false])
-@section('content')
-
-   <div class="row collapse profile profile-container">
-      @include('user.sidebar')
-
-      <div class="medium-10 small-12 columns panel-main">
-
-         <div class="row">
-            <span class="profile-date">{{ strtoupper(date('h:i A D j M Y')) }}</span>
-         </div>
-
-         <div class="experience-container"><div class="chrono-container">
-               <div style="width: 30%; display: flex; justify-content:space-between;">
-                  <a href="" id="past" data-chrono-id = "1" class="showChrono">Past</a>
-                  <div style="width:1px; height: 60%; background-color: grey; margin-top: auto; margin-bottom: auto;"></div>
-                  <a href="" id="present" data-chrono-id = "2" class="active showChrono">Future</a>
-                  <div style="width:1px; height: 60%; background-color: grey; margin-top: auto; margin-bottom: auto;"></div>
-                  <a href="" id="future" data-chrono-id = "3" class="showChrono">Applied</a>
-               </div>
-            </div>
-            <div id="list-to-append" style="display: flex; flex-direction:column;">
-              <h1>Future Extras</h1>
+<h1>{{$title}}</h1>
               <div class="liste-container">
                  @if(!$extras->first())
                      <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
                    @else
               
                    <div style="display:flex; flex-direction:column; width:40%" class="extra-list">
-                     <ul id="liste-extra">
+                     <ul>
                          @for($i=0; $i < count($extras); $i++)
                                <div style="width:100%; height:1px; background-color:white;"></div>
                                <li data-cardid="{{$extras[$i]->id}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
@@ -115,13 +93,3 @@
                  </div>
                     @endif
                 </div>
-            </div>
-         </div>
-      </div>
-   </div>
-<script type="text/javascript">
-    var url = "{{ route('getCard') }}";
-    var url_liste = "{{ route('getList') }}";
-</script>
-@endsection
-

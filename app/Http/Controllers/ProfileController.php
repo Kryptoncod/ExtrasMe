@@ -107,15 +107,7 @@ class ProfileController extends Controller
        abort(404);
     }
   }
-  
-  public function showExperiences()
-  {
-    $AuthID = Auth::user()->id;
-    $student = User::find($AuthID)->student;
-    $name = $student->first_name." ".$student->last_name;
 
-    return view('user.experience', ['name' => $name]);
-  }
 
   public function showApplicationDownload()
   {

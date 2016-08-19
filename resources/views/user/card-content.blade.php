@@ -71,7 +71,7 @@
   </tbody>
 </table>
 
-@if($user->type == 0)
+@if($user->type == 0 && $search == 1)
   @if($student->registration_done == 1)   
               @if($student->extras->first())
                   @if($can_apply == 1)
@@ -85,7 +85,7 @@
                 You didn't submit the document needed. Go in your account.
               </div>
   @endif
-  @else      
+@elseif($user->type == 1)     
   @if($extra->find == 0)
     @if(count($extra->students) != 0)
       <ul>
@@ -101,7 +101,7 @@
         @endforeach
       </ul>
       @endif
-  @else
+@else
       <ul>
         <li class="title">STUDENTS CHOOSEN :</li>
         <li><a href="{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>

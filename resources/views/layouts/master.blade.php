@@ -8,9 +8,9 @@
       <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
       <link href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('css/foundation-datepicker.min.css') }}" />
+      <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
       <link href="https://file.myfontastic.com/UbG5ssV57cNYroYCjkUMdm/icons.css" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-      <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
       <script src="{{ asset('js/modernizr.js') }}"></script>
       <link rel='stylesheet' href="{{ asset('css/fullcalendar.min.css') }}" />

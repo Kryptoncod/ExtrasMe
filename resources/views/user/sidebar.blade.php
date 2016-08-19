@@ -7,7 +7,7 @@
       <li><a href="{{ route('home', Auth::user()->id) }}">HOME</a></li>
       <li><a href="{{ route('account', Auth::user()->id) }}">ACCOUNT</a></li>
       @if(Auth::user()->type == 0)
-         <li><a href="{{ route('experiences', Auth::user()->id) }}">MY EXPERIENCES</a></li>
+         <li><a href="{{ route('experience', Auth::user()->id) }}">MY EXPERIENCES</a></li>
          <li><a href="{{ route('dashboard', Auth::user()->id)}}">DASHBOARD</a></li>
       @elseif(Auth::user()->type == 1)
          <li><a href="">MY CREDIT</a></li>

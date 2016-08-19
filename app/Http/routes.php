@@ -44,7 +44,7 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('dashboard', ['as' => 'dashboard', "uses" => "DashboardController@show"]);
 
    $app->get('calendar', ['as' => 'calendar', "uses" => "CalendarController@showCalendar"]);
-   $app->get('experiences', ['as' => 'experiences', "uses" => "ProfileController@showExperiences"]);
+   $app->get('experience', ['as' => 'experience', "uses" => "ExperienceController@show"]);
 
    $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
 
@@ -70,3 +70,4 @@ Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
 
 //Requêtes AJAX
 Route::get('ajax/getCardContent', ['as' => 'getCard','uses' => 'AjaxController@loadCard']);
+Route::get('ajax/getListContent', ['as' => 'getList','uses' => 'AjaxController@loadList']);

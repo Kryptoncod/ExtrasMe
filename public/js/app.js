@@ -93,17 +93,48 @@ $(document).mouseup(function (e)
     }
 });
 
-$(".showCard").click(function(){
+$("body").on('click', '.showCard', function(){
     var idCard = $(this).data('cardid');
     $(this).siblings("li").removeClass("active");
     $(this).addClass("active");
+    $("#card-container").fadeOut(150);
+    if((window.location.href).split('/').pop() == "experience"){
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: {id: idCard, search: 0},
+            success: function(card){
+                $card = $(card)
+                $("#card-container").html($card).fadeIn(150);
+            }
+        });
+    }else{
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: {id: idCard, search: 1},
+            success: function(card){
+                $card = $(card)
+                $("#card-container").html($card).fadeIn(150);
+            }
+        });
+    }
+    
+});
+
+$(".showChrono").click(function(e){
+    e.preventDefault();
+    var idChrono = $(this).data('chrono-id');
+    $(this).siblings("a").removeClass("active");
+    $(this).addClass("active");
+    $("#list-to-append").fadeOut(150);
     $.ajax({
-        url: url,
+        url: url_liste,
         type: "GET",
-        data: {id: idCard},
-        success: function(card){
-            $card = $(card)
-            $("#card-container").fadeOut(150).html($card).fadeIn(150);
+        data: {id: idChrono},
+        success: function(liste){
+            $liste = $(liste)
+            $("#list-to-append").html($liste).fadeIn(150);
         }
     });
 });

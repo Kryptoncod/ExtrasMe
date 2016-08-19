@@ -10,10 +10,10 @@
         @else
 
         <div style="display:flex; flex-direction:column; width:40%" class="extra-list">
-          <ul>
+          <ul id="liste-extra">
               @for($i=0; $i < count($extras); $i++)
                     <div style="width:100%; height:1px; background-color:white;"></div>
-                    <li data-cardid="{{$i+1}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
+                    <li data-cardid="{{$extras[$i]->id}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
                     <div style="width:100%; height:1px; background-color:white;"></div>
               @endfor
           </ul>
