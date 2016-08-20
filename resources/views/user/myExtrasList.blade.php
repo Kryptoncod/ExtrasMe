@@ -6,6 +6,19 @@
 
       <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
 
+
+         <div class="experience-container"><div class="chrono-container">
+                  <a href="" id="past" data-chrono-id = "4" class="showChrono" style="width: 50%;"><label>Past</label></a>
+                  <div style="display:flex; flex-direction:column;">
+                    <div style="width:1px; height: 20%; background-color: #222"></div>
+                    <div style="width:1px; height: 60%; background-color: grey"></div>
+                    <div style="width:1px; height: 20%; background-color: #222"></div>
+                  </div>
+                  <a href="" id="present" data-chrono-id = "5" class="active showChrono" style="width: 50%;"><label>Future</label></a>
+            </div>
+            <div id="list-to-append" style="display: flex; flex-direction:column;">
+              <h1>Future Extras</h1>
+              <div class="liste-container">
         @if(count($extras) == 0)
           <p class="empty-notice">You didn't submit any extra.</p>
         @else
@@ -118,7 +131,9 @@
                     @endif
                 </div>
               </div>
+            </div>
    <script type="text/javascript">
-     var url = "{{ route('getCard') }}"
+     var url = "{{ route('getCard') }}";
+     var url_liste = "{{ route('getList') }}";
    </script>
 @endsection

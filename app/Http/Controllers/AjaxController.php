@@ -113,5 +113,59 @@ class AjaxController extends Controller
 			}
 		    return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
 		}
+		else if($listId == 4)
+		{
+			$id = $user->id;
+			$title = "Past Extras";
+			$professional = User::find($id)->professional;
+			$professionalID = $professional->id;
+			$name = $professional->first_name." ".$professional->last_name;
+			$extras = Professional::find($professionalID)->extra()->where('date', '<=', Carbon::now())->orderBy('date', 'ASC')->get();
+			$name = User::find($id)->professional->company_name;
+			$student = null;
+			$professionals = array();
+
+			if(count($extras) > 0)
+			{
+				$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
+					->where('done', 1)->get();
+
+				if(!empty($find))
+				{
+					if($find[0]->done == 1)
+					{
+						$student = Student::find($find[0]->student_id);
+					}
+				}
+			}
+			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
+		}
+		else if($listId == 5)
+		{
+			$id = $user->id;
+			$title = "Future Extras";
+			$professional = User::find($id)->professional;
+			$professionalID = $professional->id;
+			$name = $professional->first_name." ".$professional->last_name;
+			$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+			$name = User::find($id)->professional->company_name;
+			$student = null;
+			$professionals = array();
+
+			if(count($extras) > 0)
+			{
+				$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
+					->where('done', 1)->get();
+
+				if(!empty($find))
+				{
+					if($find[0]->done == 1)
+					{
+						$student = Student::find($find[0]->student_id);
+					}
+				}
+		}
+		return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
+	}
 	}
 }

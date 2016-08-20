@@ -145,7 +145,7 @@ class ExtraController extends Controller
 	{
 		$id = Auth::user()->id;
 		$professionalID = User::find($id)->professional->id;
-		$extras = Professional::find($professionalID)->extra;
+		$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
 		$name = User::find($id)->professional->company_name;
 		$student = null;
 
