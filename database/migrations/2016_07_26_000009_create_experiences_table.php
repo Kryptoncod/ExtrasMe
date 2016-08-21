@@ -34,6 +34,9 @@ class CreateExperiencesTable extends Migration
      */
     public function down()
     {
+        Schema::table('experiences', function(Blueprint $table) {
+            $table->dropForeign(['cv_id']);
+        });
         Schema::drop('experiences');
     }
 }

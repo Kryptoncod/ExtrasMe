@@ -73,7 +73,28 @@ class ProfileController extends Controller
       else if(User::find($id)->type == 1){
         $name = User::find($id)->professional->company_name;
         $professionalID = User::find($id)->professional->id;
-        $extras = Professional::find($professionalID)->extra;
+        $extraToRate = Professional::find($professionalID)->extra()->where('date', '<', Carbon::now())->where('finish', 0)->orderBy('date', 'DESC')->get();
+        
+        foreach ($extraToRate as $extra) {
+          $startTime = new Carbon($extra->date.' '.$extra->date_time);
+          $endTime = $startTime->addHours($extra->duration)->toDateTimeString();
+
+          if($endTime < Carbon::now())
+          {
+            $find = DB::table('extras_students')->where('extra_id', $extra->id)
+              ->where('done', 1)->get();
+
+            if(!empty($find))
+            {
+              if($find[0]->done == 1)
+              {
+                $studentToRate = Student::find($find[0]->student_id);
+              }
+            }
+            return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username, 'AuthId' => $id, 'name' => $name, 'student' => $studentToRate]);
+          }
+        }
+        $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
         $links = null;
         $results = null;
       }

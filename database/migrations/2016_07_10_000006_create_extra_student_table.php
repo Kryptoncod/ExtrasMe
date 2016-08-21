@@ -34,6 +34,12 @@ class CreateExtraStudentTable extends Migration
      */
     public function down()
     {
+        Schema::table('extras_students', function(Blueprint $table) {
+            $table->dropForeign(['extra_id']);
+        });
+        Schema::table('extras_students', function(Blueprint $table) {
+            $table->dropForeign(['student_id']);
+        });
         Schema::drop('extras_students');
     }
 }

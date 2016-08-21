@@ -7,7 +7,7 @@
       <div class="medium-10 small-12 columns panel-main">
 
          <div class="row">
-            <span class="profile-date">{{ strtoupper(date('h:i A D j M Y')) }}</span>
+            <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
          <div class="dashboard-container">
             <div class="dashboard-leftpan">

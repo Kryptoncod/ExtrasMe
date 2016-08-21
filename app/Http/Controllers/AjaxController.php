@@ -67,6 +67,7 @@ class AjaxController extends Controller
 			$name = $first_name . " " . $last_name;
 		    $extras = $student->extras()->where('find', 1)->where('date', '<', Carbon::now())->orderBy('date', 'DESC')->get();
 		    $professionals = array();
+		    
 		    if(count($extras) > 0){
 				for($i=0; $i < count($extras); $i++)
 				{
@@ -138,7 +139,7 @@ class AjaxController extends Controller
 					}
 				}
 			}
-			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
+			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
 		}
 		else if($listId == 5)
 		{
@@ -150,7 +151,6 @@ class AjaxController extends Controller
 			$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
 			$name = User::find($id)->professional->company_name;
 			$student = null;
-			$professionals = array();
 
 			if(count($extras) > 0)
 			{
@@ -165,7 +165,7 @@ class AjaxController extends Controller
 					}
 				}
 		}
-		return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
+		return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
 	}
 	}
 }

@@ -34,6 +34,12 @@ class FavorisTable extends Migration
      */
     public function down()
     {
+        Schema::table('favoris', function(Blueprint $table) {
+            $table->dropForeign(['professional_id']);
+        });
+        Schema::table('favoris', function(Blueprint $table) {
+            $table->dropForeign(['student_id']);
+        });
         Schema::drop('extras_students');
     }
 }

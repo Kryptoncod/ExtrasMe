@@ -11,13 +11,23 @@
                    @else
               
                    <div style="display:flex; flex-direction:column; width:40%" class="extra-list">
-                     <ul>
-                         @for($i=0; $i < count($extras); $i++)
-                               <div style="width:100%; height:1px; background-color:white;"></div>
-                               <li data-cardid="{{$extras[$i]->id}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional[$i] }}</li>
-                               <div style="width:100%; height:1px; background-color:white;"></div>
-                         @endfor
-                     </ul>
+                     @if(Auth::user()->type == 0)
+                        <ul>
+                           @for($i=0; $i < count($extras); $i++)
+                                 <div style="width:100%; height:1px; background-color:white;"></div>
+                                 <li data-cardid="{{$extras[$i]->id}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $extras[$i]->professional->company_name }}</li>
+                                 <div style="width:100%; height:1px; background-color:white;"></div>
+                           @endfor
+                       </ul>
+                     @else
+                        <ul>
+                           @for($i=0; $i < count($extras); $i++)
+                                 <div style="width:100%; height:1px; background-color:white;"></div>
+                                 <li data-cardid="{{$extras[$i]->id}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional->company_name }}</li>
+                                 <div style="width:100%; height:1px; background-color:white;"></div>
+                           @endfor
+                       </ul>
+                     @endif
                    </div>
                    <div style="width:5%;display:flex;">
                      <img src="{{ asset('images/right-arrow.png') }}" style="margin:auto; width:90%;">
@@ -95,6 +105,27 @@
                                        </tr>
                                      </tbody>
                                    </table>
+                                  @if(Auth::user()->type == 1)
+                                   @if($extras[0]->find == 0)
+                                    <ul>
+                                        <li class="title">STUDENTS WHO HAS APPLIED :</li>
+                                        @foreach($extras[0]->students as $student)
+                                          <li>
+                                            <a href = "{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a>
+                                            <button class="submit-button right">Decline</button>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">Accept</a></button>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                          </li>
+                                        @endforeach
+                                    </ul>
+                                  @else
+                                    <ul>
+                                        <li class="title">STUDENTS CHOOSEN :</li>
+                                        <li><a href="{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>
+                                    </ul>
+                                  @endif
+                                @endif
               
                  </div>
                     @endif

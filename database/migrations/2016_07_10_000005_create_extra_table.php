@@ -24,6 +24,7 @@ class CreateExtraTable extends Migration
         $table->string('requirements');
         $table->string('informations');
         $table->boolean('find');
+        $table->boolean('finish');
         $table->integer('professional_id')->unsigned();
         $table->foreign('professional_id')->references('id')
                 ->on('professionals')
@@ -39,6 +40,9 @@ class CreateExtraTable extends Migration
      */
     public function down()
     {
+        Schema::table('extras', function(Blueprint $table) {
+            $table->dropForeign(['professional_id']);
+        });
         Schema::drop('extras');
     }
 }

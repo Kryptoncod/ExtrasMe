@@ -31,6 +31,9 @@ class Languages extends Migration
      */
     public function down()
     {
+        Schema::table('languages', function(Blueprint $table) {
+            $table->dropForeign(['cv_id']);
+        });
         Schema::drop('languages');
     }
 }

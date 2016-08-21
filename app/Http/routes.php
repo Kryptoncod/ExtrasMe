@@ -16,14 +16,6 @@ Route::get('login', ['as' => 'login_form', "uses" => "AuthController@showLoginFo
 Route::post('login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
 Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 
-Route::group(['prefix' => '{username}/admin'], function($app){
-   $app->get('index', ['as' => 'index_admin', "uses" => "AdminController@index"]);
-   $app->get('show', ['as' => 'show_admin', "uses" => "AdminController@show"]);
-   $app->get('edit', ['as' => 'edit_admin', "uses" => "AdminController@edit"]);
-   $app->get('destroy', ['as' => 'destroy_admin', "uses" => "AdminController@destroy"]);
-   $app->get('create', ['as' => 'create_admin', "uses" => "AdminController@create"]);
-});
-
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
    $app->get('account', ['as' => 'account', "uses" => "AccountController@show"]);
@@ -55,6 +47,10 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('experience', ['as' => 'experience', "uses" => "ExperienceController@show"]);
 
    $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
+
+   $app->post('rate/{studentID}', function($username, $studentID){
+      return App\Http\Controllers\ProfileController::rate($studentID);
+   });
 
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
    $app->get('modifFiles', ['as' => 'modif_files', "uses" => "AccountController@filesReset"]);

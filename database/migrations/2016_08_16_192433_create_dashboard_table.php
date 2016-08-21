@@ -35,6 +35,9 @@ class CreateDashboardTable extends Migration
      */
     public function down()
     {
+        Schema::table('dashboards', function(Blueprint $table) {
+            $table->dropForeign(['student_id']);
+        });
         Schema::drop('dashboards');
     }
 }

@@ -7,21 +7,17 @@
       <div class="medium-10 small-12 columns panel-main">
 
          <div class="row">
-            <span class="profile-date">{{ strtoupper(date('h:i A D j M Y')) }}</span>
+            <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
 
          <div class="row">
             <form data-abide class="extra-search-form" action="{{ route('my_favorite_extras_search', Auth::user()->id) }}" method="get">
                <div class="large-8 small-12 columns">
 
-                  <div class="row">
-                     <div class="large-3 columns">
-                        <label for="searchFavoriteExtra" class="right inline">SEARCH HOTEL</label>
-                     </div>
-                     <div class="large-9 end columns">
-                        <input type="text" name="searchFav">
-                     </div>
-                  </div>
+               <div class="search-bar">
+                  <label for="search"><i class="icon-search"></i></label>
+                  <input type="search" name="search-extras" placeholder="SEARCH" id="search">
+               </div>
                   <div class="row">
                      <div class="small-centered columns">
                         <button type="submit" class="submit-button right">SEARCH</button>

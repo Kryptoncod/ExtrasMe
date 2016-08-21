@@ -45,6 +45,8 @@ class DatabaseSeeder extends Seeder
 				'gender' => 0,
 				'birthdate' => Carbon::createFromDate(null, rand(1, 12), rand(1, 28)),
 				'user_id' => $i+1,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
 			]);
 		}
 
@@ -59,6 +61,8 @@ class DatabaseSeeder extends Seeder
 				'numbers_establishement' => 0,
 				'level' => 0,
 				'student_id' => $i+1,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
 			]);
 		}
 
@@ -78,12 +82,14 @@ class DatabaseSeeder extends Seeder
 				'address' => '31 avenue Victor Hugo',
 				'credit' => 100,
 				'user_id' => $i+1,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
 			]);
 		}
 
 		DB::table('extras')->delete();
 
-		for($i = 0; $i < 50; $i++)
+		for($i = 0; $i < 12; $i++)
 		{
 			$typeArray = Config::get('international.last_minute_types');
 			$type = $typeArray[rand(0,9)];
@@ -91,7 +97,7 @@ class DatabaseSeeder extends Seeder
 			DB::table('extras')->insert([
 				'broadcast' => rand(0,1),
 				'type' => $type,
-				'date' => Carbon::createFromDate(2016, rand(1, 12), rand(1, 28)),
+				'date' => Carbon::createFromDate(2016, rand(9, 12), rand(1, 28)),
 				'date_time' => Carbon::createFromTime(rand(0, 23), rand(0, 59), null),
 				'duration' => rand(1,10),
 				'salary' => rand(9, 89),
@@ -99,7 +105,10 @@ class DatabaseSeeder extends Seeder
 				'requirements' => 'Requirements' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
 				'informations' => 'informations' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
 				'find' => 0,
+				'finish' => 0,
 				'professional_id' => rand(1, 5),
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
 				]);
 		}
     }

@@ -76,13 +76,17 @@
               @if($student->extras->first())
                   @if($can_apply == 1)
                     <a href="{{ route('extra_apply',  ['id' => $extra->id, 'username' => $user->id]) }}" class="apply-button right">APPLY</a>
+                  @else
+                    <div class="apply-button right">
+                      You have already applied.
+                  </div>
                   @endif
               @else
                 <a href="{{ route('extra_apply',  ['id' => $extra->id, 'username' => $user->id]) }}" class="apply-button right">APPLY</a>
               @endif
   @else
               <div class="apply-button right">
-                You didn't submit the document needed. Go in your account.
+                <a href="{{ route('account', Auth::user()->id)}}">You didn't submit the document needed. Go in your account.</a>
               </div>
   @endif
 @elseif($user->type == 1)     

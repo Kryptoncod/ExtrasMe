@@ -31,6 +31,9 @@ class Skills extends Migration
      */
     public function down()
     {
+        Schema::table('skills', function(Blueprint $table) {
+            $table->dropForeign(['cv_id']);
+        });
         Schema::drop('skills');
     }
 }

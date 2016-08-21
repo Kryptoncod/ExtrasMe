@@ -125,7 +125,7 @@ class ExtraController extends Controller
 				'done' => 0,
 				));
 
-			return redirect()->route('home', Auth::user()->id);
+			return redirect()->back();
 		}
 		catch (Exception $e)
 		{
@@ -173,7 +173,7 @@ class ExtraController extends Controller
 
 		DB::table('extras')->where('id', $extraID)->update(['find' => 1]);
 
-		return redirect()->route('home', Auth::user()->id);
+		return redirect()->back();
 	}
 
 	

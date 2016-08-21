@@ -40,6 +40,9 @@ class CreateProfessionalTable extends Migration
      */
     public function down()
     {
+        Schema::table('professionals', function(Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
         Schema::drop('professionals');
     }
 }
