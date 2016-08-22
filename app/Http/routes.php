@@ -48,9 +48,7 @@ Route::group(['prefix' => '{username}'], function($app) {
 
    $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
 
-   $app->post('rate/{studentID}', function($username, $studentID){
-      return App\Http\Controllers\ProfileController::rate($studentID);
-   });
+   $app->post('rate/{studentID}/{extraID}', ['as' => 'rate', "uses" => "DashboardController@rate"]);
 
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
    $app->get('modifFiles', ['as' => 'modif_files', "uses" => "AccountController@filesReset"]);

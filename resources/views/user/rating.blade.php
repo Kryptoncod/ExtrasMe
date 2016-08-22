@@ -19,8 +19,10 @@
             </div>
             <div class="medium-9 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title" style="display: flex;">{{ strtoupper($student->first_name." ".$student->last_name) }} 
+                  <li class="title" style="display: flex;">rate {{ strtoupper($student->first_name." ".$student->last_name) }} for the extra {{ $extra->type }}
                   </li>
+                  <form action="{{ route('rate', [Auth::user()->id,
+                    $student->id, $extra->id]) }}" method="post">
                   <li>
                      <span class="info-label">EXTRASME LEVEL:</span>
                         <span class="level-logo {{ $student->level > 0 ? 'completed' : '' }}"></span>
@@ -29,8 +31,12 @@
                         <span class="level-logo {{ $student->level > 3 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
                   </li>
-                  <button class="submit-button right"><a href="{{ 'rate/'.$student->id }}">Rate</a></button>
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <li>
+                     <input type="number" min="0" name="rate" id="rate" required />                   
+                  </li>
+                  <button class="submit-button right">Rate</button>
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  </form>
                </ul>
             </div>
          </div>

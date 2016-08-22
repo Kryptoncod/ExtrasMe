@@ -17,9 +17,9 @@
       <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.css') }}">
       <script src="{{ asset('js/moment.min.js') }}"></script>
       <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
-      <script src="{{ asset('js/sweetalert.min.js') }}"></script> 
+      <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 
-      
+
    </head>
 
    <body>
@@ -40,7 +40,7 @@
       <div id="extraModal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"></div>
       @yield('foot')
 
-      
+
       <script src="{{ asset('js/foundation-datepicker.min.js') }}"></script>
       <script src="{{ asset('js/foundation-datepicker.fr.js') }}"></script>
       <script src="{{ asset('js/jquery.cropit.js') }}"></script>

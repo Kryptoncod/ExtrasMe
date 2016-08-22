@@ -20,6 +20,7 @@ use App\Models\Education;
 use App\Models\Language;
 use App\Models\Competence;
 use App\Models\EventModel;
+use App\Models\Dashboard;
 
 use App\Repositories\ExtraRepository;
 use App\Repositories\ProfessionalRepository;
@@ -74,13 +75,14 @@ class ProfileController extends Controller
         $name = User::find($id)->professional->company_name;
         $professionalID = User::find($id)->professional->id;
         $extraToRate = Professional::find($professionalID)->extra()->where('date', '<', Carbon::now())->where('finish', 0)->orderBy('date', 'DESC')->get();
-        
+
         foreach ($extraToRate as $extra) {
           $startTime = new Carbon($extra->date.' '.$extra->date_time);
           $endTime = $startTime->addHours($extra->duration)->toDateTimeString();
 
-          if($endTime < Carbon::now())
+          if($endTime < Carbon::now('UTC'))
           {
+
             $find = DB::table('extras_students')->where('extra_id', $extra->id)
               ->where('done', 1)->get();
 
@@ -91,7 +93,9 @@ class ProfileController extends Controller
                 $studentToRate = Student::find($find[0]->student_id);
               }
             }
-            return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username, 'AuthId' => $id, 'name' => $name, 'student' => $studentToRate]);
+
+            return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
+            'AuthId' => $id, 'name' => $name, 'student' => $studentToRate, 'extra' => $extra]);
           }
         }
         $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
@@ -133,7 +137,7 @@ class ProfileController extends Controller
   public function showApplicationDownload()
   {
     $AuthID = Auth::user()->id;
-    
+
     if(Auth::user()->type == 0)
     {
 

@@ -82,8 +82,10 @@ class ExtraController extends Controller
 		$professionalID = User::find($id)->professional->id;
 		$type = config('international.last_minute_types')[$request->input('type')];
 		$date_time = preg_split("/[\s,]+/", $request->input('date'));
-		$date = Carbon::createFromFormat('d/m/Y', $date_time[0]);
-		$time = Carbon::createFromFormat('H:i', $date_time[1]);
+		$date = Carbon::createFromFormat('d/m/Y', $date_time[0], 'America/Mexico_City');
+		$date->setTimezone('UTC');
+		$time = Carbon::createFromFormat('H:i', $date_time[1], 'America/Mexico_City');
+		$time->setTimezone('UTC');
 		$last_minute = $request->input('broadcast') == 'last_minute';
 		$extraInput = array(
 			'broadcast' => $last_minute,
@@ -140,7 +142,7 @@ class ExtraController extends Controller
 		return redirect()->route('extra_list', ['username' => Auth::user()->id, 'type_extra' => $input]);
 	}
 
-	
+
 	public function myExtras()
 	{
 		$id = Auth::user()->id;
@@ -176,7 +178,7 @@ class ExtraController extends Controller
 		return redirect()->back();
 	}
 
-	
+
 	public function showFavorite()
 	{
 		$id = Auth::user()->id;
