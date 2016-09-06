@@ -12,11 +12,12 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'emailField' => 'E-Mail Adress',
-    'password' => 'Password',
-    'rememberMe' => 'rememberMe',
-    'frogotYourPassword' => 'Forgot your password ?',
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
+    'emailField' => 'Adresse E-Mail',
+    'password' => 'Mot de passe',
+    'rememberMe' => 'Se souvenir de moi',
+    'frogotYourPassword' => 'Mot de passe oublié ?',
+    'failed'   => 'Ces identifiants ne correspondent pas à nos enregistrements',
+    'throttle' => 'Trop de tentatives de connexion. Veuillez essayer de nouveau dans :seconds secondes.',
 
 ];

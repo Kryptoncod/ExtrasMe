@@ -8,15 +8,15 @@ return [
       'title'     => 'We connect the world of hospitality with over 4,498 connections worldwide',
    ],
    'section2'   => [
-      'title'     => 'Parce qu\'un travail apprécié ne peut être que bien fait',
-      'moreInfos' => 'En savoir plus',
+      'title'     => 'Because a well done work can only be appreciated',
+      'moreInfos' => 'More infos',
    ],
    'section3'   => [
 
    ],
    'section4'   => [
-      'toEachItsTown'   => 'À chacun sa ville',
-      'toEachItsExtras' => 'À chacun son extra',
+      'toEachItsTown'   => 'To each its town',
+      'toEachItsExtras' => 'To each its extras',
    ],
 
 ];

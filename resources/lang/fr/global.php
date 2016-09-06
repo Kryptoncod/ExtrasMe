@@ -2,7 +2,7 @@
 
 return [
 
-   'signUp'     => 'S\'ENREGISTRER',
-   'signUpNow'  => 'S\'ENREGISTRER MAINTENANT',
-
+   'signUp'     => 'SIGN UP',
+   'signUpNow'  => 'SIGN UP NOW',
+   'signIn'     => 'LOG IN',
 ];

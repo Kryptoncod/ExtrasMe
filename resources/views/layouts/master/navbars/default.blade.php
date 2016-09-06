@@ -17,8 +17,8 @@
    </nav>
 
    <div class="language-picker">
-      <a href="{-- route('locale/FR_fr') --}">FRA</a>
+      <a href="{{ route('language', 'fr') }}">FRA</a>
       <span class="separator"></span>
-      <a href="{-- //route('locale/EN_en') --}">ENG</a>
+      <a href="{{ route('language', 'en') }}">ENG</a>
    </div>
 </div>
