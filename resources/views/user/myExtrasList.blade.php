@@ -111,12 +111,12 @@
                         @if($extras[0]->find == 0)
                           <ul>
                               <li class="title">STUDENTS WHO HAS APPLIED :</li>
-                              @foreach($extras[0]->students as $student)
+                              @foreach($students as $student)
                                 <li>
-                                  <a href = "{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a>
+                                  <a href = "{{ route('home', $student[0]->user->id) }}">{{ $student[0]->first_name . " " . $student[0]->last_name }}</a>
                                   <button class="submit-button right">Decline</button>
                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                  <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">Accept</a></button>
+                                  <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student[0]->id }}">Accept</a></button>
                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </li>
                               @endforeach

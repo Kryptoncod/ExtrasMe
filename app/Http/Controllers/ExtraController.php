@@ -150,6 +150,7 @@ class ExtraController extends Controller
 		$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
 		$name = User::find($id)->professional->company_name;
 		$student = null;
+		$studentToSort = [];
 
 		if(count($extras) > 0)
 		{
@@ -162,9 +163,27 @@ class ExtraController extends Controller
 				{
 					$student = Student::find($find[0]->student_id);
 				}
+			} else
+			{
+				$students = $extras[0]->students;
+
+				if(!empty($students))
+				{
+					foreach ($students as $student) {
+						$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
+						->where('professional_id', $professionalID)->value('number_extras');
+
+						$studentToSort[] = array($student, $numberExtra);
+					}
+
+					usort($studentToSort, function($a, $b)
+					{
+					    return $b[1] - $a[1];
+					});
+				}
 			}
 		}
-		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'student' => $student]);
+		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'student' => $student, 'students' => $studentToSort]);
 	}
 
 	public static function acceptExtra($extraID, $studentID)

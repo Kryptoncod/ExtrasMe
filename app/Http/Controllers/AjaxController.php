@@ -47,6 +47,7 @@ class AjaxController extends Controller
 					$student = Student::find($find[0]->student_id);
 				}
 			}
+
 			$can_apply = 0;
 			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search')]);
 		}
@@ -56,6 +57,7 @@ class AjaxController extends Controller
 	public function loadList(Request $request){
 		$user = Auth::user();
 		$listId = $request->input('id');
+
 		if($listId == 1)
 		{
 			$id = $user->id;
@@ -151,21 +153,40 @@ class AjaxController extends Controller
 			$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
 			$name = User::find($id)->professional->company_name;
 			$student = null;
+			$studentToSort = [];
 
-			if(count($extras) > 0)
+			$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
+				->where('done', 1)->get();
+
+			if(!empty($find))
 			{
-				$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
-					->where('done', 1)->get();
-
-				if(!empty($find))
+				if($find[0]->done == 1)
 				{
-					if($find[0]->done == 1)
-					{
-						$student = Student::find($find[0]->student_id);
-					}
+					$student = Student::find($find[0]->student_id);
 				}
+			} else
+			{
+				$students = $extras[0]->students;
+
+				if(!empty($students))
+				{
+					foreach ($students as $student) {
+						$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
+						->where('professional_id', $professionalID)->value('number_extras');
+
+						$studentToSort[] = array($student, $numberExtra);
+					}
+
+					usort($studentToSort, function($a, $b)
+					{
+					    return $b[1] - $a[1];
+					});
+
+					dd($studentToSort);
+				}
+			}
+
+			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'students' => $studentToSort])->with('name', $name);
 		}
-		return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
-	}
 	}
 }
