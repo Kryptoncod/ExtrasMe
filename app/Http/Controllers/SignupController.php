@@ -28,7 +28,7 @@ class SignupController extends Controller
 
    public function __construct(UserRepository $userRepository, 
                                 StudentRepository $studentRepository,
-                                ProfessionalRepository $professionalRepository
+                                ProfessionalRepository $professionalRepository,
                                 DashboardRepository $dashboardRepository)
    {
       $this->middleware('guest');

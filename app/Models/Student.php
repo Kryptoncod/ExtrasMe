@@ -37,4 +37,9 @@ class Student extends Model
     {
         return $this->hasOne('App\Models\Dashboard');
     }
+
+    public function numberExtrasProfessionals()
+    {
+        return $this->belongsToMany('App\Models\professional', 'number_extras_establishement');
+    }
 }

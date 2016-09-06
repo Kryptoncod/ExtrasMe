@@ -16,6 +16,7 @@ class CreateExtraStudentTable extends Migration
             $table->increments('id');
             $table->integer('extra_id')->unsigned();
             $table->integer('student_id')->unsigned();
+            $table->integer('rate')->unsigned();
             $table->boolean('done');
             $table->foreign('extra_id')->references('id')->on('extras')
                         ->onDelete('cascade')
@@ -24,6 +25,7 @@ class CreateExtraStudentTable extends Migration
             $table->foreign('student_id')->references('id')->on('students')
                         ->onDelete('cascade')
                         ->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

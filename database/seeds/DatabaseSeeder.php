@@ -89,7 +89,7 @@ class DatabaseSeeder extends Seeder
 
 		DB::table('extras')->delete();
 
-		for($i = 0; $i < 12; $i++)
+		for($i = 0; $i < 10; $i++)
 		{
 			$typeArray = Config::get('international.last_minute_types');
 			$type = $typeArray[rand(0,9)];
@@ -97,7 +97,7 @@ class DatabaseSeeder extends Seeder
 			DB::table('extras')->insert([
 				'broadcast' => rand(0,1),
 				'type' => $type,
-				'date' => Carbon::createFromDate(2016, rand(9, 12), rand(1, 28)),
+				'date' => Carbon::createFromDate(2016, rand(10, 12), rand(1, 28)),
 				'date_time' => Carbon::createFromTime(rand(0, 23), rand(0, 59), null),
 				'duration' => rand(1,10),
 				'salary' => rand(9, 89),
@@ -107,6 +107,44 @@ class DatabaseSeeder extends Seeder
 				'find' => 0,
 				'finish' => 0,
 				'professional_id' => rand(1, 5),
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+				]);
+		}
+
+		for($i = 0; $i < 10; $i++)
+		{
+			$typeArray = Config::get('international.last_minute_types');
+			$type = $typeArray[rand(1,9)];
+			
+			DB::table('extras')->insert([
+				'broadcast' => rand(0,1),
+				'type' => $type,
+				'date' => Carbon::createFromDate(2016, rand(3, 6), rand(1, 28)),
+				'date_time' => Carbon::createFromTime(rand(0, 23), rand(0, 59), null),
+				'duration' => rand(1,10),
+				'salary' => rand(9, 89),
+				'benefits' => 'Benefits' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+				'requirements' => 'Requirements' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+				'informations' => 'informations' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+				'find' => 1,
+				'finish' => 0,
+				'professional_id' => rand(1, 5),
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+				]);
+		}
+
+		DB::table('extras_students')->delete();
+
+		for($i = 10; $i < 20; $i++)
+		{
+			
+			DB::table('extras_students')->insert([
+				'extra_id' => $i,
+				'student_id' => rand(1, 5),
+				'rate' => 0,
+				'done' => 1,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 				]);

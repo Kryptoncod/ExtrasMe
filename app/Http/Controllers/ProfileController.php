@@ -58,6 +58,7 @@ class ProfileController extends Controller
       $type = User::find($username)->type;
       $favExtras = NULL;
       //$location = GeoIP::getLocation();
+      
       if(User::find($id)->type == 0)
       {
         $extras = $this->extraRepository->getPaginate(3);
@@ -88,14 +89,10 @@ class ProfileController extends Controller
 
             if(!empty($find))
             {
-              if($find[0]->done == 1)
-              {
                 $studentToRate = Student::find($find[0]->student_id);
-              }
+                return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
+                'AuthId' => $id, 'name' => $name, 'student' => $studentToRate, 'extra' => $extra]);
             }
-
-            return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
-            'AuthId' => $id, 'name' => $name, 'student' => $studentToRate, 'extra' => $extra]);
           }
         }
         $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();

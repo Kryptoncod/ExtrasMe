@@ -10,7 +10,7 @@
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
          
-         <div style="background : url(../assets/images/section3_image.jpg)">
+         <div style="background : url(../images/section3_image.jpg)">
             <div class="row">
                <div class="large-4 medium-6 small-12 columns">
                   <h2 class="section-title">EXTRASME</h2>
@@ -43,7 +43,7 @@
 
             <div class="row app-stores">
                <div class="large-2 medium-3 small-6 columns">
-                  <a href="https://apple.com"><img alt="Get it on App Store" src="../assets/images/App_Store.svg" /></a>
+                  <a href="https://apple.com"><img alt="Get it on App Store" src="../images/App_Store.svg" /></a>
                </div>
                <div class="large-2 medium-3 small-6 columns end">
                   <a href="https://play.google.com"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png" /></a>

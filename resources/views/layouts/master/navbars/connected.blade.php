@@ -10,7 +10,13 @@
 
       <section class="top-bar-section connected">
          <ul class="right">
-               <li><a href="{{ route('home', Auth::user()->id) }}">{{ strtoupper($name) }}</a></li>
+               <li><a href="{{ route('home', Auth::user()->id) }}">
+               @if(Auth::user()->type == 0)
+                  {{ strtoupper($name) }}
+               @else
+                  {{ strtoupper($professional->company_name) }}
+               @endif
+               </a></li>
             <li><a data-dropdown="menu-drop" data-options="is_hover:true;" aria-controls="menu-drop" aria-expanded="false" class="menu-button"></a></li>
 
          </ul>

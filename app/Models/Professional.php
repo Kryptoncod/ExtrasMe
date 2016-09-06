@@ -25,4 +25,9 @@ class Professional extends Model
     {
         return $this->belongsToMany('App\Models\Student', 'favoris');
     }
+
+    public function numberExtrasStudents()
+    {
+        return $this->belongsToMany('App\Models\Student', 'number_extras_establishement');
+    }
 }

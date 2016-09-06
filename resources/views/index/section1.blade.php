@@ -11,5 +11,6 @@
          <a href="/signup" data-reveal-id="signupModal" class="button signup-button">@lang('global.signUpNow')</a>
       </div>
    </div>
+   
 
 @overwrite

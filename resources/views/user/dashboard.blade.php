@@ -92,7 +92,7 @@
                      <h2>PROFILE STRENGTH</h2>
                      <div class="stat-content">
                         <div style="margin:auto; width: 70px;">
-                           <blockquote style="letter-spacing: 0; width: 20px; margin:auto;">{{ $dashboard->level }}</blockquote>
+                           <blockquote style="letter-spacing: 0; width: 20px; margin:auto;">{{ $dashboard->level * 2 }}</blockquote>
                            <div style="width: 100%; margin:auto; border: 1px solid white;"></div>
                            <blockquote style="letter-spacing: 0;width: 35px; margin:auto;">10</blockquote>
                         </div>
