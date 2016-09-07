@@ -30,7 +30,7 @@ use App\Repositories\LanguageRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB, Validator;
+use Auth, DB, Validator, Mail;
 
 class ExtraController extends Controller
 {
@@ -120,13 +120,18 @@ class ExtraController extends Controller
 	{
 		try
 		{
-
+			$student = Auth::user()->student;
 			DB::table('extras_students')->insert(array(
 				'extra_id' => $id,
-				'student_id' => Auth::user()->student->id,
+				'student_id' => $student->id,
 				'done' => 0,
 				));
-
+			$extra = Extra::find($id);
+			$student_name = $student->first_name.' '.$student->last_name;
+			$notif_to_send = $student_name.' a souscrit a votre Extra : '.$extra->type;
+			Mail::send('mails.notification', ['notification' => $notif_to_send], function($message){
+				$message->to('baptiste.arnaud95@gmail.com')->subject('Nouvelle notification ExtrasMe');
+			});
 			return redirect()->back();
 		}
 		catch (Exception $e)

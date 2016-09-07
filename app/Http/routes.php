@@ -16,7 +16,9 @@ Route::get('language/{local}', ['as' => 'language', "uses" => "IndexController@l
 Route::get('login', ['as' => 'login_form', "uses" => "AuthController@showLoginForm"]);
 Route::post('login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
 Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
-
+Route::get('mail', function(){
+   return view('mails.notification');
+});
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
    $app->get('account', ['as' => 'account', "uses" => "AccountController@show"]);
