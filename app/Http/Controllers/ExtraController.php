@@ -245,8 +245,6 @@ class ExtraController extends Controller
 			list($first_name, $last_name) = explode(" ", $favoriteName);
 			$results = DB::table('students')->where('last_name', $last_name)->where('first_name', $first_name)->get();
 		}
-
-		return view('user.favExtrasSearch', ['name' => $name, 'results' => $results]);
 	}
 
 	public static function favoriteAdd($id)
