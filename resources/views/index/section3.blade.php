@@ -3,7 +3,7 @@
 
    <div class="row">
       <div class="large-4 medium-6 small-12 columns">
-         <p>@lang('index.section3.content')</p>
+         <h2 class="section-title" style="color: black;">@lang('index.section3.content')</h2>
       </div>
    </div>
 

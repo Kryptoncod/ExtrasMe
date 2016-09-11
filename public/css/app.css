@@ -6340,7 +6340,8 @@ form .pretty-label {
   text-transform: uppercase;
   z-index: 50; }
   .sticky nav.top-bar .name a {
-    display: inline-block; }
+    display: inline-block;
+    letter-spacing: 10px; }
   .sticky nav.top-bar .name .logo {
     width: 45px;
     height: 45px;
