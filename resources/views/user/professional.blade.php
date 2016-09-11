@@ -206,7 +206,7 @@
                                                                  $extra->type.
                                                                  ' for '.$extra->date.' at '.$extra->date_time,
                                                 "title" => $extra->professional->company_name,
-                                                "image" => asset("images/extra-card-example.png"),
+                                                "image" => asset("images/user-professional.png"),
                                                 "id"  => $extra->id])
                         </li>
                      @endforeach

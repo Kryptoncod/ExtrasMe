@@ -1,4 +1,4 @@
-<img src="{{ asset('images/extra-background.png') }}" class="background-image" style="width:90%;"/>
+<img src="{{ asset('images/user-professional.png') }}" class="background-image" style="width:90%;"/>
 <table style="width:90%;" class="card-info">
   <thead>
     <tr>
