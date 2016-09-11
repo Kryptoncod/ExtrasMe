@@ -211,10 +211,23 @@ class ExtraController extends Controller
 		if(User::find($id)->type == 0)
 		{
 			$name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
-			$studentID = User::find($id)->student->id;
+			$student = User::find($id)->student;
+			$studentID = $student->id;
 			$results = Student::find($studentID)->professionals()->where('type', 0)->get();
+			try{
+	          $cvID = $student->cv->id;
+	          $experiences = Cv::find($cvID)->experiences;
+	          $educations = Cv::find($cvID)->educations;
+	          $languages = Cv::find($cvID)->languages;
+	          $skills = Cv::find($cvID)->skills;
+	        } catch(\Exception $e){
+	          $experiences = null;
+	          $educations = null;
+	          $languages = null;
+	          $skills = null;
+	        }
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
 		}
 		else if(User::find($id)->type == 1)
 		{

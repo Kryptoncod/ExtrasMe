@@ -47,9 +47,6 @@
       <script src="{{ asset('js/jquery.cropit.js') }}"></script>
       <script src="{{ asset('js/foundation.min.js') }}"></script>
       <script src="{{ asset('js/app.js') }}"></script>
-      <script src="{{ asset('js/fullpage.js/vendors/jquery.easings.min.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('js/fullpage.js/vendors/scrolloverflow.min.js') }}"></script>
-      <script type="text/javascript" src="{{ asset('js/fullpage.js/jquery.fullPage.js') }}"></script>
    </body>
 
 </html>

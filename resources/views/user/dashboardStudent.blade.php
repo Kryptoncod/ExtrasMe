@@ -10,44 +10,8 @@
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
          <div class="dashboard-container">
-            <div class="dashboard-leftpan">
-               <h2 style="padding:20px;">YOUR EXTRAS</h2>
-               <div class="search-bar">
-                  <label for="search"><i class="icon-search"></i></label>
-                  <input type="search" name="search-extras" placeholder="SEARCH" id="search">
-               </div>
-               <h2 style="margin: auto; margin-top:30px;">APPLIED EXTRAS</h2>
-               <hr>
-               <div>
-                  <div class="extra">
-                     <span class="level-logo completed"></span>
-                     <h3>21/07 TOUR EIFFEL PARIS</h3>
-                  </div>
-                  <div class="extra">
-                     <span class="level-logo completed"></span>
-                     <h3>21/07 TOUR EIFFEL PARIS</h3>
-                  </div>
-               </div>
-               <hr>
-               <h2 style="margin: auto;">PAST EXTRAS</h2>
-               <hr>
-               <div>
-                  <div class="extra">
-                     <span class="level-logo"></span>
-                     <h3>21/07 TOUR EIFFEL PARIS</h3>
-                  </div>
-                  <div class="extra">
-                     <span class="level-logo"></span>
-                     <h3>21/07 TOUR EIFFEL PARIS</h3>
-                  </div>
-                  <div class="extra">
-                     <span class="level-logo"></span>
-                     <h3>21/07 TOUR EIFFEL PARIS</h3>
-                  </div>
-               </div>
-            </div>
             <div class="dashboard-rightpan">
-               <div class="two-blocks">
+               <div class="two-blocks" style="margin-top:30px; margin-bottom:30px;">
                   <div class="one-block">
                      <h2>@lang('dashboardStudent.totalEarned')</h2>
                      <div class="stat-content" style=" flex-direction:column;">
@@ -71,7 +35,7 @@
                      </div>
                   </div>
                </div>
-               <div class="two-blocks">
+               <div class="two-blocks" style="margin-bottom:50px;">
                   <div class="one-block">
                      <h2>@lang('dashboardStudent.numberExtras')</h2>
                      <div class="stat-content" style="flex-direction:column;">
@@ -89,12 +53,12 @@
                      </div>
                   </div>
                   <div class="one-block">
-                     <h2>@lang('dashboardStudent.profilStrength')</h2>
+                     <h2>@lang('dashboardStudent.profileStrength')</h2>
                      <div class="stat-content">
                         <div style="margin:auto; width: 70px;">
                            <blockquote style="letter-spacing: 0; width: 20px; margin:auto;">{{ $dashboard->level }}</blockquote>
                            <div style="width: 100%; margin:auto; border: 1px solid white;"></div>
-                           <blockquote style="letter-spacing: 0;width: 35px; margin:auto;">5</blockquote>
+                           <blockquote style="letter-spacing: 0;width: 20px; margin:auto;">5</blockquote>
                         </div>
                      </div>
                   </div>
