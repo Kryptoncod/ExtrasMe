@@ -13,7 +13,7 @@
             <div class="dashboard-rightpan">
                <div class="two-blocks">
                   <div class="one-block">
-                     <h2>TOTAL AMOUNT EARNED</h2>
+                     <h2>@lang('dashboardProfessional.totalEarned')</h2>
                      <div class="stat-content" style=" flex-direction:column;">
                         <div style="display:flex; justify-content:center; width: 80%; margin: 0 auto 0 auto;">
                            <blockquote>0</blockquote>
@@ -24,20 +24,17 @@
                      </div>
                   </div>
                   <div class="one-block">
-                     <h2>CREDITS LEFT</h2>
+                     <h2>@lang('dashboardProfessional.creditLeft')</h2>
                      <div class="stat-content">
                         <div style="display:flex; justify-content:center; flex-direction: column; margin-left: 40px;">
                            <blockquote style="height: 70px;">{{ $professional->credit }}</blockquote>
-                        </div>
-                        <div style="display:flex; justify-content:center; flex-direction:column;">
-                           <blockquote style="font-size: 30px; height: 70px;">HRS</blockquote>
                         </div>
                      </div>
                   </div>
                </div>
                <div class="two-blocks">
                   <div class="one-block">
-                     <h2>NUMBER OF ANNOUNCES</h2>
+                     <h2>@lang('dashboardProfessional.numberAnnouces')</h2>
                      <div class="stat-content" style="flex-direction:column;">
                         <div style="margin:auto; width: 170px;">
                            <div>
@@ -50,7 +47,7 @@
                      </div>
                   </div>
                   <div class="one-block">
-                     <h2>REMAINING DAYS</h2>
+                     <h2>@lang('dashboardProfessional.remainingDays')</h2>
                      <div class="stat-content">
                         <div style="margin:auto; width: 70px;">
                            <blockquote style="letter-spacing: 0; width: 20px; margin:auto;">200</blockquote>

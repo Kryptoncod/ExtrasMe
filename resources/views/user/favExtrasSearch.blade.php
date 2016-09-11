@@ -20,7 +20,7 @@
                </div>
                   <div class="row">
                      <div class="small-centered columns">
-                        <button type="submit" class="submit-button right">SEARCH</button>
+                        <button type="submit" class="submit-button right">@lang('favExtrasSearch.search')</button>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                      </div>
                   </div>
@@ -42,12 +42,12 @@
                                        <ul class="personal-informations">
                                           <li class="title">{{ strtoupper($result->company_name) }}</li>
 
-                                          <li><span class="info-label">REFERENCE PERSON:</span>
+                                          <li><span class="info-label">@lang('professional.referencePerson')</span>
                                           {{ strtoupper($result->first_name.' '.$result->last_name) }}</li>
 
-                                          <li><span class="info-label">SECTOR:</span>
+                                          <li><span class="info-label">@lang('professional.sector')</span>
                                           {{ strtoupper($result->category) }}</li>
-                                          <button class="submit-button right"><a href="{{ 'myFavoriteExtras/'.$result->id  }}">ADD TO MY FAVORITE</button>
+                                          <button class="submit-button right"><a href="{{ 'myFavoriteExtras/'.$result->id  }}">@lang('favextrasSearch.add')E</button>
                                        </ul>
                                     </div>
                                  </div>
@@ -61,14 +61,14 @@
                                        <ul class="personal-informations">
                                           <li class="title">{{ strtoupper($result->first_name." ".$result->last_name) }}</li>
                                           <li>
-                                             <span class="info-label">SCHOOL:</span>
+                                             <span class="info-label">@lang('student.school')</span>
                                              ÉCOLE HÔTELIÈRE DE LAUSANNE
                                           </li>
                                           <li>
-                                             <span class="info-label">YEAR:</span>
+                                             <span class="info-label">@lang('student.year')</span>
                                              {{ strtoupper($result->school_year) }}
                                           </li>
-                                          <button class="submit-button right"><a href="{{ 'myFavoriteExtras/'.$result->id  }}">ADD TO MY FAVORITE</button>
+                                          <button class="submit-button right"><a href="{{ 'myFavoriteExtras/'.$result->id  }}">@lang('favExtrasSearch.add')</button>
                                        </ul>
                                     </div>
                                  </div>
@@ -80,7 +80,7 @@
                   @else
                      <div style="width:100%; height:1px; background-color:white;"></div>
                         <div class="medium-7 small-12 medium-uncentered small-centered columns">
-                           No results.
+                           @lang('favExtrasSearch.noResult')
                         </div>
                      <div style="width:100%; height:1px; background-color:white;"></div>
                  @endif

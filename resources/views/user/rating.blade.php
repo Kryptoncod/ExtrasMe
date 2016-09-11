@@ -19,7 +19,7 @@
             </div>
             <div class="medium-9 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title" style="display: flex;">rate {{ strtoupper($student->first_name." ".$student->last_name) }} for the extra {{ $extra->type }}
+                  <li class="title" style="display: flex;">rate {{ strtoupper($student->first_name." ".$student->last_name) }} @lang('rate.for') {{ $extra->type }}
                   </li>
                   <form action="{{ route('rate', [Auth::user()->id,
                     $student->id, $extra->id]) }}" method="post">
@@ -34,7 +34,7 @@
                   <li>
                      <input type="number" min="0" name="rate" id="rate" required />                   
                   </li>
-                  <button class="submit-button right">Rate</button>
+                  <button class="submit-button right">@lang('rate.rate')</button>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   </form>
                </ul>

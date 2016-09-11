@@ -10,7 +10,7 @@
           @elseif(Session::get('message') != "")
             <div class="erreur-update" style="background-color: #00B143;">{{Session::get('message')}}</div>
           @else
-             <div class="erreur-update" style="background-color: #960E0E;">Vous devez importer les 3 fichiers pour que les modifications soient prises en compte.</div>
+             <div class="erreur-update" style="background-color: #960E0E;">@lang('account.fileNeeded')</div>
           @endif
         @endif
       @if(Auth::user()->type == 0)

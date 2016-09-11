@@ -12,7 +12,7 @@
 
          <div class="dashboard-container">
             <div class="dashboard-leftpan">
-               <h2 style="padding:20px;">YOUR FAVORITE EXTRAS</h2>
+               <h2 style="padding:20px;">@lang('favExtrasSearch.yourFav')</h2>
                <div class="search-bar">
                   <label for="search"><i class="icon-search"></i></label>
                   <form class="ajax" action="{{ route('my_favorite_extras_search', Auth::user()->id) }}" method="get">

@@ -25,30 +25,30 @@
                   @if(Auth::user()->id == $username && !$student->registration_done)
                   <a href="{{ route('account', Auth::user()->id)}}" class="warning_register"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                   <div class="warning_box">
-                     <p>VOUS DEVEZ IMPORTER DES FICHIERS NECESSAIRES POUR POUVOIR POSTULER A DES EXTRAS</p>
+                     <p>@lang('student.errorFiles')</p>
                   </div>
                   </a></li>
                   @endif
                   @if(Auth::user()->id == $username)
                      <li>
-                        <span class="info-label">EMAIL:</span>
+                        <span class="info-label">@lang('student.email')</span>
                         {{ strtoupper($user->email) }}
                      </li>
                      <li>
-                        <span class="info-label">CONTACT NUMBER:</span>
+                        <span class="info-label">@lang('student.contactNumber')</span>
                          {{ $student->phone }}
                       </li>
                   @endif
                   <li>
-                     <span class="info-label">SCHOOL:</span>
+                     <span class="info-label">@lang('student.school')</span>
                      ÉCOLE HÔTELIÈRE DE LAUSANNE
                   </li>
                   <li>
-                     <span class="info-label">YEAR:</span>
+                     <span class="info-label">@lang('student.year')</span>
                      {{ strtoupper($student->school_year) }}
                   </li>
                   <li>
-                     <span class="info-label">EXTRASME LEVEL:</span>
+                     <span class="info-label">@lang('student.school')</span>
                      @if($student->level > 3)
                         <span class="level-logo {{ $student->level > 0 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 1 ? 'completed' : '' }}"></span>
@@ -56,7 +56,7 @@
                         <span class="level-logo {{ $student->level > 3 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
                      @else
-                        NOT ENOUGH EXTRAS DONE YET
+                        @lang('student.notEnoughExtras')
                      @endif
                   </li>
                   <li>
@@ -67,21 +67,21 @@
          </div>
 
          <div class="row details-button">
-            <div id="more-details"><span>MORE DETAILS</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div id="more-details"><span>@lang('student.moreDetails')</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
          </div>
          <div class="details-container">
             <div class="summary-container cv-div">
-               <h2>Résumé</h2>
+               <h2>@lang('student.summary')</h2>
                <p>
                   @if(!empty($student->cv->summary))
                      {{ $student->cv->summary }}
                   @else
-                     Pas de résumé.
+                     @lang('student.noSummary')
                   @endif
                </p>
             </div>
             <div class="experience-container cv-div">
-               <h2>Experience</h2>
+               <h2>@lang('student.experience')</h2>
                @if(count($experiences) != 0)
                   @foreach($experiences as $experience)
                      <h3>{{ $experience->title }}</h3>
@@ -91,11 +91,11 @@
                      </p>
                   @endforeach
                @else
-                  <p>Pas d'expérience.</p>
+                  <p>@lang('student.noExperience')</p>
                @endif
             </div>
             <div class="education-container cv-div">
-               <h2>Education</h2>
+               <h2>@lang('student.education')</h2>
                @if(count($educations) != 0)
                   @foreach($educations as $education)
                      <h3>{{ $education->title }}</h3>
@@ -105,11 +105,11 @@
                      </p>
                   @endforeach
                @else
-                  <p>Pas d'éducation.</p>
+                  <p>@lang('student.noEducation')</p>
                @endif
             </div>
             <div class="skills-container cv-div">
-               <h2 style="margin-bottom: 30px;">Compétences</h2>
+               <h2 style="margin-bottom: 30px;">@lang('student.competence')</h2>
                @if(count($skills) != 0)
                <ul>
                   
@@ -117,20 +117,20 @@
                         <li>{{ $skill->title }}</li>
                      @endforeach
                   @else
-                     <p>Pas de compétence.</p>
+                     <p>@lang('student.noCompetence')</p>
                   
                </ul>
                @endif
             </div>
             <div class="languages-container cv-div">
-               <h2 style="margin-bottom: 30px;">Langues</h2>
+               <h2 style="margin-bottom: 30px;">@lang('student.language')</h2>
                @if(count($languages) != 0)
                <ul>
                      @foreach($languages as $language)
                         <li>{{ $language->title }}</li>
                      @endforeach
                   @else
-                     <p>Pas de langues.</p>
+                     <p>@lang('student.noLanguage')</p>
                   
                </ul>
                @endif
@@ -148,7 +148,7 @@
             <div>
                <div class="row section-title">
                   <div class="small-12 columns">
-                     <h2>EXTRAS IN SPOTLIGHT</h2>
+                     <h2>@lang('student.extrasInSpotlight')</h2>
                   </div>
                </div>
 
@@ -156,10 +156,10 @@
                   <div class="small-12 columns">
                      <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
                         @if(count($favPro) == 0)
-                           <p class="empty-notice">You don't have favorite professionals.</p>
+                           <p class="empty-notice">@lang('student.noFavorite')</p>
                         @else
                            @if(count($favExtras) == 0)
-                              <p class="empty-notice">Sorry, no extra available at the moment. Come back later.</p>
+                              <p class="empty-notice">@lang('student.noExtras')</p>
                            @else
                               @for($i = 0; $i < count($favExtras); $i++)
                                  @foreach ($favExtras[$i] as $favExtra)
@@ -182,7 +182,7 @@
             <div id="to-load">
                <div class="row section-title">
                   <div class="small-12 columns">
-                     <h2>EXTRAS AVAILABLE</h2>
+                     <h2>@lang('student.extrasAvailable')</h2>
                      <div class="pagination">{{ $links }}</div>
                   </div>
                </div>
@@ -191,7 +191,7 @@
                   <div class="small-12 columns">
                      <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
                         @if(empty($extras))
-                           <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
+                           <p class="empty-notice">@lang('student.noExtras')</p>
                         @else
                            @foreach ($extras as $extra)
                            <li class="extra-available">@include('user.card', ["description" => $extra->professional->company_name." in ".

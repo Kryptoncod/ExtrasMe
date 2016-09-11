@@ -1,12 +1,15 @@
-@extends('layouts.master')
+@extends('layouts.master', ['footer' => false])
 @section('content')
 
 {{ $api or '' }}
 
-   @include('index.section1')
-   @include('index.section2')
-   @include('index.section3')
-   @include('index.section4')
+   <div id="fullpage">
+      <div class="section">@include('index.section1')</div>
+      <div class="section">@include('index.section2')</div>
+      <div class="section">@include('index.section3')</div>
+      <div class="section">@include('index.section4')</div>
+      <div class="section fp-auto-height">@include('layouts.master.footer')</div>
+   </div>
 
    <ul class="index-side-nav hide-for-small-only">
       <li><a href="#home"></a></li>

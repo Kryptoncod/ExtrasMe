@@ -24,21 +24,21 @@
                   <li class="title">{{ strtoupper($professional->company_name) }}</li>
 
                @if(Auth::user()->id == $username)
-                  <li><span class="info-label">EMAIL:</span>
+                  <li><span class="info-label">@lang('professional.email')</span>
                   {{ strtoupper($user->email) }}</li>
 
-                  <li><span class="info-label">CONTACT NUMBER:</span>
+                  <li><span class="info-label">@lang('professional.contactNumber')</span>
                   {{ strtoupper($professional->phone) }}</li>
                @endif
 
-                  <li><span class="info-label">REFERENCE PERSON:</span>
+                  <li><span class="info-label">@lang('professional.referencePerson')</span>
                   {{ strtoupper($professional->first_name.' '.$professional->last_name) }}</li>
 
-                  <li><span class="info-label">SECTOR:</span>
+                  <li><span class="info-label">@lang('professional.sector')</span>
                   {{ strtoupper($professional->category) }}</li>
 
                @if(Auth::user()->id == $username)
-                  <li><span class="info-label">CREDITS LEFT:</span>
+                  <li><span class="info-label">@lang('professional.creditLeft')</span>
                   {{ strtoupper($professional->credit) }}</li>
                @endif
                </ul>
@@ -46,17 +46,17 @@
          </div>
 
          <div class="row details-button">
-            <div id="more-details"><span>MORE DETAILS</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            <div id="more-details"><span>@lang('professional.moreDetails')</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
          </div>
 
          <div class="details-container">
             <div class="summary-container cv-div">
-               <h2>Description</h2>
+               <h2>@lang('professional.description')</h2>
                <p>
                   @if(!empty($professional->description))
                      {{ $professional->description }}
                   @else
-                     Pas de description.
+                     @lang('professional.noDescription')
                   @endif
                </p>
             </div>
@@ -65,7 +65,7 @@
       @if(Auth::user()->id == $username)
          <div class="row section-title">
             <div class="small-12 columns">
-               <h2>LOOKING FOR EXTRAS?</h2>
+               <h2>@lang('professional.lookingForExtras.title')</h2>
             </div>
          </div>
 
@@ -75,38 +75,38 @@
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="lastminute" class="right inline">BROADCASTING <span data-tooltip aria-haspopup="true" class="has-tip level-error" title="Last-minute extras cost 3 credits and are broadcasted to every student">?</span> :</label>
+                        <label for="lastminute" class="right inline">@lang('professional.lookingForExtras.broadcastin') <span data-tooltip aria-haspopup="true" class="has-tip level-error" title=@lang('professional.explinationBroadcasting')>?</span> :</label>
                      </div>
                      <div class="large-9 columns">
                         <input name="broadcast" id="lastMinuteRadio" class="pretty" value="last_minute" type="radio" required>
-                        <label class="pretty-label" for="lastMinuteRadio">LAST MINUTE</label>
+                        <label class="pretty-label" for="lastMinuteRadio">@lang('professional.lookingForExtras.lastMinute')</label>
 
 
                         <input name="broadcast" id="normalRadio" class="pretty" value="normal" checked type="radio" required>
-                        <label class="pretty-label" for="normalRadio">NORMAL</label>
+                        <label class="pretty-label" for="normalRadio">@lang('professional.lookingForExtras.normal')</label>
 
-                        <small class="error">Broadcasting is required.</small>
+                        <small class="error">@lang('professional.lookingForExtras.errorBroadcastin')</small>
                      </div>
                   </div>
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="type" class="right inline">TYPE OF EXTRA:</label>
+                        <label for="type" class="right inline">@lang('professional.lookingForExtras.typeExtra')</label>
                      </div>
                      <div class="large-9 end columns">
                         <select class="input" id="type" name="type" aria-label="Type of extra" required>
-                           <option selected disabled value="">Select</option>
+                           <option selected disabled value="">@lang('professional.lookingForExtras.selectType')</option>
                            @foreach(config('international.last_minute_types') as $id => $name)
                               <option value="{{ $id }}">{{ $name }}</option>
                            @endforeach
                         </select>
-                        <small class="error">Type is required.</small>
+                        <small class="error">@lang('professional.lookingForExtras.errorType')</small>
                      </div>
                   </div>
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="date" class="right inline">DATE:</label>
+                        <label for="date" class="right inline">@lang('professional.lookingForExtras.date')</label>
                      </div>
                      <div class="large-9 end columns">
                         <input type="text" class="span2" id="date" name="date">
@@ -115,13 +115,13 @@
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="duration" class="right inline">DURATION:</label>
+                        <label for="duration" class="right inline">@lang('professional.lookingForExtras.duration')</label>
                      </div>
                      <div class="large-9 end columns">
                         <div class="row collapse">
                            <div class="small-10 columns">
                               <input type="number" value="1" min="0" name="duration" id="duration" pattern="abovezero" required />
-                              <small class="error">Duration is required and must be above 0.</small>
+                              <small class="error">@lang('professional.lookingForExtras.errorDuration')</small>
                            </div>
                            <div class="small-2 columns">
                               <span class="postfix">Hr(s)</span>
@@ -132,13 +132,13 @@
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="salary" class="right inline">SALARY:</label>
+                        <label for="salary" class="right inline">@lang('professional.lookingForExtras.salary')</label>
                      </div>
                      <div class="large-9 end columns">
                         <div class="row collapse input-wrapper">
                            <div class="small-10 columns">
                               <input type="number" min="0" name="salary" id="salary" pattern="abovezero" required />
-                              <small class="error">Salary is required and must be above 0.</small>
+                              <small class="error">@lang('professional.lookingForExtras.errorSalary')</small>
                            </div>
                            <div class="small-2 columns">
                               <span class="postfix">CHF/Hr</span>
@@ -149,27 +149,27 @@
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="benefits" class="right inline">BENEFITS:</label>
+                        <label for="benefits" class="right inline">@lang('professional.lookingForExtras.benefits')</label>
                      </div>
                      <div class="large-9 end columns">
                         <textarea type="text" name="benefits" id="benefits" required ></textarea>
-                        <small class="error">Benefits are required.</small>
+                        <small class="error">@lang('professional.lookingForExtras.errorBenefits')</small>
                      </div>
                   </div>
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="requirements" class="right inline">REQUIREMENTS:</label>
+                        <label for="requirements" class="right inline">@lang('professional.lookingForExtras.requirements')</label>
                      </div>
                      <div class="large-9 end columns">
                         <textarea type="text" name="requirements" id="requirements" required ></textarea>
-                        <small class="error">Requirements are required.</small>
+                        <small class="error">@lang('professional.lookingForExtras.errorRequirements')</small>
                      </div>
                   </div>
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="informations" class="right inline">OTHER INFORMATION:</label>
+                        <label for="informations" class="right inline">@lang('professional.lookingForExtras.otherInfo')</label>
                      </div>
                      <div class="large-9 end columns">
                         <textarea type="text" name="informations" id="informations" ></textarea>
@@ -181,7 +181,7 @@
                <div class="small-12 large-4 columns">
                   <div class="row">
                      <div class="small-centered columns">
-                        <button type="submit" class="submit-button">SUBMIT EXTRA</button>
+                        <button type="submit" class="submit-button">@lang('professional.lookingForExtras.submitExtra')</button>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                      </div>
                   </div>
@@ -192,7 +192,7 @@
 
             <div class="row section-title">
                <div class="small-12 columns">
-                  <h2>MY EXTRAS</h2>
+                  <h2>@lang('professional.lookingForExtras.myExtra')</h2>
                </div>
             </div>
 
@@ -215,7 +215,7 @@
                </div>
             </div>
          @else
-            <p class="empty-notice">You didn't submit any extra.</p>
+            <p class="empty-notice">@lang('professional.lookingForExtras.noExtra')</p>
          @endif
       @endif
 

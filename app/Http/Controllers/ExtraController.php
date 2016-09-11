@@ -222,7 +222,7 @@ class ExtraController extends Controller
 			$professionalID = User::find($id)->professional->id;
 			$results = Professional::find($professionalID)->students()->where('type', 1)->get();
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional]);
 		}
 
 		return view('user.favExtrasList', ['name' => $name, 'results' => $results]);

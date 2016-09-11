@@ -8,19 +8,19 @@
 
 
          <div class="experience-container"><div class="chrono-container">
-                  <a href="" id="past" data-chrono-id = "4" class="showChrono" style="width: 50%;"><label>Past</label></a>
+                  <a href="" id="past" data-chrono-id = "4" class="showChrono" style="width: 50%;"><label>@lang('myExtraList.past')</label></a>
                   <div style="display:flex; flex-direction:column;">
                     <div style="width:1px; height: 20%; background-color: #222"></div>
                     <div style="width:1px; height: 60%; background-color: grey"></div>
                     <div style="width:1px; height: 20%; background-color: #222"></div>
                   </div>
-                  <a href="" id="present" data-chrono-id = "5" class="active showChrono" style="width: 50%;"><label>Future</label></a>
+                  <a href="" id="present" data-chrono-id = "5" class="active showChrono" style="width: 50%;"><label>@lang('myExtraList.future')</label></a>
             </div>
             <div id="list-to-append" style="display: flex; flex-direction:column;">
               <h1>Future Extras</h1>
               <div class="liste-container">
         @if(count($extras) == 0)
-          <p class="empty-notice">You didn't submit any extra.</p>
+          <p class="empty-notice">@lang('myExtraList.noExtra')</p>
         @else
 
         <div style="display:flex; flex-direction:column; width:40%" class="extra-list">
@@ -41,14 +41,14 @@
                           <thead>
                             <tr>
                               <td colspan="2" style="text-align:center; color:white;">
-                                KEY DETAILS
+                                @lang('card-content.keyDetails')
                               </td>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
                               <td>
-                                CATEGORY
+                                @lang('card-content.category')
                               </td>
                               <td>
                                 {{ $extras[0]->type }}
@@ -56,7 +56,7 @@
                             </tr>
                             <tr>
                               <td>
-                                REQUIREMENTS
+                                @lang('card-content.requirements')
                               </td>
                               <td>
                                 {{ $extras[0]->requirements }}
@@ -64,7 +64,7 @@
                             </tr>
                             <tr>
                               <td style="width:25%;">
-                                SALARY
+                                @lang('card-content.salary')
                               </td>
                               <td>
                                 {{ $extras[0]->salary }} CHF/Hr
@@ -72,7 +72,7 @@
                             </tr>
                             <tr>
                               <td>
-                                BENEFITS
+                                @lang('card-content.benefits')
                               </td>
                               <td>
                                 {{ $extras[0]->benefits }}
@@ -80,7 +80,7 @@
                             </tr>
                             <tr>
                               <td>
-                                LANG
+                                @lang('card-content.lang')
                               </td>
                               <td>
                                 French
@@ -88,7 +88,7 @@
                             </tr>
                             <tr>
                               <td>
-                                TIME
+                                @lang('card-content.time')
                               </td>
                               <td>
                                 {{ $extras[0]->date.' at '.$extras[0]->date_time }}
@@ -96,11 +96,11 @@
                             </tr>
                             <tr>
                               <td>
-                                OTHER INFORMATIONS
+                                @lang('card-content.otherInfo')
                               </td>
                               <td>
                                 @if(empty($extras[0]->informations))
-                                    ANY
+                                    @lang('card-content.noOtherInfo')
                                 @else
                                   {{ $extras[0]->informations}}
                                 @endif
@@ -110,20 +110,20 @@
                         </table>
                         @if($extras[0]->find == 0)
                           <ul>
-                              <li class="title">STUDENTS WHO HAS APPLIED :</li>
+                              <li class="title">@lang('myExtraList.studentApplied')</li>
                               @foreach($students as $student)
                                 <li>
                                   <a href = "{{ route('home', $student[0]->user->id) }}">{{ $student[0]->first_name . " " . $student[0]->last_name }}</a>
-                                  <button class="submit-button right">Decline</button>
+                                  <button class="submit-button right">@lang('myExtraList.decline')</button>
                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                  <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student[0]->id }}">Accept</a></button>
+                                  <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student[0]->id }}">@lang('myExtraList.accept')</a></button>
                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </li>
                               @endforeach
                           </ul>
                         @else
                           <ul>
-                              <li class="title">STUDENTS CHOOSEN :</li>
+                              <li class="title">@lang('myExtraList.studentChosen')</li>
                               <li><a href="{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>
                           </ul>
                         @endif

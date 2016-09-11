@@ -15,6 +15,7 @@
       <script src="{{ asset('js/modernizr.js') }}"></script>
       <link rel='stylesheet' href="{{ asset('css/fullcalendar.min.css') }}" />
       <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.fullPage.css') }}" />
       <script src="{{ asset('js/moment.min.js') }}"></script>
       <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
       <script src="{{ asset('js/sweetalert.min.js') }}"></script>
@@ -33,7 +34,7 @@
 
       @yield('content')
       @if(!isset($footer) || $footer != false)
-         @include('layouts.master.footer')
+         <div class="section fp-auto-height">@include('layouts.master.footer')</div>
       @endif
       @include('layouts.master.modals.signup')
       @include('layouts.master.modals.signin')
@@ -46,6 +47,9 @@
       <script src="{{ asset('js/jquery.cropit.js') }}"></script>
       <script src="{{ asset('js/foundation.min.js') }}"></script>
       <script src="{{ asset('js/app.js') }}"></script>
+      <script src="{{ asset('js/fullpage.js/vendors/jquery.easings.min.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('js/fullpage.js/vendors/scrolloverflow.min.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('js/fullpage.js/jquery.fullPage.js') }}"></script>
    </body>
 
 </html>

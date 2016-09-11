@@ -181,8 +181,6 @@ class AjaxController extends Controller
 					{
 					    return $b[1] - $a[1];
 					});
-
-					dd($studentToSort);
 				}
 			}
 

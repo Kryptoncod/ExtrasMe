@@ -50,14 +50,14 @@
                                      <thead>
                                        <tr>
                                          <td colspan="2" style="text-align:center; color:white;">
-                                           KEY DETAILS
+                                           @lang('card-content.keyDetails')
                                          </td>
                                        </tr>
                                      </thead>
                                      <tbody>
                                        <tr>
                                          <td>
-                                           CATEGORY
+                                           @lang('card-content.category')
                                          </td>
                                          <td>
                                            {{ $extras[0]->type }}
@@ -65,7 +65,7 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           REQUIREMENTS
+                                           @lang('card-content.requirements')
                                          </td>
                                          <td>
                                            {{ $extras[0]->requirements }}
@@ -73,7 +73,7 @@
                                        </tr>
                                        <tr>
                                          <td style="width:25%;">
-                                           SALARY
+                                           @lang('card-content.salary')
                                          </td>
                                          <td>
                                            {{ $extras[0]->salary }} CHF/Hr
@@ -81,7 +81,7 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           BENEFITS
+                                           @lang('card-content.benefits')
                                          </td>
                                          <td>
                                            {{ $extras[0]->benefits }}
@@ -89,7 +89,7 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           LANG
+                                           @lang('card-content.lang')
                                          </td>
                                          <td>
                                            French
@@ -97,7 +97,7 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           TIME
+                                           @lang('card-content.time')
                                          </td>
                                          <td>
                                            {{ $extras[0]->date.' at '.$extras[0]->date_time }}
@@ -105,11 +105,11 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           OTHER INFORMATIONS
+                                           @lang('card-content.otherInfo')
                                          </td>
                                          <td>
                                            @if(empty($extras[0]->informations))
-                                               ANY
+                                               @lang('card-content.noOtherInfo')
                                            @else
                                              {{ $extras[0]->informations}}
                                            @endif

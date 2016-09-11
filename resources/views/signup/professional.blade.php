@@ -176,11 +176,4 @@
       </div>
    </div>
 
-   <div class="row">
-      <div class="small-centered columns">
-         <button type="submit" class="submit-button">BEGIN YOUR JOURNEY NOW</button>
-         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-      </div>
-   </div>
-
 @endsection

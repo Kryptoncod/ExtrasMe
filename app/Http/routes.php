@@ -60,17 +60,6 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->post('descriptionPost', ['as' => 'description_update', "uses" => "AccountController@descriptionUpdate"]);
 });
 
-Route::group(['prefix' => 'signup'], function($app) {
-   $app->get('/', ["uses" => "IndexController@redirect"]);
-
-   $app->get('professional',  ['as' => 'signup_professional',   "uses" => "SignupController@showProfessional"]);
-   $app->post('professional', ['as' => 'register_professional', "uses" => "SignupController@registerProfessional"]);
-
-   $app->get('student',  ['as' => 'signup_student',   "uses" => "SignupController@showStudent"]);
-   $app->post('student', ['as' => 'register_student', "uses" => "SignupController@registerStudent"]);
-
-});
-
 Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
 
 //Requêtes AJAX

@@ -38,14 +38,14 @@
                                      <thead>
                                        <tr>
                                          <td colspan="2" style="text-align:center; color:white;">
-                                           KEY DETAILS
+                                           @lang('card-content.keyDetails')
                                          </td>
                                        </tr>
                                      </thead>
                                      <tbody>
                                        <tr>
                                          <td>
-                                           CATEGORY
+                                           @lang('card-content.category')
                                          </td>
                                          <td>
                                            {{ $extras[0]->type }}
@@ -53,7 +53,7 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           REQUIREMENTS
+                                           @lang('card-content.requirements')
                                          </td>
                                          <td>
                                            {{ $extras[0]->requirements }}
@@ -61,7 +61,7 @@
                                        </tr>
                                        <tr>
                                          <td style="width:25%;">
-                                           SALARY
+                                           @lang('card-content.salary')
                                          </td>
                                          <td>
                                            {{ $extras[0]->salary }} CHF/Hr
@@ -69,7 +69,7 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           BENEFITS
+                                           @lang('card-content.benefits')
                                          </td>
                                          <td>
                                            {{ $extras[0]->benefits }}
@@ -77,7 +77,7 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           LANG
+                                           @lang('card-content.lang')
                                          </td>
                                          <td>
                                            French
@@ -85,7 +85,7 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           TIME
+                                           @lang('card-content.time')
                                          </td>
                                          <td>
                                            {{ $extras[0]->date.' at '.$extras[0]->date_time }}
@@ -93,11 +93,11 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           OTHER INFORMATIONS
+                                           @lang('card-content.otherInfo')
                                          </td>
                                          <td>
                                            @if(empty($extras[0]->informations))
-                                               ANY
+                                               @lang('card-content.noOtherInfo')
                                            @else
                                              {{ $extras[0]->informations}}
                                            @endif
@@ -108,20 +108,20 @@
                                   @if(Auth::user()->type == 1)
                                    @if($extras[0]->find == 0)
                                     <ul>
-                                        <li class="title">STUDENTS WHO HAS APPLIED :</li>
+                                        <li class="title">@lang('myExtraList.studentApplied')</li>
                                         @foreach($students as $student)
                                           <li>
                                             <a href = "{{ route('home', $student[0]->user->id) }}">{{ $student[0]->first_name . " " . $student[0]->last_name }}</a>
-                                            <button class="submit-button right">Decline</button>
+                                            <button class="submit-button right">@lang('myExtraList.decline')</button>
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student[0]->id }}">Accept</a></button>
+                                            <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student[0]->id }}">@lang('myExtraList.accept')</a></button>
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                           </li>
                                         @endforeach
                                     </ul>
                                   @else
                                     <ul>
-                                        <li class="title">STUDENTS CHOOSEN :</li>
+                                        <li class="title">@lang('myExtraList.studentChosen')</li>
                                         <li><a href="{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>
                                     </ul>
                                   @endif

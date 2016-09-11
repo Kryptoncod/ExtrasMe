@@ -10,7 +10,7 @@
 
       <div class="row">
          <div class="small-12 medium-centered columns">
-            <form data-abide action="{{ $action }}" method="post">
+            <form data-abide action="" method="post">
                @yield('form')
             </form>
          </div>
