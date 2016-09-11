@@ -2,10 +2,17 @@
 
 return [
 
+   'companyName' => 'NOM DE L\'ENTREPRISE : ',
    'email' => 'EMAIL :',
    'contactNumber' => 'NUMERO DE TELEPHONE : ',
+   'referencePersonFirtName' => 'PRENOM DE LA PERSONNE DE REFERENCE',
+   'referencePersonLastName' => 'NOM DE LA PERSONNE DE REFERENCE',
    'referencePerson' => 'PERSONNE DE REFERENCE : ',
    'sector' => 'SECTEUR : ',
+   'address' => 'ADDRESSE',
+   'zipcode' => 'CODE POSTALE',
+   'state' => 'ETAT',
+   'country' => 'PAYS',
    'creditLeft' => 'CREDITS RESTANTS : ',
    'moreDetails' => 'PLUS DE DETAILS',
    'description' => 'Description',

@@ -1,11 +1,18 @@
 <?php
 
 return [
-
+   
+   'companyName' => 'COMPANY NAME : ',
    'email' => 'EMAIL :',
    'contactNumber' => 'CONTACT NUMBER : ',
+   'referencePersonFirtName' => 'REFERENCE PERSON FIRST NAME',
+   'referencePersonLastName' => 'REFERENCE PERSON LAST NAME',
    'referencePerson' => 'REFERENCE PERSON : ',
    'sector' => 'SECTOR : ',
+   'address' => 'ADDRESS',
+   'zipcode' => 'ZIPCODE',
+   'state' => 'STATE',
+   'country' => 'COUNTRY',
    'creditLeft' => 'CREDITS LEFT : ',
    'moreDetails' => 'MORE DETAILS',
    'description' => 'Description',

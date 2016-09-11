@@ -4,6 +4,8 @@ return [
 
    'errorFiles' => 'YOU NEED TO UPLOAD ALL THE NECESSARY FILES TO APPLY AT AN EXTRAS',
    'email' => 'EMAIL :',
+   'firstName' => 'FIRST NAME : ',
+   'lastName' => 'LAST NAME : ',
    'contactNumber' => 'CONTACT NUMBER : ',
    'school' => 'SCHOOL : ',
    'year' => 'YEAR : ',

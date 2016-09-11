@@ -1,6 +1,6 @@
 <div class="row section-title" style="margin-top:0px;">
   <div class="small-12 columns">
-    <h2>S'ENREGISTRER</h2>
+    <h2>@lang('account.register')</h2>
   </div>
 </div>
 <div class="row register-form-container">
@@ -16,7 +16,7 @@
           <i class="icon-plus-symbol" id="cross1"></i>
         </div>
         <div class="file-label" id="id-label">
-          <label>Carte d'identité</label>
+          <label>@lang('account.id')</label>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
       <div class="cross-container" id="cross-cont2">
         <i class="icon-plus-symbol" id="cross2"></i>
       </div>
-      <div class="file-label" id="avs-label"><label>Carte AVS</label></div>
+      <div class="file-label" id="avs-label"><label>@lang('account.avs')</label></div>
     </div>
   </div>
   <div class="file-container">
@@ -35,7 +35,7 @@
     <div class="cross-container" id="cross-cont3">
       <i class="icon-plus-symbol" id="cross3"></i>
     </div>
-    <div class="file-label" id="permit-label"><label>Permis de travail</label></div>
+    <div class="file-label" id="permit-label"><label>@lang('account.workPermit')</label></div>
   </div>
 </div>
 <div style="width:100%;display:flex;">

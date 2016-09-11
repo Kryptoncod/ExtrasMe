@@ -1,17 +1,17 @@
 <div class="row section-title">
   <div class="small-12 columns">
-   <h2>EDITER MON CV</h2>
+   <h2>@lang('account.editCv')</h2>
  </div>
 </div>
 <div class="details-container" style="max-height: 3000px; opacity: 1;">
   <form action="{{ route('cv_update', Auth::user()->id) }}" method="POST" data-abide id="cv-form">
     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
     <div class="summary-container cv-div">
-      <h2>Résumé</h2>
+      <h2>@lang('account.summary')</h2>
       <textarea name="resume" placeholder="Votre résumé" rows="4" style="margin:.3125rem 0">@if(!empty($student->cv->summary)){{ $student->cv->summary }}@endif</textarea>
     </div>
     <div class="experience-container cv-div">
-      <h2>Experience</h2>
+      <h2>@lang('account.experience')</h2>
       <div id="append-experience">
         @if(count($experiences) != 0)
         <?php $i=0; ?>
@@ -36,10 +36,10 @@
         <textarea name="experience-description1" class="experience-description" placeholder="Description de l'experience" rows="4" style="margin:.3125rem 0"></textarea>
         @endif
       </div>
-      <button  id="add-experience" style="width:200px; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="icon-plus-symbol" style="font-size: 10px;"></i> Ajouter une experience</button>
+      <button  id="add-experience" style="width:200px; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="icon-plus-symbol" style="font-size: 10px;"></i> @lang('account.ajouter')</button>
     </div>
     <div class="education-container cv-div">
-      <h2>Education</h2>
+      <h2>@lang('account.education')</h2>
       <div id="append-education">
         @if(count($educations) != 0)
         <?php $i=0 ?>
@@ -64,10 +64,10 @@
         <textarea name="education-description1" class="education-description" placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
         @endif
       </div>
-      <button id="add-education" style="width:200px; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="icon-plus-symbol" style="font-size: 10px;"></i> Ajouter une éducation</button>
+      <button id="add-education" style="width:200px; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="icon-plus-symbol" style="font-size: 10px;"></i> @lang('account.ajouter')</button>
     </div>
     <div class="skills-container cv-div">
-      <h2 style="margin-bottom: 30px;">Compétences</h2>
+      <h2 style="margin-bottom: 30px;">@lang('account.skills')</h2>
       <ul>
         <div id="append-skill" style="display:flex; flex-wrap: wrap;">
           @if(count($skills) != 0)
@@ -84,7 +84,7 @@
       </ul>
     </div>
     <div class="languages-container cv-div">
-      <h2 style="margin-bottom: 30px;">Langues</h2>
+      <h2 style="margin-bottom: 30px;">@lang('account.language')</h2>
       <ul>
         <div id="append-language" style="display:flex; flex-wrap: wrap;">
           @if(count($languages) != 0)
@@ -102,7 +102,7 @@
     </div>
   </div>
   <div style="width:100%;display:flex;">
-    <button type="submit" name="go-register" class="submit-account" value="Update">Update</button>
+    <button type="submit" name="go-register" class="submit-account" value="Update">@lang('account.update')</button>
     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
   </div>
 </form>
