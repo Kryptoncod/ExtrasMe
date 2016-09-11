@@ -326,7 +326,3 @@ $(function() {
         $(this).parent("div").removeClass("border-blur");
     });
 });
-
-$(document).ready(function() {
-    $('#fullpage').fullpage();
-});

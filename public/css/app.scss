@@ -10467,10 +10467,22 @@ option{
 
 .dashboard-container{
   display: flex;
+  .name-list{
+          font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          font-size: 20px;
+    }
   .dashboard-leftpan{
     display:flex; 
     flex-direction:column; 
-    width: 30%; 
+    width: 40%; 
+    .fav-list-container{
+      display: flex;
+      cursor: pointer;
+        img{
+          border-radius:50%;
+          width: 120px;
+        }
+      }
     hr{
       border: 1px solid #222;
       margin: 30px auto 30px auto;
@@ -10489,6 +10501,13 @@ option{
     h3{
       font-size: .8rem;
       margin: auto;
+    }
+    p{
+      color: white;
+    }
+    .name-list{
+          font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          font-size: 20px;
     }
     .search-bar{
       display: flex;
@@ -10545,7 +10564,7 @@ option{
     display:flex; 
     flex-direction:column; 
     justify-content: space-around;
-    width: 70%; 
+    width: 100%; 
     background-color: #171717;
     .two-blocks{
       display: flex;
@@ -10583,6 +10602,26 @@ option{
           }
         }
       }
+    }
+  }
+  .dashboard-rightpan-fav{
+    width: 60%;
+    display:flex; 
+    flex-direction:column; 
+    width: 100%; 
+    background-color: #171717;
+    padding:20px;
+    h2{
+      color: white;
+      font-size: 30px;
+      margin:0;
+    }
+    p{
+      color:white;
+      font-size: 15px;
+          font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          font-weight: 0;
+          letter-spacing: 5px;
     }
   }
 }
