@@ -227,7 +227,7 @@ class ExtraController extends Controller
 	          $skills = null;
 	        }
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => false]);
 		}
 		else if(User::find($id)->type == 1)
 		{
@@ -240,7 +240,7 @@ class ExtraController extends Controller
 			$professionalID = User::find($id)->professional->id;
 			$results = Professional::find($professionalID)->students()->where('type', 1)->get();
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => false]);
 		}
 
 		return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
@@ -269,7 +269,7 @@ class ExtraController extends Controller
 			list($first_name, $last_name) = explode(" ", $favoriteName);
 			$results = DB::table('students')->where('last_name', $last_name)->where('first_name', $first_name)->get();
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
 		}
 	}
 
