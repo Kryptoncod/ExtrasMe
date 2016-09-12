@@ -248,9 +248,15 @@ class ExtraController extends Controller
 
 	public function showFavoriteSearch(Request $favoriteSearchRequest)
 	{
+
 		$favoriteName = $favoriteSearchRequest->input('searchFav');
 
 		$id = Auth::user()->id;
+
+		$experiences = null;
+		$educations = null;
+		$languages = null;
+		$skills = null;
 
 		if(User::find($id)->type == 0)
 		{
@@ -262,6 +268,8 @@ class ExtraController extends Controller
 			$name = User::find($id)->professional->company_name;
 			list($first_name, $last_name) = explode(" ", $favoriteName);
 			$results = DB::table('students')->where('last_name', $last_name)->where('first_name', $first_name)->get();
+
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
 		}
 	}
 

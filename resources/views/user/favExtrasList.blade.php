@@ -14,43 +14,33 @@
                <h2 style="padding:20px;">@lang('favExtras.title')</h2>
                <div class="search-bar">
                   <label for="search"><i class="icon-search"></i></label>
-                  <input type="search" name="search-extras" placeholder="@lang('favExtrasSearch.search')" id="search">
+                  <form action="{{ route('my_favorite_extras_search', Auth::user()->type) }}" method="GET">
+                     <input type="search" name="searchFav" placeholder="@lang('favExtrasSearch.search')" id="search">
+                  </form>
                </div>
-               <div class="fav-list-container" style="margin-top: 30px; padding-left: 10px;">
-                  <div>
-                     <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
-                  </div>
-                  <div style="display: flex;">
-                     <div style="margin:auto; padding: 20px;">
-                        <h2 class="name-list">BAPTISTE ARNAUD</h2>
-                        <p>a travaillé pour vous le 10/11 à la tour Eiffel.</p>
+               <div style="margin-top: 30px;">
+               </div>
+               @foreach($results as $result)
+                  <div class="fav-list-container" style="padding-left: 10px;">
+                     <div>
+                        <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                     </div>
+                     <div style="display: flex;">
+                        <div style="margin:auto; padding: 20px;">
+                           <h2 class="name-list">
+                              @if(Auth::user()->type == 1)
+                                 {{ $result->first_name.' '.$result->last_name }}
+                              @else
+                                 {{ $result->company_name }}
+                              @endif
+                           </h2>
+                           <p>Nationality : {{ $result->nationality }}</p>
+                           <p>School year : {{ $result->school_year }}</p>
+                        </div>
                      </div>
                   </div>
-               </div>
-               <hr>
-               <div class="fav-list-container" style="padding-left: 10px;">
-                  <div>
-                     <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
-                  </div>
-                  <div style="display: flex;">
-                     <div style="margin:auto; padding: 20px;">
-                        <h2 class="name-list">BAPTISTE ARNAUD</h2>
-                        <p>a travaillé pour vous le 10/11 à la tour Eiffel.</p>
-                     </div>
-                  </div>
-               </div>
-               <hr>
-               <div class="fav-list-container" style="padding-left: 10px;">
-                  <div>
-                     <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
-                  </div>
-                  <div style="display: flex;">
-                     <div style="margin:auto; padding: 20px;">
-                        <h2 class="name-list">BAPTISTE ARNAUD</h2>
-                        <p>a travaillé pour vous le 10/11 à la tour Eiffel.</p>
-                     </div>
-                  </div>
-               </div>
+                  <hr>
+               @endforeach
             </div>
             <div class="dashboard-rightpan-fav" style="display: flex;">
                <h2 class="name-list">BAPTISTE ARNAUD</h2>

@@ -9,6 +9,7 @@
 @font-face {
   font-family: 'ostrich';
   src: url("../fonts/ostrich-rounded.ttf"); }
+
 .alert-box, body {
   position: relative;
   font-weight: 400; }
