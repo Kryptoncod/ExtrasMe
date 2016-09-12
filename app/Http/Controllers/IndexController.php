@@ -43,4 +43,9 @@ class IndexController extends Controller
 
         return redirect()->back();
     }
+
+    public function missionStatement()
+    {
+        return view('documents.missionStatement');
+    }
 }

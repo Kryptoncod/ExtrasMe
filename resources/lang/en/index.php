@@ -20,4 +20,9 @@ return [
       'toEachItsExtras' => 'To each its extras',
    ],
 
+   'missionStatement' => [
+      'title' => 'Company Mission Statement',
+      'content' => 'test',
+   ],
+
 ];

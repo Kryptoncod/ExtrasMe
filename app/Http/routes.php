@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['as' => 'index', "uses" => "IndexController@index"]);
+Route::get('/missionStatement', ['as' => 'missionStatement', "uses" => "IndexController@missionStatement"]);
 Route::get('language/{local}', ['as' => 'language', "uses" => "IndexController@language"]);
 Route::get('login', ['as' => 'login_form', "uses" => "AuthController@showLoginForm"]);
 Route::post('login', ['as' => 'authenticate', "uses" => "AuthController@login"]);

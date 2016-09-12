@@ -242,8 +242,6 @@ class ExtraController extends Controller
 
 			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => false]);
 		}
-
-		return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
 	}
 
 	public function showFavoriteSearch(Request $favoriteSearchRequest)
