@@ -4,6 +4,7 @@ return [
 
    'iAmPro'     => 'Je suis un professionel',
    'iAmStudent' => 'Je suis un etudiant',
+   'notDeploy' => 'Les inscriptions sur la plateforme d’Extras Me seront bientôt accessibles, contactez nous au +41 079 732 16 09 ou à contact@extrasme.com pour plus de renseignements.',
    'section1'   => [
       'title'     => 'Nous mettons en relation des étudiants d\'écoles hotelières avec les professionnels du monde de l\'accueil pour que les étudiants puissent répondre à des missions temporaires',
    ],
