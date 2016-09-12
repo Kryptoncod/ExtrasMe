@@ -1,6 +1,6 @@
 <div class="row section-title">
           <div class="small-12 columns">
-            <h2>@lang('account.editPRofil')</h2>
+            <h2>@lang('account.editProfil')</h2>
           </div>
         </div>
         <div style="display:flex; width: 70%; margin:auto;">
@@ -59,7 +59,7 @@
             </div>
             <div>
               <label for="number">@lang('professional.state')</label><input type="text" name="state" value="{{$professional->state}}">
-              <small class="error">Sate is required</small>
+              <small class="error">State is required</small>
             </div>
             <div>
               <label for="number">@lang('professional.country')</label><select name="country">

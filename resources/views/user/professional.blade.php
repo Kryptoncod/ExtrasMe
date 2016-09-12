@@ -192,7 +192,7 @@
 
             <div class="row section-title">
                <div class="small-12 columns">
-                  <h2>@lang('professional.lookingForExtras.myExtra')</h2>
+                  <h2>@lang('professional.myExtra')</h2>
                </div>
             </div>
 
@@ -215,7 +215,7 @@
                </div>
             </div>
          @else
-            <p class="empty-notice">@lang('professional.lookingForExtras.noExtra')</p>
+            <p class="empty-notice">@lang('professional.noExtra')</p>
          @endif
       @endif
 

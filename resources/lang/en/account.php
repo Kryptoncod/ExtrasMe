@@ -2,7 +2,7 @@
 
 return [
 
-   'fileNeeded' => 'YOU NEED TO UPLOAD ALL THE NECESSARY FILES TO APPLY AT AN EXTRAS'
+   'fileNeeded' => 'YOU NEED TO UPLOAD ALL THE NECESSARY FILES TO APPLY AT AN EXTRAS',
    'editCv' => 'EDIT CV',
    'summary' => 'SUMMARY',
    'ajouter' => 'Add one',

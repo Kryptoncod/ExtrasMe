@@ -2,7 +2,7 @@
 
 return [
 
-   'fileNeeded' => 'VOUS DE UPLOADER LES FICHIERS NECESSAIRES'
+   'fileNeeded' => 'VOUS DE UPLOADER LES FICHIERS NECESSAIRES',
    'editCv' => 'EDITER CV',
    'summary' => 'RESUME',
    'ajouter' => 'Ajouter',

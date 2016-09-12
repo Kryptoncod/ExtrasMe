@@ -231,11 +231,16 @@ class ExtraController extends Controller
 		}
 		else if(User::find($id)->type == 1)
 		{
+			$experiences = null;
+			$educations = null;
+			$languages = null;
+			$skills = null;
+
 			$name = User::find($id)->professional->company_name;
 			$professionalID = User::find($id)->professional->id;
 			$results = Professional::find($professionalID)->students()->where('type', 1)->get();
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills]);
 		}
 
 		return view('user.favExtrasList', ['name' => $name, 'results' => $results]);
