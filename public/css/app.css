@@ -7253,4 +7253,12 @@ ul.topnav li.icon {
     display: block;
     text-align: left; } }
 
+.missionStatement
+{
+  background-image: url('../images/missionStatement_image.jpg');
+  max-width: 100%;
+  transform: scale(1.02);
+    background-size: cover;
+}
+
 /*# sourceMappingURL=app.css.map */
