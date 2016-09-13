@@ -10,8 +10,8 @@
 
      <section class="top-bar-section">
       <ul class="right">
-         <li class="signin-button-parent"><a href="/signin" data-reveal-id="signinModal" class="signup-button">LOG IN</a></li>
-         <li><a href="/signup" data-reveal-id="signupModal" class="signup-button">SIGN UP</a></li>
+         <li class="signin-button-parent"><a href="/signin" data-reveal-id="signinModal" class="signup-button">@lang('navbar.login')</a></li>
+         <li><a href="/signup" data-reveal-id="signupModal" class="signup-button">@lang('navbar.signup')</a></li>
       </ul>
      </section>
    </nav>
