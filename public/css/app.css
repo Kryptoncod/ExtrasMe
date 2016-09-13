@@ -7188,7 +7188,20 @@ option {
     font-size: 10px; }
 
   footer.footer .informations ul li.title {
-    font-size: 15px; } }
+    font-size: 15px; }
+
+  .top-bar .name h1 a {
+    padding: 0 0.2rem; }
+
+  .reveal-modal {
+    padding: 0; }
+
+  .login-div {
+    display: flex;
+    flex-direction: column; }
+
+  .modal-buttons .button {
+    width: 80%; } }
 
 .missionStatement
 {
