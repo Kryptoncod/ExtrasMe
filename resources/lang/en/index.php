@@ -6,22 +6,22 @@ return [
    'iAmStudent' => 'I\'m a student',
    'notDeploy' => 'Inscriptions on the Extras Me plateform will be soon available, please contact us +41 79 732 16 06 or at contact@extrasme.com if you should have any inquieries.',
    'section1'   => [
-      'title'     => 'Getting together students from hospitaly school around the world with profesional from the hospitality industry in order for students to accomplish temporary mission',
+      'title'     => 'GETTING TOGETHER STUDENTS FROM HOSPITALY SCHOOL AROUND THE WORLD WITH PROFESIONAL FROM THE HOSPITALITY INDUSTRY IN ORDER FOR STUDENTS TO ACCOMPLISH TEMPORARY MISSION',
    ],
    'section2'   => [
-      'title'     => 'Because a well done work can only be appreciated',
-      'moreInfos' => 'More infos',
+      'title'     => 'BECAUSE A WELL DONE WORK CAN ONLY BE APPRECIATED',
+      'moreInfos' => 'MORE INFOS',
    ],
    'section3'   => [
-      'content' => 'The Extras Me app will be available soon'
+      'content' => 'THE EXTRASME APP WILL BE AVAILABLE SOON'
    ],
    'section4'   => [
-      'toEachItsTown'   => 'To each its town',
-      'toEachItsExtras' => 'To each its extras',
+      'toEachItsTown'   => 'TO EACH ITS TOWN',
+      'toEachItsExtras' => 'TO EACH ITS EXTRAS',
    ],
 
    'missionStatement' => [
-      'title' => 'Company Mission Statement',
+      'title' => 'COMPANY MISSION STATEMENT',
       'content' => 'Extras Me brings renewal to the world of extra by connecting directly the prestigious hospitality schools with companies in the hospitality industry.
          Its purpose is simple: establish a lasting connection between a motivated student and an establishment in terms of extras.
          Our database can also be used by individuals for exceptional receptions or events.

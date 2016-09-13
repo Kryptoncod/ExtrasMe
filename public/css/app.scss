@@ -7787,6 +7787,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #222;
   font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-style: normal;
+  letter-spacing: 9px;
   line-height: 1.4;
   text-rendering: optimizeLegibility;
 }
@@ -8039,7 +8040,7 @@ blockquote {
   }
 
   h2 {
-    font-size: 2.3125rem;
+    font-size: 24px;
   }
 
   h3 {
@@ -9846,11 +9847,13 @@ footer.footer {
     .section-title {
       margin-bottom: 2.5rem;
       color: white;
+      background-color: rgba(6,11,43,0.4);
+      padding:20px;
     }
   }
 
   &.section-1 {
-    background: url(../images/section1_image.jpg) center center no-repeat;
+    background: url(../images/section1_image-mirroir.jpg) center center no-repeat;
 
     transform: scale(1.02);
     background-size: cover;
@@ -9892,11 +9895,12 @@ footer.footer {
       }
 
       .row {
-        max-width: 70rem;
+        max-width: 85rem;
       }
 
       .section-title {
         margin-bottom: .625rem;
+        background-color: transparent;
       }
 
       .app-stores {
@@ -9924,9 +9928,11 @@ footer.footer {
         top: 30vh;
 
         p {
-          font-size: 1.5625rem;
+          font-size: 1.2rem;
           margin: 0;
           color: #fff;
+          font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          letter-spacing: 9px;
         }
       }
     }
@@ -10240,7 +10246,6 @@ div.form {
       margin: .625rem 0;
       border-bottom: solid .0625rem #222;
       border-top: solid .0625rem #222;
-
       h2 {
         margin-left: .9375rem;
         color: #FFF;

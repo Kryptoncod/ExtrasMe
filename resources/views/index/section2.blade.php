@@ -8,7 +8,7 @@
    </div>
    <div class="row">
       <div class="large-5 medium-8 small-12 columns">
-         <a href="{{ route('missionStatement') }}" class="button">@lang('index.section2.moreInfos')</a>
+         <a href="{{ route('missionStatement') }}" class="button" style="letter-spacing: 12px;">@lang('index.section2.moreInfos')</a>
       </div>
    </div>
 
