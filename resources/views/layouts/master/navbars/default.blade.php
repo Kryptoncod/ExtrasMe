@@ -3,7 +3,7 @@
      <ul class="title-area">
       <li class="name">
          <h1>
-            <a href="{{ route('index') }}"><img class="logo" src="{{ asset('images/logo.gif') }}"></img>Extras Me</a>
+            <a href="{{ route('index') }}"><img class="logo" src="{{ asset('images/logo-long.gif') }}"></img></a>
          </h1>
       </li>
      </ul>

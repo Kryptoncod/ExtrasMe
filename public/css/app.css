@@ -6344,11 +6344,13 @@ form .pretty-label {
     display: inline-block;
     letter-spacing: 10px; }
   .sticky nav.top-bar .name .logo {
-    width: 45px;
+    width: 250px;
     height: 45px;
-    margin-right: 10px; }
+    margin-right: 10px;
+    margin-bottom: 8px; }
   .sticky nav.top-bar .top-bar-section {
-    overflow: hidden; }
+    overflow: hidden;
+    letter-spacing: 7px; }
     .sticky nav.top-bar .top-bar-section .right .signin-button-parent.hidden {
       display: none; }
     .sticky nav.top-bar .top-bar-section .right .menu-button::after {
@@ -6434,11 +6436,12 @@ form .pretty-label {
   top: 70px;
   right: 30px;
   font-size: 80%;
-  color: #FFF; }
+  color: #FFF;
+  letter-spacing: 9px; }
   .sticky .language-picker .separator {
     height: 1em;
     border: 1px solid #FFF;
-    margin: 15px 15px 15px 13px; }
+    margin: 15px 30px 15px 13px; }
 
 footer.footer {
   background-color: #000;
