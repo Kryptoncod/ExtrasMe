@@ -7,7 +7,7 @@ return [
    'notDeploy' => 'Les inscriptions sur la plateforme d’Extras Me seront bientôt accessibles, contactez nous au +41 79 732 16 09 ou à contact@extrasme.com pour plus de renseignements.',
    'section1'   => [
       'title'     => 'NOUS METTONS EN RELATION DES ÉTUDIANTS D\'ÉCOLES HOTELIÈRES AVEC LES PROFESSIONNELS DU MONDE DE L\'ACCUEIL POUR QUE LES ÉTUDIANTS PUISSENT RÉPONDRE À DES MISSIONS TEMPORAIRES',
-      'signUp' => 'SIGN UP',
+      'signUp' => 'S\'INSCRIRE' ,
    ],
    'section2'   => [
       'title'     => 'PARCE QUE UN TRAVAIL BIEN FAIT NE PEUT ÊTRE QU\'APPRÉCIÉ',
