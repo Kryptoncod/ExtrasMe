@@ -4,7 +4,7 @@ return [
 
    'iAmPro'     => 'I\'m a professional',
    'iAmStudent' => 'I\'m a student',
-   'notDeploy' => 'Inscriptions on the Extras Me plateform will be soon available, please contact us +41 79 732 16 06 or at contact@extrasme.com if you should have any inquieries.',
+   'notDeploy' => 'Inscriptions on the Extras Me plateform will be soon available, please contact us +41 79 732 16 09 or at contact@extrasme.com if you should have any inquieries.',
    'section1'   => [
       'title'     => 'GETTING TOGETHER STUDENTS FROM HOSPITALY SCHOOL AROUND THE WORLD WITH PROFESIONAL FROM THE HOSPITALITY INDUSTRY IN ORDER FOR STUDENTS TO ACCOMPLISH TEMPORARY MISSION',
       'signUp' => 'SIGN UP',
