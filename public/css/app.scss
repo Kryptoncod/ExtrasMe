@@ -3495,6 +3495,8 @@ button {
   }
 }
 
+
+
 .clearing-container {
   height: 100%;
   margin: 0;
@@ -10728,5 +10730,48 @@ option{
     color: white;
     margin: auto;
     margin-bottom: 20px;
+  }
+}
+
+.index-section.section-4 .section-content .section-title2{
+    width: 450px; 
+    margin: auto; 
+    padding: 10px; 
+    background-color: #060b2b;
+  }
+
+@media only screen and (max-width: 700px) {
+  h2{
+    font-size: 15px;
+  }
+  .button, button{
+    font-size:15px;
+  }
+  .index-section.section-3 .section-content .section-title{
+      background-color: rgba(255,255,255,0.4);
+  }
+  .index-section.section-4 .section-content .section-title2{
+    width: 200px;
+    p{
+      font-size: 15px;
+    }
+    
+  }
+  .top-bar-section li:not(.has-form) a:not(.button){
+    font-size: 10px;
+    padding-left: 0px;
+  }
+  .sticky nav.top-bar .name .logo {
+      width: 50px;
+      margin-bottom: 5px;
+  }
+  .index-section .section-content .row .section-title{
+    margin-bottom: 5px;
+  }
+  .choose-lan{
+    font-size: 10px;
+  }
+  footer.footer .informations ul li.title{
+    font-size: 15px;
   }
 }

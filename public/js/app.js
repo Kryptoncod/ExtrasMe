@@ -297,6 +297,7 @@ $("#modif-files").click(function(e){
      return false; //is superfluous, but I put it here as a fallback
 });
 
+var width = $(window).width();
 $(document).ready(function(){
     if(location.pathname.split('/').slice(-1)[0] == "login"){
         $("body").css({
@@ -304,6 +305,21 @@ $(document).ready(function(){
             "flex-direction":"column",
             "min-height":"100vh"
         })
+    }
+    
+    if(width <= 700){
+        $('#logo-navbar').attr('src', 'images/logo.gif');
+    }else{
+
+    }
+});
+
+$(window).resize(function(){
+    width = $(window).width();
+    if(width <= 700){
+        $('#logo-navbar').attr('src', 'images/logo.gif');
+    }else{
+        $('#logo-navbar').attr('src', 'images/logo-long.gif');
     }
 });
 

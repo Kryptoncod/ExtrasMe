@@ -3,7 +3,7 @@
      <ul class="title-area">
       <li class="name">
          <h1>
-            <a href="{{ route('index') }}"><img class="logo" src="{{ asset('images/logo-long.gif') }}"></img></a>
+            <a href="{{ route('index') }}"><img class="logo" src="{{ asset('images/logo-long.gif') }}" id="logo-navbar"></img></a>
          </h1>
       </li>
      </ul>
@@ -17,8 +17,8 @@
    </nav>
 
    <div class="language-picker">
-      <a href="{{ route('language', 'fr') }}">FRA</a>
+      <a href="{{ route('language', 'fr') }}" class="choose-lan">FRA</a>
       <span class="separator"></span>
-      <a href="{{ route('language', 'en') }}">ENG</a>
+      <a href="{{ route('language', 'en') }}" class="choose-lan">ENG</a>
    </div>
 </div>
