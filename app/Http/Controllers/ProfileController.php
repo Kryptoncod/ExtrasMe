@@ -27,7 +27,7 @@ use App\Repositories\ProfessionalRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB, GeoIP;
+use Auth, DB;
 
 class ProfileController extends Controller
 {
@@ -57,7 +57,6 @@ class ProfileController extends Controller
       $id = Auth::user()->id;
       $type = User::find($username)->type;
       $favExtras = NULL;
-      //$location = GeoIP::getLocation();
       
       if(User::find($id)->type == 0)
       {
