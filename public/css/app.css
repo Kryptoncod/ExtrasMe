@@ -7144,4 +7144,20 @@ option {
     margin: auto;
     margin-bottom: 20px; }
 
+.missionStatement
+{
+  background-image:url(../images/missionStatement_image.jpg);
+  width: 100%;
+  max-width: 100%;
+     height: 200px;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover; 
+     background-size: 100% 100%;
+
+     background-repeat: no-repeat;
+     background-position: center center; 
+}
+
 /*# sourceMappingURL=app.css.map */
