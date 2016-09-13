@@ -7190,4 +7190,12 @@ option {
   footer.footer .informations ul li.title {
     font-size: 15px; } }
 
+.missionStatement
+{
+  background-image: url('../images/missionStatement_image.jpg');
+  max-width: 100%;
+  transform: scale(1.02);
+    background-size: cover;
+}
+
 /*# sourceMappingURL=app.css.map */
