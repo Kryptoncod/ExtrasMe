@@ -5,6 +5,7 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>ExtrasMe</title>
+      <link rel="icon" type="image/gif" href="{{ asset('images/logo-blue.gif') }}" />
       <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
       <link href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('css/foundation-datepicker.min.css') }}" />
