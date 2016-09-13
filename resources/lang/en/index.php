@@ -7,6 +7,7 @@ return [
    'notDeploy' => 'Inscriptions on the Extras Me plateform will be soon available, please contact us +41 79 732 16 06 or at contact@extrasme.com if you should have any inquieries.',
    'section1'   => [
       'title'     => 'GETTING TOGETHER STUDENTS FROM HOSPITALY SCHOOL AROUND THE WORLD WITH PROFESIONAL FROM THE HOSPITALITY INDUSTRY IN ORDER FOR STUDENTS TO ACCOMPLISH TEMPORARY MISSION',
+      'signUp' => 'SIGN UP',
    ],
    'section2'   => [
       'title'     => 'BECAUSE A WELL DONE WORK CAN ONLY BE APPRECIATED',
