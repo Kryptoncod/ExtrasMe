@@ -21,7 +21,11 @@ Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
    $app->get('account', ['as' => 'account', "uses" => "AccountController@show"]);
-
+   Route::group(['prefix' => 'mycredits'], function($app) {
+      $app->get('/', ['as' => 'credits', "uses" => "CreditsController@show"]);
+      $app->get('/options', ['as' => 'options', "uses" => "CreditsController@options"]);
+      $app->get('/confirm', ['as' => 'confirm', "uses" => "CreditsController@confirmation"]);
+   });
    Route::group(['prefix' => 'extra'], function($app) {
       $app->get('{id}/apply', ['as' => 'extra_apply', 'uses' => 'ExtraController@apply']);
       $app->get('list/{type_extra}',  ['as' => 'extra_list',   "uses" => "ExtraController@showList"]);

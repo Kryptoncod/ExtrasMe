@@ -5077,7 +5077,7 @@ p {
 
 .subheader, h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
-  margin-top: .2rem;
+  margin-top: .5rem;
   margin-bottom: .5rem; }
 
 p.lead {
@@ -6768,7 +6768,9 @@ div.form {
           .profile-container .panel-main .account-resume .personal-informations li.title {
             font-size: 45px;
             margin-bottom: .625rem;
-            font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+            font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+            letter-spacing: 8px;
+            line-height: normal; }
     .profile-container .panel-main .section-title {
       margin: .625rem 0;
       border-bottom: solid .0625rem #222;
@@ -7252,13 +7254,131 @@ ul.topnav li.icon {
   ul.topnav.responsive li a {
     display: block;
     text-align: left; } }
+.credit-container {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto; }
+  .credit-container form {
+    display: flex;
+    flex-direction: column; }
+    .credit-container form .credit-table {
+      margin: auto;
+      margin-top: 20px;
+      background-color: transparent;
+      border: none;
+      margin-bottom: 20px; }
+      .credit-container form .credit-table thead {
+        background-color: transparent; }
+        .credit-container form .credit-table thead tr td {
+          color: white;
+          text-align: center;
+          padding: 30px;
+          letter-spacing: 7px;
+          border-bottom: 1px solid #222;
+          font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          max-width: 350px; }
+      .credit-container form .credit-table tr {
+        background-color: transparent; }
+        .credit-container form .credit-table tr td {
+          color: white;
+          text-align: center;
+          padding: 5px;
+          font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          max-width: 350px; }
+          .credit-container form .credit-table tr td input {
+            margin: auto; }
+    .credit-container form h4 {
+      width: 100%;
+      color: white;
+      font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      font-size: 15px;
+      letter-spacing: 5px;
+      text-align: center;
+      margin-bottom: 20px; }
+    .credit-container form button {
+      margin-left: auto;
+      padding: 3px;
+      letter-spacing: 5px;
+      font-size: 14px;
+      font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      width: 350px; }
 
-.missionStatement
-{
-  background-image: url('../images/missionStatement_image.jpg');
-  max-width: 100%;
-  transform: scale(1.02);
-    background-size: cover;
-}
+.your-invoice-container {
+  width: 80%;
+  margin: auto; }
+  .your-invoice-container .due-invoice h2 {
+    color: white;
+    font-size: 15px;
+    margin-bottom: 35px; }
+  .your-invoice-container .due-invoice .invoice {
+    display: flex;
+    justify-content: space-between; }
+    .your-invoice-container .due-invoice .invoice label {
+      font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      letter-spacing: 2px;
+      cursor: default; }
+    .your-invoice-container .due-invoice .invoice button {
+      margin-left: auto;
+      padding: 3px;
+      letter-spacing: 5px;
+      font-size: 14px;
+      font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      width: 170px; }
+
+.options-container {
+  width: 90%;
+  margin: auto; }
+  .options-container h1 {
+    font-size: 45px;
+    margin-bottom: .625rem;
+    font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 8px;
+    line-height: normal;
+    color: white; }
+  .options-container h2 {
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 5px;
+    font-size: 18px;
+    color: white; }
+  .options-container p {
+    font-size: 14px;
+    color: white;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+  .options-container div {
+    display: flex;
+    justify-content: space-around; }
+    .options-container div button {
+      padding: 3px;
+      letter-spacing: 5px;
+      font-size: 14px;
+      font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      width: 170px; }
+
+.confirm-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column; }
+  .confirm-container form {
+    display: flex;
+    flex-direction: column; }
+  .confirm-container h4 {
+    width: 100%;
+    color: white;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 5px;
+    margin-bottom: 20px; }
+  .confirm-container input {
+    background-color: #222;
+    border: none; }
+  .confirm-container button {
+    padding: 3px;
+    letter-spacing: 5px;
+    font-size: 14px;
+    margin-left: auto;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    width: 250px;
+    margin-top: 25px; }
 
 /*# sourceMappingURL=app.css.map */

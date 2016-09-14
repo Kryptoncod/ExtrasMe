@@ -3,7 +3,7 @@
    <ul class="title-area">
       <li class="name">
          <h1>
-            <a href="{{ route('home', Auth::user()->id) }}"><img class="logo" src="{{ asset('images/logo.gif') }}"></img><span class="hide-for-small-only">Extras Me</span></a>
+            <a href="{{ route('home', Auth::user()->id) }}"><img class="logo" src="{{ asset('images/logo-long.gif') }}" id="logo-navbar"></img></a>
          </h1>
       </li>
    </ul>

@@ -9,7 +9,7 @@
       @if(Auth::user()->type == 0)
          <li><a href="{{ route('experience', Auth::user()->id) }}">@lang('sidebar.myExperiences')</a></li>
       @elseif(Auth::user()->type == 1)
-         <li><a href="">@lang('sidebar.myCredit')</a></li>
+         <li><a href="{{ route('credits', Auth::user()->id) }}">@lang('sidebar.myCredit')</a></li>
          <li><a href="{{ route('my_extras', Auth::user()->id) }}">@lang('sidebar.myExtras')</a></li>
       @endif
       <li><a href="{{ route('dashboard', Auth::user()->id)}}">@lang('sidebar.dashboard')</a></li>

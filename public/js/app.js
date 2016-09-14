@@ -309,8 +309,6 @@ $(document).ready(function(){
     
     if(width <= 700){
         $('#logo-navbar').attr('src', 'images/logo.gif');
-    }else{
-
     }
 });
 

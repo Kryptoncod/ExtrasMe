@@ -7769,7 +7769,7 @@ p {
 
 .subheader, h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
-  margin-top: .2rem;
+  margin-top: .5rem;
   margin-bottom: .5rem;
 }
 
@@ -10240,6 +10240,8 @@ div.form {
             font-size: 45px;
             margin-bottom: .625rem;
             font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+            letter-spacing: 8px;
+            line-height: normal;
           }
         }
       }
@@ -10838,5 +10840,169 @@ ul.topnav li.icon {display: none;}
   ul.topnav.responsive li a {
     display: block;
     text-align: left;
+  }
+}
+
+.credit-container{
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  form{
+    display: flex;
+    flex-direction: column;
+    .credit-table{
+      margin: auto;
+      margin-top: 20px;
+      background-color:transparent;
+      border:none;
+      margin-bottom: 20px;
+      thead{
+        
+        background-color:transparent;
+        tr{
+          td{
+            color: white;
+            text-align: center;
+            padding:30px;
+            letter-spacing: 7px;
+            border-bottom:1px solid #222;
+            font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+            max-width: 350px;
+          }
+        }
+      }
+      tr{
+        background-color:transparent;
+        td{
+          color: white;
+          text-align: center;
+          padding:5px;
+          font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          max-width: 350px;
+          input{
+            margin: auto;
+          }
+        }
+      }
+    }
+    h4{
+      width: 100%;
+      color: white;
+      font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      font-size: 15px;
+      letter-spacing: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    button{
+      margin-left: auto;
+      padding:3px;
+      letter-spacing: 5px;
+      font-size: 14px;
+      font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      width: 350px;
+    }
+  }
+  
+}
+
+.your-invoice-container{
+  width: 80%;
+  margin: auto;
+  .due-invoice{
+    h2{
+      color:white;
+      font-size: 15px;
+      margin-bottom:35px;
+    }
+    .invoice{
+      label{
+        font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        letter-spacing: 2px;
+        cursor: default;
+      }
+      div{
+
+      }
+      button{
+      margin-left: auto;
+      padding:3px;
+      letter-spacing: 5px;
+      font-size: 14px;
+      font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      width: 170px;
+    }
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  
+}
+
+.options-container{
+  width: 90%;
+  margin:auto;
+  h1{
+    font-size: 45px;
+    margin-bottom: .625rem;
+    font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 8px;
+    line-height: normal;
+    color: white;
+  }
+  h2{
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    letter-spacing: 5px;
+      font-size: 18px;
+      color:white;
+  }
+  p{
+    font-size: 14px;
+    color: white;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  }
+  div{
+    display: flex;
+    justify-content: space-around;
+    button{
+      padding:3px;
+        letter-spacing: 5px;
+        font-size: 14px;
+        font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        width: 170px;
+    }
+  }
+  
+}
+
+.confirm-container{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  form{
+    display: flex;
+    flex-direction: column;
+  }
+  h4{
+        width: 100%;
+    color: white;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-size: 15px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+  }
+  input{
+    background-color: #222;
+    border:none;
+  }
+  button{
+    padding:3px;
+        letter-spacing: 5px;
+        font-size: 14px;
+        margin-left: auto;
+        font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        width: 250px;
+        margin-top: 25px;
   }
 }
