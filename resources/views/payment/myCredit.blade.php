@@ -51,7 +51,7 @@
          </div>
 
          <div class="credit-container">
-            <form action="">
+            <form action="{{ route('confirm', Auth::user()->id) }}" method="get">
                <table class="credit-table">
                   <thead>
                      <tr>
@@ -70,13 +70,13 @@
                   </thead>
                   <tr>
                      <td>
-                        <input type="radio" name="what_payment">
+                        <input type="radio" name="what_payment" value="25 227">
                      </td>
                      <td>
                         25
                      </td>
                      <td>
-                        220 CHF
+                        227 CHF
                      </td>
                      <td>
                         8.80 CHF
@@ -84,13 +84,13 @@
                   </tr>
                   <tr>
                      <td>
-                        <input type="radio" name="what_payment">
+                        <input type="radio" name="what_payment" value="50 433">
                      </td>
                      <td>
                         50
                      </td>
                      <td>
-                        420 CHF
+                        433 CHF
                      </td>
                      <td>
                         8.40 CHF
@@ -98,13 +98,13 @@
                   </tr>
                   <tr>
                      <td>
-                        <input type="radio" name="what_payment">
+                        <input type="radio" name="what_payment" value="100 743">
                      </td>
                      <td>
                         100
                      </td>
                      <td>
-                        720 CHF
+                        743 CHF
                      </td>
                      <td>
                         7.20 CHF
@@ -112,22 +112,19 @@
                   </tr>
                   <tr>
                      <td>
-                        <input type="radio" name="what_payment">
+                        <input type="radio" name="what_payment" value="250 1548">
                      </td>
                      <td>
                         250
                      </td>
                      <td>
-                        1500 CHF
+                        1548 CHF
                      </td>
                      <td>
                         6.00 CHF
                      </td>
                   </tr>
                </table>
-                <h4>
-                  Vous avez selectionné tant annonces en ligne pour tant CHF.
-               </h4>
                <button>VALIDEZ VOTRE PAIEMENT</button>
             </form>
            

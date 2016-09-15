@@ -9,6 +9,7 @@ use App\Http\Requests\ExtraSearchRequest;
 use App\Http\Requests\ExtraSubmitRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FavoriteSearchRequest;
+use App\Http\Requests\TypeCreditRequest;
 
 use App\Models\User;
 use App\Models\Extra;
@@ -31,21 +32,48 @@ use Auth, DB;
 
 class CreditsController extends Controller
 {
+
+
+	public function __construct()
+	{
+		$middleware = array('auth', 'credit');
+		$this->middleware($middleware);
+	}
+
 	public function show($username){
 		$user = User::find($username);
 		$professional = $user->professional;
+
 		return view('payment.myCredit', ['user' => $user, 'professional' => $professional, 'username' => $username]);
 	}
 
-	public function options($username){
+	public function options($username, Request $request){
 		$user = User::find($username);
 		$professional = $user->professional;
+
+		$this->validate($request, [
+	        'company_name' => 'required',
+	        'responsable' => 'required',
+	        'mail' => 'required|email|confirmed',
+    	]);
+
 		return view('payment.options', ['user' => $user, 'professional' => $professional, 'username' => $username]);
 	}
 
-	public function confirmation($username){
+	public function confirmation($username, TypeCreditRequest $request){
 		$user = User::find($username);
 		$professional = $user->professional;
-		return view('payment.confirmation', ['user' => $user, 'professional' => $professional, 'username' => $username]);
+		$data = [];
+		$i = 0;
+
+		$radio = $request->input('what_payment');
+
+		foreach(explode(' ', $radio) as $info) 
+		{
+			$data[$i] = $info;
+			$i++;
+		}
+
+		return view('payment.confirmation', ['user' => $user, 'professional' => $professional, 'username' => $username, 'data' => $data]);
 	}
 }
