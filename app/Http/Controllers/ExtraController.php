@@ -127,10 +127,11 @@ class ExtraController extends Controller
 				'done' => 0,
 				));
 			$extra = Extra::find($id);
+			$professionalUser = $extra->professional->user;
 			$student_name = $student->first_name.' '.$student->last_name;
-			$notif_to_send = $student_name.' a souscrit a votre Extra : '.$extra->type;
-			Mail::send('mails.notification', ['notification' => $notif_to_send], function($message){
-				$message->to('baptiste.arnaud95@gmail.com')->subject('Nouvelle notification ExtrasMe');
+			$notif_to_send = $student_name.' subscribed to your Extra : '.$extra->type;
+			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
+				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
 			});
 			return redirect()->back();
 		}
@@ -198,6 +199,17 @@ class ExtraController extends Controller
 			->update(['done' => 1]);
 
 		DB::table('extras')->where('id', $extraID)->update(['find' => 1]);
+
+		$extra = Extra::find($extraID);
+		$professional = $extra->professional;
+		$studentUser = Student::find($studentID)->user;
+
+		$notif_to_send = $professional->company_name." accepted you for the Extra : ".$extra->type." the ".$extra->date." at ".$extra->date_time.".";
+
+		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
+
+				$message->to($studentUser->email)->subject('New notification ExtrasMe');
+		});
 
 		return redirect()->back();
 	}
