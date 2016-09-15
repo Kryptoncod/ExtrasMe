@@ -139,53 +139,55 @@
          <div class="your-invoice-container">
             <div class="due-invoice">
                <h2>BELOW HERE ARE YOUR DUE INVOICE</h2>
-               <div class="invoice">
-                  <div>
-                     <label>
-                        FACTURE DU 19.08.07
-                     </label>
+               @if(!empty($dueInvoices))
+                  @foreach($dueInvoices as $dueInvoice)
+                     <div class="invoice">
+                        <div>
+                           <label>
+                              FACTURE DU {{ $dueInvoice->created_at }}
+                           </label>
+                        </div>
+                        <div>
+                           <button>PREVIEW</button>
+                           <button>DOWNLOAD</button>
+                        </div>
+                     </div>
+                  @endforeach
+               @else
+                  <div class="invoice">
+                     <div>
+                        <label>
+                           You don't have due invoices.
+                        </label>
+                     </div>
                   </div>
-                  <div>
-                     <button>PREVIEW</button>
-                     <button>DOWNLOAD</button>
-                  </div>
-               </div>
-               <div class="invoice">
-                  <div>
-                     <label>
-                        FACTURE DU 19.08.07
-                     </label>
-                  </div>
-                  <div>
-                     <button>PREVIEW</button>
-                     <button>DOWNLOAD</button>
-                  </div>
-               </div>
+               @endif
             </div>
             <div class="due-invoice">
                <h2>YOUR PAST INVOICE</h2>
-               <div class="invoice">
-                  <div>
-                     <label>
-                        FACTURE DU 19.08.07
-                     </label>
+               @if(!empty($pastInvoices))
+                  @foreach($pastInvoices as $pasInvoice)
+                     <div class="invoice">
+                        <div>
+                           <label>
+                              FACTURE DU {{ $pasInvoice->created_at }}
+                           </label>
+                        </div>
+                        <div>
+                           <button>PREVIEW</button>
+                           <button>DOWNLOAD</button>
+                        </div>
+                     </div>
+                  @endforeach
+               @else
+                  <div class="invoice">
+                     <div>
+                        <label>
+                           You don't have past invoices.
+                        </label>
+                     </div>
                   </div>
-                  <div>
-                     <button>PREVIEW</button>
-                     <button>DOWNLOAD</button>
-                  </div>
-               </div>
-               <div class="invoice">
-                  <div>
-                     <label>
-                        FACTURE DU 19.08.07
-                     </label>
-                  </div>
-                  <div>
-                     <button>PREVIEW</button>
-                     <button>DOWNLOAD</button>
-                  </div>
-               </div>
+               @endif
             </div>
          </div>
 

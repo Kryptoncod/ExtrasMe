@@ -30,4 +30,9 @@ class Professional extends Model
     {
         return $this->belongsToMany('App\Models\Student', 'number_extras_establishement');
     }
+
+    public function invoices()
+    {
+        return $this->hasMany('App\Models\Invoice');
+    }
 }

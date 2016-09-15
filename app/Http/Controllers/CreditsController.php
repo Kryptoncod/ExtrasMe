@@ -48,7 +48,13 @@ class CreditsController extends Controller
 		$user = User::find($username);
 		$professional = $user->professional;
 
-		return view('payment.myCredit', ['user' => $user, 'professional' => $professional, 'username' => $username]);
+		$dueInvoices = DB::table('invoices')->where('professional_id', $professional->id)
+			->where('paid', 0)->get();
+
+		$pastInvoices = DB::table('invoices')->where('professional_id', $professional->id)
+			->where('paid', 1)->get();
+
+		return view('payment.myCredit', ['user' => $user, 'professional' => $professional, 'username' => $username, 'dueInvoices' => $dueInvoices, 'pastInvoices' => $pastInvoices]);
 	}
 
 	public function options($username, Request $request, $data0, $data1){
