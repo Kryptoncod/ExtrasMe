@@ -44,6 +44,18 @@ class ExtraController extends Controller
 		$this->extraRepository = $extraRepository;
 		$this->professionalRepository = $professionalRepository;
 	}
+
+	public function show ($username, $id){
+		$id = Auth::user()->id;
+		$student = User::find($id)->student;
+		$first_name = $student->first_name;
+		$last_name = $student->last_name;
+		$name = $first_name . " " . $last_name;
+		$extra = Extra::find($id);
+		$professional = Professional::find($extra->professional_id);
+		$email_pro = User::find($professional->user_id)->email;
+		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro])->with('name', $name);
+	}
 	public function showList($username, $type_extra)
 	{
 

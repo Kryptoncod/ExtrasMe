@@ -28,6 +28,7 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->get('/confirm', ['as' => 'confirm', "uses" => "CreditsController@confirmation"]);
    });
    Route::group(['prefix' => 'extra'], function($app) {
+      $app->get('{id}', ['as' => 'show_extra', 'uses' => 'ExtraController@show']);
       $app->get('{id}/apply', ['as' => 'extra_apply', 'uses' => 'ExtraController@apply']);
       $app->get('list/{type_extra}',  ['as' => 'extra_list',   "uses" => "ExtraController@showList"]);
       $app->post('search', ['as' => 'extra_search', "uses" => "ExtraController@search"]);

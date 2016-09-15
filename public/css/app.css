@@ -7381,4 +7381,52 @@ ul.topnav li.icon {
     width: 250px;
     margin-top: 25px; }
 
+.extra-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column; }
+  .extra-container .titre-extra {
+    width: 100%;
+    background-color: #222;
+    display: flex;
+    padding: 10px; }
+    .extra-container .titre-extra h2 {
+      color: white;
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: auto; }
+  .extra-container .info-container {
+    width: 100%;
+    background-color: #060b2b; }
+    .extra-container .info-container table {
+      margin: auto;
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      border-collapse: collapse; }
+      .extra-container .info-container table thead {
+        background-color: transparent; }
+        .extra-container .info-container table thead tr td {
+          color: white;
+          padding: 20px;
+          letter-spacing: 7px;
+          border-bottom: 1px solid #222;
+          font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+      .extra-container .info-container table tr {
+        background-color: transparent; }
+        .extra-container .info-container table tr td {
+          color: white;
+          padding: 10px;
+          font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          border-bottom: 1px solid #222; }
+  .extra-container button {
+    padding: 3px;
+    letter-spacing: 5px;
+    font-size: 14px;
+    margin-left: auto;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    width: 180px;
+    margin-top: 25px; }
+
 /*# sourceMappingURL=app.css.map */
