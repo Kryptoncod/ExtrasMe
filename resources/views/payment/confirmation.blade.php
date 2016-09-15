@@ -52,14 +52,10 @@
          <div class="confirm-container">
             <h4>Vous avez selectionné <span style="color: blue">{{ $data[0] }}</span> annonces en ligne pour <span style="color: blue">{{ $data[1] }}</span> CHF</h4>
             <form action="{{ route('options', ['username' => Auth::user()->id, 'data0' => $data[0], 'data1' => $data[1]]) }}" method="get">
-               <label>NOM D'ENTREPRISE:</label>
-               <input type="text" name="company_name">
-               <label>PERSONNE EN CHARGE:</label>
-               <input type="text" name="responsable">
                <label>ADRESS MAIL:</label>
                <input type="text" name="mail">
-               <label>CONFIRMATION MAIL:</label>
-               <input type="text" name="mail_confirmation">
+               <label>PASSWORD:</label>
+               <input type="password" name="password">
                <button>PAYER MAINTENANT</button>
             </form>
          </div>

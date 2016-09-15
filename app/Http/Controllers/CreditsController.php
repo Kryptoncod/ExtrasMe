@@ -22,22 +22,26 @@ use App\Models\Language;
 use App\Models\Competence;
 use App\Models\EventModel;
 use App\Models\Dashboard;
+use App\Models\Invoice;
 
 use App\Repositories\ExtraRepository;
 use App\Repositories\ProfessionalRepository;
+use App\Repositories\InvoiceRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB, Mail;
+use Auth, DB, Mail, Password;
 
 class CreditsController extends Controller
 {
 
+	protected $invoiceRepository;
 
-	public function __construct()
+	public function __construct(InvoiceRepository $invoiceRepository)
 	{
 		$middleware = array('auth', 'credit');
 		$this->middleware($middleware);
+		$this->invoiceRepository = $invoiceRepository;
 	}
 
 	public function show($username){
@@ -52,12 +56,20 @@ class CreditsController extends Controller
 		$professional = $user->professional;
 
 		$this->validate($request, [
-	        'company_name' => 'required',
-	        'responsable' => 'required',
-	        'mail' => 'required|email|confirmed',
+	        'mail' => 'required|email',
+	        'password' => 'required',
     	]);
 
-		return view('payment.options', ['user' => $user, 'professional' => $professional, 'username' => $username, 'data1' => $data1, 'data0' => $data0]);
+    	$credentials = array('email' => $request->input('mail'),'password' => $request->input('password'));
+
+		if(Auth::attempt(['email' => $request->input('mail'),'password' => $request->input('password')]))
+		{
+		    return view('payment.options', ['user' => $user, 'professional' => $professional, 'username' => $username, 'data1' => $data1, 'data0' => $data0]);
+		}
+		else {
+
+    		return redirect()->back();
+    	}
 	}
 
 	public function confirmation($username, TypeCreditRequest $request){
@@ -86,6 +98,20 @@ class CreditsController extends Controller
 		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
 			$message->to($professionalUser->email)->subject('New notification ExtrasMe');
 		});
+
+		$professional = $professionalUser->professional;
+
+		$invoiceInputs = array(
+			'paid' => 0,
+			'number_announce' => $data0,
+			'price' => $data1,
+			'price_announce' => $data1 / $data0,
+			'professional_id' => $professional->id,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+			);
+
+		$invoice = $this->invoiceRepository->store($invoiceInputs);
 
 		return redirect()->route('credits', $username);
 	}

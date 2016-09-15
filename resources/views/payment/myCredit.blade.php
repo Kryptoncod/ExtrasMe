@@ -79,7 +79,7 @@
                         227 CHF
                      </td>
                      <td>
-                        8.80 CHF
+                        9.08 CHF
                      </td>
                   </tr>
                   <tr>
@@ -93,7 +93,7 @@
                         433 CHF
                      </td>
                      <td>
-                        8.40 CHF
+                        8.66 CHF
                      </td>
                   </tr>
                   <tr>
@@ -107,7 +107,7 @@
                         743 CHF
                      </td>
                      <td>
-                        7.20 CHF
+                        7.43 CHF
                      </td>
                   </tr>
                   <tr>
@@ -121,7 +121,7 @@
                         1548 CHF
                      </td>
                      <td>
-                        6.00 CHF
+                        6.19 CHF
                      </td>
                   </tr>
                </table>

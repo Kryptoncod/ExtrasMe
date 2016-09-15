@@ -42,11 +42,11 @@
                <img src="{{ asset('images/social-medias/twitter.png') }}" alt="ExtrasMe's Twitter" />
             </a></li>
 
-            <li><a href="https://linkedin.com">
+            <li><a href="https://www.linkedin.com/company/10451089?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A10451089%2Cidx%3A3-1-4%2CtarId%3A1473948514150%2Ctas%3Aextras%20me">
                <img src="{{ asset('images/social-medias/linkedin.png') }}" alt="ExtrasMe's Linkedin" />
             </a></li>
 
-            <li><a href="https://instagram.com/extras_me/">
+            <li><a href="https://www.instagram.com/extras.me/">
                <img src="{{ asset('images/social-medias/instagram.png') }}" alt="ExtrasMe's Instagram" />
             </a></li>
 
