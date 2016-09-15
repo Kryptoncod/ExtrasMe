@@ -28,7 +28,7 @@ use App\Repositories\ProfessionalRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB;
+use Auth, DB, Mail;
 
 class CreditsController extends Controller
 {
@@ -47,7 +47,7 @@ class CreditsController extends Controller
 		return view('payment.myCredit', ['user' => $user, 'professional' => $professional, 'username' => $username]);
 	}
 
-	public function options($username, Request $request){
+	public function options($username, Request $request, $data0, $data1){
 		$user = User::find($username);
 		$professional = $user->professional;
 
@@ -57,7 +57,7 @@ class CreditsController extends Controller
 	        'mail' => 'required|email|confirmed',
     	]);
 
-		return view('payment.options', ['user' => $user, 'professional' => $professional, 'username' => $username]);
+		return view('payment.options', ['user' => $user, 'professional' => $professional, 'username' => $username, 'data1' => $data1, 'data0' => $data0]);
 	}
 
 	public function confirmation($username, TypeCreditRequest $request){
@@ -75,5 +75,18 @@ class CreditsController extends Controller
 		}
 
 		return view('payment.confirmation', ['user' => $user, 'professional' => $professional, 'username' => $username, 'data' => $data]);
+	}
+
+	public function paymentOptionsCash($username, $data0, $data1)
+	{
+		$notif_to_send = "Your demand for ".$data0." Extras is now being processing. You will receive your credits as soon as the payment is effective.";
+
+		$professionalUser = User::find($username);
+
+		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
+			$message->to($professionalUser->email)->subject('New notification ExtrasMe');
+		});
+
+		return redirect()->route('credits', $username);
 	}
 }

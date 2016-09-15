@@ -21,15 +21,14 @@
             <p>
                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro rem, ex deleniti nemo ullam placeat enim qui cum officiis dolor deserunt consequatur nam culpa quaerat, dignissimos at! Asperiores tempora, non.
             </p>
+
             <div>
-               <button>JE PAYE EN ESPECE</button>
+               <button><a type="submit" href="{{ route('optionsPaymentCash', ['username' => Auth::user()->id, 'data0' => $data0, 'data1' => $data1]) }}">JE PAYE EN ESPECE</a></button>
                <button>JE PAYE EN LIGNE</button>
                <button style="width: 300px;">JE PAYE PAR VIREMENT BANCAIRE</button>
             </div>
          </div>
-      
       </div>
-
    </div>
 
 @endsection
