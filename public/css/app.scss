@@ -9947,6 +9947,16 @@ footer.footer {
       }
     }
   }
+  &.section-5 {
+    background: url(../images/section1_image-mirroir.jpg) center center no-repeat;
+
+    transform: scale(1.02);
+    background-size: cover;
+    .section-content {
+      position: relative;
+      top: 20vh;
+    }
+  }
 }
 
 .index-side-nav {
@@ -11120,4 +11130,63 @@ ul.topnav li.icon {display: none;}
   font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   width: 170px;
   margin-top: 25px;
+}
+
+.error404-container{
+  display: flex;
+  flex-direction: column;
+  padding:80px;
+  background-color: #060b2b;
+  width: 60%;
+  margin: auto;
+
+  h4{
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    a{
+      text-decoration: underline;
+    }
+  }
+  h1{
+    color: white;
+    font-size: 23px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+    text-align: center;
+  }
+  .search-bar{
+      display: flex;
+      transition: border .2s;
+      width: 450px;
+      margin:auto;
+      margin-bottom: 20px;
+      input[type=search]{
+        background-color:#0E0E0E;
+        border:none;
+        margin: 0;
+        letter-spacing: 5px;
+        color:white;
+        width: 100%;
+      }
+      form{
+        width: 100%;
+      }
+      label{
+        display: flex;
+        background-color:#0E0E0E;
+        cursor:default;
+        .icon-search{
+          font-size:20px;
+          color: white;
+          margin: auto;
+          padding-top:7px;
+          margin-left: 20px;
+          margin-right: 10px;
+        }
+      }
+      
+    }
 }
