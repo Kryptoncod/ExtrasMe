@@ -9472,8 +9472,14 @@ html.no-js .js-notice {
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   text-align: center;
+  padding:3px;
+  letter-spacing: 5px;
+  font-size: 14px;
+  margin-left: auto;
+  font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  width: 170px;
+  margin-top: 25px;
 }
 
 #extraModal {
@@ -10336,26 +10342,48 @@ div.form {
   }
 }
 
-.card-info {
-  margin-top: 1.25em;
-  border: none;
-  border-collapse: separate;
-  border-spacing: 0px;
-
-  td {
-    background-color: white;
-    border-bottom: 1px solid grey;
-    border-right: 1px solid grey;
-  }
-
-  thead {
-    background-color: #060b2b;
-
-    td {
-      background-color: #060b2b;
+.titre-extra{
+    width: 90%;
+    background-color: #222;
+    display: flex;
+    padding:10px;
+    h2{
+      color: white;
+      text-align: center;
+      margin-top: auto;
+      font-size: 20px;
+      margin-bottom: auto;
     }
   }
-}
+
+.card-info {
+      width: 100%;
+      background-color:#060b2b;
+      border:none;
+      border-collapse: collapse;
+      margin-bottom:0px;
+      thead{
+        background-color:transparent;
+        tr{
+          td{
+            color: white;
+            padding:20px;
+            letter-spacing: 7px;
+            border-bottom:1px solid #222;
+            font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          }
+        }
+      }
+      tr{
+        background-color:transparent !important;
+        td{
+          color: white;
+          padding:10px;
+          font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          border-bottom:1px solid #222;
+        }
+      }
+    }
 
 .apply-button {
   padding: 10px;
@@ -11066,4 +11094,30 @@ ul.topnav li.icon {display: none;}
         width: 180px;
         margin-top: 25px;
   }
+}
+
+.apply-button.right{
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-button{
+  border-radius: 0;
+  border-width: 0;
+  font-weight: 400;
+  position: relative;
+  text-decoration: none;
+  line-height: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  text-align: center;
+  padding:3px;
+  letter-spacing: 2px;
+  font-size: 14px;
+  margin-left: auto;
+  font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  width: 170px;
+  margin-top: 25px;
 }

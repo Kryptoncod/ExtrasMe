@@ -25,12 +25,14 @@ class AjaxController extends Controller
 			$extra = Extra::find($cardId);
 			$student = User::find($user->id)->student;
 			$can_apply = 0;
+			$professional = Professional::find($extra->professional_id);
 			if(count($student->extras) > 0){
 				if(!$student->extras->contains('id', $extra->id)){
 					$can_apply = 1;
 				}
 			}
-			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search')]);
+			$email_pro = User::find($professional->user_id)->email;
+			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, 'email' => $email_pro]);
 		}else{
 			$id = $user->id;
 			$professionalID = User::find($id)->professional->id;

@@ -89,13 +89,14 @@ class ExtraController extends Controller
 			$professionals = array();
 			for($i=0; $i < count($extras); $i++)
 			{
-				array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
+				array_push($professionals, Professional::find($extras[$i]->professional_id));
 			}
 			$can_apply = 0;
 			if(!$student->extras->contains('id', $extras[0]->id)){
 				$can_apply = 1;
 			}
-			return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply])->with('name', $name);
+			$email_pro = User::find($professionals[0]->user_id)->email;
+			return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply, 'email' => $email_pro])->with('name', $name);
 		}
 	}
 

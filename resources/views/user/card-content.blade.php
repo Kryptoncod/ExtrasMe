@@ -1,4 +1,33 @@
-<img src="{{ asset('images/user-professional.png') }}" class="background-image" style="width:90%;"/>
+<div class="row account-resume" style="width: 90%;">
+            <div class="columns medium-3 medium-uncentered small-centered picture-column small-7" style="padding: 0;">
+               @if(file_exists("uploads/pp/".$professional->user_id.".png"))
+                  <img class="profile-picture" src=" uploads/pp/{{$professional->user_id}}.png" alt="" />
+               @else
+                  <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
+               @endif
+            </div>
+
+            <div class="medium-7 small-12 medium-uncentered small-centered columns">
+               <ul class="personal-informations">
+                  <li class="title">{{ strtoupper($professional->company_name) }}</li>
+
+                  <li><span class="info-label">@lang('professional.email')</span>
+                  {{ strtoupper($email) }}</li>
+
+                  <li><span class="info-label">@lang('professional.contactNumber')</span>
+                  {{ strtoupper($professional->phone) }}</li>
+
+                  <li><span class="info-label">@lang('professional.referencePerson')</span>
+                  {{ strtoupper($professional->first_name.' '.$professional->last_name) }}</li>
+
+                  <li><span class="info-label">@lang('professional.sector')</span>
+                  {{ strtoupper($professional->category) }}</li>
+               </ul>
+            </div>
+         </div>
+         <div class="titre-extra">
+               <h2>{{$extra->type}} EXTRA : {{$professional->state}}</h2>
+            </div>
 <table style="width:90%;" class="card-info">
   <thead>
     <tr>
@@ -57,10 +86,10 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <td style="border-bottom: none;">
         @lang('card-content.otherInfos')
       </td>
-      <td>
+      <td style="border-bottom: none;">
         @if(empty($extra->informations))
           @lang('card-content.noOtherInfo')
         @else
@@ -75,18 +104,22 @@
   @if($student->registration_done == 1)   
               @if($student->extras->first())
                   @if($can_apply == 1)
-                    <a href="{{ route('extra_apply',  ['id' => $extra->id, 'username' => $user->id]) }}" class="apply-button right">@lang('card-content.apply')</a>
+                    <div style="width: 90%;">
+                      <a href="{{ route('extra_apply',  ['id' => $extra->id, 'username' => $user->id]) }}" class="apply-button right main-button">@lang('card-content.apply')</a>
+                    </div>
                   @else
-                    <div class="apply-button right">
-                      @lang('card-content.alreadyApplied')
+                    <div style="width: 90%;">
+                      <a href="" class="apply-button right main-button" style="pointer-events: none;cursor: default;">@lang('card-content.alreadyApplied')</a>
                   </div>
                   @endif
               @else
-                <a href="{{ route('extra_apply',  ['id' => $extra->id, 'username' => $user->id]) }}" class="apply-button right">@lang('card-content.apply')</a>
+                <div style="width: 90%;">
+                  <a href="{{ route('extra_apply',  ['id' => $extra->id, 'username' => $user->id]) }}" class="apply-button right main-button">@lang('card-content.apply')</a>
+                </div>
               @endif
   @else
-              <div class="apply-button right">
-                <a href="{{ route('account', Auth::user()->id)}}">@lang('card-content.cantApply')</a>
+              <div style="width: 90%;">
+                <a href="{{ route('account', Auth::user()->id)}}" class="main-button">@lang('card-content.cantApply')</a>
               </div>
   @endif
 @elseif($user->type == 1)     
