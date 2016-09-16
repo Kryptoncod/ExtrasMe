@@ -194,13 +194,13 @@
                            <p class="empty-notice">@lang('student.noExtras')</p>
                         @else
                            @foreach ($extras as $extra)
-                           <li class="extra-available">@include('user.card', ["description" => $extra->professional->company_name." in ".
+                           <li class="extra-available"><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@include('user.card', ["description" => $extra->professional->company_name." in ".
                                                                        $extra->type.
                                                                        ' for '.$extra->date.' at '.$extra->date_time,
                                                       "title" => $extra->professional->company_name,
                                                       "image" => asset("images/user-professional.png"),
                                                       "id"  => $extra->id])
-                           </li>
+                           </a></li>
                            @endforeach
                         @endif
                      </ul>

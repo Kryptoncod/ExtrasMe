@@ -119,7 +119,12 @@
 
 
                </div>
-               <button>APPLY NOW</button>
+               @if(Auth::user()->type == 0)
+                <button>APPLY NOW</button>
+              @else
+                <button><a>MODIFY</a></button>
+                <button><a href="{{ route('delete_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">DELETE</a></button>
+              @endif
             </div>
          </div>
       </div>
