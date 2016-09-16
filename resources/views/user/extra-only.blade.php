@@ -121,9 +121,11 @@
                </div>
                @if(Auth::user()->type == 0)
                 <button>APPLY NOW</button>
-              @else
-                <button><a>MODIFY</a></button>
-                <button><a href="{{ route('delete_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">DELETE</a></button>
+              @elseif($edit_ok == 1)
+                <div style="display: flex;">
+                   <button style="margin-left: auto;"><a>MODIFY</a></button>
+                   <button style="margin-left:20px;"><a href="{{ route('delete_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">DELETE</a></button>
+                </div>
               @endif
             </div>
          </div>

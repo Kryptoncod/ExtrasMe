@@ -47,7 +47,7 @@ class ExtraController extends Controller
 
 	public function show ($username, $extraId){
 		$id = Auth::user()->id;
-
+		$modif = 0;
 		if(Auth::user()->type == 0)
 		{
 			$student = User::find($id)->student;
@@ -59,11 +59,13 @@ class ExtraController extends Controller
 		{
 			$name = null;
 		}
-
 		$extra = Extra::find($extraId);
 		$professional = Professional::find($extra->professional_id);
 		$email_pro = User::find($professional->user_id)->email;
-		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro])->with('name', $name);
+		if($professional->user_id == $id){
+			$modif = 1;
+		}
+		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif])->with('name', $name);
 	}
 	public function showList($username, $type_extra)
 	{
