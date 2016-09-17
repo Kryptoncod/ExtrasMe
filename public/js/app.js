@@ -52,6 +52,7 @@ var configuration = {
         }
     }
 };
+
 $(document).foundation(configuration), $(document).foundation();
 var elements = [],
     currentscroll = 0;

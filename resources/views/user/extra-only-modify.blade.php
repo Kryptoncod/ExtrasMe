@@ -40,7 +40,7 @@
                </ul>
             </div>
          </div>
-
+         <form action="{{ route('modify_extra_post', ['username' => Auth::user()->id, 'id' => $extra->id]) }}" method="post">
             <div class="titre-extra">
                <h2>{{$extra->type}} EXTRA : {{$professional->state}}</h2>
             </div>
@@ -59,7 +59,12 @@
                                            @lang('card-content.category')
                                          </td>
                                          <td id="extra_type">
-                                           {{ $extra->type }}
+                                           <select class="input" id="type" name="type" aria-label="Type of extra">
+                                             <option selected disabled value="">@lang('professional.lookingForExtras.selectType')</option>
+                                             @foreach(config('international.last_minute_types') as $id => $name)
+                                                <option value="{{ $id }}">{{ $name }}</option>
+                                             @endforeach
+                                          </select>
                                          </td>
                                        </tr>
                                        <tr>
@@ -67,7 +72,7 @@
                                            @lang('card-content.requirements')
                                          </td>
                                          <td id="extra_requirements">
-                                           {{ $extra->requirements }}
+                                           <input type="text" name="requirements" id="requirements" value="{{ $extra->requirements }}"></input>
                                          </td>
                                        </tr>
                                        <tr>
@@ -75,7 +80,7 @@
                                            @lang('card-content.salary')
                                          </td>
                                          <td id="extra_salary">
-                                           {{ $extra->salary }} CHF/Hr
+                                           <input type="number" min="0" name="salary" id="salary" pattern="abovezero" value="{{ $extra->salary }}" />
                                          </td>
                                        </tr>
                                        <tr>
@@ -83,7 +88,7 @@
                                            @lang('card-content.benefits')
                                          </td>
                                          <td id="extra_benefits">
-                                           {{ $extra->benefits }}
+                                           <input type="text" name="benefits" id="benefits" value="{{ $extra->benefits }}" ></input>
                                          </td>
                                        </tr>
                                        <tr>
@@ -99,7 +104,7 @@
                                            @lang('card-content.time')
                                          </td>
                                          <td id="extra_date">
-                                           {{ $extra->date.' at '.$extra->date_time }}
+                                            <input type="text" class="span2" id="date" name="date" value="{{ $extra->date.' '.$extra->date_time }}">
                                          </td>
                                        </tr>
                                        <tr>
@@ -107,7 +112,7 @@
                                            @lang('card-content.duration')
                                          </td>
                                          <td id="extra_date">
-                                           {{ $extra->duration }}
+                                            <input type="number" value="1" min="0" name="duration" id="duration" pattern="abovezero" value="{{ $extra->duration }}" />
                                          </td>
                                        </tr>
                                        <tr>
@@ -115,26 +120,20 @@
                                            @lang('card-content.otherInfo')
                                          </td>
                                          <td style="border-bottom: none;" id="extra_otherInfos">
-                                           @if(empty($extra->informations))
-                                               @lang('card-content.noOtherInfo')
-                                           @else
-                                             {{ $extra->informations}}
-                                           @endif
+                                           <input type="text" name="informations" id="informations" value="{{ $extra->informations }}"></input>
                                          </td>
                                        </tr>
                                      </tbody>
                                    </table>
-
-
                </div>
-               @if(Auth::user()->type == 0)
-                <button>APPLY NOW</button>
-              @elseif($edit_ok == 1)
+               @if($edit_ok == 1)
                 <div style="display: flex;">
-                   <button style="margin-left: auto;"><a href="{{ route('modify_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">MODIFY</a></button>
-                   <button style="margin-left:20px;"><a href="{{ route('delete_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">DELETE</a></button>
+                   <button style="margin-left: auto;" name="save" value="1">SAVE</button>
+                   <button style="margin-left:20px;" name="cancel" value="1">CANCEL</button>
+                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </div>
               @endif
+              </form>
             </div>
          </div>
       </div>

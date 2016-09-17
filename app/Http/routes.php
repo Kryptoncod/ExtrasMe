@@ -35,6 +35,8 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->post('submit', ['as' => 'extra_submit', "uses" => "ExtraController@submit"]);
       $app->get ('myextras', ['as' => 'my_extras', "uses" => "ExtraController@myExtras"]);
       $app->get ('deleteextra/{id}', ['as' => 'delete_extra', "uses" => "ExtraController@deleteExtra"]);
+      $app->get ('{id}/modify', ['as' => 'modify_extra', "uses" => "ExtraController@showModifyExtra"]);
+      $app->post ('{id}/modify', ['as' => 'modify_extra_post', "uses" => "ExtraController@modifyExtra"]);
       $app->get('{ExtraID}/accept/{studentID}', function($username, $extraID, $studentID){
       return App\Http\Controllers\ExtraController::acceptExtra($extraID, $studentID);
    });

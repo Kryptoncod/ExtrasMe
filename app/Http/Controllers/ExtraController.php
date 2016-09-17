@@ -48,6 +48,7 @@ class ExtraController extends Controller
 	public function show ($username, $extraId){
 		$id = Auth::user()->id;
 		$modif = 0;
+
 		if(Auth::user()->type == 0)
 		{
 			$student = User::find($id)->student;
@@ -59,9 +60,10 @@ class ExtraController extends Controller
 		{
 			$name = null;
 		}
-		$extra = Extra::find($extraId);
-		$professional = Professional::find($extra->professional_id);
-		$email_pro = User::find($professional->user_id)->email;
+			$extra = Extra::find($extraId);
+			$professional = Professional::find($extra->professional_id);
+			$email_pro = User::find($professional->user_id)->email;
+
 		if($professional->user_id == $id){
 			$modif = 1;
 		}
@@ -234,6 +236,57 @@ class ExtraController extends Controller
 
 				$message->to($studentUser->email)->subject('New notification ExtrasMe');
 		});
+
+		return redirect()->back();
+	}
+
+	public function showModifyExtra($username, $extraID)
+	{
+		$name = null;
+		$id = Auth::user()->id;
+		$extra = Extra::find($extraID);
+		$professional = Professional::find($extra->professional_id);
+		$email_pro = User::find($professional->user_id)->email;
+
+		if($professional->user_id == $id){
+			$modif = 1;
+		}
+		return view('user.extra-only-modify', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif])->with('name', $name);
+	}
+
+	public function modifyExtra($username, $extraID, Request $request)
+	{
+		$save = $request->input('save');
+		$date = [];
+		$i = 0;
+
+		if($save == 1)
+		{
+			$type = config('international.last_minute_types')[$request->input('type')];
+			$date_time = $request->input('date');
+			foreach(explode(' ', $date_time) as $info) 
+			{
+				if($i == 0)
+					$date[$i] = Carbon::createFromFormat('d/m/Y', $info, 'America/Mexico_City');
+				elseif($i == 1)
+					$date[$i] = Carbon::createFromFormat('H:i', $info, 'America/Mexico_City');
+
+				$date[$i]->setTimezone('UTC');
+				$i++;
+			}
+			$extraInput = array(
+				'type' => $type,
+				'date' => $date[0]->format('Y-m-d'),
+				'date_time' => $date[1]->format('H:i'),
+				'duration' => $request->input('duration'),
+				'salary' => $request->input('salary'),
+				'requirements' => $request->input('requirements'),
+				'benefits' => $request->input('benefits'),
+				'informations' => $request->input('informations'),
+				);
+
+			$this->extraRepository->update($extraID, $extraInput);
+		}
 
 		return redirect()->back();
 	}

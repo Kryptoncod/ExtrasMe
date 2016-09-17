@@ -9,6 +9,7 @@ return [
    'benefits' => 'BENEFICES',
    'lang' => 'LANGUE',
    'time' => 'HORAIRES',
+   'duration' => 'DUREE',
    'otherInfo' => 'AUTRES INFORMATIONS',
    'noOtherInfo' => 'Aucun',
    'apply' => 'Postuler',
