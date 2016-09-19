@@ -93,6 +93,9 @@ class DatabaseSeeder extends Seeder
 		{
 			$typeArray = Config::get('international.last_minute_types');
 			$type = $typeArray[rand(0,9)];
+
+			$languageArray = Config::get('international.language');
+			$language = $languageArray[rand(0,1)];
 			
 			DB::table('extras')->insert([
 				'broadcast' => rand(0,1),
@@ -101,6 +104,7 @@ class DatabaseSeeder extends Seeder
 				'date_time' => Carbon::createFromTime(rand(0, 23), rand(0, 59), null),
 				'duration' => rand(1,10),
 				'salary' => rand(9, 89),
+				'language' => $language,
 				'benefits' => 'Benefits' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
 				'requirements' => 'Requirements' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
 				'informations' => 'informations' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',

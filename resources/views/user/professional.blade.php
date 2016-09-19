@@ -149,6 +149,21 @@
 
                   <div class="row">
                      <div class="large-3 columns">
+                        <label for="type" class="right inline">@lang('professional.lookingForExtras.languageExtra')</label>
+                     </div>
+                     <div class="large-9 end columns">
+                        <select class="input" id="type" name="type" aria-label="Type of extra" required>
+                           <option selected disabled value="">@lang('professional.lookingForExtras.selectLanguage')</option>
+                           @foreach(config('international.language') as $id => $name)
+                              <option value="{{ $id }}">{{ $name }}</option>
+                           @endforeach
+                        </select>
+                        <small class="error">@lang('professional.lookingForExtras.errorLanguage')</small>
+                     </div>
+                  </div>
+
+                  <div class="row">
+                     <div class="large-3 columns">
                         <label for="benefits" class="right inline">@lang('professional.lookingForExtras.benefits')</label>
                      </div>
                      <div class="large-9 end columns">

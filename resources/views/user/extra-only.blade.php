@@ -91,7 +91,7 @@
                                            @lang('card-content.lang')
                                          </td>
                                          <td>
-                                           French
+                                           {{ $extra->language }} Hr(s)
                                          </td>
                                        </tr>
                                        <tr>
