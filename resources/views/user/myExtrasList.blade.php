@@ -160,12 +160,13 @@
                                 </li>
                               @endforeach
                           </ul>
-                        @else
+                        @endif
                           <ul>
                               <li class="title">@lang('myExtraList.studentChosen')</li>
-                              <li><a href="{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>
+                              @foreach($studentsAlreadyChosen as $student)
+                                <li><a href="{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>
+                              @endforeach
                           </ul>
-                        @endif
                       </div>
                     @endif
                 </div>

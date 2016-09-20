@@ -200,10 +200,8 @@ class ExtraController extends Controller
 
 			if(count($find) == $extras[0]->number_persons)
 			{
-				if($find[0]->done == 1)
-				{
-					$student = Student::find($find[0]->student_id);
-				}
+				$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
+				
 			} else
 			{
 				$students = $extras[0]->students()->where('done', 0)->get();
@@ -223,9 +221,11 @@ class ExtraController extends Controller
 					    return $b[1] - $a[1];
 					});
 				}
+
+				$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
 			}
 		}
-		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'student' => $student, 'students' => $studentToSort]);
+		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'studentsAlreadyChosen' => $studentsAlreadyChosen, 'students' => $studentToSort]);
 	}
 
 	public static function acceptExtra($extraID, $studentID)
