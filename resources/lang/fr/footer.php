@@ -22,4 +22,5 @@ return [
    'termsOfUse'        => 'Termes d\'utilisation',
    'salesRefund'       => 'Vente et remboursement',
    'sitemap'           => 'Plan du sitemap',
+   'contactPage'       => 'Moyen de contact',
 ];
