@@ -15,7 +15,11 @@
                @if(file_exists("uploads/pp/".$user->id.".png"))
                   <img class="profile-picture" src=" uploads/pp/{{$user->id}}.png" alt="" />
                @else
-                  <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                  @if($student->gender == 0)
+                     <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                  @else
+                     <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
+                  @endif
                @endif
             </div>
 

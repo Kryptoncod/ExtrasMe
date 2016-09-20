@@ -144,7 +144,7 @@
                      <div class="invoice">
                         <div>
                            <label>
-                              FACTURE DU {{ $dueInvoice->created_at }}
+                              FACTURE DU {{ Carbon\Carbon::parse($dueInvoice->created_at)->format('d/m/Y') }}
                            </label>
                         </div>
                         <div>
@@ -166,11 +166,11 @@
             <div class="due-invoice">
                <h2>YOUR PAST INVOICE</h2>
                @if(!empty($pastInvoices))
-                  @foreach($pastInvoices as $pasInvoice)
+                  @foreach($pastInvoices as $pastInvoice)
                      <div class="invoice">
                         <div>
                            <label>
-                              FACTURE DU {{ $pasInvoice->created_at }}
+                              FACTURE DU {{ Carbon\Carbon::parse($pastInvoice->created_at)->format('d/m/Y') }}
                            </label>
                         </div>
                         <div>
