@@ -4,8 +4,15 @@
    <div class="row collapse profile profile-container">
       @include('user.sidebar')
 
-      <div class="medium-10 small-12 columns panel-main" style="display:flex; color:white; padding-top:50px;">
+      <div class="medium-10 small-12 columns panel-main">
 
+        <div class="row">
+            <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
+         </div>
+
+      <hr style="margin:0;" />
+
+      <div class="liste-extra-container">
 
          <div class="experience-container"><div class="chrono-container">
                   <a href="" id="past" data-chrono-id = "4" class="showChrono" style="width: 50%;"><label>@lang('myExtraList.past')</label></a>
@@ -169,6 +176,7 @@
                           </ul>
                       </div>
                     @endif
+                  </div>
                 </div>
               </div>
             </div>

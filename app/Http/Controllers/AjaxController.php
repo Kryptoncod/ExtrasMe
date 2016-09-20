@@ -21,7 +21,9 @@ class AjaxController extends Controller
 	public function loadCard(Request $request){
 		$user = Auth::user();
 		$cardId = $request->input('id');
-		if($user->type == 0){
+
+		if($user->type == 0)
+		{
 			$extra = Extra::find($cardId);
 			$student = User::find($user->id)->student;
 			$can_apply = 0;
@@ -31,9 +33,12 @@ class AjaxController extends Controller
 					$can_apply = 1;
 				}
 			}
+
 			$email_pro = User::find($professional->user_id)->email;
 			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, 'email' => $email_pro]);
-		}else{
+		}
+		else 
+		{
 			$id = $user->id;
 			$professional = User::find($id)->professional;
 			$professionalID = $professional->id;
@@ -41,19 +46,41 @@ class AjaxController extends Controller
 			$name = User::find($id)->professional->company_name;
 			$student = null;
 			$email_pro = User::find($professional->user_id)->email;
+			$studentToSort = [];
+
 			$find = DB::table('extras_students')->where('extra_id', $extra->id)
 				->where('done', 1)->get();
 
-			if(!empty($find))
+			if(count($find) == $extra->number_persons)
 			{
-				if($find[0]->done == 1)
+				$studentsAlreadyChosen = $extra->students()->where('done', 1)->get();
+
+			} else
+			{
+				$students = $extra->students()->where('done', 0)->get();
+
+				if(!empty($students))
 				{
-					$student = Student::find($find[0]->student_id);
+
+					foreach ($students as $student) {
+						$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
+						->where('professional_id', $professionalID)->value('number_extras');
+
+						$studentToSort[] = array($student, $numberExtra);
+					}
+
+					usort($studentToSort, function($a, $b)
+					{
+					    return $b[1] - $a[1];
+					});
 				}
+
+				$studentsAlreadyChosen = $extra->students()->where('done', 1)->get();
 			}
 
 			$can_apply = 0;
-			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, "email" => $email_pro]);
+
+			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, "email" => $email_pro, 'students' => $studentToSort, 'studentsAlreadyChosen' => $studentsAlreadyChosen]);
 		}
 		
 	}
@@ -139,13 +166,10 @@ class AjaxController extends Controller
 
 				if(!empty($find))
 				{
-					if($find[0]->done == 1)
-					{
-						$student = Student::find($find[0]->student_id);
-					}
+					$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
 				}
 			}
-			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
+			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'studentsAlreadyChosen' => $studentsAlreadyChosen])->with('name', $name);
 		}
 		else if($listId == 5)
 		{
@@ -159,36 +183,40 @@ class AjaxController extends Controller
 			$student = null;
 			$studentToSort = [];
 
-			$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
-				->where('done', 1)->get();
-
-			if(!empty($find))
+			if(count($extras) > 0)
 			{
-				if($find[0]->done == 1)
-				{
-					$student = Student::find($find[0]->student_id);
-				}
-			} else
-			{
-				$students = $extras[0]->students;
+				$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
+					->where('done', 1)->get();
 
-				if(!empty($students))
+				if(count($find) == $extras[0]->number_persons)
 				{
-					foreach ($students as $student) {
-						$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
-						->where('professional_id', $professionalID)->value('number_extras');
+					$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
 
-						$studentToSort[] = array($student, $numberExtra);
+				} else
+				{
+					$students = $extras[0]->students()->where('done', 0)->get();
+
+					if(!empty($students))
+					{
+
+						foreach ($students as $student) {
+							$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
+							->where('professional_id', $professionalID)->value('number_extras');
+
+							$studentToSort[] = array($student, $numberExtra);
+						}
+
+						usort($studentToSort, function($a, $b)
+						{
+						    return $b[1] - $a[1];
+						});
 					}
 
-					usort($studentToSort, function($a, $b)
-					{
-					    return $b[1] - $a[1];
-					});
+					$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
 				}
 			}
 
-			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'students' => $studentToSort])->with('name', $name);
+			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'students' => $studentToSort, 'studentsAlreadyChosen' => $studentsAlreadyChosen])->with('name', $name);
 		}
 	}
 }

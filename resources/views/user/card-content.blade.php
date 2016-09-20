@@ -135,13 +135,13 @@
     @if(count($extra->students) != 0)
       <ul style="width: 80%; margin:auto;">
         <li class="title list-stud-title">@lang('myExtraList.studentApplied')</li>
-        @foreach($extra->students as $student_i)
+        @foreach($students as $student_i)
           <li class="student-applied-container">
               <a href = "{{ route('home', $student_i->user->id) }}">
                 @if(file_exists("uploads/pp/".$user->id.".png"))
                     <img class="profile-picture" src=" uploads/pp/{{$student_i->user->id}}.png" alt="" />
                  @else
-                    @if($student->gender == 0)
+                    @if($student_i->gender == 0)
                        <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
                     @else
                        <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
@@ -159,10 +159,11 @@
         @endforeach
       </ul>
       @endif
-@else
+  @endif
       <ul>
         <li class="title">@lang('myExtraList.studentChosen')</li>
-        <li><a href="{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>
+        @foreach($studentsAlreadyChosen as $studentChosen)
+          <li><a href="{{ route('home', $studentChosen->user->id) }}">{{ $studentChosen->first_name . " " . $studentChosen->last_name }}</a></li>
+        @endforeach
       </ul>
-  @endif
 @endif

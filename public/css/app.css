@@ -7561,7 +7561,7 @@ ul.topnav li.icon {
 .liste-extra-container {
   display: flex;
   color: white;
-  padding-top: 50px; }
+   }
   .liste-extra-container .extra-list {
     display: flex;
     flex-direction: column;

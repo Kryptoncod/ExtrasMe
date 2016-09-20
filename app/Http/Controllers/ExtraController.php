@@ -201,7 +201,7 @@ class ExtraController extends Controller
 			if(count($find) == $extras[0]->number_persons)
 			{
 				$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
-				
+
 			} else
 			{
 				$students = $extras[0]->students()->where('done', 0)->get();
@@ -234,8 +234,7 @@ class ExtraController extends Controller
 			->where('student_id', $studentID)
 			->update(['done' => 1]);
 
-		$numberStudent = DB::table('extras_students')->where('extra_id', $extraID)
-			->where('student_id', $studentID)->get();
+		$numberStudent = DB::table('extras_students')->where('extra_id', $extraID)->where('done', 1)->get();
 
 		if(count($numberStudent) == Extra::find($extraID)->number_persons)
 		{
