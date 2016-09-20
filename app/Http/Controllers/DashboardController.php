@@ -18,6 +18,7 @@ use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Dashboard;
 use App\Models\Extra;
+use App\Models\Invoice;
 
 use App\Repositories\DashboardRepository;
 use App\Repositories\ExtraRepository;
@@ -53,10 +54,20 @@ class DashboardController extends Controller
 			$AuthID = Auth::user()->id;
 			$professional = User::find($AuthID)->professional;
 			$name = $professional->company_name;
+			$numberhours = 0;
 
-			$numberOfExtras = Professional::find($professional->id)->extra()->where('finish', 1);
+			$numberOfExtras = Professional::find($professional->id)->extra()->where('finish', 1)->get();
 
-			return view('user.dashboardProfessional', ['name' => $name, 'professional' => $professional, 'numberOfExtras' => $numberOfExtras]);
+			$daysLeft = Professional::find($professional->id)->invoices()->where('paid', 1)->orderBy('updated_at', 'DESC');
+
+			foreach($numberOfExtras as $extra) {
+
+				$numberhours = $numberhours + $extra->duration;
+			}
+
+			$economise = $numberhours * 10 - $numberOfExtras->count() * 8;
+
+			return view('user.dashboardProfessional', ['name' => $name, 'professional' => $professional, 'numberOfExtras' => $numberOfExtras, 'daysLeft' => $daysLeft, 'economise' => $economise]);
 		}
 	}
 

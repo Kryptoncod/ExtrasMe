@@ -16,7 +16,7 @@
                      <h2>@lang('dashboardProfessional.totalEarned')</h2>
                      <div class="stat-content" style=" flex-direction:column;">
                         <div style="display:flex; justify-content:center; width: 80%; margin: 0 auto 0 auto;">
-                           <blockquote>0</blockquote>
+                           <blockquote>{{ $economise }}</blockquote>
                         </div>
                         <div style="display:flex; justify-content:flex-end; width: 80%; margin: 0 auto 0 auto;">
                            <blockquote style="font-size: 30px;">CHF</blockquote>
@@ -50,7 +50,7 @@
                      <h2>@lang('dashboardProfessional.remainingDays')</h2>
                      <div class="stat-content">
                         <div style="margin:auto; width: 70px;">
-                           <blockquote style="letter-spacing: 0; width: 20px; margin:auto;">200</blockquote>
+                           <blockquote style="letter-spacing: 0; width: 20px; margin:auto;">{{ 365 - $daysLeft->first()->updated_at->diffInDays(Carbon\Carbon::now()) }}</blockquote>
                         </div>
                      </div>
                   </div>
