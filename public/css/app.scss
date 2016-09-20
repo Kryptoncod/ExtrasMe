@@ -11190,3 +11190,30 @@ ul.topnav li.icon {display: none;}
       
     }
 }
+
+.list-stud-title{
+  font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  letter-spacing: 5px;
+  font-size: 14px;
+   margin-bottom: 10px;
+}
+.student-applied-container{
+  display: flex;
+  justify-content: space-between;
+  font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  letter-spacing: 5px;
+  font-size: 14px;
+  img{
+    width: 50px;
+  }
+  button{
+    padding:3px;
+        letter-spacing: 5px;
+        font-size: 14px;
+        margin-left: auto;
+        font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        width: 100px;
+        margin-top: auto;
+        margin-bottom: auto;
+  }
+}

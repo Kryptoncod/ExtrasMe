@@ -7534,4 +7534,28 @@ ul.topnav li.icon {
         margin-left: 20px;
         margin-right: 10px; }
 
+.list-stud-title {
+  font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  letter-spacing: 5px;
+  font-size: 14px;
+  margin-bottom: 10px; }
+
+.student-applied-container {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  letter-spacing: 5px;
+  font-size: 14px; }
+  .student-applied-container img {
+    width: 50px; }
+  .student-applied-container button {
+    padding: 3px;
+    letter-spacing: 5px;
+    font-size: 14px;
+    margin-left: auto;
+    font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    width: 100px;
+    margin-top: auto;
+    margin-bottom: auto; }
+
 /*# sourceMappingURL=app.css.map */
