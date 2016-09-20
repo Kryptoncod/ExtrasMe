@@ -12,11 +12,15 @@
 */
 
 Route::get('/', ['as' => 'index', "uses" => "IndexController@index"]);
-Route::get('/missionStatement', ['as' => 'missionStatement', "uses" => "IndexController@missionStatement"]);
 Route::get('language/{local}', ['as' => 'language', "uses" => "IndexController@language"]);
 Route::get('login', ['as' => 'login_form', "uses" => "AuthController@showLoginForm"]);
 Route::post('login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
 Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
+
+Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
+Route::get('/missionStatement', ['as' => 'missionStatement', "uses" => "IndexController@missionStatement"]);
+Route::get('/contactUs', ['as' => 'contactUs', "uses" => "IndexController@contactUs"]);
+
 
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
@@ -67,9 +71,6 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->post('profilePost', ['as' => 'profile_update', "uses" => "AccountController@profileUpdate"]);
    $app->post('descriptionPost', ['as' => 'description_update', "uses" => "AccountController@descriptionUpdate"]);
 });
-
-Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
-
 //Requêtes AJAX
 Route::get('ajax/getCardContent', ['as' => 'getCard','uses' => 'AjaxController@loadCard']);
 Route::get('ajax/getListContent', ['as' => 'getList','uses' => 'AjaxController@loadList']);

@@ -22,5 +22,6 @@ return [
    'termsOfUse'        => 'Terms of Use',
    'salesRefund'       => 'Sales and Refund',
    'sitemap'           => 'Sitemap',
+   'contactPage'       => 'Contact Informations',
 
 ];

@@ -4,20 +4,17 @@
       <div class="small-3 columns">
          <ul>
             <li class="title">@lang('footer.aboutUs')</li>
-            <li><a href="#">@lang('footer.ourPrinciples')</a></li>
+            <li><a href="{{ route('missionStatement') }}">@lang('footer.ourPrinciples')</a></li>
             <li><a href="#">@lang('footer.ourTeam')</a></li>
             <li><a href="#">@lang('footer.events')</a></li>
             <li><a href="#">@lang('footer.pressInfo')</a></li>
-            <li><a href="#">@lang('footer.termsConditions')</a></li>
          </ul>
       </div>
 
       <div class="small-3 columns">
          <ul>
             <li class="title">@lang('footer.yourExtrasMe')</li>
-            <li><a href="#">@lang('footer.yourExtrasMe')</a></li>
             <li><a href="#">@lang('footer.privacy')</a></li>
-            <li><a href="#">@lang('footer.settings')</a></li>
             <li><a href="#">@lang('footer.helpCenter')</a></li>
          </ul>
       </div>
@@ -25,8 +22,7 @@
       <div class="small-3 columns">
          <ul>
             <li class="title">@lang('footer.contactUs')</li>
-            <li><a href="#">@lang('footer.emails')</a></li>
-            <li><a href="#">@lang('footer.contactNumber')</a></li>
+            <li><a href="{{ route('contactUs') }}">@lang('footer.contactPage')</a></li>
             <li><a href="#">@lang('footer.becomeAnbassador')</a></li>
          </ul>
       </div>
@@ -57,7 +53,7 @@
 
    <div class="row full-width disclaimers">
       <div class="small-6 columns copyright">
-         Copyright © 2015 <a href="/">ExtrasMe Inc.</a> @lang('footer.allRightsReserved')
+         Copyright © 2015 <a href="">ExtrasMe Inc.</a> @lang('footer.allRightsReserved')
       </div>
       <div class="small-6 columns">
          <ul>

@@ -34,4 +34,30 @@ return [
          Thus, we are able to provide qualitative service to all institutions working with us.',
    ],
 
+   'contactUs' => [
+      'contactDetails' => 'Contact Details',
+      'extrame' => 'Extras Me SARL',
+      'address' => '35 Grande rue de la Croix-Rousse, 69004 Lyon, France',
+      'mayeul' => [
+         'title' => 'Mayeul Dezombre',
+         'position' => 'Founding Partner',
+         'email' => 'Email : mayeul.dezombre@extrasme.com',
+         'telephoneNumber' => 'Tel : +41 79 732 1585', 
+      ],
+
+      'mayeul' => [
+         'title' => 'Mayeul Dezombre',
+         'position' => 'Founding Partner',
+         'email' => 'Email : mayeul.dezombre@extrasme.com',
+         'telephoneNumber' => 'Tel : +41 79 732 1585', 
+      ],
+
+      'mayeul' => [
+         'title' => 'Mayeul Dezombre',
+         'position' => 'Founding Partner',
+         'email' => 'Email : mayeul.dezombre@extrasme.com',
+         'telephoneNumber' => 'Tel : +41 79 732 1585', 
+      ],
+   ],
+
 ];

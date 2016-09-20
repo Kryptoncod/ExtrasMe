@@ -48,4 +48,9 @@ class IndexController extends Controller
     {
         return view('documents.missionStatement');
     }
+
+    public function contactUs()
+    {
+        return view('documents.contact');
+    }
 }
