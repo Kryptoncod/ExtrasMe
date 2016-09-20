@@ -133,15 +133,28 @@
 @elseif($user->type == 1)     
   @if($extra->find == 0)
     @if(count($extra->students) != 0)
-      <ul>
-        <li class="title">@lang('myExtraList.studentApplied')</li>
+      <ul style="width: 80%; margin:auto;">
+        <li class="title list-stud-title">@lang('myExtraList.studentApplied')</li>
         @foreach($extra->students as $student_i)
-          <li>
-            <a href = "{{ route('home', $student_i->user->id) }}">{{ $student_i->first_name . " " . $student_i->last_name }}</a>
-            <button class="submit-button right">@lang('myExtraList.decline')</button>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <button class="submit-button right"><a href="{{ $extra->id.'/accept/'.$student_i->id }}">@lang('myExtraList.accept')</a></button>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <li class="student-applied-container">
+              <a href = "{{ route('home', $student_i->user->id) }}">
+                @if(file_exists("uploads/pp/".$user->id.".png"))
+                    <img class="profile-picture" src=" uploads/pp/{{$student_i->user->id}}.png" alt="" />
+                 @else
+                    @if($student->gender == 0)
+                       <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                    @else
+                       <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
+                    @endif
+                 @endif
+              {{ $student_i->first_name . " " . $student_i->last_name }}
+              </a>
+            <div style="display: flex;">
+              <button style="margin-right: 20px;">@lang('myExtraList.decline')</button>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <button><a href="{{ $extra->id.'/accept/'.$student_i->id }}">@lang('myExtraList.accept')</a></button>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            </div>
           </li>
         @endforeach
       </ul>
