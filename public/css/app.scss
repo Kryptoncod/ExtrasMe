@@ -11217,3 +11217,59 @@ ul.topnav li.icon {display: none;}
         margin-bottom: auto;
   }
 }
+
+.liste-extra-container{
+  display:flex; 
+  color:white; 
+  padding-top:50px;
+  .extra-list{
+    display:flex; 
+    flex-direction:column; 
+    width:40%;
+    
+  }
+  .arrow-container{
+    width:5%;
+    display:flex;
+  }
+  #card-container{
+    display:flex; 
+    flex-direction:column; 
+    width:55%; 
+    align-items:center;
+  }
+  @media only screen and (max-width: 1000px) {
+    flex-direction:column;
+    .extra-list{
+      overflow: scroll;
+      height: 400px;
+      @media only screen and (max-width: 400px) {
+        height: 180px;
+      }
+      width: 100%;
+      #liste-extra{
+        @media only screen and (max-width: 400px) {
+        border:1px solid white;
+      }
+      }
+    }
+    .arrow-container{
+      display: none;
+    }
+    #card-container{
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+        .profile-picture{
+          display: none;
+      }
+
+      .titre-extra{
+        h2{
+          font-size: 15px;
+        }
+      }
+  }
+}
+

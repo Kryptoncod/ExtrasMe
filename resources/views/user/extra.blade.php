@@ -10,13 +10,13 @@
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
 
-      <div style="display:flex; color:white; padding-top:50px;">
+      <div class="liste-extra-container">
 
         @if(!$extras->first())
           <p class="empty-notice">Sorry, no extra available at the moment. Come back later</p>
         @else
 
-        <div style="display:flex; flex-direction:column; width:40%" class="extra-list">
+        <div class="extra-list">
           <ul id="liste-extra" style="width: 90%; margin-left: auto; margin-right: auto;">
               @for($i=0; $i < count($extras); $i++)
                     <div style="width:100%; height:1px; background-color:white;"></div>
@@ -25,10 +25,10 @@
               @endfor
           </ul>
         </div>
-        <div style="width:5%;display:flex;">
+        <div class="arrow-container">
           <img src="{{ asset('images/right-arrow.png') }}" style="margin:auto; width:90%;">
         </div>
-        <div style="display:flex; flex-direction:column; width:55%; align-items:center" id="card-container">
+        <div id="card-container">
           <div class="row account-resume" style="width: 90%;">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7" style="padding: 0;">
                @if(file_exists("uploads/pp/".$professional[0]->user_id.".png"))

@@ -7558,4 +7558,44 @@ ul.topnav li.icon {
     margin-top: auto;
     margin-bottom: auto; }
 
+.liste-extra-container {
+  display: flex;
+  color: white;
+  padding-top: 50px; }
+  .liste-extra-container .extra-list {
+    display: flex;
+    flex-direction: column;
+    width: 40%; }
+  .liste-extra-container .arrow-container {
+    width: 5%;
+    display: flex; }
+  .liste-extra-container #card-container {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    align-items: center; }
+  @media only screen and (max-width: 1000px) {
+    .liste-extra-container {
+      flex-direction: column; }
+      .liste-extra-container .extra-list {
+        overflow: scroll;
+        height: 400px;
+        width: 100%; } }
+    @media only screen and (max-width: 1000px) and (max-width: 400px) {
+      .liste-extra-container .extra-list {
+        height: 180px; } }
+    @media only screen and (max-width: 1000px) and (max-width: 400px) {
+      .liste-extra-container .extra-list #liste-extra {
+        border: 1px solid white; } }
+  @media only screen and (max-width: 1000px) {
+      .liste-extra-container .arrow-container {
+        display: none; }
+      .liste-extra-container #card-container {
+        width: 100%; } }
+  @media only screen and (max-width: 400px) {
+    .liste-extra-container .profile-picture {
+      display: none; }
+    .liste-extra-container .titre-extra h2 {
+      font-size: 15px; } }
+
 /*# sourceMappingURL=app.css.map */
