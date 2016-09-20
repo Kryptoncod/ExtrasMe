@@ -32,12 +32,12 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->get('/confirm', ['as' => 'confirm', "uses" => "CreditsController@confirmation"]);
    });
    Route::group(['prefix' => 'extra'], function($app) {
-      $app->get('{id}', ['as' => 'show_extra', 'uses' => 'ExtraController@show']);
       $app->get('{id}/apply', ['as' => 'extra_apply', 'uses' => 'ExtraController@apply']);
       $app->get('list/{type_extra}',  ['as' => 'extra_list',   "uses" => "ExtraController@showList"]);
       $app->post('search', ['as' => 'extra_search', "uses" => "ExtraController@search"]);
       $app->post('submit', ['as' => 'extra_submit', "uses" => "ExtraController@submit"]);
       $app->get ('myextras', ['as' => 'my_extras', "uses" => "ExtraController@myExtras"]);
+      $app->get('{id}', ['as' => 'show_extra', 'uses' => 'ExtraController@show']);
       $app->get ('deleteextra/{id}', ['as' => 'delete_extra', "uses" => "ExtraController@deleteExtra"]);
       $app->get ('{id}/modify', ['as' => 'modify_extra', "uses" => "ExtraController@showModifyExtra"]);
       $app->post ('{id}/modify', ['as' => 'modify_extra_post', "uses" => "ExtraController@modifyExtra"]);

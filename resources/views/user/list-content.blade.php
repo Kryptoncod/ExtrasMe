@@ -33,78 +33,109 @@
                      <img src="{{ asset('images/right-arrow.png') }}" style="margin:auto; width:90%;">
                    </div>
                    <div style="display:flex; flex-direction:column; width:55%; align-items:center" id="card-container">
-                     <img src="{{ asset('images/user-professional.png') }}" class="background-image" style="width:90%;"/>
-                                   <table style="width:90%;" class="card-info">
-                                     <thead>
-                                       <tr>
-                                         <td colspan="2" style="text-align:center; color:white;">
-                                           @lang('card-content.keyDetails')
-                                         </td>
-                                       </tr>
-                                     </thead>
-                                     <tbody>
-                                       <tr>
-                                         <td>
-                                           @lang('card-content.category')
-                                         </td>
-                                         <td>
-                                           {{ $extras[0]->type }}
-                                         </td>
-                                       </tr>
-                                       <tr>
-                                         <td>
-                                           @lang('card-content.requirements')
-                                         </td>
-                                         <td>
-                                           {{ $extras[0]->requirements }}
-                                         </td>
-                                       </tr>
-                                       <tr>
-                                         <td style="width:25%;">
-                                           @lang('card-content.salary')
-                                         </td>
-                                         <td>
-                                           {{ $extras[0]->salary }} CHF/Hr
-                                         </td>
-                                       </tr>
-                                       <tr>
-                                         <td>
-                                           @lang('card-content.benefits')
-                                         </td>
-                                         <td>
-                                           {{ $extras[0]->benefits }}
-                                         </td>
-                                       </tr>
-                                       <tr>
-                                         <td>
-                                           @lang('card-content.lang')
-                                         </td>
-                                         <td>
-                                           French
-                                         </td>
-                                       </tr>
-                                       <tr>
-                                         <td>
-                                           @lang('card-content.time')
-                                         </td>
-                                         <td>
-                                           {{ $extra->dateExtra().' at '.$extra->timeExtra() }}
-                                         </td>
-                                       </tr>
-                                       <tr>
-                                         <td>
-                                           @lang('card-content.otherInfo')
-                                         </td>
-                                         <td>
-                                           @if(empty($extras[0]->informations))
-                                               @lang('card-content.noOtherInfo')
-                                           @else
-                                             {{ $extras[0]->informations}}
-                                           @endif
-                                         </td>
-                                       </tr>
-                                     </tbody>
-                                   </table>
+                     <div class="row account-resume" style="width: 90%;">
+            <div class="columns medium-3 medium-uncentered small-centered picture-column small-7" style="padding: 0;">
+               @if(file_exists("uploads/pp/".$professional->user_id.".png"))
+                  <img class="profile-picture" src=" uploads/pp/{{$professional->user_id}}.png" alt="" />
+               @else
+                  <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
+               @endif
+            </div>
+
+            <div class="medium-7 small-12 medium-uncentered small-centered columns">
+               <ul class="personal-informations">
+                  <li class="title">{{ strtoupper($professional->company_name) }}</li>
+
+               @if(Auth::user()->id == $username)
+                  <li><span class="info-label">@lang('professional.email')</span>
+                  {{ strtoupper($user->email) }}</li>
+
+                  <li><span class="info-label">@lang('professional.contactNumber')</span>
+                  {{ strtoupper($professional->phone) }}</li>
+               @endif
+
+                  <li><span class="info-label">@lang('professional.referencePerson')</span>
+                  {{ strtoupper($professional->first_name.' '.$professional->last_name) }}</li>
+
+                  <li><span class="info-label">@lang('professional.sector')</span>
+                  {{ strtoupper($professional->category) }}</li>
+               </ul>
+            </div>
+         </div>
+         <div class="titre-extra">
+               <h2>{{$extras[0]->type}} EXTRA : {{$professional->state}}</h2>
+            </div>
+                        <table style="width:90%;" class="card-info">
+                          <thead>
+                            <tr>
+                              <td colspan="2" style="text-align:center; color:white;">
+                                @lang('card-content.keyDetails')
+                              </td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                @lang('card-content.category')
+                              </td>
+                              <td>
+                                {{ $extras[0]->type }}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                @lang('card-content.requirements')
+                              </td>
+                              <td>
+                                {{ $extras[0]->requirements }}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                @lang('card-content.salary')
+                              </td>
+                              <td>
+                                {{ $extras[0]->salary }} CHF/Hr
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                @lang('card-content.benefits')
+                              </td>
+                              <td>
+                                {{ $extras[0]->benefits }}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                @lang('card-content.lang')
+                              </td>
+                              <td>
+                                French
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                @lang('card-content.time')
+                              </td>
+                              <td>
+                                {{ $extras[0]->dateExtra().' at '.$extras[0]->timeExtra() }}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="border-bottom: none;">
+                                @lang('card-content.otherInfo')
+                              </td>
+                              <td style="border-bottom: none;">
+                                @if(empty($extras[0]->informations))
+                                    @lang('card-content.noOtherInfo')
+                                @else
+                                  {{ $extras[0]->informations}}
+                                @endif
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                                   @if(Auth::user()->type == 1)
                                    @if($extras[0]->find == 0)
                                     <ul>
