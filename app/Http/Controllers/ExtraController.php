@@ -72,6 +72,7 @@ class ExtraController extends Controller
 
 		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif])->with('name', $name);
 	}
+
 	public function showList($username, $type_extra)
 	{
 

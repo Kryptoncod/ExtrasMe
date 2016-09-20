@@ -35,10 +35,12 @@ class AjaxController extends Controller
 			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, 'email' => $email_pro]);
 		}else{
 			$id = $user->id;
-			$professionalID = User::find($id)->professional->id;
+			$professional = User::find($id)->professional;
+			$professionalID = $professional->id;
 			$extra = Extra::find($cardId);
 			$name = User::find($id)->professional->company_name;
 			$student = null;
+			$email_pro = User::find($professional->user_id)->email;
 			$find = DB::table('extras_students')->where('extra_id', $extra->id)
 				->where('done', 1)->get();
 
@@ -51,7 +53,7 @@ class AjaxController extends Controller
 			}
 
 			$can_apply = 0;
-			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search')]);
+			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, "email" => $email_pro]);
 		}
 		
 	}
