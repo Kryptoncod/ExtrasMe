@@ -115,7 +115,7 @@
                                 @lang('card-content.time')
                               </td>
                               <td>
-                                {{ $extras[0]->date.' at '.$extras[0]->date_time }}
+                                {{ $extras[0]->dateExtra().' at '.$extras[0]->timeExtra() }}
                               </td>
                             </tr>
                             <tr>
@@ -149,9 +149,9 @@
               </div>
             @endif
           @else
-            <div class="apply-button right main-button">
-              <a href="{{ route('account', Auth::user()->id)}}" class="apply-button-link">@lang('card-content.cantApply')</a>
-            </div>
+            <div style="width: 90%;">
+                <a href="{{ route('account', Auth::user()->id)}}" class="main-button">@lang('card-content.cantApply')</a>
+              </div>
           @endif
 
       </div>

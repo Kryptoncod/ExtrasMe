@@ -219,7 +219,7 @@
                      @foreach ($extras as $extra)
                         <li><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@include('user.card', ["description" => $extra->professional->company_name . " is looking for extras in ".
                                                                  $extra->type.
-                                                                 ' for '.$extra->date.' at '.$extra->date_time,
+                                                                 ' for '.$extra->dateExtra().' at '.$extra->timeExtra(),
                                                 "title" => $extra->professional->company_name,
                                                 "image" => asset("images/user-professional.png"),
                                                 "id"  => $extra->id])

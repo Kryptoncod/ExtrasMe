@@ -88,7 +88,7 @@
                                            @lang('card-content.time')
                                          </td>
                                          <td>
-                                           {{ $extras[0]->date.' at '.$extras[0]->date_time }}
+                                           {{ $extra->dateExtra().' at '.$extra->timeExtra() }}
                                          </td>
                                        </tr>
                                        <tr>

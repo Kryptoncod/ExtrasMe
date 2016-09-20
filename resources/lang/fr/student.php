@@ -23,7 +23,7 @@ return [
    'language' => 'LANGUAGE',
    'noLanguage' => 'Pas de language',
    'extrasInSpotlight' => 'EXTRAS FAVORIS',
-   'noFavorite' => 'You n\'avez pas d\'extras favoris.',
+   'noFavorite' => 'Vous n\'avez pas d\'extras favoris.',
    'noExtras' => 'il n\'y a pas d\'extras disponible. Veuillez revenir plus tard.',
    'extrasAvailable' => 'EXTRAS DISPONIBLE',
 ];
