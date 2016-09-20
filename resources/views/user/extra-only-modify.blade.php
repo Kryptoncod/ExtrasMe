@@ -96,7 +96,12 @@
                                            @lang('card-content.lang')
                                          </td>
                                          <td>
-                                           {{ $extra->language }}
+                                           <select class="input" id="language" name="language" aria-label="Language of extra">
+                                             <option selected disabled value="">@lang('professional.lookingForExtras.selectLanguage')</option>
+                                             @foreach(config('international.language') as $id => $lang)
+                                                <option value="{{ $id }}">{{ $lang }}</option>
+                                             @endforeach
+                                          </select>
                                          </td>
                                        </tr>
                                        <tr>

@@ -30,7 +30,7 @@ use App\Repositories\LanguageRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB, Validator, Mail;
+use Auth, DB, Validator, Mail, Route;
 
 class ExtraController extends Controller
 {
@@ -67,6 +67,9 @@ class ExtraController extends Controller
 		if($professional->user_id == $id){
 			$modif = 1;
 		}
+
+		session()->put('returnAfterModifyExtra', Route::current()->getName());
+
 		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif])->with('name', $name);
 	}
 	public function showList($username, $type_extra)
@@ -107,6 +110,7 @@ class ExtraController extends Controller
 		$id = Auth::user()->id;
 		$professionalID = User::find($id)->professional->id;
 		$type = config('international.last_minute_types')[$request->input('type')];
+		$language = config('international.language')[$request->input('language')];
 		$date_time = preg_split("/[\s,]+/", $request->input('date'));
 		$date = Carbon::createFromFormat('d/m/Y', $date_time[0], 'America/Mexico_City');
 		$date->setTimezone('UTC');
@@ -120,6 +124,7 @@ class ExtraController extends Controller
 			'date_time' => $time->format('H:i'),
 			'duration' => $request->input('duration'),
 			'salary' => $request->input('salary'),
+			'language' => $language,
 			'requirements' => $request->input('requirements'),
 			'benefits' => $request->input('benefits'),
 			'informations' => $request->input('informations'),
@@ -263,6 +268,7 @@ class ExtraController extends Controller
 		if($save == 1)
 		{
 			$type = config('international.last_minute_types')[$request->input('type')];
+			$language = config('international.language')[$request->input('language')];
 			$date_time = $request->input('date');
 			foreach(explode(' ', $date_time) as $info) 
 			{
@@ -280,6 +286,7 @@ class ExtraController extends Controller
 				'date_time' => $date[1]->format('H:i'),
 				'duration' => $request->input('duration'),
 				'salary' => $request->input('salary'),
+				'language' => $language,
 				'requirements' => $request->input('requirements'),
 				'benefits' => $request->input('benefits'),
 				'informations' => $request->input('informations'),
@@ -288,7 +295,10 @@ class ExtraController extends Controller
 			$this->extraRepository->update($extraID, $extraInput);
 		}
 
-		return redirect()->back();
+		if(session('returnAfterModifyExtra') == 'show_extra')
+		{
+			return redirect()->route('show_extra', ['username' => Auth::user()->id, 'id' => $extraID]);
+		}
 	}
 
 	public function deleteExtra($username, $extraID)

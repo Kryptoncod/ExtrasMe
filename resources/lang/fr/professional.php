@@ -33,7 +33,7 @@ return [
       'salary' => 'SALAIRE : ',
       'errorSalary' => 'Le salaire est obligatoire et doit être au-dessus de 0.',
       'languageExtra' => 'LANGUAGE :',
-      'selectLanguage' => 'Select',
+      'selectLanguage' => 'Selectionner',
       'errorLanguage' => 'Language is required.',
       'benefits' => 'BENEFICES : ',
       'errorBenefits' => 'Les bénéfices sont obligatoires.',

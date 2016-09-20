@@ -91,7 +91,7 @@
                                            @lang('card-content.lang')
                                          </td>
                                          <td>
-                                           {{ $extra->language }} Hr(s)
+                                           {{ $extra->language }}
                                          </td>
                                        </tr>
                                        <tr>
@@ -107,7 +107,7 @@
                                            @lang('card-content.duration')
                                          </td>
                                          <td id="extra_date">
-                                           {{ $extra->duration }}
+                                           {{ $extra->duration }} Hr(s)
                                          </td>
                                        </tr>
                                        <tr>

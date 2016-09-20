@@ -152,10 +152,10 @@
                         <label for="type" class="right inline">@lang('professional.lookingForExtras.languageExtra')</label>
                      </div>
                      <div class="large-9 end columns">
-                        <select class="input" id="type" name="type" aria-label="Type of extra" required>
+                        <select class="input" id="language" name="language" aria-label="Language of extra" required>
                            <option selected disabled value="">@lang('professional.lookingForExtras.selectLanguage')</option>
-                           @foreach(config('international.language') as $id => $name)
-                              <option value="{{ $id }}">{{ $name }}</option>
+                           @foreach(config('international.language') as $id => $lang)
+                              <option value="{{ $id }}">{{ $lang }}</option>
                            @endforeach
                         </select>
                         <small class="error">@lang('professional.lookingForExtras.errorLanguage')</small>
