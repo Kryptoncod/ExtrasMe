@@ -109,7 +109,7 @@
                                            @lang('card-content.time')
                                          </td>
                                          <td id="extra_date">
-                                            <input type="text" class="span2" id="date" name="date" value="{{ $extra->date.' '.$extra->date_time }}">
+                                            <input type="text" class="span2" id="date" name="date" value="{{ $extra->dateExtra().' '.$extra->timeExtra() }}">
                                          </td>
                                        </tr>
                                        <tr>

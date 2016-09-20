@@ -21,4 +21,14 @@ class Extra extends Model
     {
     	return $this->belongsTo('App\Models\Professional');
     }
+
+    public function dateExtra()
+    {
+        return Carbon::parse($this->date)->format('d/m/Y');
+    }
+
+    public function timeExtra()
+    {
+        return Carbon::parse($this->date_time)->format('H:i');
+    }
 }
