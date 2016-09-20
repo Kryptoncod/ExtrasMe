@@ -19,6 +19,7 @@ class CreateExtraTable extends Migration
         $table->date('date');
         $table->time('date_time');
         $table->integer('duration');
+        $table->integer('number_persons');
         $table->integer('salary');
         $table->string('language');
         $table->string('benefits');

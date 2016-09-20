@@ -30,6 +30,8 @@ return [
       'date' => 'DATE : ',
       'duration' => 'DURATION : ',
       'errorDuration' => 'Duration is requiered and must be above 0.',
+      'numberPerson' => 'NUMBER OF PERSONS : ',
+      'errorNumberPerson' => 'Number of persons is requiered and must be above 0.',
       'salary' => 'SALARY : ',
       'errorSalary' => 'Salary is requiered and must be above 0.',
       'languageExtra' => 'LANGUAGE :',

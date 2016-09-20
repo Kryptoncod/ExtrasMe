@@ -103,6 +103,7 @@ class DatabaseSeeder extends Seeder
 				'date' => Carbon::createFromDate(2016, rand(10, 12), rand(1, 28)),
 				'date_time' => Carbon::createFromTime(rand(0, 23), rand(0, 59), null),
 				'duration' => rand(1,10),
+				'number_persons' => rand(1, 5),
 				'salary' => rand(9, 89),
 				'language' => $language,
 				'benefits' => 'Benefits' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
@@ -120,6 +121,9 @@ class DatabaseSeeder extends Seeder
 		{
 			$typeArray = Config::get('international.last_minute_types');
 			$type = $typeArray[rand(1,9)];
+
+			$languageArray = Config::get('international.language');
+			$language = $languageArray[rand(0,1)];
 			
 			DB::table('extras')->insert([
 				'broadcast' => rand(0,1),
@@ -127,7 +131,9 @@ class DatabaseSeeder extends Seeder
 				'date' => Carbon::createFromDate(2016, rand(3, 6), rand(1, 28)),
 				'date_time' => Carbon::createFromTime(rand(0, 23), rand(0, 59), null),
 				'duration' => rand(1,10),
+				'number_persons' => rand(1, 5),
 				'salary' => rand(9, 89),
+				'language' => $language,
 				'benefits' => 'Benefits' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
 				'requirements' => 'Requirements' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',
 				'informations' => 'informations' . $i . ' Lorem ipsum dolor sit amet, consectetur adipisicing elit',

@@ -62,7 +62,7 @@
                                            <select class="input" id="type" name="type" aria-label="Type of extra">
                                              <option selected disabled value="">@lang('professional.lookingForExtras.selectType')</option>
                                              @foreach(config('international.last_minute_types') as $id => $name)
-                                                <option value="{{ $id }}">{{ $name }}</option>
+                                                <option value="{{ $id }}" selected="{{ $extra->type }}">{{ $name }}</option>
                                              @endforeach
                                           </select>
                                          </td>
@@ -118,6 +118,15 @@
                                          </td>
                                          <td id="extra_date">
                                             <input type="number" value="1" min="0" name="duration" id="duration" pattern="abovezero" value="{{ $extra->duration }}" />
+                                         </td>
+                                       </tr>
+                                       <tr>
+                                       <tr>
+                                         <td>
+                                           @lang('card-content.numberPerson')
+                                         </td>
+                                         <td id="extra_date">
+                                            <input type="number" value="1" min="0" name="numberPerson" id="numberPerson" pattern="abovezero" value="{{ $extra->number_persons }}" />
                                          </td>
                                        </tr>
                                        <tr>

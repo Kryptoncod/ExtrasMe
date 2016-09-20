@@ -9,9 +9,11 @@
             </div>
          </div>
 
-         <div class="row">
-            <div>
-               
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  @lang('index.contactUs.extrame')
+               </div>
             </div>
          </div>
       </div>

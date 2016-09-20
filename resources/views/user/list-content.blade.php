@@ -111,7 +111,7 @@
                                 @lang('card-content.lang')
                               </td>
                               <td>
-                                French
+                                {{ $extras[0]->language }}
                               </td>
                             </tr>
                             <tr>
@@ -122,6 +122,14 @@
                                 {{ $extras[0]->dateExtra().' at '.$extras[0]->timeExtra() }}
                               </td>
                             </tr>
+                            <tr>
+                             <td>
+                               @lang('card-content.numberPerson')
+                             </td>
+                             <td>
+                               {{ $extras[0]->number_persons }}
+                             </td>
+                           </tr>
                             <tr>
                               <td style="border-bottom: none;">
                                 @lang('card-content.otherInfo')

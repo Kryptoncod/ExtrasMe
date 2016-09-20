@@ -124,6 +124,7 @@ class ExtraController extends Controller
 			'date' => $date->format('Y-m-d'),
 			'date_time' => $time->format('H:i'),
 			'duration' => $request->input('duration'),
+			'number_persons' => $request->input('numberPerson'),
 			'salary' => $request->input('salary'),
 			'language' => $language,
 			'requirements' => $request->input('requirements'),
@@ -158,10 +159,12 @@ class ExtraController extends Controller
 				'student_id' => $student->id,
 				'done' => 0,
 				));
+
 			$extra = Extra::find($id);
 			$professionalUser = $extra->professional->user;
 			$student_name = $student->first_name.' '.$student->last_name;
 			$notif_to_send = $student_name.' subscribed to your Extra : '.$extra->type;
+
 			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
 				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
 			});
@@ -195,7 +198,7 @@ class ExtraController extends Controller
 			$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
 				->where('done', 1)->get();
 
-			if(!empty($find))
+			if(count($find) == $extras[0]->number_persons)
 			{
 				if($find[0]->done == 1)
 				{
@@ -203,10 +206,11 @@ class ExtraController extends Controller
 				}
 			} else
 			{
-				$students = $extras[0]->students;
+				$students = $extras[0]->students()->where('done', 0)->get();
 
 				if(!empty($students))
 				{
+
 					foreach ($students as $student) {
 						$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
 						->where('professional_id', $professionalID)->value('number_extras');
@@ -230,7 +234,13 @@ class ExtraController extends Controller
 			->where('student_id', $studentID)
 			->update(['done' => 1]);
 
-		DB::table('extras')->where('id', $extraID)->update(['find' => 1]);
+		$numberStudent = DB::table('extras_students')->where('extra_id', $extraID)
+			->where('student_id', $studentID)->get();
+
+		if(count($numberStudent) == Extra::find($extraID)->number_persons)
+		{
+			DB::table('extras')->where('id', $extraID)->update(['find' => 1]);
+		}
 
 		$extra = Extra::find($extraID);
 		$professional = $extra->professional;
@@ -290,6 +300,7 @@ class ExtraController extends Controller
 				'language' => $language,
 				'requirements' => $request->input('requirements'),
 				'benefits' => $request->input('benefits'),
+				'number_persons' => $request->input('numberPeron'),
 				'informations' => $request->input('informations'),
 				);
 

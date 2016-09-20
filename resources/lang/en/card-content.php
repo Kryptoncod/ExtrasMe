@@ -10,6 +10,7 @@ return [
    'lang' => 'LANG',
    'time' => 'TIME',
    'duration' => 'DURATION',
+   'numberPerson' => 'NUMBER OF PERSONS',
    'otherInfo' => 'OTHER INFORMATIONS',
    'noOtherInfo' => 'Any',
    'apply' => 'APPLY',

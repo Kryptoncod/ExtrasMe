@@ -111,6 +111,14 @@
                                          </td>
                                        </tr>
                                        <tr>
+                                         <td>
+                                           @lang('card-content.numberPerson')
+                                         </td>
+                                         <td>
+                                           {{ $extra->number_persons }}
+                                         </td>
+                                       </tr>
+                                       <tr>
                                          <td style="border-bottom: none;">
                                            @lang('card-content.otherInfo')
                                          </td>

@@ -132,6 +132,20 @@
 
                   <div class="row">
                      <div class="large-3 columns">
+                        <label for="duration" class="right inline">@lang('professional.lookingForExtras.numberPerson')</label>
+                     </div>
+                     <div class="large-9 end columns">
+                        <div class="row collapse">
+                           <div class="small-10 columns">
+                              <input type="number" value="1" min="0" name="numberPerson" id="numberPerson" pattern="abovezero" required />
+                              <small class="error">@lang('professional.lookingForExtras.errorNumberPerson')</small>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="row">
+                     <div class="large-3 columns">
                         <label for="salary" class="right inline">@lang('professional.lookingForExtras.salary')</label>
                      </div>
                      <div class="large-9 end columns">

@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class Extra extends Model
 {
     protected $fillable = [
-        'broadcast', 'type', 'date', 'date_time', 'duration', 'salary', 'language', 'benefits', 'requirements', 'informations', 'professional_id'
+        'broadcast', 'type', 'date', 'date_time', 'duration', 'number_persons', 'salary', 'language', 'benefits', 'requirements', 'informations', 'professional_id'
     ];
 
     public function students()
