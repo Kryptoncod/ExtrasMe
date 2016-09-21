@@ -14,7 +14,7 @@ return [
       'moreInfos' => 'EN SAVOIR PLUS',
    ],
    'section3'   => [
-      'content' => 'L\'APPLICATION EXTRASME SERA BIENTOT DISPONIBLE',
+      'content' => 'L\'APPLICATION EXTRAS ME SERA BIENTOT DISPONIBLE',
    ],
    'section4'   => [
       'toEachItsTown'   => 'A CHACUN SA VILLE',
