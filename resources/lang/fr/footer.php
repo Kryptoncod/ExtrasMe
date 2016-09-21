@@ -8,7 +8,7 @@ return [
    'events'            => 'Evenements',
    'pressInfo'         => 'info press',
    'termsConditions'   => 'Termes et Conditions',
-   'yourExtrasMe'      => 'Votre ExtrasMe',
+   'yourExtrasMe'      => 'Votre Extras Me',
    'account'           => 'Compte',
    'privacy'           => 'Droits',
    'settings'          => 'Paramètres',
