@@ -10526,6 +10526,7 @@ option{
     width: 40%; 
     .fav-list-container{
       display: flex;
+      align-items:center;
       cursor: pointer;
         img{
           border-radius:50%;
@@ -10553,6 +10554,7 @@ option{
     }
     p{
       color: white;
+      margin-bottom: 7px;
     }
     .name-list{
           font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;

@@ -37,7 +37,7 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->post('search', ['as' => 'extra_search', "uses" => "ExtraController@search"]);
       $app->post('submit', ['as' => 'extra_submit', "uses" => "ExtraController@submit"]);
       $app->get ('myextras', ['as' => 'my_extras', "uses" => "ExtraController@myExtras"]);
-      $app->get('{id}', ['as' => 'show_extra', 'uses' => 'ExtraController@show']);
+      
       $app->get ('deleteextra/{id}', ['as' => 'delete_extra', "uses" => "ExtraController@deleteExtra"]);
       $app->get ('{id}/modify', ['as' => 'modify_extra', "uses" => "ExtraController@showModifyExtra"]);
       $app->post ('{id}/modify', ['as' => 'modify_extra_post', "uses" => "ExtraController@modifyExtra"]);
@@ -54,6 +54,7 @@ Route::group(['prefix' => '{username}'], function($app) {
             return App\Http\Controllers\ExtraController::favoriteDelete($id);
          });
       });
+      $app->get('{id}', ['as' => 'show_extra', 'uses' => 'ExtraController@show']);
    });
 
    $app->get('dashboard', ['as' => 'dashboard', "uses" => "DashboardController@show"]);
@@ -74,3 +75,4 @@ Route::group(['prefix' => '{username}'], function($app) {
 //Requêtes AJAX
 Route::get('ajax/getCardContent', ['as' => 'getCard','uses' => 'AjaxController@loadCard']);
 Route::get('ajax/getListContent', ['as' => 'getList','uses' => 'AjaxController@loadList']);
+Route::get('ajax/getStudentContent', ['as' => 'getStudent','uses' => 'AjaxController@loadStudent']);

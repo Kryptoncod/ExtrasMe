@@ -341,3 +341,18 @@ $(function() {
         $(this).parent("div").removeClass("border-blur");
     });
 });
+
+$(function() {
+    $('.fav-list-container').on('click', function(){
+        var idStud = $(this).data('studid');
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: {id: idStud},
+            success: function(card){
+                $card = $(card)
+                $(".dashboard-rightpan-fav").html($card).fadeIn(150);
+            }
+        });
+    });
+});

@@ -19,7 +19,7 @@
                   </form>
                </div>
                @if($back == true)
-                  <div class="fav-list-container" style="padding-left: 10px; ">
+                  <div class="fav-list-container" style="padding-left: 10px; " >
                         <div style="display: flex; width:100%; height:100%;">
                            <a href="{{ route('my_favorite_extras', Auth::user()->id) }}" class="submit-button" style="color:white; background-color:#060b2b; width:100%; text-align:center;">Back</a>
                         </div>
@@ -27,7 +27,7 @@
                   <hr>
                @endif
                @foreach($results as $result)
-                  <div class="fav-list-container" style="padding-left: 10px;">
+                  <div class="fav-list-container" data-studid="{{$result->id}}" style="padding-left: 10px;">
                      <div>
                         <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
                      </div>
@@ -49,76 +49,7 @@
                @endforeach
             </div>
             <div class="dashboard-rightpan-fav" style="display: flex;">
-               <h2 class="name-list">BAPTISTE ARNAUD</h2>
-               <p>ETUDIANT A L'ECOLE DE LAUSANNE</p>
-               <hr style="margin-top: 0px;">
-               <div style="width: 40%;">
-                  <img style="width: 100%;" class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
-               </div>
-                <div class="summary-container cv-div" style="margin-top: 20px;">
-               <h2>@lang('student.summary')</h2>
-               <p>
-                  @if(!empty($student->cv->summary))
-                     {{ $student->cv->summary }}
-                  @else
-                     @lang('student.noSummary')
-                  @endif
-               </p>
-            </div>
-            <div class="experience-container cv-div">
-               <h2>@lang('student.experience')</h2>
-               @if(count($experiences) != 0)
-                  @foreach($experiences as $experience)
-                     <h3>{{ $experience->title }}</h3>
-                     <h4>{{ $experience->from_date->format('F Y'). " - " .$experience->to_date->format('F Y') }}</h4>
-                     <p>
-                        {{ $experience->summary }}
-                     </p>
-                  @endforeach
-               @else
-                  <p>@lang('student.noExperience')</p>
-               @endif
-            </div>
-            <div class="education-container cv-div">
-               <h2>@lang('student.education')</h2>
-               @if(count($educations) != 0)
-                  @foreach($educations as $education)
-                     <h3>{{ $education->title }}</h3>
-                     <h4>{{ $education->from_date->format('F Y'). " - " .$education->to_date->format('F Y') }}</h4>
-                     <p>
-                        {{ $education->summary }}
-                     </p>
-                  @endforeach
-               @else
-                  <p>@lang('student.noEducation')</p>
-               @endif
-            </div>
-            <div class="skills-container cv-div">
-               <h2>@lang('student.competence')</h2>
-               @if(count($skills) != 0)
-               <ul>
-                  
-                     @foreach($skills as $skill)
-                        <li>{{ $skill->title }}</li>
-                     @endforeach
-                  @else
-                     <p>@lang('student.noCompetence')</p>
-                  
-               </ul>
-               @endif
-            </div>
-            <div class="languages-container cv-div">
-               <h2>@lang('student.language')</h2>
-               @if(count($languages) != 0)
-               <ul>
-                     @foreach($languages as $language)
-                        <li>{{ $language->title }}</li>
-                     @endforeach
-                  @else
-                     <p>@lang('student.noLanguage')</p>
-                  
-               </ul>
-               @endif
+               
             </div>
             </div>
             </div>
@@ -127,5 +58,8 @@
       </div>
    </div>
 
+<script type="text/javascript">
+     var url = "{{ route('getStudent') }}"
+</script>
 @endsection
 

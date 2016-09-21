@@ -219,4 +219,23 @@ class AjaxController extends Controller
 			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'students' => $studentToSort, 'studentsAlreadyChosen' => $studentsAlreadyChosen])->with('name', $name);
 		}
 	}
+	public function loadStudent(Request $request){
+		$user = Auth::user();
+		$studId = $request->input('id');
+		$student = Student::find($studId);
+		try{
+          $cvID = $student->cv->id;
+          $experiences = Cv::find($cvID)->experiences;
+          $educations = Cv::find($cvID)->educations;
+          $languages = Cv::find($cvID)->languages;
+          $skills = Cv::find($cvID)->skills;
+        } catch(\Exception $e){
+          $experiences = null;
+          $educations = null;
+          $languages = null;
+          $skills = null;
+        }
+        $name = $student->first_name." ".$student->last_name;
+        return view('user.student-fav', ['student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'name' => $name]);
+	}
 }
