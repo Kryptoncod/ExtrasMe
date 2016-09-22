@@ -37,7 +37,7 @@ return [
       'email' => 'contact@extrasme.com',
       'telephoneNumber' => 'Tel : +41 79 732 1609',
       'mayeul' => [
-         'title' => 'Mayeul Dezombre',
+         'title' => 'Mayeul Desombre',
          'position' => 'Founding Partner',
          'email' => 'Email : mayeul.dezombre@extrasme.com', 
       ],
@@ -57,7 +57,7 @@ return [
 
    'ourTeam' => [
       'mayeul' => [
-         'title' => 'Mayeul Dezombre : Founding Partner',
+         'title' => 'Mayeul Desombre : Founding Partner',
          'content' => 'Mayeul is a 20 years old French citizen coming from Lyon. He is studying at the Ecole Hôtelière de Lausanne. He has always loved human contact and that is why he chose the hospitality sector. Thanks to his personal motivation and his past experiences in the world of competitive sport, he is ready to face challenges. His passion for mountaineering gives him the persistence needed to be successful in a company. Sailing has kept him grounded and aware of the potential risks. He is adventurous and he likes to be independent with his team.',
       ],
 

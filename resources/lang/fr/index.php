@@ -38,7 +38,7 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
       'email' => 'contact@extrasme.com',
       'telephoneNumber' => 'Tel : +41 79 732 1609',
       'mayeul' => [
-         'title' => 'Mayeul Dezombre',
+         'title' => 'Mayeul Desombre',
          'position' => 'Co-Foundateur',
          'email' => 'Email : mayeul.dezombre@extrasme.com', 
       ],
@@ -58,7 +58,7 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
 
    'ourTeam' => [
       'mayeul' => [
-         'title' => 'Mayeul Dezombre : Founding Partner',
+         'title' => 'Mayeul Desombre : Founding Partner',
          'content' => 'Mayeul est un lyonnais de 20 ans qui étudie à l’école Hôtelière de Lausanne. Il a toujours aimé le contact humain et a donc choisis l’hôtellerie. Grâce à sa motivation personnelle ainsi que ses expériences passées dans le monde de la compétition sportive, il est prêt à relever les challenges avec joie. Sa passion pour l’alpinisme lui procure la persévérance nécessaire à la réussite de l’entreprise. La pratique de la voile lui fait garder les pieds sur terre et être conscient des risques. Il est autonome, entreprenant et aventurier.',
       ],
 
