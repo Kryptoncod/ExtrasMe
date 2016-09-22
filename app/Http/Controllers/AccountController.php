@@ -28,7 +28,7 @@ use App\Repositories\LanguageRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB, Validator;
+use Auth, DB, Validator, Zipper;
 
 class AccountController extends Controller
 {
@@ -154,6 +154,8 @@ class AccountController extends Controller
 								$path = config('card.path')."/$id";
 								$name = "permit.".$image3->getClientOriginalExtension();
 								$image3->move("$path", $name);
+								$files = glob($path."/*");
+								Zipper::make("$path/cartes.zip")->add($files);
 								$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
 								//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
 								$studentInput = array(

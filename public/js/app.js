@@ -345,13 +345,14 @@ $(function() {
 $(function() {
     $('.fav-list-container').on('click', function(){
         var idStud = $(this).data('studid');
+        $(".rightpan-toload").fadeOut(150);
         $.ajax({
             url: url,
             type: "GET",
             data: {id: idStud},
             success: function(card){
                 $card = $(card)
-                $(".dashboard-rightpan-fav").html($card).fadeIn(150);
+                $(".rightpan-toload").html($card).fadeIn(150);
             }
         });
     });

@@ -10,8 +10,6 @@
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
 
-      <hr style="margin:0;" />
-
       <div class="liste-extra-container">
 
          <div class="experience-container"><div class="chrono-container">
@@ -155,23 +153,51 @@
                           </tbody>
                         </table>
                         @if($extras[0]->find == 0)
-                          <ul>
-                              <li class="title">@lang('myExtraList.studentApplied')</li>
+                          <ul style="width: 80%; margin:auto;">
+                              <li class="title list-stud-title">@lang('myExtraList.studentApplied')</li>
                               @foreach($students as $student)
-                                <li>
-                                  <a href = "{{ route('home', $student[0]->user->id) }}">{{ $student[0]->first_name . " " . $student[0]->last_name }}</a>
+                                <li class="student-applied-container">
+                                  <a href = "{{ route('home', $student->user_id) }}">
+                                  @if(file_exists("uploads/pp/".$student->user_id.".png"))
+                                      <img class="profile-picture" src=" uploads/pp/{{$student->user_id}}.png" alt="" />
+                                  @else
+                                  @if($student->gender == 0)
+                                                         <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                                  @else
+                                                         <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
+                                  @endif
+                                                   @endif
+                                  {{ $student->first_name . " " . $student->last_name }}
+                                  </a>
                                   <button class="submit-button right">@lang('myExtraList.decline')</button>
                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                  <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student[0]->id }}">@lang('myExtraList.accept')</a></button>
+                                  <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">@lang('myExtraList.accept')</a></button>
                                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </li>
                               @endforeach
                           </ul>
                         @endif
-                          <ul>
-                              <li class="title">@lang('myExtraList.studentChosen')</li>
+                          <ul style="width: 80%; margin: auto;">
+                              <li class="title list-stud-title">@lang('myExtraList.studentChosen')</li>
                               @foreach($studentsAlreadyChosen as $student)
-                                <li><a href="{{ route('home', $student->user->id) }}">{{ $student->first_name . " " . $student->last_name }}</a></li>
+                                <li class="student-applied-container">
+                                  <a href = "{{ route('home', $student->user_id) }}">
+                                  @if(file_exists("uploads/pp/".$student->user_id.".png"))
+                                      <img class="profile-picture" src=" uploads/pp/{{$student->user_id}}.png" alt="" />
+                                  @else
+                                  @if($student->gender == 0)
+                                                         <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                                  @else
+                                                         <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
+                                  @endif
+                                                   @endif
+                                  {{ $student->first_name . " " . $student->last_name }}
+                                  </a>
+                                  <a class="dl-card" href="{{ asset('uploads/'.$student->user_id.'/cartes.zip') }}" download="carte_{{$student->first_name}}_{{$student->last_name}}">CARTES</a>
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">CONTRAT</a></button>
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </li>
                               @endforeach
                           </ul>
                       </div>

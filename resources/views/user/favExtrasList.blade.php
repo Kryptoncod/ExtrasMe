@@ -14,7 +14,7 @@
                <h2 style="padding:20px;">@lang('favExtras.title')</h2>
                <div class="search-bar">
                   <label for="search"><i class="icon-search"></i></label>
-                  <form action="{{ route('my_favorite_extras_search', Auth::user()->type) }}" method="GET">
+                  <form action="{{ route('my_favorite_extras_search', Auth::user()->type) }}" method="GET" style="width: 100%;">
                      <input type="search" name="searchFav" placeholder="@lang('favExtrasSearch.search')" id="search">
                   </form>
                </div>
@@ -48,7 +48,10 @@
                   <hr>
                @endforeach
             </div>
-            <div class="dashboard-rightpan-fav" style="display: flex;">
+            <div class="dashboard-rightpan-fav">
+               <div class="rightpan-toload">
+                  
+               </div>
                
             </div>
             </div>

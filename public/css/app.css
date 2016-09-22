@@ -7008,7 +7008,8 @@ option {
       margin: auto; }
     .dashboard-container .dashboard-leftpan p {
       color: white;
-      margin-bottom: 7px; }
+      margin-bottom: 7px;
+      font-size: 13px; }
     .dashboard-container .dashboard-leftpan .name-list {
       font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
       font-size: 20px; }
@@ -7089,7 +7090,7 @@ option {
             margin: 0;
             letter-spacing: 5px; }
   .dashboard-container .dashboard-rightpan-fav {
-    width: 60%;
+    min-height: 800px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -7547,10 +7548,11 @@ ul.topnav li.icon {
   justify-content: space-between;
   font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   letter-spacing: 5px;
-  font-size: 14px; }
+  font-size: 14px;
+  margin-bottom: 10px; }
   .student-applied-container img {
     width: 50px; }
-  .student-applied-container button {
+  .student-applied-container button, .student-applied-container .dl-card {
     padding: 3px;
     letter-spacing: 5px;
     font-size: 14px;
@@ -7558,12 +7560,12 @@ ul.topnav li.icon {
     font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     width: 100px;
     margin-top: auto;
-    margin-bottom: auto; }
+    margin-bottom: auto;
+    background-color: #060b2b; }
 
 .liste-extra-container {
   display: flex;
-  color: white;
-  padding-top: 50px; }
+  color: white; }
   .liste-extra-container .extra-list {
     display: flex;
     flex-direction: column;

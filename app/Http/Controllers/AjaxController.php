@@ -62,25 +62,22 @@ class AjaxController extends Controller
 				if(!empty($students))
 				{
 
-					foreach ($students as $student) {
+					/*foreach ($students as $student) {
 						$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
 						->where('professional_id', $professionalID)->value('number_extras');
 
 						$studentToSort[] = array($student, $numberExtra);
 					}
-
 					usort($studentToSort, function($a, $b)
 					{
 					    return $b[1] - $a[1];
-					});
+					});*/
 				}
 
 				$studentsAlreadyChosen = $extra->students()->where('done', 1)->get();
 			}
-
 			$can_apply = 0;
-
-			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, "email" => $email_pro, 'students' => $studentToSort, 'studentsAlreadyChosen' => $studentsAlreadyChosen]);
+			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, "email" => $email_pro, 'students' => $students, 'studentsAlreadyChosen' => $studentsAlreadyChosen]);
 		}
 		
 	}
