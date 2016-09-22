@@ -235,4 +235,12 @@ class AjaxController extends Controller
         $name = $student->first_name." ".$student->last_name;
         return view('user.student-fav', ['student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'name' => $name]);
 	}
+
+	public function loadProfessional(Request $request){
+		$user = Auth::user();
+		$proId = $request->input('id');
+		$professional = Professional::find($proId);
+		$mail = User::find($professional->user_id)->email;
+		return view('user.pro-fav', ['professional' => $professional, 'mail' => $mail]);
+	}
 }

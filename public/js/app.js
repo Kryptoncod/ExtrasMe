@@ -346,14 +346,27 @@ $(function() {
     $('.fav-list-container').on('click', function(){
         var idStud = $(this).data('studid');
         $(".rightpan-toload").fadeOut(150);
-        $.ajax({
-            url: url,
-            type: "GET",
-            data: {id: idStud},
-            success: function(card){
-                $card = $(card)
-                $(".rightpan-toload").html($card).fadeIn(150);
-            }
-        });
+        if($(this).data('type') == 0){
+            $.ajax({
+                url: urlPro,
+                type: "GET",
+                data: {id: idStud},
+                success: function(card){
+                    $card = $(card)
+                    $(".rightpan-toload").html($card).fadeIn(150);
+                }
+            });
+        }else{     
+            $.ajax({
+                url: urlStudent,
+                type: "GET",
+                data: {id: idStud},
+                success: function(card){
+                    $card = $(card)
+                    $(".rightpan-toload").html($card).fadeIn(150);
+                }
+            });
+        }
+        
     });
 });

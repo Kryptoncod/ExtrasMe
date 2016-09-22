@@ -81,3 +81,4 @@ Route::group(['prefix' => '{username}'], function($app) {
 Route::get('ajax/getCardContent', ['as' => 'getCard','uses' => 'AjaxController@loadCard']);
 Route::get('ajax/getListContent', ['as' => 'getList','uses' => 'AjaxController@loadList']);
 Route::get('ajax/getStudentContent', ['as' => 'getStudent','uses' => 'AjaxController@loadStudent']);
+Route::get('ajax/getProContent', ['as' => 'getPro','uses' => 'AjaxController@loadProfessional']);

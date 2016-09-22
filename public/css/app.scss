@@ -10675,6 +10675,17 @@ option{
           font-weight: 0;
           letter-spacing: 5px;
     }
+    ul{
+      list-style-type:none;
+      margin: 0;
+      li{
+        color: white;
+        margin-bottom: 10px;
+        font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          font-weight: 0;
+          letter-spacing: 5px;
+      }
+    }
   }
 }
 
