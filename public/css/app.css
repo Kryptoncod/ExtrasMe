@@ -7131,8 +7131,7 @@ option {
     color: orange; }
   .warning_register .warning_box {
     position: absolute;
-    width: 400px;
-    height: 70px;
+    min-width: 400px;
     background-color: #222;
     border: 1px solid orange;
     left: 40px;
