@@ -55,4 +55,21 @@ return [
       ],
    ],
 
+   'ourTeam' => [
+      'mayeul' => [
+         'title' => 'Mayeul Dezombre : Founding Partner',
+         'content' => 'Mayeul is a 20 years old French citizen coming from Lyon. He is studying at the Ecole Hôtelière de Lausanne. He has always loved human contact and that is why he chose the hospitality sector. Thanks to his personal motivation and his past experiences in the world of competitive sport, he is ready to face challenges. His passion for mountaineering gives him the persistence needed to be successful in a company. Sailing has kept him grounded and aware of the potential risks. He is adventurous and he likes to be independent with his team.',
+      ],
+
+      'benjamin' => [
+         'title' => 'Benjamin Farhi : Founding Partner',
+         'content' => 'Benjamin is from Paris. He is 20 years old and studies at the Ecole Hotelière de Lausanne. His father and grandfather having created their own companies, he has been bathed in an entrepreneurial environment since childhood and therefore, he has a realistic vision of a company. Openness to the world and rigor are his guiding principles because they represent qualities necessary for a proper company management. Playing golf in competition enabled him acquire rigor. This is a sport where you should leave nothing to chance, the slightest mistake is fateful as well as in the management of a company. Openness is also essential because it increases creativity in a start-up and represents a key factor to success.',
+      ],
+
+      'paul' => [
+         'title' => 'Paul Borie : Partner',
+         'content' => 'Paul is a 21 years old French citizen. He is also studying at the Ecole Hôtelière de Lausanne. The hospitality industry has always attracted him because it represents one of the largest service industries in the world. Coming from a family of entrepreneurs, he naturally oriented himself in the start-ups environment. Having lived in the United States and Australia, Paul has developed a cultural openness, adaptability and self-temperament, which allow him to cope with problems and evolve smoothly in the entrepreneurship world. Called « perfectionist » by his two associates through its pronounced sense of detail, Paul aims to carry out their project transforming this innovative idea into a profitable company.',
+      ],
+   ],
+
 ];
