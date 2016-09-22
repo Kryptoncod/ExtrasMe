@@ -39,7 +39,7 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
       'telephoneNumber' => 'Tel : +41 79 732 1609',
       'mayeul' => [
          'title' => 'Mayeul Desombre',
-         'position' => 'Co-Foundateur',
+         'position' => 'Co-Fondateur',
          'email' => 'Email : mayeul.dezombre@extrasme.com', 
       ],
 
@@ -51,24 +51,24 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
 
       'benjamin' => [
          'title' => 'Benjamin Farhi',
-         'position' => 'Co-Foundateur',
+         'position' => 'Co-Fondateur',
          'email' => 'Email : benjamin.farhi@extrasme.com',
       ],
    ],
 
    'ourTeam' => [
       'mayeul' => [
-         'title' => 'Mayeul Desombre : Founding Partner',
+         'title' => 'Mayeul Desombre : Co-Fondateur',
          'content' => 'Mayeul est un lyonnais de 20 ans qui étudie à l’école Hôtelière de Lausanne. Il a toujours aimé le contact humain et a donc choisis l’hôtellerie. Grâce à sa motivation personnelle ainsi que ses expériences passées dans le monde de la compétition sportive, il est prêt à relever les challenges avec joie. Sa passion pour l’alpinisme lui procure la persévérance nécessaire à la réussite de l’entreprise. La pratique de la voile lui fait garder les pieds sur terre et être conscient des risques. Il est autonome, entreprenant et aventurier.',
       ],
 
       'benjamin' => [
-         'title' => 'Benjamin Farhi : Founding Partner',
+         'title' => 'Benjamin Farhi : Co-Fondateur',
          'content' => 'Benjamin est parisien, il a 20 ans et étudie à l’Ecole Hôtelière de Lausanne. Son père et son grand père ayant créé leur société, il baigne dans un milieu entrepreneurial depuis tout petit et a donc une vision réaliste et stratégique d’une entreprise. Ouverture sur le monde et rigueur sont ses maîtres mots car elles représentent des qualités nécessaires à la bonne gestion d’une entreprise. La pratique du golf en compétition lui a permis d’acquérir cette rigueur. En effet, c’est un sport où l’on ne doit rien laisser au hasard, la moindre erreur dans ce sport coute chère, tout comme dans la gestion d’une société. L’ouverture d’esprit est également primordiale car elle accroit la créativité en entreprise et représente un facteur de réussite.',
       ],
 
       'paul' => [
-         'title' => 'Paul Borie : Partner',
+         'title' => 'Paul Borie : Partenaire',
          'content' => 'Paul est un marseillais de 21 et étudie également à l’Ecole Hôtelière de Lausanne. Le secteur de l\'accueil l\'a toujours attiré car il représente une des plus grandes industries de services au monde. Venant d’une famille d’entrepreneurs, il s’est naturellement orienté vers l’univers des start-ups.
 Ayant vécu aux Etats-Unis et en Australie, Paul a su développer une ouverture culturelle, une capacité d’adaptation et un tempérament autonome, responsable et débrouillard. Son sens du détail qualifié de « perfectionniste » par ses associés leur permettra de mener à bien leur projet en transformant cette idée innovante en une entreprise profitable.
 ',
