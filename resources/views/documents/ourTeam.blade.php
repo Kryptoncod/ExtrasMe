@@ -14,10 +14,10 @@
                <div class="columns medium-4 medium-uncentered" style="margin-bottom: 2rem;">
                   <img src="{{ asset('images/ourTeam.jpg') }}" width="200" height="200" style="width:100%;">
                   <div style="color:white; background-color:#222; margin: 0">
-                     <h2 style="color:white; margin: 0; letter-spacing:0; text-transform:uppercase; padding: 1rem;">@lang('index.ourTeam.mayeul.title')</h2>
+                     <span class="title" style="padding:.5rem;">@lang('index.ourTeam.mayeul.title')</span>
                   </div>
                   <div style="color:white; background-color:#000; margin: 0">
-                     <p style="margin:0; padding: 1rem;">
+                     <p class="description" style="margin:0; padding: .5rem;">
                         @lang('index.ourTeam.mayeul.content')
                      </p>
                   </div>
@@ -25,10 +25,10 @@
                <div class="columns medium-4 medium-uncentered" style="margin-bottom: 2rem;">
                   <img src="{{ asset('images/ourTeam.jpg') }}" width="200" height="200" style="width:100%;">
                   <div style="color:white; background-color:#222; margin: 0">
-                     <h2 style="color:white; margin: 0; letter-spacing:0; text-transform:uppercase; padding: 1rem;">@lang('index.ourTeam.benjamin.title')</h2>
+                     <span class="title" style="padding:.5rem;">@lang('index.ourTeam.benjamin.title')</span>
                   </div>
                   <div style="color:white; background-color:#000; margin: 0">
-                     <p style="margin:0; padding: 1rem;">
+                     <p class="description" style="margin:0; padding: .5rem;">
                         @lang('index.ourTeam.benjamin.content')
                      </p>
                   </div>
@@ -36,10 +36,10 @@
                <div class="columns medium-4 medium-uncentered" style="margin-bottom: 2rem;">
                   <img src="{{ asset('images/ourTeam.jpg') }}" width="200" height="200" style="width:100%;">
                   <div style="color:white; background-color:#222; margin: 0">
-                     <h2 style="color:white; margin: 0; letter-spacing:0; text-transform:uppercase; padding: 1rem;">@lang('index.ourTeam.paul.title')</h2>
+                     <span class="title" style="padding:.5rem;">@lang('index.ourTeam.paul.title')</span>
                   </div>
                   <div style="color:white; background-color:#000; margin: 0">
-                     <p style="margin:0; padding: 1rem;">
+                     <p class="description" style="margin:0; padding: .5rem;">
                         @lang('index.ourTeam.paul.content')
                      </p>
                   </div>
