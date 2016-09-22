@@ -26,7 +26,11 @@
 
    <body>
       <div class="js-notice">@lang('layouts.jsNotice')</div>
-         @include('layouts.master.navbars.connected')
+         @if(Auth::check())
+            @include('layouts.master.navbars.connected')
+         @else
+            @include('layouts.master.navbars.default')
+         @endif
 
       <div id="fullpage">
       <div class="section">@include('index.section-error')</div>

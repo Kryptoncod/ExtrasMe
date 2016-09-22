@@ -20,6 +20,11 @@ Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
 Route::get('/missionStatement', ['as' => 'missionStatement', "uses" => "IndexController@missionStatement"]);
 Route::get('/contactUs', ['as' => 'contactUs', "uses" => "IndexController@contactUs"]);
+Route::get('/ourTeam', ['as' => 'ourTeam', "uses" => "IndexController@ourTeam"]);
+
+Route::get('404', function(){
+   return view('errors.404');
+});
 
 
 Route::group(['prefix' => '{username}'], function($app) {

@@ -23,12 +23,56 @@ return [
 
    'missionStatement' => [
       'title' => 'Mission de l\'Entreprise',
-      'content' => 'Extras Me apporte du renouveau au monde du travail occasionnel en mettant directement en relation les étudiants d’écoles hôtelières prestigieuses avec les entreprises de l’industrie de l’accueil. Son but est simple, établir une connexion durable entre un étudiant motivé et un professionnel en terme de missions temporaires rémunérées.
+      'content' => 'Extras Me apporte du renouveau au monde du travail occasionnel en mettant directement en relation les étudiants d’écoles hôtelières prestigieuses avec les entreprises de l’industrie de l’accueil. Son principe est simple, établir une connexion durable entre un professionnel et un étudiant motivé à accomplir des missions temporaires rémunérées.
          <br/><br/>
-         L’offre d’Extras Me est destinée aux professionnels de l’accueil et représente une avancée importante dans la facilitation de l’accès à l’emploi ponctuel des étudiants en écoles hôtelières ou écoles spécialisées dans les métiers de l’hôtellerie. En effet, notre offre permet aux professionnels de l’accueil d’éviter les aléas du service en terme de personnel. Nous proposons ainsi une mise en relation plus efficace et qualitative qu’auparavant. Les étudiants auront quant à eux la possibilité d’avoir accès à davantage d’offres d’extras dans des établissements de renoms, ce qui leur permettra d’élargir leur réseau et leur expérience professionnelle.
+         L’offre d’Extras Me est destinée aux professionnels de l’accueil et représente une avancée importante dans la facilitation de l’accès à l’emploi ponctuel des étudiants en écoles hôtelières spécialisées. En effet, notre offre permet aux professionnels de l’accueil d’éviter les aléas du service en terme de personnel en proposant une mise en relation plus efficace et qualitative. Les étudiants auront quant à eux la possibilité d’avoir accès à davantage d’offres d’extras dans des établissements de renoms, ce qui leur permettra d’élargir leur réseau et leur expérience professionnelle.
          <br/><br/>
          L’équipe d’Extras Me part du principe que l’excellence du service est essentielle dans tous les établissements. C’est la raison pour laquelle nous nous différencions des entreprises s’approchant de notre secteur, en créant un réseau se limitant aux étudiants d’écoles spécialisées. Ainsi, nous sommes en mesure de garantir un service de qualité à tous les établissements travaillant avec nous. 
 Les particuliers et entreprises peuvent également utiliser nos services pour des réceptions ou événements privés, demandes qui seront traitées individuellement.',
+   ],
+
+   'contactUs' => [
+      'contactDetails' => 'Information de contact',
+      'extrasme' => 'Extras Me SARL',
+      'address' => '35 Grande rue de la Croix-Rousse, 69004 Lyon, France',
+      'email' => 'contact@extrasme.com',
+      'telephoneNumber' => 'Tel : +41 79 732 1609',
+      'mayeul' => [
+         'title' => 'Mayeul Dezombre',
+         'position' => 'Co-Foundateur',
+         'email' => 'Email : mayeul.dezombre@extrasme.com', 
+      ],
+
+      'paul' => [
+         'title' => 'Paul Borie',
+         'position' => 'Partenaire',
+         'email' => 'Email : paul.borie@extrasme.com', 
+      ],
+
+      'benjamin' => [
+         'title' => 'Benjamin Farhi',
+         'position' => 'Co-Foundateur',
+         'email' => 'Email : benjamin.farhi@extrasme.com',
+      ],
+   ],
+
+   'ourTeam' => [
+      'mayeul' => [
+         'title' => 'Mayeul Desombre : Founding Partner',
+         'content' => 'Mayeul est un lyonnais de 20 ans qui étudie à l’école Hôtelière de Lausanne. Il a toujours aimé le contact humain et a donc choisis l’hôtellerie. Grâce à sa motivation personnelle ainsi que ses expériences passées dans le monde de la compétition sportive, il est prêt à relever les challenges avec joie. Sa passion pour l’alpinisme lui procure la persévérance nécessaire à la réussite de l’entreprise. La pratique de la voile lui fait garder les pieds sur terre et être conscient des risques. Il est autonome, entreprenant et aventurier.',
+      ],
+
+      'benjamin' => [
+         'title' => 'Benjamin Farhi : Founding Partner',
+         'content' => 'Benjamin est parisien, il a 20 ans et étudie à l’Ecole Hôtelière de Lausanne. Son père et son grand père ayant créé leur société, il baigne dans un milieu entrepreneurial depuis tout petit et a donc une vision réaliste et stratégique d’une entreprise. Ouverture sur le monde et rigueur sont ses maîtres mots car elles représentent des qualités nécessaires à la bonne gestion d’une entreprise. La pratique du golf en compétition lui a permis d’acquérir cette rigueur. En effet, c’est un sport où l’on ne doit rien laisser au hasard, la moindre erreur dans ce sport coute chère, tout comme dans la gestion d’une société. L’ouverture d’esprit est également primordiale car elle accroit la créativité en entreprise et représente un facteur de réussite.',
+      ],
+
+      'paul' => [
+         'title' => 'Paul Borie : Partner',
+         'content' => 'Paul est un marseillais de 21 et étudie également à l’Ecole Hôtelière de Lausanne. Le secteur de l\'accueil l\'a toujours attiré car il représente une des plus grandes industries de services au monde. Venant d’une famille d’entrepreneurs, il s’est naturellement orienté vers l’univers des start-ups.
+Ayant vécu aux Etats-Unis et en Australie, Paul a su développer une ouverture culturelle, une capacité d’adaptation et un tempérament autonome, responsable et débrouillard. Son sens du détail qualifié de « perfectionniste » par ses associés leur permettra de mener à bien leur projet en transformant cette idée innovante en une entreprise profitable.
+',
+      ],
    ],
 
 ];

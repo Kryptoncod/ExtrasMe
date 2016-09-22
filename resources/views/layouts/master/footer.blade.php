@@ -5,17 +5,17 @@
          <ul>
             <li class="title">@lang('footer.aboutUs')</li>
             <li><a href="{{ route('missionStatement') }}">@lang('footer.ourPrinciples')</a></li>
-            <li><a href="#">@lang('footer.ourTeam')</a></li>
-            <li><a href="#">@lang('footer.events')</a></li>
-            <li><a href="#">@lang('footer.pressInfo')</a></li>
+            <li><a href="{{ route('ourTeam') }}">@lang('footer.ourTeam')</a></li>
+            <li><a href="404">@lang('footer.events')</a></li>
+            <li><a href="404">@lang('footer.pressInfo')</a></li>
          </ul>
       </div>
 
       <div class="small-3 columns">
          <ul>
             <li class="title">@lang('footer.yourExtrasMe')</li>
-            <li><a href="#">@lang('footer.privacy')</a></li>
-            <li><a href="#">@lang('footer.helpCenter')</a></li>
+            <li><a href="404">@lang('footer.privacy')</a></li>
+            <li><a href="404">@lang('footer.helpCenter')</a></li>
          </ul>
       </div>
 
@@ -23,7 +23,7 @@
          <ul>
             <li class="title">@lang('footer.contactUs')</li>
             <li><a href="{{ route('contactUs') }}">@lang('footer.contactPage')</a></li>
-            <li><a href="#">@lang('footer.becomeAnbassador')</a></li>
+            <li><a href="404">@lang('footer.becomeAnbassador')</a></li>
          </ul>
       </div>
 
@@ -57,10 +57,10 @@
       </div>
       <div class="small-6 columns">
          <ul>
-            <li><a href="#">@lang('footer.privacyPolicy')</a></li>
-            <li><a href="#">@lang('footer.termsOfUse')</a></li>
-            <li><a href="#">@lang('footer.salesRefund')</a></li>
-            <li><a href="#">@lang('footer.sitemap')</a></li>
+            <li><a href="404">@lang('footer.privacyPolicy')</a></li>
+            <li><a href="404">@lang('footer.termsOfUse')</a></li>
+            <li><a href="404">@lang('footer.salesRefund')</a></li>
+            <li><a href="404">@lang('footer.sitemap')</a></li>
          </ul>
       </div>
    </div>

@@ -53,4 +53,9 @@ class IndexController extends Controller
     {
         return view('documents.contact');
     }
+
+    public function ourTeam()
+    {
+        return view('documents.ourTeam');
+    }
 }
