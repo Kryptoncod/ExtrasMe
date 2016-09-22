@@ -11199,6 +11199,7 @@ ul.topnav li.icon {display: none;}
   letter-spacing: 5px;
   font-size: 14px;
    margin-bottom: 10px;
+
 }
 .student-applied-container{
   display: flex;
@@ -11206,10 +11207,11 @@ ul.topnav li.icon {display: none;}
   font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   letter-spacing: 5px;
   font-size: 14px;
+  margin-bottom: 10px;
   img{
     width: 50px;
   }
-  button{
+  button, .dl-card{
     padding:3px;
         letter-spacing: 5px;
         font-size: 14px;
@@ -11218,13 +11220,13 @@ ul.topnav li.icon {display: none;}
         width: 100px;
         margin-top: auto;
         margin-bottom: auto;
+        background-color: #060b2b;
   }
 }
 
 .liste-extra-container{
   display:flex; 
   color:white; 
-  padding-top:50px;
   .extra-list{
     display:flex; 
     flex-direction:column; 

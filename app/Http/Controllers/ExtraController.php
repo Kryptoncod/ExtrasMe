@@ -165,9 +165,9 @@ class ExtraController extends Controller
 			$student_name = $student->first_name.' '.$student->last_name;
 			$notif_to_send = $student_name.' subscribed to your Extra : '.$extra->type;
 
-			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
+			/*Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
 				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
-			});
+			});*/
 			return redirect()->back();
 		}
 		catch (Exception $e)
@@ -225,7 +225,7 @@ class ExtraController extends Controller
 				$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
 			}
 		}
-		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'studentsAlreadyChosen' => $studentsAlreadyChosen, 'students' => $studentToSort]);
+		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'studentsAlreadyChosen' => $studentsAlreadyChosen, 'students' => $students]);
 	}
 
 	public static function acceptExtra($extraID, $studentID)
