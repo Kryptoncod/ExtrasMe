@@ -7008,7 +7008,8 @@ option {
       margin: auto; }
     .dashboard-container .dashboard-leftpan p {
       color: white;
-      margin-bottom: 7px; }
+      margin-bottom: 7px;
+      font-size: 13px; }
     .dashboard-container .dashboard-leftpan .name-list {
       font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
       font-size: 20px; }
@@ -7089,7 +7090,7 @@ option {
             margin: 0;
             letter-spacing: 5px; }
   .dashboard-container .dashboard-rightpan-fav {
-    width: 60%;
+    min-height: 800px;
     display: flex;
     flex-direction: column;
     width: 100%;

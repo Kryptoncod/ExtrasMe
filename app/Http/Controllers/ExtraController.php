@@ -380,9 +380,7 @@ class ExtraController extends Controller
 		else if(User::find($id)->type == 1)
 		{
 			$name = User::find($id)->professional->company_name;
-			list($first_name, $last_name) = explode(" ", $favoriteName);
-			$results = DB::table('students')->where('last_name', $last_name)->where('first_name', $first_name)->get();
-
+			$results = DB::table('students')->where('first_name', 'LIKE', '%' . $favoriteName . '%')->orWhere('last_name', 'LIKE', '%' . $favoriteName . '%')->get();
 			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
 		}
 	}

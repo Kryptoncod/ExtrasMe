@@ -10555,6 +10555,7 @@ option{
     p{
       color: white;
       margin-bottom: 7px;
+      font-size: 13px;
     }
     .name-list{
           font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -10656,7 +10657,7 @@ option{
     }
   }
   .dashboard-rightpan-fav{
-    width: 60%;
+    min-height: 800px;
     display:flex; 
     flex-direction:column; 
     width: 100%; 
