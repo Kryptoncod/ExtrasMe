@@ -58,7 +58,7 @@ class DashboardController extends Controller
 
 			$numberOfExtras = Professional::find($professional->id)->extra()->where('finish', 1)->get();
 
-			$daysLeft = Professional::find($professional->id)->invoices()->where('paid', 1)->orderBy('updated_at', 'DESC');
+			$daysLeft = Professional::find($professional->id)->invoices()->where('paid', 1)->orderBy('updated_at', 'DESC')->get();
 
 			foreach($numberOfExtras as $extra) {
 

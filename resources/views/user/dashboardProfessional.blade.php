@@ -50,7 +50,11 @@
                      <h2>@lang('dashboardProfessional.remainingDays')</h2>
                      <div class="stat-content">
                         <div style="margin:auto; width: 70px;">
-                           <blockquote style="letter-spacing: 0; width: 20px; margin:auto;">{{ 365 - $daysLeft->first()->updated_at->diffInDays(Carbon\Carbon::now()) }}</blockquote>
+                           @if($daysLeft->first() != null)
+                              <blockquote style="letter-spacing: 0; width: 20px; margin:auto;">{{ 365 - $daysLeft->first()->updated_at->diffInDays(Carbon\Carbon::now()) }}</blockquote>
+                           @else
+                              <blockquote style="letter-spacing: 0; margin:auto;">No invoices yet</blockquote>
+                           @endif
                         </div>
                      </div>
                   </div>
