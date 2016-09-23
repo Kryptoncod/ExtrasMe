@@ -10675,6 +10675,17 @@ option{
           font-weight: 0;
           letter-spacing: 5px;
     }
+    ul{
+      list-style-type:none;
+      margin: 0;
+      li{
+        color: white;
+        margin-bottom: 10px;
+        font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          font-weight: 0;
+          letter-spacing: 5px;
+      }
+    }
   }
 }
 
@@ -10705,8 +10716,7 @@ option{
   }
   .warning_box{
     position:absolute;
-    width: 400px;
-    height: 70px;
+    min-width: 400px;
     background-color: #222;
     border: 1px solid orange;
     left:40px;

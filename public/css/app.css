@@ -7106,6 +7106,15 @@ option {
       font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
       font-weight: 0;
       letter-spacing: 5px; }
+    .dashboard-container .dashboard-rightpan-fav ul {
+      list-style-type: none;
+      margin: 0; }
+      .dashboard-container .dashboard-rightpan-fav ul li {
+        color: white;
+        margin-bottom: 10px;
+        font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        font-weight: 0;
+        letter-spacing: 5px; }
 
 .export-ids {
   display: flex;
@@ -7131,8 +7140,7 @@ option {
     color: orange; }
   .warning_register .warning_box {
     position: absolute;
-    width: 400px;
-    height: 70px;
+    min-width: 400px;
     background-color: #222;
     border: 1px solid orange;
     left: 40px;

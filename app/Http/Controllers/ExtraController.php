@@ -375,7 +375,8 @@ class ExtraController extends Controller
 		if(User::find($id)->type == 0)
 		{
 			$name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
-			$results = DB::table('professionals')->where('company_name', $favoriteName)->get();
+			$results = DB::table('professionals')->where('company_name', 'LIKE', '%' . $favoriteName . '%')->get();
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
 		}
 		else if(User::find($id)->type == 1)
 		{

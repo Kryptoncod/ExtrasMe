@@ -27,7 +27,11 @@
                   <hr>
                @endif
                @foreach($results as $result)
-                  <div class="fav-list-container" data-studid="{{$result->id}}" style="padding-left: 10px;">
+                  @if(Auth::user()->type == 0)
+                  <div class="fav-list-container" data-studid="{{$result->id}}" data-type=0 style="padding-left: 10px;">
+                  @else
+                  <div class="fav-list-container" data-studid="{{$result->id}}" data-type=1 style="padding-left: 10px;">
+                  @endif
                      <div>
                         <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
                      </div>
@@ -40,8 +44,10 @@
                                  {{ $result->company_name }}
                               @endif
                            </h2>
+                           @if(Auth::user()->type == 1)
                            <p>Nationality : {{ $result->nationality }}</p>
                            <p>School year : {{ $result->school_year }}</p>
+                           @endif
                         </div>
                      </div>
                   </div>
@@ -62,7 +68,8 @@
    </div>
 
 <script type="text/javascript">
-     var url = "{{ route('getStudent') }}"
+     var urlStudent = "{{ route('getStudent') }}";
+     var urlPro = "{{ route('getPro') }}"
 </script>
 @endsection
 
