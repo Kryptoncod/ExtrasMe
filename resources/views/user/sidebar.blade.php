@@ -33,7 +33,7 @@
             </li>
 
             <li>
-               <input type="text" name="location" placeholder=@lang('sidebar.location') aria-label="Location" required>
+               <input type="text" name="location" placeholder=@lang('sidebar.location') aria-label="Location">
                <small class="error">@lang('sidebar.errorLocation')</small>
             </li>
 

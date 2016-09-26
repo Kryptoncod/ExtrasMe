@@ -27,7 +27,6 @@ class ExtraSearchRequest extends Request
 
         return [
            'type'         => "required|between:0,$types",
-           'location'     => 'required',
            'date'         => "required|date_format:m/d/Y",
         ];
     }

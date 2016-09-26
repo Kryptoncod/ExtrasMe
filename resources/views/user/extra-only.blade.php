@@ -136,7 +136,15 @@
 
                </div>
                @if(Auth::user()->type == 0)
-                <button>APPLY NOW</button>
+                @if($student->registration_done == 1)
+                  @if($can_apply != null)
+                    <button><a href="{{ route('extra_apply',  ['id' => $extra->id, 'username' => $user->id]) }}">@lang('card-content.apply')</a></button>
+                  @else
+                    <button><a style="pointer-events: none;cursor: default;">@lang('card-content.alreadyApplied')</a></button>
+                  @endif
+                @else
+                  <button><a href="{{ route('account', Auth::user()->id)}}">@lang('card-content.cantApply')</a></button>
+                @endif
               @elseif($edit_ok == 1)
                 <div style="display: flex;">
                    <button style="margin-left: auto;"><a href="{{ route('modify_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">MODIFY</a></button>

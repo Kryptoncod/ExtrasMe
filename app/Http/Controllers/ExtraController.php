@@ -48,6 +48,7 @@ class ExtraController extends Controller
 	public function show ($username, $extraId){
 		$id = Auth::user()->id;
 		$modif = 0;
+		$can_apply = null;
 
 		if(Auth::user()->type == 0)
 		{
@@ -55,10 +56,19 @@ class ExtraController extends Controller
 			$first_name = $student->first_name;
 			$last_name = $student->last_name;
 			$name = $first_name . " " . $last_name;
+
+			$alreadyApplied = DB::table('extras_students')->where('extra_id', $extraId)
+							->where('student_id', $student->id)->get();
+			
+			if(count($alreadyApplied) == 0)
+			{
+				$can_apply = 1;
+			}
 		}
 		else
 		{
 			$name = null;
+			$student = null;
 		}
 			$extra = Extra::find($extraId);
 			$professional = Professional::find($extra->professional_id);
@@ -70,7 +80,7 @@ class ExtraController extends Controller
 
 		session()->put('returnAfterModifyExtra', Route::current()->getName());
 
-		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif])->with('name', $name);
+		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif, 'student' => $student, 'can_apply' => $can_apply])->with('name', $name);
 	}
 
 	public function showList($username, $type_extra)
