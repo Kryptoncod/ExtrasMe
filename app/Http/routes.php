@@ -16,6 +16,9 @@ Route::get('language/{local}', ['as' => 'language', "uses" => "IndexController@l
 Route::get('login', ['as' => 'login_form', "uses" => "AuthController@showLoginForm"]);
 Route::post('login', ['as' => 'authenticate', "uses" => "AuthController@login"]);
 Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
+Route::post('password/email', ['as' => 'email', "uses" => "PasswordController@sendResetLinkEmail"]);
+Route::post('password/reset', ['as' => 'reset', "uses" => "PasswordController@reset"]);
+Route::get('password/reset/{token?}', ['as' => 'password_reset', "uses" => "PasswordController@showResetForm"]);
 
 Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
 Route::get('/missionStatement', ['as' => 'missionStatement', "uses" => "IndexController@missionStatement"]);

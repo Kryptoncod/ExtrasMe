@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use ExtrasMe\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use ExtrasMeApi, DB, App;
+use DB, App;
 
 class IndexController extends Controller
 {
