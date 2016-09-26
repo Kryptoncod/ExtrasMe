@@ -167,10 +167,7 @@
                            @else
                               @for($i = 0; $i < count($favExtras); $i++)
                                  @foreach ($favExtras[$i] as $favExtra)
-                                    <li class="extra-available">@include('user.card', ["description" => $favExtra->professional->company_name." in ".
-                                                                                $favExtra->type.
-                                                                                ' for '.$favExtra->dateExtra().' at '.$favExtra->timeExtra(),
-                                                               "title" => $favExtra->professional->company_name,
+                                    <li class="extra-available">@include('user.card', ["extra" => $favExtra,
                                                                "image" => asset("images/user-professional.png"),
                                                                "id"  => $favExtra->id])
                                     </li>
@@ -198,10 +195,7 @@
                            <p class="empty-notice">@lang('student.noExtras')</p>
                         @else
                            @foreach ($extras as $extra)
-                           <li class="extra-available"><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@include('user.card', ["description" => $extra->professional->company_name." in ".
-                                                                       $extra->type.
-                                                                       ' for '.$extra->dateExtra().' at '.$extra->timeExtra(),
-                                                      "title" => $extra->professional->company_name,
+                           <li class="extra-available"><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@include('user.card', ["extra" => $extra,
                                                       "image" => asset("images/user-professional.png"),
                                                       "id"  => $extra->id])
                            </a></li>
