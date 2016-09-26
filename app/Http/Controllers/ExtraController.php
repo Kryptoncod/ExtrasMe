@@ -113,9 +113,9 @@ class ExtraController extends Controller
 		$type = config('international.last_minute_types')[$request->input('type')];
 		$language = config('international.language')[$request->input('language')];
 		$date_time = preg_split("/[\s,]+/", $request->input('date'));
-		$date = Carbon::createFromFormat('d/m/Y', $date_time[0], 'America/Mexico_City');
+		$date = Carbon::createFromFormat('d/m/Y', $date_time[0]);
 		$date->setTimezone('UTC');
-		$time = Carbon::createFromFormat('H:i', $date_time[1], 'America/Mexico_City');
+		$time = Carbon::createFromFormat('H:i', $date_time[1]);
 		$time->setTimezone('UTC');
 		$last_minute = $request->input('broadcast') == 'last_minute';
 		$extraInput = array(
@@ -132,6 +132,8 @@ class ExtraController extends Controller
 			'informations' => $request->input('informations'),
 			'professional_id' => $professionalID,
 			'find' => 0,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
 			);
 
 		$credit_left = Professional::find($professionalID)->credit;
@@ -158,6 +160,8 @@ class ExtraController extends Controller
 				'extra_id' => $id,
 				'student_id' => $student->id,
 				'done' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
 				));
 
 			$extra = Extra::find($id);
@@ -165,9 +169,10 @@ class ExtraController extends Controller
 			$student_name = $student->first_name.' '.$student->last_name;
 			$notif_to_send = $student_name.' subscribed to your Extra : '.$extra->type;
 
-			/*Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
+			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
 				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
-			});*/
+			});
+
 			return redirect()->back();
 		}
 		catch (Exception $e)
@@ -405,6 +410,8 @@ class ExtraController extends Controller
 					'professional_id' => $id,
 					'student_id' => Auth::user()->student->id,
 					'type' => 0,
+					'updated_at' => Carbon::now(),
+					'created_at' => Carbon::now(),
 					));
 			}
 		}
@@ -419,6 +426,8 @@ class ExtraController extends Controller
 					'professional_id' => Auth::user()->professional->id,
 					'student_id' => $id,
 					'type' => 1,
+					'updated_at' => Carbon::now(),
+					'created_at' => Carbon::now(),
 					));
 			}
 		}

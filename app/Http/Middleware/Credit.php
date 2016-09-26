@@ -24,6 +24,18 @@ class Credit
             {
                 return redirect()->back();
             }
+            else
+            {
+                if(session()->has('inProgressPayment'))
+                {
+                    $inProgressPayment = $request->session()->get('inProgressPayment');
+                    
+                    if($inProgressPayment == false)
+                    {
+                        return redirect()->route('credits', Auth::user()->id);
+                    }
+                }
+            }
         }
 
         return $next($request);

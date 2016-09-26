@@ -92,6 +92,8 @@ class CreditsController extends Controller
 			$i++;
 		}
 
+		session()->put('inProgressPayment', 'true');
+
 		return view('payment.confirmation', ['user' => $user, 'professional' => $professional, 'username' => $username, 'data' => $data]);
 	}
 
