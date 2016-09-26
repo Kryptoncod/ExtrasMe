@@ -15,7 +15,11 @@
                <div class="search-bar">
                   <label for="search"><i class="icon-search"></i></label>
                   <form action="{{ route('my_favorite_extras_search', Auth::user()->type) }}" method="GET" style="width: 100%;">
-                     <input type="search" name="searchFav" placeholder="@lang('favExtrasSearch.search')" id="search">
+                     @if($back == false)
+                        <input type="search" name="searchFav" placeholder="@lang('favExtrasSearch.search')" id="search">
+                     @else
+                        <input type="search" name="searchFav" placeholder="@lang('favExtrasSearch.search')" id="search" value="{{ $_GET['searchFav'] }}">
+                     @endif
                   </form>
                </div>
                @if($back == true)
@@ -24,8 +28,8 @@
                            <a href="{{ route('my_favorite_extras', Auth::user()->id) }}" class="submit-button" style="color:white; background-color:#060b2b; width:100%; text-align:center;">Back</a>
                         </div>
                      </div>
-                  <hr>
                @endif
+               <hr>
                @foreach($results as $result)
                   @if(Auth::user()->type == 0)
                   <div class="fav-list-container" data-studid="{{$result->id}}" data-type=0 style="padding-left: 10px;">

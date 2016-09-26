@@ -45,6 +45,7 @@ class AjaxController extends Controller
 			$extra = Extra::find($cardId);
 			$name = User::find($id)->professional->company_name;
 			$student = null;
+			$students = null;
 			$email_pro = User::find($professional->user_id)->email;
 			$studentToSort = [];
 
@@ -62,7 +63,7 @@ class AjaxController extends Controller
 				if(!empty($students))
 				{
 
-					/*foreach ($students as $student) {
+					foreach ($students as $student) {
 						$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
 						->where('professional_id', $professionalID)->value('number_extras');
 
@@ -71,7 +72,7 @@ class AjaxController extends Controller
 					usort($studentToSort, function($a, $b)
 					{
 					    return $b[1] - $a[1];
-					});*/
+					});
 				}
 
 				$studentsAlreadyChosen = $extra->students()->where('done', 1)->get();

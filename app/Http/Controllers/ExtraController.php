@@ -190,7 +190,7 @@ class ExtraController extends Controller
 		$professionalID = User::find($id)->professional->id;
 		$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
 		$name = User::find($id)->professional->company_name;
-		$student = null;
+		$students = null;
 		$studentToSort = [];
 
 		if(count($extras) > 0)
@@ -225,6 +225,7 @@ class ExtraController extends Controller
 				$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
 			}
 		}
+
 		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'studentsAlreadyChosen' => $studentsAlreadyChosen, 'students' => $students]);
 	}
 
@@ -376,17 +377,19 @@ class ExtraController extends Controller
 		{
 			$name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
 			$results = DB::table('professionals')->where('company_name', 'LIKE', '%' . $favoriteName . '%')->get();
+
 			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
 		}
 		else if(User::find($id)->type == 1)
 		{
 			$name = User::find($id)->professional->company_name;
 			$results = DB::table('students')->where('first_name', 'LIKE', '%' . $favoriteName . '%')->orWhere('last_name', 'LIKE', '%' . $favoriteName . '%')->get();
+
 			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
 		}
 	}
 
-	public static function favoriteAdd($id)
+	public static function favoriteAdd($username, $id)
 	{
 		$AuthID = Auth::user()->id;
 		$test = NULL;
@@ -423,7 +426,7 @@ class ExtraController extends Controller
 		return redirect()->route('my_favorite_extras', Auth::user()->id);
 	}
 
-	public static function favoriteDelete($id)
+	public static function favoriteDelete($username, $id)
 	{
 		$AuthID = Auth::user()->id;
 

@@ -52,12 +52,8 @@ Route::group(['prefix' => '{username}'], function($app) {
       Route::group(['prefix' => 'favorite'], function($app) {
          $app->get ('/', ['as' => 'my_favorite_extras', "uses" => "ExtraController@showFavorite"]);
          $app->get ('search', ['as' => 'my_favorite_extras_search', "uses" => "ExtraController@showFavoriteSearch"]);
-         $app->get ('{id}', function($username, $id){
-            return App\Http\Controllers\ExtraController::favoriteAdd($id);
-         });
-         $app->get ('{id}/delete', function($username, $id){
-            return App\Http\Controllers\ExtraController::favoriteDelete($id);
-         });
+         $app->get ('{id}', ['as' => 'add_favorite', "uses" => "ExtraController@favoriteAdd"]);
+         $app->get ('{id}/delete', ['as' => 'delete_favorite', "uses" => "ExtraController@favoriteDelete"]);
       });
       $app->get('{id}', ['as' => 'show_extra', 'uses' => 'ExtraController@show']);
    });
