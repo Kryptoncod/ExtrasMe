@@ -95,7 +95,7 @@
    </tr>
     <tr>
       <td style="border-bottom: none;">
-        @lang('card-content.otherInfos')
+        @lang('card-content.otherInfo')
       </td>
       <td style="border-bottom: none;">
         @if(empty($extra->informations))
@@ -179,7 +179,7 @@
                                     <div style="display:flex; align-items:center;">
                                       <button class="submit-button right" style="margin-right: 20px;"><a href="{{ asset('uploads/'.$student->user_id.'/cartes.zip') }}" download="carte_{{$student->first_name}}_{{$student->last_name}}">CARTES</a></button>
                                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                                        <button class="submit-button right"><a href="{{ $extra->id.'/accept/'.$student->id }}">CONTRAT</a></button>
+                                                                        <button class="submit-button right"><a href="">CONTRAT</a></button>
                                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </div>
                                 </li>
