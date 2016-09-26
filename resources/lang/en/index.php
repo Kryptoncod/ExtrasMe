@@ -30,6 +30,17 @@ return [
          The Extras Me team is aware that an excellent service is paramount. We differ from other companies because we create a unique network focused on students from specialized schools. Individuals and companies can also use our service for receptions and events, requests that will be handled individually.',
    ],
 
+   'ambassador' => [
+      'title' => 'Ambassadeurs Extras Me',
+      'content' => 'The Extras Me team decided to use a system of ambassadors to develop its model abroad. Thus, in each hospitality school we will work with, several students will have to run the relationship with their school heads and to solicit the students and the professionals located in their region.
+      <br/><br/>
+         These students will be remunerated in proportion to the school size and the number of professionals they solicit. 
+      <br/><br/>
+   As representatives of the company, the Extras Me ambassadors will be selected with caution and they shall not commit blunder.  
+      <br/><br/>
+   If you are interested to participate in the adventure of an innovative start-up, please contact us at +41 79 732 16 09 or by email at contact@extrasme.com.',
+   ],
+
    'contactUs' => [
       'contactDetails' => 'Contact Details',
       'extrasme' => 'Extras Me SARL',

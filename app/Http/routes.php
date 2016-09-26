@@ -21,6 +21,8 @@ Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
 Route::get('/missionStatement', ['as' => 'missionStatement', "uses" => "IndexController@missionStatement"]);
 Route::get('/contactUs', ['as' => 'contactUs', "uses" => "IndexController@contactUs"]);
 Route::get('/ourTeam', ['as' => 'ourTeam', "uses" => "IndexController@ourTeam"]);
+Route::get('/amabassador', ['as' => 'ambassador', "uses" => "IndexController@ambassador"]);
+Route::get('/legal', ['as' => 'legal', "uses" => "IndexController@legal"]);
 
 Route::get('404', function(){
    return view('errors.404');

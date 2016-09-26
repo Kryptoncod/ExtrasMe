@@ -23,7 +23,7 @@
          <ul>
             <li class="title">@lang('footer.contactUs')</li>
             <li><a href="{{ route('contactUs') }}">@lang('footer.contactPage')</a></li>
-            <li><a href="404">@lang('footer.becomeAnbassador')</a></li>
+            <li><a href="{{ route('ambassador') }}">@lang('footer.becomeAnbassador')</a></li>
          </ul>
       </div>
 
@@ -57,7 +57,7 @@
       </div>
       <div class="small-6 columns">
          <ul>
-            <li><a href="404">@lang('footer.privacyPolicy')</a></li>
+            <li><a href="{{ route('legal') }}">@lang('footer.privacyPolicy')</a></li>
             <li><a href="404">@lang('footer.termsOfUse')</a></li>
             <li><a href="404">@lang('footer.salesRefund')</a></li>
             <li><a href="404">@lang('footer.sitemap')</a></li>

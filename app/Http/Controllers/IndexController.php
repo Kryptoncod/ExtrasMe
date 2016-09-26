@@ -58,4 +58,14 @@ class IndexController extends Controller
     {
         return view('documents.ourTeam');
     }
+
+    public function ambassador()
+    {
+        return view('documents.ambassador');
+    }
+
+    public function legal()
+    {
+        return view('documents.legal');
+    }
 }

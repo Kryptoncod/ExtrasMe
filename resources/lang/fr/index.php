@@ -31,6 +31,17 @@ return [
 Les particuliers et entreprises peuvent également utiliser nos services pour des réceptions ou événements privés, demandes qui seront traitées individuellement.',
    ],
 
+   'ambassador' => [
+      'title' => 'Ambassadeurs Extras Me',
+      'content' => 'L’équipe d’Extras Me a décidé d’utiliser un système d’ambassadeurs pour développer son modèle à l’international. Ainsi, dans chaque école hôtelière avec qui nous travaillerons, plusieurs étudiants seront chargés de gérer les relations avec la direction de leur école mais aussi de démarcher les étudiants et les professionnels situés dans leur région.
+      <br/><br/>
+         Ces étudiants seront rémunérés au prorata de la taille de l’école et du nombre de professionnels qu’ils démarcheront.
+      <br/><br/>
+   Etant des représentants de la société, les ambassadeurs d’Extras Me seront sélectionnés avec précaution et ne devront donc commettre aucun impaire.
+      <br/><br/>
+   Si vous êtes intéressés pour participer à l’aventure d’une start-up innovante, n’hésitez pas à nous contacter au +41 79 732 16 09 ou par email à contact@extrasme.com.',
+   ],
+
    'contactUs' => [
       'contactDetails' => 'Information de contact',
       'extrasme' => 'Extras Me SARL',
@@ -45,7 +56,7 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
 
       'paul' => [
          'title' => 'Paul Borie',
-         'position' => 'Partenaire',
+         'position' => 'Associé',
          'email' => 'Email : paul.borie@extrasme.com', 
       ],
 
@@ -68,10 +79,9 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
       ],
 
       'paul' => [
-         'title' => 'Paul Borie : Partenaire',
-         'content' => 'Paul est un marseillais de 21 et étudie également à l’Ecole Hôtelière de Lausanne. Le secteur de l\'accueil l\'a toujours attiré car il représente une des plus grandes industries de services au monde. Venant d’une famille d’entrepreneurs, il s’est naturellement orienté vers l’univers des start-ups.
-Ayant vécu aux Etats-Unis et en Australie, Paul a su développer une ouverture culturelle, une capacité d’adaptation et un tempérament autonome, responsable et débrouillard. Son sens du détail qualifié de « perfectionniste » par ses associés leur permettra de mener à bien leur projet en transformant cette idée innovante en une entreprise profitable.
-',
+         'title' => 'Paul Borie : Associé',
+         'content' => 'Paul est un marseillais de 21 ans et étudie également à l’Ecole Hôtelière de Lausanne. Le secteur de l\'accueil l\'a toujours attiré car il représente une des plus grandes industries de services au monde. Venant d’une famille d’entrepreneurs, il s’est naturellement orienté vers l’univers des start-ups.
+Ayant vécu aux Etats-Unis et en Australie, Paul a su développer une ouverture culturelle, une capacité d’adaptation et un tempérament autonome, responsable et débrouillard. Son sens du détail qualifié de « perfectionniste » par ses associés leur permettra de mener à bien leur projet en transformant cette idée innovante en une entreprise profitable.',
       ],
    ],
 

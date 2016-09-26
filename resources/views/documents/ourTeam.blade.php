@@ -12,18 +12,18 @@
          <div class="container">
             <div class="row" style="margin-top: 2rem;">
                <div class="columns medium-4 medium-uncentered" style="margin-bottom: 2rem;">
-                  <img src="{{ asset('images/mayeul.jpg') }}" width="200" height="200" style="width:100%;">
+                  <img src="{{ asset('images/mayeul.jpg') }}" style="width:100%; height: 230px;">
                   <div style="color:white; background-color:#222; margin: 0">
                      <span class="title" style="padding:.5rem;">@lang('index.ourTeam.mayeul.title')</span>
                   </div>
-                  <div style="color:white; background-color:#000; margin: 0">
+                  <div style="color:white; background-color:#000; margin: 0;">
                      <p class="description" style="margin:0; padding: .5rem;">
                         @lang('index.ourTeam.mayeul.content')
                      </p>
                   </div>
                </div>
                <div class="columns medium-4 medium-uncentered" style="margin-bottom: 2rem;">
-                  <img src="{{ asset('images/benjamin.png') }}" width="200" height="200" style="width:100%;">
+                  <img src="{{ asset('images/benjamin.png') }}" style="width:100%;  height: 230px;">
                   <div style="color:white; background-color:#222; margin: 0">
                      <span class="title" style="padding:.5rem;">@lang('index.ourTeam.benjamin.title')</span>
                   </div>
@@ -34,7 +34,7 @@
                   </div>
                </div>
                <div class="columns medium-4 medium-uncentered" style="margin-bottom: 2rem;">
-                  <img src="{{ asset('images/paul.jpg') }}" width="200" height="200" style="width:100%;">
+                  <img src="{{ asset('images/paul.jpg') }}" style="width:100%;  height: 230px;">
                   <div style="color:white; background-color:#222; margin: 0">
                      <span class="title" style="padding:.5rem;">@lang('index.ourTeam.paul.title')</span>
                   </div>
