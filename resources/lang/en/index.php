@@ -50,7 +50,7 @@ return [
       'mayeul' => [
          'title' => 'Mayeul Desombre',
          'position' => 'Founding Partner',
-         'email' => 'Email : mayeul.dezombre@extrasme.com', 
+         'email' => 'Email : mayeul.desombre@extrasme.com', 
       ],
 
       'paul' => [

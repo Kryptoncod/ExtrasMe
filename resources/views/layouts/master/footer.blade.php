@@ -59,7 +59,6 @@
          <ul>
             <li><a href="{{ route('legal') }}">@lang('footer.privacyPolicy')</a></li>
             <li><a href="404">@lang('footer.termsOfUse')</a></li>
-            <li><a href="404">@lang('footer.salesRefund')</a></li>
             <li><a href="404">@lang('footer.sitemap')</a></li>
          </ul>
       </div>

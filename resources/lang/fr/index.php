@@ -51,7 +51,7 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
       'mayeul' => [
          'title' => 'Mayeul Desombre',
          'position' => 'Co-Fondateur',
-         'email' => 'Email : mayeul.dezombre@extrasme.com', 
+         'email' => 'Email : mayeul.desombre@extrasme.com', 
       ],
 
       'paul' => [

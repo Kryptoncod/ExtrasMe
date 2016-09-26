@@ -12,7 +12,7 @@
          <div class="container">
             <div class="row">
                <div class="medium-6">
-                  <h2 style="letter-spacing:10px; text-transform: uppercase; color:#4772ff">@lang('index.contactUs.contactDetails')</h2>
+                  <h2 style="letter-spacing:10px; text-transform: uppercase; color:#90aaff">@lang('index.contactUs.contactDetails')</h2>
                      <div class="medium-6">
                         <p style="margin-bottom:5px; color:white">@lang('index.contactUs.extrasme')</p>
                      </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="row">
                <div class="columns medium-6" style="padding:0">
-                  <h2 style="letter-spacing:10px; text-transform: uppercase; color:#4772ff">@lang('index.contactUs.mayeul.title')</h2>
+                  <h2 style="letter-spacing:10px; text-transform: uppercase; color:#90aaff">@lang('index.contactUs.mayeul.title')</h2>
                   <div class="medium-9">
                      <p style="margin-bottom:5px; color:white">@lang('index.contactUs.mayeul.position')</p>
                   </div>
@@ -38,7 +38,7 @@
                   </div>
                </div>
                <div class="columns medium-6 ">
-                  <h2 style="letter-spacing:10px; text-transform: uppercase; color:#4772ff">@lang('index.contactUs.paul.title')</h2>
+                  <h2 style="letter-spacing:10px; text-transform: uppercase; color:#90aaff">@lang('index.contactUs.paul.title')</h2>
                   <div class="medium-9">
                      <p style="margin-bottom:5px; color:white">@lang('index.contactUs.paul.position')</p>
                   </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="row">
                <div class="col-md-6">
-                  <h2 style="letter-spacing:10px; text-transform: uppercase; color:#4772ff">@lang('index.contactUs.benjamin.title')</h2>
+                  <h2 style="letter-spacing:10px; text-transform: uppercase; color:#90aaff">@lang('index.contactUs.benjamin.title')</h2>
                   <div class="medium-9">
                      <p style="margin-bottom:5px; color:white">@lang('index.contactUs.benjamin.position')</p>
                   </div>
