@@ -142,8 +142,8 @@
                </div>
                @if($edit_ok == 1)
                 <div style="display: flex;">
-                   <button style="margin-left: auto;" name="save" value="1">SAVE</button>
-                   <button style="margin-left:20px;" name="cancel" value="1">CANCEL</button>
+                   <button style="margin-left: auto;" name="save" value="1">@lang('card-content.save')</button>
+                   <button style="margin-left:20px;" name="cancel" value="1">@lang('card-content.cancel')</button>
                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 </div>
               @endif

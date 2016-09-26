@@ -2,5 +2,7 @@
 
 return [
 
-   'title' => 'MY FAVORITE EXTRAS'
+   'title' => 'MY FAVORITE EXTRAS',
+   'nationality' => 'Nationality : ',
+   'schoolYear' => 'School Year : ',
 ];

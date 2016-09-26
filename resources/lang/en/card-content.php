@@ -16,4 +16,8 @@ return [
    'apply' => 'APPLY',
    'alreadyApplied' => 'You have already applied',
    'cantApply' => 'You didn\'t submit the document needed. Go in your account.',
+   'modify' => 'MODIFY',
+   'delete' => 'DELETE',
+   'save' => 'SAVE',
+   'cancel' => 'CANCEL',
 ];

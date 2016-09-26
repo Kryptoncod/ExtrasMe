@@ -25,7 +25,7 @@
                @if($back == true)
                   <div class="fav-list-container" style="padding-left: 10px; " >
                         <div style="display: flex; width:100%; height:100%;">
-                           <a href="{{ route('my_favorite_extras', Auth::user()->id) }}" class="submit-button" style="color:white; background-color:#060b2b; width:100%; text-align:center;">Back</a>
+                           <a href="{{ route('my_favorite_extras', Auth::user()->id) }}" class="submit-button" style="color:white; background-color:#060b2b; width:100%; text-align:center;">@lang('favorite.back')</a>
                         </div>
                      </div>
                @endif
@@ -49,8 +49,8 @@
                               @endif
                            </h2>
                            @if(Auth::user()->type == 1)
-                           <p>Nationality : {{ $result->nationality }}</p>
-                           <p>School year : {{ $result->school_year }}</p>
+                           <p>@lang('favExtras.nationality') : {{ $result->nationality }}</p>
+                           <p>@lang('favExtras.schoolYear') {{ $result->school_year }}</p>
                            @endif
                         </div>
                      </div>

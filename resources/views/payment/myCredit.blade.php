@@ -46,7 +46,7 @@
          </div>
          <div class="row section-title">
             <div class="small-12 columns">
-               <h2>RECHARGE YOUR CREDIT</h2>
+               <h2>@lang('payment.myCredit.recharge.title')</h2>
             </div>
          </div>
 
@@ -58,13 +58,13 @@
                         <td style="border-bottom: none;">
                         </td>
                         <td>
-                           NOMBRE DE POSTE EN LIGNE
+                           @lang('payment.myCredit.recharge.number')
                         </td>
                         <td>
-                           PRIX
+                           @lang('payment.myCredit.recharge.price')
                         </td>
                         <td>
-                           PRIX PAR ANNONCE
+                           @lang('payment.myCredit.recharge.pricePerPost')
                         </td>
                      </tr>
                   </thead>
@@ -125,31 +125,30 @@
                      </td>
                   </tr>
                </table>
-               <button>VALIDEZ VOTRE PAIEMENT</button>
+               <button>@lang('payment.myCredit.recharge.pay')</button>
             </form>
            
          </div>
 
          <div class="row section-title">
             <div class="small-12 columns">
-               <h2>YOUR INVOICE</h2>
+               <h2>@lang('payment.myCredit.invoice.title')</h2>
             </div>
          </div>
 
          <div class="your-invoice-container">
             <div class="due-invoice">
-               <h2>BELOW HERE ARE YOUR DUE INVOICE</h2>
+               <h2>@lang('payment.myCredit.invoice.due')</h2>
                @if(!empty($dueInvoices))
                   @foreach($dueInvoices as $dueInvoice)
                      <div class="invoice">
                         <div>
                            <label>
-                              FACTURE DU {{ Carbon\Carbon::parse($dueInvoice->created_at)->format('d/m/Y') }}
+                              @lang('payment.myCredit.invoice.content') {{ Carbon\Carbon::parse($dueInvoice->created_at)->format('d/m/Y') }}
                            </label>
                         </div>
                         <div>
-                           <button>PREVIEW</button>
-                           <button>DOWNLOAD</button>
+                           <button>@lang('payment.myCredit.invoice.download')</button>
                         </div>
                      </div>
                   @endforeach
@@ -157,25 +156,24 @@
                   <div class="invoice">
                      <div>
                         <label>
-                           You don't have due invoices.
+                           @lang('payment.myCredit.invoice.noDueInvoice')
                         </label>
                      </div>
                   </div>
                @endif
             </div>
             <div class="due-invoice">
-               <h2>YOUR PAST INVOICE</h2>
+               <h2>@lang('payment.myCredit.invoice.past')</h2>
                @if(!empty($pastInvoices))
                   @foreach($pastInvoices as $pastInvoice)
                      <div class="invoice">
                         <div>
                            <label>
-                              FACTURE DU {{ Carbon\Carbon::parse($pastInvoice->created_at)->format('d/m/Y') }}
+                              @lang('payment.myCredit.invoice.content') {{ Carbon\Carbon::parse($pastInvoice->created_at)->format('d/m/Y') }}
                            </label>
                         </div>
                         <div>
-                           <button>PREVIEW</button>
-                           <button>DOWNLOAD</button>
+                           <button>@lang('payment.myCredit.invoice.download')</button>
                         </div>
                      </div>
                   @endforeach
@@ -183,7 +181,7 @@
                   <div class="invoice">
                      <div>
                         <label>
-                           You don't have past invoices.
+                           @lang('payment.myCredit.invoice.noPastInvoice')
                         </label>
                      </div>
                   </div>

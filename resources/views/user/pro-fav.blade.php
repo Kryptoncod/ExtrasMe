@@ -19,6 +19,6 @@
    </ul>
 </div>
 <div>
-   <a class="submit-button" href="{{ route('add_favorite', ['username' => Auth::user()->id, 'id' => $professional->id]) }}">Add as favorite</a>
-   <a class="submit-button" href="{{ route('delete_favorite', ['username' => Auth::user()->id, 'id' => $professional->id]) }}">Delete as favorite</a>
+   <a class="submit-button" href="{{ route('add_favorite', ['username' => Auth::user()->id, 'id' => $professional->id]) }}">@lang('favorite.add')</a>
+   <a class="submit-button" href="{{ route('delete_favorite', ['username' => Auth::user()->id, 'id' => $professional->id]) }}">@lang('favorite.delete')</a>
 </div>

@@ -147,8 +147,8 @@
                 @endif
               @elseif($edit_ok == 1)
                 <div style="display: flex;">
-                   <button style="margin-left: auto;"><a href="{{ route('modify_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">MODIFY</a></button>
-                   <button style="margin-left:20px;"><a href="{{ route('delete_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">DELETE</a></button>
+                   <button style="margin-left: auto;"><a href="{{ route('modify_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@lang('card-content.modify')</a></button>
+                   <button style="margin-left:20px;"><a href="{{ route('delete_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@lang('card-content.delete')</a></button>
                 </div>
               @endif
             </div>

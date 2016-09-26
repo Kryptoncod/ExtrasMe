@@ -46,17 +46,17 @@
          </div>
          <div class="row section-title">
             <div class="small-12 columns">
-               <h2>CONFIRM YOUR PAYMENT</h2>
+               <h2>@lang('payment.confirmation.title')</h2>
             </div>
          </div>
          <div class="confirm-container">
-            <h4>Vous avez selectionné <span style="color: blue">{{ $data[0] }}</span> annonces en ligne pour <span style="color: blue">{{ $data[1] }}</span> CHF</h4>
+            <h4>@lang('payment.confirmation.select', array('number' => $data[0], 'price' => $data[1]))</h4>
             <form action="{{ route('options', ['username' => Auth::user()->id, 'data0' => $data[0], 'data1' => $data[1]]) }}" method="get">
-               <label>ADRESS MAIL:</label>
+               <label>@lang('payment.confirmation.emailAddress')</label>
                <input type="text" name="mail">
-               <label>PASSWORD:</label>
+               <label>@lang('payment.confirmation.password')</label>
                <input type="password" name="password">
-               <button>PAYER MAINTENANT</button>
+               <button>@lang('payment.confirmation.pay')</button>
             </form>
          </div>
 
