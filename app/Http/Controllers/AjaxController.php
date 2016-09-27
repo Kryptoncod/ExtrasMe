@@ -218,9 +218,17 @@ class AjaxController extends Controller
 		}
 	}
 	public function loadStudent(Request $request){
+
 		$user = Auth::user();
 		$studId = $request->input('id');
 		$student = Student::find($studId);
+
+		$professionalID = $user->professional->id;
+
+		$alreadyFav = DB::table('favoris')->where('professional_id', $professionalID)
+						->where('student_id', $studId)->get();
+
+
 		try{
           $cvID = $student->cv->id;
           $experiences = Cv::find($cvID)->experiences;
@@ -234,7 +242,7 @@ class AjaxController extends Controller
           $skills = null;
         }
         $name = $student->first_name." ".$student->last_name;
-        return view('user.student-fav', ['student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'name' => $name]);
+        return view('user.student-fav', ['student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'name' => $name, 'alreadyFav' => $alreadyFav]);
 	}
 
 	public function loadProfessional(Request $request){
@@ -242,6 +250,11 @@ class AjaxController extends Controller
 		$proId = $request->input('id');
 		$professional = Professional::find($proId);
 		$mail = User::find($professional->user_id)->email;
-		return view('user.pro-fav', ['professional' => $professional, 'mail' => $mail]);
+		$studentID = $user->student->id;
+
+		$alreadyFav = DB::table('favoris')->where('professional_id', $proId)
+						->where('student_id', $studentID)->get();
+
+		return view('user.pro-fav', ['professional' => $professional, 'mail' => $mail, 'alreadyFav' => $alreadyFav]);
 	}
 }

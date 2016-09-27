@@ -49,7 +49,7 @@
                               @endif
                            </h2>
                            @if(Auth::user()->type == 1)
-                           <p>@lang('favExtras.nationality') : {{ $result->nationality }}</p>
+                           <p>@lang('favExtras.nationality') {{ $result->nationality }}</p>
                            <p>@lang('favExtras.schoolYear') {{ $result->school_year }}</p>
                            @endif
                         </div>

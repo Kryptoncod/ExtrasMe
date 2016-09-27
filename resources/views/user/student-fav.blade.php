@@ -71,6 +71,9 @@
 </div>
 
 <div>
-   <a class="submit-button" href="{{ route('add_favorite', ['username' => Auth::user()->id, 'id' => $student->id]) }}">@lang('favorite.add')</a>
-   <a class="submit-button" href="{{ route('delete_favorite', ['username' => Auth::user()->id, 'id' => $student->id]) }}">@lang('favorite.delete')</a>
+   @if(sizeof($alreadyFav) == 0)
+      <button><a class="submit-button" href="{{ route('add_favorite', ['username' => Auth::user()->id, 'id' => $student->id]) }}">@lang('favorite.add')</a></button>
+   @else
+      <button><a class="submit-button" href="{{ route('delete_favorite', ['username' => Auth::user()->id, 'id' => $student->id]) }}">@lang('favorite.delete')</a></button>
+   @endif
 </div>
