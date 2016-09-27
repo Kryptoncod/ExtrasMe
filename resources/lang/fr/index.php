@@ -43,11 +43,11 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
    ],
 
    'contactUs' => [
-      'contactDetails' => 'Information de contact',
+      'contactDetails' => 'Informations de contact',
       'extrasme' => 'Extras Me SARL',
       'address' => '35 Grande rue de la Croix-Rousse, 69004 Lyon, France',
       'email' => 'contact@extrasme.com',
-      'telephoneNumber' => 'Tel : +41 79 732 1609',
+      'telephoneNumber' => 'Tel : +41 79 732 16 09',
       'mayeul' => [
          'title' => 'Mayeul Desombre',
          'position' => 'Co-Fondateur',
