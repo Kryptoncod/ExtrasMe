@@ -167,10 +167,10 @@
                            @else
                               @for($i = 0; $i < count($favExtras); $i++)
                                  @foreach ($favExtras[$i] as $favExtra)
-                                    <li class="extra-available">@include('user.card', ["extra" => $favExtra,
+                                    <li class="extra-available"><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $favExtra->id]) }}">@include('user.card', ["extra" => $favExtra,
                                                                "image" => asset("images/user-professional.png"),
                                                                "id"  => $favExtra->id])
-                                    </li>
+                                    </a></li>
                                  @endforeach
                               @endfor
                            @endif

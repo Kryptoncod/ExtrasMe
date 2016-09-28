@@ -31,4 +31,9 @@ class Extra extends Model
     {
         return Carbon::parse($this->date_time)->format('H:i');
     }
+
+    public function getPaginate($n)
+    {
+        return $this->paginate($n);
+    }
 }

@@ -14,6 +14,7 @@ return [
     'findExtras' => 'FIND EXTRAS',
     'typeExtras' => 'TYPE OF EXTRAS',
     'location' => 'Location',
+    'errorType' => 'Type is required',
     'errorLocation' => 'Location is required.',
     'errorDate' => 'Date is required and must be mm/dd/yyyy.',
     'search' => 'SEARCH',

@@ -161,7 +161,6 @@
                 <a href="{{ route('account', Auth::user()->id)}}" class="main-button">@lang('card-content.cantApply')</a>
               </div>
           @endif
-
       </div>
 @endif
    </div>

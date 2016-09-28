@@ -24,12 +24,13 @@
          <ul class="form">
             <li class="head highlight">@lang('sidebar.findExtras')</li>
             <li>
-               <select class="input" name="type" aria-label="Type of extra">
+               <select class="input" name="type" aria-label="Type of extra" required>
                   <option selected disabled value="">@lang('sidebar.typeExtras')</option>
                   @foreach(config('international.last_minute_types') as $id => $nameType)
                      <option value="{{ $id }}">{{ $nameType }}</option>
                   @endforeach
                </select>
+               <small class="error">@lang('sidebar.errorType')</small>
             </li>
 
             <li>
@@ -38,7 +39,7 @@
             </li>
 
             <li>
-               <input type="text" name="date" placeholder="DATE (mm/dd/yyyy)" aria-label="Date (mm/dd/yyyy)" value="{{ date('m/d/Y') }}" pattern="month_day_year" data-abide-validator="after_now" required>
+               <input type="text" name="date" placeholder="DATE (dd/mm/yyyy)" aria-label="Date (mm/dd/yyyy)" value="{{ date('d/m/Y') }}" pattern="month_day_year" data-abide-validator="after_now" required>
                <small class="error">@lang('sidebar.errorDate')</small>
             </li>
 

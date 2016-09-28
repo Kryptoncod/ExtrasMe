@@ -43,7 +43,7 @@ Route::group(['prefix' => '{username}'], function($app) {
    });
    Route::group(['prefix' => 'extra'], function($app) {
       $app->get('{id}/apply', ['as' => 'extra_apply', 'uses' => 'ExtraController@apply']);
-      $app->get('list/{type_extra}',  ['as' => 'extra_list',   "uses" => "ExtraController@showList"]);
+      $app->get('list/{type_extra}/{date}',  ['as' => 'extra_list',   "uses" => "ExtraController@showList"]);
       $app->post('search', ['as' => 'extra_search', "uses" => "ExtraController@search"]);
       $app->post('submit', ['as' => 'extra_submit', "uses" => "ExtraController@submit"]);
       $app->get ('myextras', ['as' => 'my_extras', "uses" => "ExtraController@myExtras"]);

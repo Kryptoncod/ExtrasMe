@@ -83,11 +83,12 @@ class ExtraController extends Controller
 		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif, 'student' => $student, 'can_apply' => $can_apply])->with('name', $name);
 	}
 
-	public function showList($username, $type_extra)
+	public function showList($username, $type_extra, $date)
 	{
 
 		$id = Auth::user()->id;
 		$type = User::find($id)->type;
+
 		if($type == 0)
 		{
 			$student = User::find($id)->student;
@@ -96,7 +97,7 @@ class ExtraController extends Controller
 			$name = $first_name . " " . $last_name;
 			if($type_extra == 'Tout')
 			{
-				$extras = Extra::where('find', 0)->get();
+				$extras = Extra::where('find', 0)->where('date', $date)->get();
 			} else {
 				$extras = Extra::where('type', $type_extra)->where('find', 0)->get();
 			}
@@ -108,10 +109,17 @@ class ExtraController extends Controller
 				array_push($professionals, Professional::find($extras[$i]->professional_id));
 			}
 			$can_apply = 0;
-			if(!$student->extras->contains('id', $extras[0]->id)){
-				$can_apply = 1;
+			$email_pro = null;
+
+			if($extras->first())
+			{
+				if(!$student->extras->contains('id', $extras[0]->id)){
+					$can_apply = 1;
+				}
+
+				$email_pro = User::find($professionals[0]->user_id)->email;
 			}
-			$email_pro = User::find($professionals[0]->user_id)->email;
+
 			return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply, 'email' => $email_pro])->with('name', $name);
 		}
 	}
@@ -195,7 +203,10 @@ class ExtraController extends Controller
 	public function search(Request $request)
 	{
 		$input = config('international.last_minute_types')[$request->input('type')];
-		return redirect()->route('extra_list', ['username' => Auth::user()->id, 'type_extra' => $input]);
+		$date = Carbon::createFromFormat('d/m/Y', $request->input('date'));
+		$date = $date->toDateString();
+
+		return redirect()->route('extra_list', ['username' => Auth::user()->id, 'type_extra' => $input, 'date' => $date]);
 	}
 
 

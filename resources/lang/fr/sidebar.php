@@ -13,6 +13,7 @@ return [
     'extrasmeApp' => 'EXTRASME APP',
     'findExtras' => 'TROUVER UN EXTRAS',
     'typeExtras' => 'TYPE DE L\'EXTRAS',
+    'errorType' => 'Le type est obligatoire',
     'location' => 'Localisation',
     'errorLocation' => 'La localisation est obligatoire.',
     'errorDate' => 'La date est obligatoire and doit être de la forme mm/dd/yyyy.',
