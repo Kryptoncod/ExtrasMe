@@ -57,10 +57,12 @@ class ProfileController extends Controller
       $id = Auth::user()->id;
       $type = User::find($username)->type;
       $favExtras = NULL;
+      $linksFav = NULL;
+      $i = 0;
       
       if(User::find($id)->type == 0)
       {
-        $extras = $this->extraRepository->getPaginate(3);
+        $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->simplePaginate(3);
         $studentID = User::find($id)->student->id;
         $links = $extras->render();
         $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
@@ -68,7 +70,8 @@ class ProfileController extends Controller
 
         foreach($results as $result)
         {
-          $favExtras[] = Professional::find($result->id)->extra;
+          $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->get();
+          $i++;
         }
       }
       else if(User::find($id)->type == 1){
@@ -116,7 +119,7 @@ class ProfileController extends Controller
           $skills = null;
         }
 
-        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills])->with('username', $username);
       }
       else if($type == 1)
       {

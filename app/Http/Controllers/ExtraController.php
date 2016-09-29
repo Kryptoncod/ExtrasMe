@@ -431,8 +431,8 @@ class ExtraController extends Controller
 					'professional_id' => $id,
 					'student_id' => Auth::user()->student->id,
 					'type' => 0,
-					'updated_at' => Carbon::now(),
 					'created_at' => Carbon::now(),
+					'updated_at' => Carbon::now(),
 					));
 			}
 		}
