@@ -71,7 +71,7 @@ class DashboardController extends Controller
 		}
 	}
 
-	public function rate($username, $studentID, $extraID, Request $request)
+	public function rate($studentID, $extraID, $grade)
 	{
 		$dashboard = Dashboard::find($studentID);
 		$extra = Extra::find($extraID);
@@ -104,20 +104,17 @@ class DashboardController extends Controller
 		}
 
 		DB::table('extras_students')->where('extra_id', $extraID)->where('student_id', $studentID)
-		->update(['rate' => $request->input('rate')]);
+		->update(['rate' => $grade]);
 
-		$studentExtras =  DB::table('extras_students')->where('student_id', $studentID)->where('done', 1)->get();
+		$studentExtras =  DB::table('extras_students')->where('student_id', $studentID)->where('doing', 1)->get();
 
 		foreach ($studentExtras as $studentExtra) {
 
-			$extraOfStudentID = DB::table('extras_students')->where('id', $studentExtra->id)->where('done', 1)->value('extra_id');
+			$extraOfStudentID = DB::table('extras_students')->where('id', $studentExtra->id)->where('doing', 1)->value('extra_id');
 
 			$extraOfStudent = Extra::find($extraOfStudentID);
 
-			$startTime = new Carbon($extraOfStudent->date.' '.$extraOfStudent->date_time);
-          	$endTime = $startTime->addHours($extraOfStudent->duration)->toDateTimeString();
-
-          	if($endTime < Carbon::now('UTC'))
+          	if($extraOfStudent->finish == 1)
           	{
           		$level = $level + DB::table('extras_students')->where('id', $studentExtra->id)->value('rate');
           		$NumberOfRating++;
@@ -144,9 +141,5 @@ class DashboardController extends Controller
 		DB::table('dashboards')
         ->where('id', $dashboard->id)
         ->update($dashboardInput);
-
-		DB::table('extras')->where('id', $extraID)->update(['finish' => 1]);
-
-		return redirect()->route('home', Auth::user()->id);
 	}
 }
