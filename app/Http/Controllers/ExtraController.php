@@ -484,7 +484,7 @@ class ExtraController extends Controller
 
 		while($request->input('rate'.$i))
 		{
-			$this->dashboardController->rate($request->input('studentID'.$i), $extraID, $request->input('rate'.$i));
+			$this->dashboardController->rate($request->input('studentID'.$i), $extraID, $request->input('rate'.$i), $request->input('hours'));
 			$i++;
 		}
 

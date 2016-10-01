@@ -13,6 +13,21 @@
          <form action="{{ route('rate', [Auth::user()->id,
                        $extra->id]) }}" method="post">
 
+         <div class="row account-resume">
+            <div class="medium-9 small-12 medium-uncentered small-centered columns">
+               <ul class="personal-informations">
+                  <li class="title" style="display: flex;">Hours made for the extra : {{ $extra->type }}
+                  </li>
+                  <li>
+                     Hours registered on the extra : {{ $extra->duration }}
+                  </li>
+                  <li>
+                     Hours made by the student(s) :<input type="number" min="0" name="hours" id="hours" required />
+                  </li>
+               </ul>
+            </div>
+         </div>
+
          @foreach($studentToRate as $id => $student)
             <div class="row account-resume">
                <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">

@@ -71,7 +71,7 @@ class DashboardController extends Controller
 		}
 	}
 
-	public function rate($studentID, $extraID, $grade)
+	public function rate($studentID, $extraID, $grade, $hours)
 	{
 		$dashboard = Dashboard::find($studentID);
 		$extra = Extra::find($extraID);
@@ -133,8 +133,8 @@ class DashboardController extends Controller
 		$dashboardInput = array(
 			'level' => $level,
 			'numbers_establishement' => count($numbers_establishement),
-			'total_earned' => $total_earned + ($extra->salary * $extra->duration),
-			'total_hours' => $total_hours + $extra->duration,
+			'total_earned' => $total_earned + ($extra->salary * $hours),
+			'total_hours' => $total_hours + $hours,
 			'numbers_extras' => $number_extras + 1,
 		);
 
