@@ -153,6 +153,7 @@
                <div class="row section-title">
                   <div class="small-12 columns">
                      <h2>@lang('student.extrasInSpotlight')</h2>
+                     <div class="pagination">{{ $linksFav }}</div>
                   </div>
                </div>
 

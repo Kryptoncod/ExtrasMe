@@ -70,7 +70,7 @@ Route::group(['prefix' => '{username}'], function($app) {
 
    $app->get('applicationDownload', ['as' => 'applicationDownload', "uses" => "ProfileController@showApplicationDownload"]);
 
-   $app->post('rate/{studentID}/{extraID}', ['as' => 'rate', "uses" => "DashboardController@rate"]);
+   $app->post('rate/{extraID}', ['as' => 'rate', "uses" => "ExtraController@rateStudents"]);
 
    $app->post('registerPost', ['as' => 'register_update', "uses" => "AccountController@registerUpdate"]);
    $app->get('modifFiles', ['as' => 'modif_files', "uses" => "AccountController@filesReset"]);

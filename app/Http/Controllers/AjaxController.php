@@ -50,15 +50,15 @@ class AjaxController extends Controller
 			$studentToSort = [];
 
 			$find = DB::table('extras_students')->where('extra_id', $extra->id)
-				->where('done', 1)->get();
+				->where('doing', 1)->get();
 
 			if(count($find) == $extra->number_persons)
 			{
-				$studentsAlreadyChosen = $extra->students()->where('done', 1)->get();
+				$studentsAlreadyChosen = $extra->students()->where('doing', 1)->get();
 
 			} else
 			{
-				$students = $extra->students()->where('done', 0)->get();
+				$students = $extra->students()->where('doing', 0)->get();
 
 				if(!empty($students))
 				{
@@ -75,7 +75,7 @@ class AjaxController extends Controller
 					});
 				}
 
-				$studentsAlreadyChosen = $extra->students()->where('done', 1)->get();
+				$studentsAlreadyChosen = $extra->students()->where('doing', 1)->get();
 			}
 			$can_apply = 0;
 			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, "email" => $email_pro, 'students' => $students, 'studentsAlreadyChosen' => $studentsAlreadyChosen]);
@@ -160,11 +160,11 @@ class AjaxController extends Controller
 			if(count($extras) > 0)
 			{
 				$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
-					->where('done', 1)->get();
+					->where('doing', 1)->get();
 
 				if(!empty($find))
 				{
-					$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
+					$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
 				}
 			}
 			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'studentsAlreadyChosen' => $studentsAlreadyChosen])->with('name', $name);
@@ -184,15 +184,15 @@ class AjaxController extends Controller
 			if(count($extras) > 0)
 			{
 				$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
-					->where('done', 1)->get();
+					->where('doing', 1)->get();
 
 				if(count($find) == $extras[0]->number_persons)
 				{
-					$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
+					$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
 
 				} else
 				{
-					$students = $extras[0]->students()->where('done', 0)->get();
+					$students = $extras[0]->students()->where('doing', 0)->get();
 
 					if(!empty($students))
 					{
@@ -210,7 +210,7 @@ class AjaxController extends Controller
 						});
 					}
 
-					$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
+					$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
 				}
 			}
 

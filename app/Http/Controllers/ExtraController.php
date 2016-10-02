@@ -9,6 +9,7 @@ use App\Http\Requests\ExtraSubmitRequest;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 
 use App\Models\User;
 use App\Models\Student;
@@ -36,13 +37,16 @@ class ExtraController extends Controller
 {
 	protected $extraRepository;
 	protected $professionalRepository;
+	protected $dashboardController;
 
 	public function __construct(ExtraRepository $extraRepository,
-	                          ProfessionalRepository $professionalRepository)
+	                          ProfessionalRepository $professionalRepository,
+	                          DashboardController $dashboardController)
 	{
 		$this->middleware('auth');
 		$this->extraRepository = $extraRepository;
 		$this->professionalRepository = $professionalRepository;
+		$this->dashboardController = $dashboardController;
 	}
 
 	public function show ($username, $extraId){
@@ -177,7 +181,7 @@ class ExtraController extends Controller
 			DB::table('extras_students')->insert(array(
 				'extra_id' => $id,
 				'student_id' => $student->id,
-				'done' => 0,
+				'doing' => 0,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 				));
@@ -222,15 +226,15 @@ class ExtraController extends Controller
 		if(count($extras) > 0)
 		{
 			$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
-				->where('done', 1)->get();
+				->where('doing', 1)->get();
 
 			if(count($find) == $extras[0]->number_persons)
 			{
-				$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
+				$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
 
 			} else
 			{
-				$students = $extras[0]->students()->where('done', 0)->get();
+				$students = $extras[0]->students()->where('doing', 0)->get();
 
 				if(!empty($students))
 				{
@@ -248,7 +252,7 @@ class ExtraController extends Controller
 					});
 				}
 
-				$studentsAlreadyChosen = $extras[0]->students()->where('done', 1)->get();
+				$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
 			}
 		}
 
@@ -259,9 +263,9 @@ class ExtraController extends Controller
 	{
 		DB::table('extras_students')->where('extra_id', $extraID)
 			->where('student_id', $studentID)
-			->update(['done' => 1]);
+			->update(['doing' => 1]);
 
-		$numberStudent = DB::table('extras_students')->where('extra_id', $extraID)->where('done', 1)->get();
+		$numberStudent = DB::table('extras_students')->where('extra_id', $extraID)->where('doing', 1)->get();
 
 		if(count($numberStudent) == Extra::find($extraID)->number_persons)
 		{
@@ -431,8 +435,8 @@ class ExtraController extends Controller
 					'professional_id' => $id,
 					'student_id' => Auth::user()->student->id,
 					'type' => 0,
-					'updated_at' => Carbon::now(),
 					'created_at' => Carbon::now(),
+					'updated_at' => Carbon::now(),
 					));
 			}
 		}
@@ -472,5 +476,20 @@ class ExtraController extends Controller
 		}
 
 		return redirect()->route('my_favorite_extras', Auth::user()->id);
+	}
+
+	public function rateStudents($username, $extraID, Request $request)
+	{
+		$i = 0;
+
+		while($request->input('rate'.$i))
+		{
+			$this->dashboardController->rate($request->input('studentID'.$i), $extraID, $request->input('rate'.$i), $request->input('hours'));
+			$i++;
+		}
+
+		DB::table('extras')->where('id', $extraID)->update(['finish' => 1]);
+
+		return redirect()->route('home', Auth::user()->id);
 	}
 }
