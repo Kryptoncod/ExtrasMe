@@ -27,6 +27,7 @@ class CreateExtraTable extends Migration
         $table->string('informations');
         $table->boolean('find');
         $table->boolean('finish');
+        $table->boolean('open');
         $table->integer('professional_id')->unsigned();
         $table->foreign('professional_id')->references('id')
                 ->on('professionals')

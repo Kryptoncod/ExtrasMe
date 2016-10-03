@@ -52,7 +52,7 @@
                      {{ strtoupper($student->school_year) }}
                   </li>
                   <li>
-                     <span class="info-label">@lang('student.school')</span>
+                     <span class="info-label">@lang('student.extrasmeLevel')</span>
                      @if($student->level > 3)
                         <span class="level-logo {{ $student->level > 0 ? 'completed' : '' }}"></span>
                         <span class="level-logo {{ $student->level > 1 ? 'completed' : '' }}"></span>

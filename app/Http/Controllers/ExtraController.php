@@ -99,13 +99,31 @@ class ExtraController extends Controller
 			$first_name = $student->first_name;
 			$last_name = $student->last_name;
 			$name = $first_name . " " . $last_name;
+
+			$dateMinest = Carbon::createFromFormat('Y-m-d', $date)->subDays(3)->toDateString();
+			$datePlus = Carbon::createFromFormat('Y-m-d', $date)->addDays(3)->toDateString();
+
 			if($type_extra == 'Tout')
 			{
-				$dateMinest = Carbon::createFromFormat('Y-m-d', $date)->subDays(3)->toDateString();
-				$datePlus = Carbon::createFromFormat('Y-m-d', $date)->addDays(3)->toDateString();
-				$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+				if($student->group == 1)
+				{
+					$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+				}
+				else
+				{
+					$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->where('open', 1)->get();
+				}
+
 			} else {
-				$extras = Extra::where('type', $type_extra)->where('find', 0)->get();
+				
+				if($student->group == 1)
+				{
+					$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+				}
+				else
+				{
+					$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+				}
 			}
 
       //On récupère le nom des professionnels qui proposent des extras
@@ -156,6 +174,7 @@ class ExtraController extends Controller
 			'informations' => $request->input('informations'),
 			'professional_id' => $professionalID,
 			'find' => 0,
+			'open' => 0,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
 			);

@@ -59,20 +59,22 @@ class ProfileController extends Controller
       $favExtras = NULL;
       $linksFav = NULL;
       $i = 0;
+      $extrasSecondGroup = [];
       
       if(User::find($id)->type == 0)
       {
-        $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0);
         $studentID = User::find($id)->student->id;
 
         if(Student::find($studentID)->group == 1)
         {
-          $extras = $extras->simplePaginate(3);
+          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->simplePaginate(3);
           $links = $extras->render();
         }
         else if(Student::find($studentID)->group == 2)
         {
-          $extras = $extras->simplePaginate(3);
+
+          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->simplePaginate(3);
+          
           $links = $extras->render();
         }
         else
@@ -119,8 +121,8 @@ class ProfileController extends Controller
             }
           }
         }
-        $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
-        $links = null;
+        $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->where('finish', 0)->orderBy('date', 'ASC')->simplePaginate(3);
+        $links = $extras->render();
         $results = null;
       }
 
