@@ -13,7 +13,7 @@ use App\Models\User;
 
 use Carbon\Carbon;
 
-use Mail;
+use Mail, Route;
 
 class UpdateExtra extends Command
 {

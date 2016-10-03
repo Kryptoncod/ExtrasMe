@@ -191,6 +191,17 @@ class ExtraController extends Controller
 
 		$extra = $this->extraRepository->store($extraInput);
 
+		$students = Student::where('group', 1)->get();
+
+		foreach ($students as $student) {
+
+			$notif_to_send = User::find($id)->professional->company_name.' just posted an extra in '.$extra->type.'. To see the extra visit the link below  : '.route('show_extra', [$student->user->id, $extra->id]);
+
+			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $student->user], function($message) use ($student){
+				$message->to($student->user->email)->subject('New notification ExtrasMe');
+			});
+		}
+
 		return redirect()->route('home', Auth::user()->id);
 	}
 
