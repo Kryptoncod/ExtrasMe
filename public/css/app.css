@@ -6511,14 +6511,14 @@ footer.footer {
       background-color: rgba(6, 11, 43, 0.4);
       padding: 20px; }
   .index-section.section-1 {
-    background: url(../images/section1_image-test.jpg) center center no-repeat;
+    background: url(../images/section1_image-test.jpeg) center center no-repeat;
     transform: scale(1.02);
     background-size: cover; }
     .index-section.section-1 .section-content {
       position: relative;
       top: 20vh; }
   .index-section.section-2 {
-    background: url(../images/section2_image-test.jpg) center top no-repeat;
+    background: url(../images/section2_image-test.jpeg) center top no-repeat;
     transform: scale(1.02);
     background-size: cover; }
     .index-section.section-2 .section-content {
