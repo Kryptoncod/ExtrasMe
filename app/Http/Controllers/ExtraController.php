@@ -101,7 +101,9 @@ class ExtraController extends Controller
 			$name = $first_name . " " . $last_name;
 			if($type_extra == 'Tout')
 			{
-				$extras = Extra::where('find', 0)->where('date', $date)->get();
+				$dateMinest = Carbon::createFromFormat('Y-m-d', $date)->subDays(3)->toDateString();
+				$datePlus = Carbon::createFromFormat('Y-m-d', $date)->addDays(3)->toDateString();
+				$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
 			} else {
 				$extras = Extra::where('type', $type_extra)->where('find', 0)->get();
 			}

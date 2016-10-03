@@ -31,6 +31,10 @@ Route::get('404', function(){
    return view('errors.404');
 });
 
+Route::get('/signUp/student', ['as' => 'signUp_student', "uses" => "SignupController@showStudent"]);
+Route::post('/signUp/student', ['as' => 'register_student', "uses" => "SignupController@registerStudent"]);
+Route::post('/register', ['as' => 'register_candidate', "uses" => "SignupController@registerCandidate"]);
+
 
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);

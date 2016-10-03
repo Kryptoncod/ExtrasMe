@@ -189,6 +189,13 @@
             <label for="newsletters" class="inline">I WOULD LIKE TO RECEIVE ALL NEWSLETTERS</label>
          </div>
       </div>
+
+      <div class="row">
+         <div class="small-6 columns end">
+            <button type="submit" class="submit-button">BEGIN YOUR JOURNEY</button>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+         </div>
+      </div>
    </div>
 
 @endsection

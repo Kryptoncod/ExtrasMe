@@ -1,6 +1,6 @@
 @extends('layouts.master', ['title' => $title])
 @section('content')
-   <div class="form">
+   <div class="form" style="background-color: #060b2b;">
 
       <div class="row">
          <div class="small-centered columns">

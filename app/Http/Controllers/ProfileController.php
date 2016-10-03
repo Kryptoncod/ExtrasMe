@@ -62,9 +62,24 @@ class ProfileController extends Controller
       
       if(User::find($id)->type == 0)
       {
-        $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->simplePaginate(3);
+        $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0);
         $studentID = User::find($id)->student->id;
-        $links = $extras->render();
+
+        if(Student::find($studentID)->group == 1)
+        {
+          $extras = $extras->simplePaginate(3);
+          $links = $extras->render();
+        }
+        else if(Student::find($studentID)->group == 2)
+        {
+          $extras = $extras->simplePaginate(3);
+          $links = $extras->render();
+        }
+        else
+        {
+          $extras = null;
+          $links = null;
+        }
         $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
         $results = Student::find($studentID)->professionals()->where('type', 0)->get();
 

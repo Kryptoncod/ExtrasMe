@@ -13,10 +13,11 @@ use App\Repositories\UserRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\ProfessionalRepository;
 use App\Repositories\DashboardRepository;
+use App\Repositories\CandidateRepository;
 
 use Carbon\Carbon;
 
-use Auth;
+use Auth, DB;
 
 class SignupController extends Controller
 {
@@ -25,17 +26,21 @@ class SignupController extends Controller
     protected $studentRepository;
     protected $professionalRepository;
     protected $dashboardRepository;
+    protected $candidateRepository;
 
    public function __construct(UserRepository $userRepository, 
                                 StudentRepository $studentRepository,
                                 ProfessionalRepository $professionalRepository,
-                                DashboardRepository $dashboardRepository)
+                                DashboardRepository $dashboardRepository,
+                                CandidateRepository $candidateRepository)
    {
-      $this->middleware('guest');
+      $middleware = array('guest', 'signUp');
+      $this->middleware($middleware, ['except' => 'registerCandidate']);
       $this->userRepository = $userRepository;
       $this->studentRepository = $studentRepository;
       $this->professionalRepository = $professionalRepository;
       $this->dashboardRepository = $dashboardRepository;
+      $this->candidateRepository = $candidateRepository;
    }
 
     /**
@@ -43,8 +48,31 @@ class SignupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function registerCandidate(Request $request)
+    {
+      $email = $request->input('email');
+      
+      if($email == 'extrasmeEHL2016')
+      {
+        $request->session()->put('signUpAuthorization', $email);
+        return redirect()->route('signUp_student');
+      }
+      else
+      {
+
+         $this->validate($request, [
+            'email' => 'required|unique:candidates|max:255|email',
+          ]);
+
+        $this->candidateRepository->store(['email' => $email]);
+
+        return redirect()->route('index');
+      }
+    }
+
     public function showStudent()
     {
+        session()->put('signUpAuthorization', 'no');
         return view('signup.student');
     }
 
@@ -68,7 +96,7 @@ class SignupController extends Controller
             'first_name' => $request->input('name'),
             'last_name' => $request->input('last_name'),
             'gender' => $request->input('gender'),
-            'birthdate' => Carbon::createFromDate($request->input('year'), $request->input('month'), $request->input('day'), 'GMT'),
+            'birthdate' => Carbon::createFromDate($request->input('year'), $request->input('month'), $request->input('day'), 'UTC'),
             'nationality'   => config('international.nationalities')[$request->input('nationality')],
             'school_year' => config('international.ehl_years')[$request->input('school_year')],
             'phone'  => $request->input('phone'),
@@ -86,7 +114,7 @@ class SignupController extends Controller
             'student_id' => $student->id,
             );
 
-        $dashBoard = $this->dashBoardRepository->store($dashBoardInput);
+        $dashBoard = $this->dashboardRepository->store($dashBoardInput);
 
         return redirect()->route('index');
     }
