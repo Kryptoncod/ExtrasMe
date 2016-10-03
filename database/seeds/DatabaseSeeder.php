@@ -45,6 +45,7 @@ class DatabaseSeeder extends Seeder
 				'gender' => 0,
 				'birthdate' => Carbon::createFromDate(null, rand(1, 12), rand(1, 28)),
 				'user_id' => $i+1,
+				'group' => 1,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 			]);
@@ -154,7 +155,7 @@ class DatabaseSeeder extends Seeder
 				'extra_id' => $i,
 				'student_id' => rand(1, 5),
 				'rate' => 0,
-				'done' => 1,
+				'doing' => 1,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 				]);
