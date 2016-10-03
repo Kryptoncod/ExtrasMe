@@ -69,6 +69,14 @@ class ProfileController extends Controller
         {
           $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->simplePaginate(3);
           $links = $extras->render();
+
+          $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+
+          foreach($results as $result)
+          {
+            $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->get();
+            $i++;
+          }
         }
         else if(Student::find($studentID)->group == 2)
         {
@@ -76,20 +84,22 @@ class ProfileController extends Controller
           $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->simplePaginate(3);
           
           $links = $extras->render();
+
+          $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+
+          foreach($results as $result)
+          {
+            $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->where('open', 1)->get();
+            $i++;
+          }
         }
         else
         {
           $extras = null;
           $links = null;
         }
-        $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
-        $results = Student::find($studentID)->professionals()->where('type', 0)->get();
 
-        foreach($results as $result)
-        {
-          $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->get();
-          $i++;
-        }
+        $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
       }
       else if(User::find($id)->type == 1){
 
@@ -113,8 +123,6 @@ class ProfileController extends Controller
                 {
                   $studentToRate[] = Student::find($f->student_id);
                 }
-
-                //dd($studentToRate);
                 
                 return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
                 'AuthId' => $id, 'name' => $name, 'studentToRate' => $studentToRate, 'extra' => $extra]);
