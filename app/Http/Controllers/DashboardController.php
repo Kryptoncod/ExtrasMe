@@ -86,7 +86,7 @@ class DashboardController extends Controller
 			$dashboard = Dashboard::find($studentID);
 			$extra = Extra::find($extraID);
 			$level = 0;
-			$NumberOfRating = 0;
+			$NumberOfRating = 1;
 
 			$professionalID = $extra->professional->id;
 
@@ -131,14 +131,8 @@ class DashboardController extends Controller
 	          	}
 			}
 
-			if($NumberOfRating == 0)
-			{
-				$level = $grade;
-			}
-			else
-			{
-				$level = $level / $NumberOfRating;
-			}
+			$level = $level / $NumberOfRating;
+			
 
 			$numbers_establishement = DB::table('number_extras_establishement')->where('student_id', $studentID)
 			->get();
