@@ -45,7 +45,7 @@
         <?php $i=0 ?>
         @foreach($educations as $education)
         <?php $i++ ?>
-        <input type="text" name="education-title{{$i}}" placeholder="Titre de l'éducation (comment on dit lol)" class="education-title" data-education="{{$i}}" value="{{$education->title}}">
+        <input type="text" name="education-title{{$i}}" placeholder="Titre de l'éducation" class="education-title" data-education="{{$i}}" value="{{$education->title}}">
         <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
           <input type="text" name="education-from{{$i}}" class="education-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" value="{{$education->from_date->format('m/Y')}}" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
           <input type="text" name="education-to{{$i}}" class="education-to date" placeholder="Date fin" style="width: 20%" value="{{$education->to_date->format('m/Y')}}" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">

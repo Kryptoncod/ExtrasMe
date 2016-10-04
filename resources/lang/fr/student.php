@@ -4,8 +4,8 @@ return [
 
    'errorFiles' => 'VOUS DEVEZ IMPORTER DES FICHIERS NECESSAIRES POUR POUVOIR POSTULER A DES EXTRAS',
    'email' => 'EMAIL :',
-   'firstName' => 'FIRST NAME : ',
-   'lastName' => 'LAST NAME : ',
+   'firstName' => 'PRENOM : ',
+   'lastName' => 'NOM : ',
    'contactNumber' => 'TELEPHONE : ',
    'school' => 'ECOLE : ',
    'year' => 'ANNEE : ',

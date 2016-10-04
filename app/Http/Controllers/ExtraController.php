@@ -512,17 +512,24 @@ class ExtraController extends Controller
 
 	public function rateStudents($username, $extraID, Request $request)
 	{
-		$i = 0;
-
-		while($request->input('rate'.$i))
+		try
 		{
-			$this->dashboardController->rate($request->input('studentID'.$i), $extraID, $request->input('rate'.$i), $request->input('hours'));
-			$i++;
+			$i = 0;
+
+			while($request->input('rate'.$i))
+			{
+				$this->dashboardController->rate($request->input('studentID'.$i), $extraID, $request->input('rate'.$i), $request->input('hours'));
+				$i++;
+			}
+
+			DB::table('extras')->where('id', $extraID)->update(['finish' => 1]);
+
+			return redirect()->route('home', Auth::user()->id);
 		}
-
-		DB::table('extras')->where('id', $extraID)->update(['finish' => 1]);
-
-		return redirect()->route('home', Auth::user()->id);
+		catch(\Exception $e)
+		{
+			dd($e);
+		}
 	}
 
 	public function rateOneExtra($username, $extraID)

@@ -42,104 +42,119 @@ class DashboardController extends Controller
 
 	public function show()
 	{
-		if(Auth::user()->type == 0)
+		try
 		{
-			$AuthID = Auth::user()->id;
-			$student = User::find($AuthID)->student;
-			$name = $student->first_name." ".$student->last_name;
+			if(Auth::user()->type == 0)
+			{
+				$AuthID = Auth::user()->id;
+				$student = User::find($AuthID)->student;
+				$name = $student->first_name." ".$student->last_name;
 
-			return view('user.dashboardStudent', ['name' => $name, 'dashboard' => Student::find($student->id)->dashboard]);
-		} elseif (Auth::user()->type == 1)
-		{
-			$AuthID = Auth::user()->id;
-			$professional = User::find($AuthID)->professional;
-			$name = $professional->company_name;
-			$numberhours = 0;
+				return view('user.dashboardStudent', ['name' => $name, 'dashboard' => Student::find($student->id)->dashboard]);
+			} elseif (Auth::user()->type == 1)
+			{
+				$AuthID = Auth::user()->id;
+				$professional = User::find($AuthID)->professional;
+				$name = $professional->company_name;
+				$numberhours = 0;
 
-			$numberOfExtras = Professional::find($professional->id)->extra()->where('finish', 1)->get();
+				$numberOfExtras = Professional::find($professional->id)->extra()->where('finish', 1)->get();
 
-			$daysLeft = Professional::find($professional->id)->invoices()->where('paid', 1)->orderBy('updated_at', 'DESC')->get();
+				$daysLeft = Professional::find($professional->id)->invoices()->where('paid', 1)->orderBy('updated_at', 'DESC')->get();
 
-			foreach($numberOfExtras as $extra) {
+				foreach($numberOfExtras as $extra) {
 
-				$numberhours = $numberhours + $extra->duration;
+					$numberhours = $numberhours + $extra->duration;
+				}
+
+				$economise = $numberhours * 10 - $numberOfExtras->count() * 8;
+
+				return view('user.dashboardProfessional', ['name' => $name, 'professional' => $professional, 'numberOfExtras' => $numberOfExtras, 'daysLeft' => $daysLeft, 'economise' => $economise]);
 			}
 
-			$economise = $numberhours * 10 - $numberOfExtras->count() * 8;
-
-			return view('user.dashboardProfessional', ['name' => $name, 'professional' => $professional, 'numberOfExtras' => $numberOfExtras, 'daysLeft' => $daysLeft, 'economise' => $economise]);
+		}
+		catch (\Exception $e)
+		{
+			dd($e);
 		}
 	}
 
 	public function rate($studentID, $extraID, $grade, $hours)
 	{
-		$dashboard = Dashboard::find($studentID);
-		$extra = Extra::find($extraID);
-		$level = 0;
-		$NumberOfRating = 0;
-
-		$professionalID = $extra->professional->id;
-
-		$testNumber = DB::table('number_extras_establishement')->where('professional_id', $professionalID)
-			->where('student_id', $studentID)->get();
-
-		$number =  DB::table('number_extras_establishement')->where('professional_id', $professionalID)
-			->where('student_id', $studentID)->value('number_extras');
-
-		if($testNumber == NULL)
+		try
 		{
-			DB::table('number_extras_establishement')->insert([
-				'student_id' => $studentID,
-				'professional_id' => $professionalID,
-				'number_extras' => 1
-				]);
+			$dashboard = Dashboard::find($studentID);
+			$extra = Extra::find($extraID);
+			$level = 0;
+			$NumberOfRating = 0;
 
-		} else {
+			$professionalID = $extra->professional->id;
 
-			DB::table('number_extras_establishement')->where('student_id', $studentID)
-			->where('professional_id', $professionalID)
-			->update([
-				'number_extras' => $number + 1,
-				]);
+			$testNumber = DB::table('number_extras_establishement')->where('professional_id', $professionalID)
+				->where('student_id', $studentID)->get();
+
+			$number =  DB::table('number_extras_establishement')->where('professional_id', $professionalID)
+				->where('student_id', $studentID)->value('number_extras');
+
+			if($testNumber == NULL)
+			{
+				DB::table('number_extras_establishement')->insert([
+					'student_id' => $studentID,
+					'professional_id' => $professionalID,
+					'number_extras' => 1
+					]);
+
+			} else {
+
+				DB::table('number_extras_establishement')->where('student_id', $studentID)
+				->where('professional_id', $professionalID)
+				->update([
+					'number_extras' => $number + 1,
+					]);
+			}
+
+			DB::table('extras_students')->where('extra_id', $extraID)->where('student_id', $studentID)
+			->update(['rate' => $grade]);
+
+			$studentExtras =  DB::table('extras_students')->where('student_id', $studentID)->where('doing', 1)->get();
+
+			foreach ($studentExtras as $studentExtra) {
+
+				$extraOfStudentID = DB::table('extras_students')->where('id', $studentExtra->id)->where('doing', 1)->value('extra_id');
+
+				$extraOfStudent = Extra::find($extraOfStudentID);
+
+	          	if($extraOfStudent->finish == 1)
+	          	{
+	          		$level = $level + DB::table('extras_students')->where('id', $studentExtra->id)->value('rate');
+	          		$NumberOfRating++;
+	          	}
+			}
+
+			$level = $level / $NumberOfRating;
+
+			$numbers_establishement = DB::table('number_extras_establishement')->where('student_id', $studentID)
+			->get();
+
+			$number_extras = DB::table('dashboards')->where('student_id', $studentID)->value('numbers_extras');
+			$total_earned = DB::table('dashboards')->where('student_id', $studentID)->value('total_earned');
+			$total_hours = DB::table('dashboards')->where('student_id', $studentID)->value('total_hours');
+					
+			$dashboardInput = array(
+				'level' => $level,
+				'numbers_establishement' => count($numbers_establishement),
+				'total_earned' => $total_earned + ($extra->salary * $hours),
+				'total_hours' => $total_hours + $hours,
+				'numbers_extras' => $number_extras + 1,
+			);
+
+			DB::table('dashboards')
+	        ->where('id', $dashboard->id)
+	        ->update($dashboardInput);
 		}
-
-		DB::table('extras_students')->where('extra_id', $extraID)->where('student_id', $studentID)
-		->update(['rate' => $grade]);
-
-		$studentExtras =  DB::table('extras_students')->where('student_id', $studentID)->where('doing', 1)->get();
-
-		foreach ($studentExtras as $studentExtra) {
-
-			$extraOfStudentID = DB::table('extras_students')->where('id', $studentExtra->id)->where('doing', 1)->value('extra_id');
-
-			$extraOfStudent = Extra::find($extraOfStudentID);
-
-          	if($extraOfStudent->finish == 1)
-          	{
-          		$level = $level + DB::table('extras_students')->where('id', $studentExtra->id)->value('rate');
-          		$NumberOfRating++;
-          	}
+		catch(\Exception $e)
+		{
+			dd($e);
 		}
-
-		$level = $level / $NumberOfRating;
-
-		$numbers_establishement = DB::table('number_extras_establishement')->where('student_id', $studentID)
-		->get();
-
-		$number_extras = DB::table('dashboards')->where('student_id', $studentID)->value('numbers_extras');
-		$total_earned = DB::table('dashboards')->where('student_id', $studentID)->value('total_earned');
-		$total_hours = DB::table('dashboards')->where('student_id', $studentID)->value('total_hours');
-				
-		$dashboardInput = array(
-			'level' => $level,
-			'numbers_establishement' => count($numbers_establishement),
-			'total_earned' => $total_earned + ($extra->salary * $hours),
-			'total_hours' => $total_hours + $hours,
-			'numbers_extras' => $number_extras + 1,
-		);
-
-		DB::table('dashboards')
-        ->where('id', $dashboard->id)
-        ->update($dashboardInput);
 	}
 }
