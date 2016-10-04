@@ -103,6 +103,7 @@ class SignupController extends Controller
             'zipcode' => $request->input('zipcode'),
             'state' => $request->input('state'),
             'country' => config('international.countries')[$request->input('country')],
+            'group' => 2,
             'user_id' => $id,
             );
 
