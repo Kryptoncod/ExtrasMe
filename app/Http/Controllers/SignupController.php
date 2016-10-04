@@ -99,6 +99,10 @@ class SignupController extends Controller
             'nationality'   => config('international.nationalities')[$request->input('nationality')],
             'school_year' => config('international.ehl_years')[$request->input('school_year')],
             'phone'  => $request->input('phone'),
+            'address' => $request->input('address'),
+            'zipcode' => $request->input('zipcode'),
+            'state' => $request->input('state'),
+            'country' => config('international.countries')[$request->input('country')],
             'user_id' => $id,
             );
 
