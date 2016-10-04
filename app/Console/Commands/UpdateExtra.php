@@ -81,5 +81,18 @@ class UpdateExtra extends Command
               }
             }
         }
+
+        $extraToRate = Extra::where('find', 1)->where('finish', 0)->where('date', '<=',Carbon::now()->toDateSting())->where('date_time', '<=', Carbon::now()->toTimeString())->get();
+
+        foreach ($extraToRate as $extra) {
+
+            $professionalUser = $extra->professional->user;
+
+            $notif_to_send = 'The extra '.$extra->type.' has started. Rate the student(s) at this link : www.extrasme.com/'.$professionalUser->id.'/extra/rate/'.$extra->id;
+
+            Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
+                $message->to($professionalUser->email)->subject('New notification ExtrasMe');
+            });
+        }
     }
 }

@@ -16,13 +16,13 @@
          <div class="row account-resume">
             <div class="medium-9 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title" style="display: flex;">Hours made for the extra : {{ $extra->type }}
+                  <li class="title" style="display: flex;">@lang('rate.hours.title', ['type' => $extra->type])
                   </li>
                   <li>
-                     Hours registered on the extra : {{ $extra->duration }}
+                     @lang('rate.hours.supposed', ['duration' => $extra->duration])
                   </li>
                   <li>
-                     Hours made by the student(s) :<input type="number" min="0" name="hours" id="hours" required />
+                     @lang('rate.hours.reallyMade')<input type="number" min="0" name="hours" id="hours" required />
                   </li>
                </ul>
             </div>
@@ -39,7 +39,7 @@
                </div>
                <div class="medium-9 small-12 medium-uncentered small-centered columns">
                   <ul class="personal-informations">
-                     <li class="title" style="display: flex;">rate {{ strtoupper($student->first_name." ".$student->last_name) }} @lang('rate.for') {{ $extra->type }}
+                     <li class="title" style="display: flex;">@lang('rate.content', array('student' => $student->first_name.' '.$student->last_name, 'type' => $extra->type))
                      </li>
                      <li>
                         <span class="info-label">EXTRASME LEVEL:</span>

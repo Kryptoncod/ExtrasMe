@@ -524,4 +524,32 @@ class ExtraController extends Controller
 
 		return redirect()->route('home', Auth::user()->id);
 	}
+
+	public function rateOneExtra($username, $extraID)
+	{
+		$extra = Extra::find($extraID);
+
+		if($extra->professional->user->id == Auth::user()->id)
+		{
+			$name = Auth::user($username)->professional->company_name;
+			$studentToRate = [];
+
+
+	        $find = DB::table('extras_students')->where('extra_id', $extraID)
+	          ->where('doing', 1)->get();
+
+	        foreach($find as $f)
+	        {
+	          $studentToRate[] = Student::find($f->student_id);
+	        }
+
+
+			return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
+	                'AuthId' => Auth::user()->id, 'name' => $name, 'studentToRate' => $studentToRate, 'extra' => $extra]);
+		}
+		else
+		{
+			abort(404);
+		}
+	}
 }
