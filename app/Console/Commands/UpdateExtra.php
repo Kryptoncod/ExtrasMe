@@ -51,8 +51,6 @@ class UpdateExtra extends Command
      */
     public function handle()
     {
-        \Log::info('Run extrasme update');
-
         $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 0)->get();
 
         foreach ($extras as $extra) {
@@ -72,7 +70,7 @@ class UpdateExtra extends Command
 
               foreach ($students as $student) {
 
-                $notif_to_send = 'The extra '.$extra->type.' for '.$extra->professional->company_name.' is available. See the link : '.route('show_extra', [$student->user->id, $extra->id]);
+                $notif_to_send = 'The extra '.$extra->type.' for '.$extra->professional->company_name.' is available. See the link : www.extrasme.com/'.$student->user->id.'/extra/'.$extra->id;
 
                 $professionalUser = $extra->professional->user;
 
