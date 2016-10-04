@@ -131,7 +131,14 @@ class DashboardController extends Controller
 	          	}
 			}
 
-			$level = $level / $NumberOfRating;
+			if($NumberOfRating == 0)
+			{
+				$level = $grade;
+			}
+			else
+			{
+				$level = $level / $NumberOfRating;
+			}
 
 			$numbers_establishement = DB::table('number_extras_establishement')->where('student_id', $studentID)
 			->get();
