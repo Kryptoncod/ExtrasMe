@@ -72,7 +72,6 @@ class SignupController extends Controller
 
     public function showStudent()
     {
-        session()->put('signUpAuthorization', 'no');
         return view('signup.student');
     }
 
@@ -115,6 +114,8 @@ class SignupController extends Controller
             );
 
         $dashBoard = $this->dashboardRepository->store($dashBoardInput);
+
+        session()->put('signUpAuthorization', 'no');
 
         return redirect()->route('index');
     }
