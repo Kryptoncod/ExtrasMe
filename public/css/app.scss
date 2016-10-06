@@ -11295,6 +11295,19 @@ ul.topnav li.icon {display: none;}
 .extrasme-app-container
 {
   width: 100%;
-  height: 100vh;
-  background: url(../images/section3_image.jpg) center top no-repeat;
+  background-color:white;
+  display: flex;
+  .title-app-container{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 45%;
+  }
+  .img-app-container{
+    width: 55%;
+    img{
+      width: 100%;
+      max-width: 750px;
+    }
+  }
 }

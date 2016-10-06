@@ -7615,5 +7615,17 @@ ul.topnav li.icon {
 
 .extrasme-app-container {
   width: 100%;
-  height: 100vh;
-  background: url(../images/section3_image.jpg) center top no-repeat; }
+  background-color: white;
+  display: flex; }
+  .extrasme-app-container .title-app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%; }
+  .extrasme-app-container .img-app-container {
+    width: 55%; }
+    .extrasme-app-container .img-app-container img {
+      width: 100%;
+      max-width: 750px; }
+
+/*# sourceMappingURL=app.css.map */

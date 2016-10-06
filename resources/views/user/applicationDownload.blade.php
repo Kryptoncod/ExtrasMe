@@ -11,7 +11,12 @@
          </div>
          
          <div class="extrasme-app-container">
-            
+            <div class="title-app-container">
+               <h2 class="section-title" style="color: black; border:none;">@lang('index.section3.content')</h2>
+            </div>
+            <div class="img-app-container">
+               <img src="{{asset('images/section3_image_small.jpg')}}">
+            </div>
          </div>
       </div>
    </div>
