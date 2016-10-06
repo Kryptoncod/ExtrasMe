@@ -124,6 +124,65 @@
 
    <div class="form-group">
 
+      <div class="row">
+         <div class="small-4 columns">
+            <label for="address" class="right inline">ADDRESS:</label>
+         </div>
+         <div class="small-6 end columns">
+            <input type="text" name="address" id="address" required />
+            <small class="error">Address is required and must be valid.</small>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="small-4 columns">
+            <label for="address" class="right inline">CITY:</label>
+         </div>
+         <div class="small-6 end columns">
+            <input type="text" name="city" id="city" required />
+            <small class="error">City is required and must be valid.</small>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="small-4 columns">
+            <label for="state" class="right inline">STATE:</label>
+         </div>
+         <div class="small-6 end columns">
+            <input type="text" name="state" id="state" required />
+            <small class="error">State is required and must be valid.</small>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="small-4 columns">
+            <label for="zipcode" class="right inline">ZIPCODE:</label>
+         </div>
+         <div class="small-6 end columns">
+            <input type="text" name="zipcode" id="zipcode" required />
+            <small class="error">Zipcode is required and must be valid.</small>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="small-4 columns">
+            <label for="country" class="right inline">COUNTRY:</label>
+         </div>
+         <div class="small-6 end columns">
+            <select name="country" required>
+               <option selected disabled value="">Please select ...</option>
+               @foreach(config('international.countries') as $id => $country)
+                  <option value="{{ $id }}">{{ $country }}</option>
+               @endforeach
+            </select>
+            <small class="error">Country is required.</small>
+         </div>
+      </div>
+
+   </div>
+
+   <div class="form-group">
+
          <div class="row">
             <div class="small-4 columns">
                <label for="email_address" class="right inline">EMAIL ADDRESS:</label>
@@ -187,6 +246,13 @@
          </div>
          <div class="small-5 columns end">
             <label for="newsletters" class="inline">I WOULD LIKE TO RECEIVE ALL NEWSLETTERS</label>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="small-6 columns end">
+            <button type="submit" class="submit-button">BEGIN YOUR JOURNEY</button>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
          </div>
       </div>
    </div>

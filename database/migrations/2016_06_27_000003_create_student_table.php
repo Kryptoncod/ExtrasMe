@@ -21,6 +21,12 @@ class CreateStudentTable extends Migration
         $table->string('phone');
         $table->boolean('gender');
         $table->date('birthdate');
+        $table->integer('zipcode');
+        $table->string('state');
+        $table->string('country');
+        $table->string('address');
+        $table->string('city');
+        $table->integer('group');
         $table->integer('user_id')->unsigned();
         $table->boolean('registration_done');
         $table->foreign('user_id')->references('id')

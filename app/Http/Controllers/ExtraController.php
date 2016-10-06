@@ -90,41 +90,68 @@ class ExtraController extends Controller
 	public function showList($username, $type_extra, $date)
 	{
 
-		$id = Auth::user()->id;
-		$type = User::find($id)->type;
-
-		if($type == 0)
+		try
 		{
-			$student = User::find($id)->student;
-			$first_name = $student->first_name;
-			$last_name = $student->last_name;
-			$name = $first_name . " " . $last_name;
-			if($type_extra == 'Tout')
-			{
-				$extras = Extra::where('find', 0)->where('date', $date)->get();
-			} else {
-				$extras = Extra::where('type', $type_extra)->where('find', 0)->get();
-			}
+			$id = Auth::user()->id;
+			$type = User::find($id)->type;
 
-      //On récupère le nom des professionnels qui proposent des extras
-			$professionals = array();
-			for($i=0; $i < count($extras); $i++)
+			if($type == 0)
 			{
-				array_push($professionals, Professional::find($extras[$i]->professional_id));
-			}
-			$can_apply = 0;
-			$email_pro = null;
+				$student = User::find($id)->student;
+				$first_name = $student->first_name;
+				$last_name = $student->last_name;
+				$name = $first_name . " " . $last_name;
 
-			if($extras->first())
-			{
-				if(!$student->extras->contains('id', $extras[0]->id)){
-					$can_apply = 1;
+				$dateMinest = Carbon::createFromFormat('Y-m-d', $date)->subDays(3)->toDateString();
+				$datePlus = Carbon::createFromFormat('Y-m-d', $date)->addDays(3)->toDateString();
+
+				if($type_extra == 'Tout')
+				{
+					if($student->group == 1)
+					{
+						$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+					}
+					else
+					{
+						$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->where('open', 1)->get();
+					}
+
+				} else {
+					
+					if($student->group == 1)
+					{
+						$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+					}
+					else
+					{
+						$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+					}
 				}
 
-				$email_pro = User::find($professionals[0]->user_id)->email;
-			}
+	      //On récupère le nom des professionnels qui proposent des extras
+				$professionals = array();
+				for($i=0; $i < count($extras); $i++)
+				{
+					array_push($professionals, Professional::find($extras[$i]->professional_id));
+				}
+				$can_apply = 0;
+				$email_pro = null;
 
-			return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply, 'email' => $email_pro])->with('name', $name);
+				if($extras->first())
+				{
+					if(!$student->extras->contains('id', $extras[0]->id)){
+						$can_apply = 1;
+					}
+
+					$email_pro = User::find($professionals[0]->user_id)->email;
+				}
+
+				return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply, 'email' => $email_pro])->with('name', $name);
+			}
+		}
+		catch(\Exception $e)
+		{
+			dd($e);
 		}
 	}
 
@@ -154,6 +181,7 @@ class ExtraController extends Controller
 			'informations' => $request->input('informations'),
 			'professional_id' => $professionalID,
 			'find' => 0,
+			'open' => 0,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
 			);
@@ -162,13 +190,24 @@ class ExtraController extends Controller
 
 		if($last_minute == 0)
 		{
-			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 1]);
+			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - $request->input('numberPerson')]);
 		} else
 		{
-			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 3]);
+			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - (3 * $request->input('numberPerson'))]);
 		}
 
 		$extra = $this->extraRepository->store($extraInput);
+
+		$students = Student::where('group', 1)->get();
+
+		foreach ($students as $student) {
+
+			$notif_to_send = User::find($id)->professional->company_name.' just posted an extra in '.$extra->type.'. To see the extra visit the link below  : '.route('show_extra', [$student->user->id, $extra->id]);
+
+			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $student->user], function($message) use ($student){
+				$message->to($student->user->email)->subject('New notification ExtrasMe');
+			});
+		}
 
 		return redirect()->route('home', Auth::user()->id);
 	}
@@ -211,6 +250,39 @@ class ExtraController extends Controller
 		$date = $date->toDateString();
 
 		return redirect()->route('extra_list', ['username' => Auth::user()->id, 'type_extra' => $input, 'date' => $date]);
+	}
+
+	public function cancelApplication($username, $id)
+	{
+		try
+		{
+			$student = Auth::user()->student;
+			DB::table('extras_students')->where('extra_id' , $id)
+					->where('student_id' , $student->id)->delete();
+
+			$find= DB::table('extras')->where('id', $id)->value('find');
+
+			if($find == 1)
+			{
+				DB::table('extras')->where('id', $id)->update(['find' => 0]);
+			}
+
+			$extra = Extra::find($id);
+			$professionalUser = $extra->professional->user;
+			$student_name = $student->first_name.' '.$student->last_name;
+			$notif_to_send = $student_name.' cancel his application to your Extra : '.$extra->type;
+
+			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
+				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
+			});
+
+			return redirect()->back();
+		}
+		catch (Exception $e)
+		{
+			dd($e);
+			abort(404);
+		}
 	}
 
 
@@ -282,6 +354,15 @@ class ExtraController extends Controller
 
 				$message->to($studentUser->email)->subject('New notification ExtrasMe');
 		});
+
+		return redirect()->back();
+	}
+
+	public function declineExtra($username, $extraID, $studentID)
+	{
+		DB::table('extras_students')->where('extra_id', $extraID)
+			->where('student_id', $studentID)
+			->delete();
 
 		return redirect()->back();
 	}
@@ -413,7 +494,9 @@ class ExtraController extends Controller
 		else if(User::find($id)->type == 1)
 		{
 			$name = User::find($id)->professional->company_name;
-			$results = DB::table('students')->where('first_name', 'LIKE', '%' . $favoriteName . '%')->orWhere('last_name', 'LIKE', '%' . $favoriteName . '%')->get();
+
+			$results = DB::table('students')->where('first_name', 'LIKE', '%' . $favoriteName . '%')->orWhere('last_name', 'LIKE', '%' . $favoriteName . '%')
+				->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE '%$favoriteName%'")->get();
 
 			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
 		}
@@ -480,16 +563,51 @@ class ExtraController extends Controller
 
 	public function rateStudents($username, $extraID, Request $request)
 	{
-		$i = 0;
-
-		while($request->input('rate'.$i))
+		try
 		{
-			$this->dashboardController->rate($request->input('studentID'.$i), $extraID, $request->input('rate'.$i), $request->input('hours'));
-			$i++;
+			$i = 0;
+
+			while($request->input('rate'.$i))
+			{
+				$this->dashboardController->rate($request->input('studentID'.$i), $extraID, $request->input('rate'.$i), $request->input('hours'));
+				$i++;
+			}
+
+			DB::table('extras')->where('id', $extraID)->update(['finish' => 1]);
+
+			return redirect()->route('home', Auth::user()->id);
 		}
+		catch(\Exception $e)
+		{
+			dd($e);
+		}
+	}
 
-		DB::table('extras')->where('id', $extraID)->update(['finish' => 1]);
+	public function rateOneExtra($username, $extraID)
+	{
+		$extra = Extra::find($extraID);
 
-		return redirect()->route('home', Auth::user()->id);
+		if($extra->professional->user->id == Auth::user()->id)
+		{
+			$name = Auth::user($username)->professional->company_name;
+			$studentToRate = [];
+
+
+	        $find = DB::table('extras_students')->where('extra_id', $extraID)
+	          ->where('doing', 1)->get();
+
+	        foreach($find as $f)
+	        {
+	          $studentToRate[] = Student::find($f->student_id);
+	        }
+
+
+			return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
+	                'AuthId' => Auth::user()->id, 'name' => $name, 'studentToRate' => $studentToRate, 'extra' => $extra]);
+		}
+		else
+		{
+			abort(404);
+		}
 	}
 }

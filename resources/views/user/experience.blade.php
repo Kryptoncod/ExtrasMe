@@ -9,7 +9,7 @@
          <div class="row">
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
-
+         <hr style="margin: 0;" />
          <div class="experience-container"><div class="chrono-container">
                   <a href="" id="past" data-chrono-id = "1" class="showChrono"><label>Past</label></a>
                   <div style="display:flex; flex-direction:column;">

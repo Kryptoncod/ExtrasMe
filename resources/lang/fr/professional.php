@@ -17,6 +17,7 @@ return [
    'moreDetails' => 'PLUS DE DETAILS',
    'description' => 'Description',
    'noDescription' => 'Pas de Description',
+   'errorDescripton' => 'Nous vous invitons à mettre un descriptif de votre établissements afin que l’étudiant puisse se renseigner au préalable de son extra.',
    'lookingForExtras' => [
       'title' => 'RECHERCHE UN EXTRA ?',
       'broadcastin' => 'DIFFUSION',
@@ -28,6 +29,7 @@ return [
       'selectType' => 'Selectionner',
       'errorType' => 'Le type est obligatoire.',
       'date' => 'DATE : ',
+      'errorDate' => 'La date est obligatoire et doit être supérieure à maintenant.',
       'duration' => 'DUREE : ',
       'errorDuration' => 'La durée est obligatoire et doit être au-dessus de 0.',
       'numberPerson' => 'NOMBRE DE PERSONNES : ',

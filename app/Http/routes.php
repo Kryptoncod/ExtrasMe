@@ -31,6 +31,10 @@ Route::get('404', function(){
    return view('errors.404');
 });
 
+Route::get('/signUp/student', ['as' => 'signUp_student', "uses" => "SignupController@showStudent"]);
+Route::post('/signUp/student', ['as' => 'register_student', "uses" => "SignupController@registerStudent"]);
+Route::post('/register', ['as' => 'register_candidate', "uses" => "SignupController@registerCandidate"]);
+
 
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
@@ -42,7 +46,9 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->get('/confirm', ['as' => 'confirm', "uses" => "CreditsController@confirmation"]);
    });
    Route::group(['prefix' => 'extra'], function($app) {
+      $app->get('/rate/{id}', ['as' => 'extra_rate', "uses" => "ExtraController@rateOneExtra"]);
       $app->get('{id}/apply', ['as' => 'extra_apply', 'uses' => 'ExtraController@apply']);
+      $app->get('{id}/cancel', ['as' => 'extra_cancel_application', 'uses' => 'ExtraController@cancelApplication']);
       $app->get('list/{type_extra}/{date}',  ['as' => 'extra_list',   "uses" => "ExtraController@showList"]);
       $app->post('search', ['as' => 'extra_search', "uses" => "ExtraController@search"]);
       $app->post('submit', ['as' => 'extra_submit', "uses" => "ExtraController@submit"]);
@@ -51,9 +57,10 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->get ('deleteextra/{id}', ['as' => 'delete_extra', "uses" => "ExtraController@deleteExtra"]);
       $app->get ('{id}/modify', ['as' => 'modify_extra', "uses" => "ExtraController@showModifyExtra"]);
       $app->post ('{id}/modify', ['as' => 'modify_extra_post', "uses" => "ExtraController@modifyExtra"]);
-      $app->get('{ExtraID}/accept/{studentID}', function($username, $extraID, $studentID){
+      $app->get('{extraID}/accept/{studentID}', function($username, $extraID, $studentID){
       return App\Http\Controllers\ExtraController::acceptExtra($extraID, $studentID);
    });
+      $app->get('{ExtraID}/decline/{studentID}', ['as' => 'decline_application', "uses" => "ExtraController@declineExtra"]);
       Route::group(['prefix' => 'favorite'], function($app) {
          $app->get ('/', ['as' => 'my_favorite_extras', "uses" => "ExtraController@showFavorite"]);
          $app->get ('search', ['as' => 'my_favorite_extras_search', "uses" => "ExtraController@showFavoriteSearch"]);

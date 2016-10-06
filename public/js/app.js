@@ -230,7 +230,7 @@ $("#modif-files").click(function(e){
         $("#append-experience").append(toAppend);
         $('.date').fdatepicker({
         language: 'fr',
-        format: 'dd/mm/yyyy',
+        format: 'mm/yyyy',
         disableDblClickSelection: true
     });
     }
@@ -249,7 +249,7 @@ $("#modif-files").click(function(e){
         $("#append-education").append(toAppend);
         $('.date').fdatepicker({
         language: 'fr',
-        format: 'dd/mm/yyyy',
+        format: 'mm/yyyy',
         disableDblClickSelection: true
     }); 
     }

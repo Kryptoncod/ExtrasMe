@@ -116,7 +116,7 @@ class AccountController extends Controller
 		$message = "";
 
 
-		$rule = 'required|file|mimes:jpeg,jpg|max:10000';
+		$rule = 'required|file|mimes:jpeg,jpg,pdf|max:10000';
 		$validator = Validator::make($request->all(), [
 			'carte-id'   => $rule,
 			'avs'   => $rule,
@@ -272,6 +272,7 @@ class AccountController extends Controller
 				'email' => $request->input('email'),
 			);
 			$user = $this->userRepository->update($userId, $userInput);
+
 			if($request->input('image-data') != ""){
 				//save your data into a variable - last part is the base64 encoded image
 			    $encoded = $request->input('image-data');
@@ -279,10 +280,11 @@ class AccountController extends Controller
 			    $exp = explode(',', $encoded);
 			    //decode the image and finally save it
 			    $data = base64_decode($exp[1]);
-			    $file = "uploads/pp/$userId.png";
+			    $file = "uploads/pp/$userIdpng";
 			    //make sure you are the owner and have the rights to write content
 			    file_put_contents($file, $data);
 			}
+
 			$message = "Vos modification ont bien été prises en compte";
 			return redirect()->route('account', $userId)->with('message', $message);
 		}

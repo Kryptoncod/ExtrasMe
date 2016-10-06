@@ -7613,4 +7613,9 @@ ul.topnav li.icon {
 .error-log {
   color: #F22222; }
 
+.extrasme-app-container {
+  width: 100%;
+  height: 100vh;
+  background: url(../images/section3_image.jpg) center top no-repeat; }
+
 /*# sourceMappingURL=app.css.map */

@@ -57,20 +57,47 @@ class ProfileController extends Controller
       $favExtras = NULL;
       $linksFav = NULL;
       $i = 0;
+      $extrasSecondGroup = [];
       
       if(User::find($id)->type == 0)
       {
-        $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->simplePaginate(3);
         $studentID = User::find($id)->student->id;
-        $links = $extras->render();
-        $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
-        $results = Student::find($studentID)->professionals()->where('type', 0)->get();
 
-        foreach($results as $result)
+        if(Student::find($studentID)->group == 1)
         {
-          $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->get();
-          $i++;
+          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->simplePaginate(3);
+          $links = $extras->render();
+
+          $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+
+          foreach($results as $result)
+          {
+            $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->get();
+            $i++;
+          }
         }
+        else if(Student::find($studentID)->group == 2)
+        {
+
+          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->simplePaginate(3);
+          
+          $links = $extras->render();
+
+          $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+
+          foreach($results as $result)
+          {
+            $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->where('open', 1)->get();
+            $i++;
+          }
+        }
+        else
+        {
+          $extras = null;
+          $links = null;
+        }
+
+        $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
       }
       else if(User::find($id)->type == 1){
 
@@ -94,16 +121,14 @@ class ProfileController extends Controller
                 {
                   $studentToRate[] = Student::find($f->student_id);
                 }
-
-                //dd($studentToRate);
                 
                 return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
                 'AuthId' => $id, 'name' => $name, 'studentToRate' => $studentToRate, 'extra' => $extra]);
             }
           }
         }
-        $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
-        $links = null;
+        $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->where('finish', 0)->orderBy('date', 'ASC')->simplePaginate(3);
+        $links = $extras->render();
         $results = null;
       }
 

@@ -35,7 +35,7 @@
                    <div style="display:flex; flex-direction:column; width:55%; align-items:center" id="card-container">
                      <div class="row account-resume" style="width: 90%;">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7" style="padding: 0;">
-               @if(file_exists("uploads/pp/".$professional->user_id.".png"))
+               @if(file_exists("uploads/pp/".$extras[0]->professional->user_id.".png"))
                   <img class="profile-picture" src=" uploads/pp/{{$professional->user_id}}.png" alt="" />
                @else
                   <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
@@ -44,26 +44,26 @@
 
             <div class="medium-7 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title">{{ strtoupper($professional->company_name) }}</li>
+                  <li class="title">{{ strtoupper($extras[0]->professional->company_name) }}</li>
 
                @if(Auth::user()->id == $username)
                   <li><span class="info-label">@lang('professional.email')</span>
                   {{ strtoupper($user->email) }}</li>
 
                   <li><span class="info-label">@lang('professional.contactNumber')</span>
-                  {{ strtoupper($professional->phone) }}</li>
+                  {{ strtoupper($extras[0]->professional->phone) }}</li>
                @endif
 
                   <li><span class="info-label">@lang('professional.referencePerson')</span>
-                  {{ strtoupper($professional->first_name.' '.$professional->last_name) }}</li>
+                  {{ strtoupper($extras[0]->professional->first_name.' '.$extras[0]->professional->last_name) }}</li>
 
                   <li><span class="info-label">@lang('professional.sector')</span>
-                  {{ strtoupper($professional->category) }}</li>
+                  {{ strtoupper($extras[0]->professional->category) }}</li>
                </ul>
             </div>
          </div>
          <div class="titre-extra">
-               <h2>{{$extras[0]->type}} EXTRA : {{$professional->state}}</h2>
+               <h2>{{$extras[0]->type}} EXTRA : {{$extras[0]->professional->state}}</h2>
             </div>
                         <table style="width:90%;" class="card-info">
                           <thead>
@@ -144,6 +144,13 @@
                             </tr>
                           </tbody>
                         </table>
+                                  @if(Auth::user()->type == 0)
+                                    @if($listId == 3)
+                                      <div style="display:flex; align-items:center;">
+                                        <button><a style="pointer-events: none;cursor: default;" href="{{ route('extra_cancel_application', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@lang('card-content.alreadyApplied')</a></button>
+                                      </div>
+                                    @endif
+                                  @endif
                                   @if(Auth::user()->type == 1)
                                    @if($extras[0]->find == 0)
                                     <ul style="width: 80%; margin:auto;">
@@ -162,7 +169,7 @@
                                                            @endif
                                           {{ $student->first_name . " " . $student->last_name }}
                                           </a>
-                                          <button class="submit-button right">@lang('myExtraList.decline')</button>
+                                          <button class="submit-button right"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extras[0]->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
                                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                           <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">@lang('myExtraList.accept')</a></button>
                                           <input type="hidden" name="_token" value="{{ csrf_token() }}">

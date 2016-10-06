@@ -140,7 +140,7 @@
                   @if($can_apply != null)
                     <button><a href="{{ route('extra_apply',  ['id' => $extra->id, 'username' => $user->id]) }}">@lang('card-content.apply')</a></button>
                   @else
-                    <button><a style="pointer-events: none;cursor: default;">@lang('card-content.alreadyApplied')</a></button>
+                    <button><a href="{{ route('extra_cancel_application', ['username' => Auth::user()->id, 'id' => $extra->id]) }}" style="pointer-events: none; cursor: default;">@lang('card-content.alreadyApplied')</a></button>
                   @endif
                 @else
                   <button><a href="{{ route('account', Auth::user()->id)}}">@lang('card-content.cantApply')</a></button>

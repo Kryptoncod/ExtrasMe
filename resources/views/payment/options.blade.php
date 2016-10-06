@@ -11,16 +11,7 @@
          </div>
          <div class="options-container" style="color:white;">
             <h1 style="color:white;">@lang('payment.option.title')</h1>
-            <h2 style="color:white;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi exercitationem atque.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro rem, ex deleniti nemo ullam placeat enim qui cum officiis dolor deserunt consequatur nam culpa quaerat, dignissimos at! Asperiores tempora, non.</p>
-            <p>
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro rem, ex deleniti nemo ullam placeat enim qui cum officiis dolor deserunt consequatur nam culpa quaerat, dignissimos at! Asperiores tempora, non.
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro rem, ex deleniti nemo ullam placeat enim qui cum officiis dolor deserunt consequatur nam culpa quaerat, dignissimos at! Asperiores tempora, non.
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro rem, ex deleniti nemo ullam placeat enim qui cum officiis dolor deserunt consequatur nam culpa quaerat, dignissimos at! Asperiores tempora, non.
-            </p>
-            <p>
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro rem, ex deleniti nemo ullam placeat enim qui cum officiis dolor deserunt consequatur nam culpa quaerat, dignissimos at! Asperiores tempora, non.
-            </p>
+            <p>@lang('payment.option.content')</p>
 
             <div>
                <button><a type="submit" href="{{ route('optionsPaymentCash', ['username' => Auth::user()->id, 'data0' => $data0, 'data1' => $data1]) }}">@lang('payment.option.cash')</a></button>
