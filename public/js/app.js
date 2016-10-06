@@ -309,16 +309,16 @@ $(document).ready(function(){
     }
     
     if(width <= 700){
-        $('#logo-navbar').attr('src', '/extrasme/public/images/logo.gif');
+        $('#logo-navbar').attr('src', '/images/logo.gif');
     }
 });
 
 $(window).resize(function(){
     width = $(window).width();
     if(width <= 700){
-        $('#logo-navbar').attr('src', '/extrasme/public/images/logo.gif');
+        $('#logo-navbar').attr('src', '/images/logo.gif');
     }else{
-        $('#logo-navbar').attr('src', '/extrasme/public/images/logo-long.gif');
+        $('#logo-navbar').attr('src', '/images/logo-long.gif');
     }
 });
 
