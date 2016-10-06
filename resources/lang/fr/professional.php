@@ -17,6 +17,7 @@ return [
    'moreDetails' => 'PLUS DE DETAILS',
    'description' => 'Description',
    'noDescription' => 'Pas de Description',
+   'errorDescripton' => 'Nous vous invitons à mettre un descriptif de votre établissements afin que l’étudiant puisse se renseigner au préalable de son extra.',
    'lookingForExtras' => [
       'title' => 'RECHERCHE UN EXTRA ?',
       'broadcastin' => 'DIFFUSION',

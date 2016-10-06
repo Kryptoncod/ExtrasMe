@@ -84,137 +84,151 @@ class AjaxController extends Controller
 	}
 
 	public function loadList(Request $request){
-		$user = Auth::user();
-		$listId = $request->input('id');
+		try
+		{
+			$user = Auth::user();
+			$listId = $request->input('id');
 
-		if($listId == 1)
-		{
-			$id = $user->id;
-			$title = "Past Extras";
-		    $student = User::find($id)->student;
-		    $name = $student->first_name." ".$student->last_name;
-			$first_name = $student->first_name;
-			$last_name = $student->last_name;
-			$name = $first_name . " " . $last_name;
-		    $extras = $student->extras()->where('find', 1)->where('date', '<', Carbon::now())->orderBy('date', 'DESC')->get();
-		    $professionals = array();
-		    
-		    if(count($extras) > 0){
-				for($i=0; $i < count($extras); $i++)
-				{
-					array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
-				}
-			}
-		    return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
-		}
-		else if($listId == 2)
-		{
-			$id = $user->id;
-			$title = "Future Extras";
-		    $student = User::find($id)->student;
-		    $name = $student->first_name." ".$student->last_name;
-			$first_name = $student->first_name;
-			$last_name = $student->last_name;
-			$name = $first_name . " " . $last_name;
-		    $extras = $student->extras()->where('find', 1)->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
-		    $professionals = array();
-		    if(count($extras) > 0){
-				for($i=0; $i < count($extras); $i++)
-				{
-					array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
-				}
-			}
-		    return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
-		}
-		else if($listId == 3)
-		{
-			$id = $user->id;
-			$title = "Applied Extras";
-		    $student = User::find($id)->student;
-		    $name = $student->first_name." ".$student->last_name;
-			$first_name = $student->first_name;
-			$last_name = $student->last_name;
-			$name = $first_name . " " . $last_name;
-		    $extras = $student->extras()->where('find', 0)->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
-		    $professionals = array();
-		    if(count($extras) > 0){
-				for($i=0; $i < count($extras); $i++)
-				{
-					array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
-				}
-			}
-		    return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title])->with('name', $name);
-		}
-		else if($listId == 4)
-		{
-			$id = $user->id;
-			$title = "Past Extras";
-			$professional = User::find($id)->professional;
-			$professionalID = $professional->id;
-			$name = $professional->first_name." ".$professional->last_name;
-			$extras = Professional::find($professionalID)->extra()->where('date', '<=', Carbon::now())->orderBy('date', 'ASC')->get();
-			$name = User::find($id)->professional->company_name;
-			$student = null;
-			$professionals = array();
-
-			if(count($extras) > 0)
+			if($listId == 1)
 			{
-				$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
-					->where('doing', 1)->get();
-
-				if(!empty($find))
-				{
-					$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
-				}
-			}
-			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'studentsAlreadyChosen' => $studentsAlreadyChosen])->with('name', $name);
-		}
-		else if($listId == 5)
-		{
-			$id = $user->id;
-			$title = "Future Extras";
-			$professional = User::find($id)->professional;
-			$professionalID = $professional->id;
-			$name = $professional->first_name." ".$professional->last_name;
-			$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
-			$name = User::find($id)->professional->company_name;
-			$student = null;
-			$studentToSort = [];
-
-			if(count($extras) > 0)
-			{
-				$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
-					->where('doing', 1)->get();
-
-				if(count($find) == $extras[0]->number_persons)
-				{
-					$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
-
-				} else
-				{
-					$students = $extras[0]->students()->where('doing', 0)->get();
-
-					if(!empty($students))
+				$id = $user->id;
+				$title = "Past Extras";
+			    $student = User::find($id)->student;
+			    $name = $student->first_name." ".$student->last_name;
+				$first_name = $student->first_name;
+				$last_name = $student->last_name;
+				$name = $first_name . " " . $last_name;
+			    $extras = $student->extras()->where('find', 1)->where('date', '<', Carbon::now())->orderBy('date', 'DESC')->get();
+			    $professionals = array();
+			    
+			    if(count($extras) > 0){
+					for($i=0; $i < count($extras); $i++)
 					{
+						array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
+					}
+				}
+			    return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title, 'listId' => $listId])->with('name', $name);
+			}
+			else if($listId == 2)
+			{
+				$id = $user->id;
+				$title = "Future Extras";
+			    $student = User::find($id)->student;
+			    $name = $student->first_name." ".$student->last_name;
+				$first_name = $student->first_name;
+				$last_name = $student->last_name;
+				$name = $first_name . " " . $last_name;
+			    $extras = $student->extras()->where('find', 1)->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+			    $professionals = array();
+			    if(count($extras) > 0){
+					for($i=0; $i < count($extras); $i++)
+					{
+						array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
+					}
+				}
+			    return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title, 'listId' => $listId])->with('name', $name);
+			}
+			else if($listId == 3)
+			{
+				try
+				{
+					$id = $user->id;
+					$title = "Applied Extras";
+				    $student = User::find($id)->student;
+				    $name = $student->first_name." ".$student->last_name;
+					$first_name = $student->first_name;
+					$last_name = $student->last_name;
+					$name = $first_name . " " . $last_name;
+				    $extras = $student->extras()->where('find', 0)->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+				    $professionals = array();
+				    if(count($extras) > 0){
+						for($i=0; $i < count($extras); $i++)
+						{
+							array_push($professionals, DB::table('professionals')->where('id', $extras[$i]->professional_id )->value('company_name'));
+						}
+					}
+				    return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'title' => $title, 'listId' => $listId])->with('name', $name);
+					}
+				catch(\Exception $e)
+				{
+					dd($e);
+				}
+			}
+			else if($listId == 4)
+			{
+				$id = $user->id;
+				$title = "Past Extras";
+				$professional = User::find($id)->professional;
+				$professionalID = $professional->id;
+				$name = $professional->first_name." ".$professional->last_name;
+				$extras = Professional::find($professionalID)->extra()->where('date', '<=', Carbon::now())->orderBy('date', 'ASC')->get();
+				$name = User::find($id)->professional->company_name;
+				$student = null;
+				$professionals = array();
 
-						foreach ($students as $student) {
-							$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
-							->where('professional_id', $professionalID)->value('number_extras');
+				if(count($extras) > 0)
+				{
+					$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
+						->where('doing', 1)->get();
 
-							$studentToSort[] = array($student, $numberExtra);
+					if(!empty($find))
+					{
+						$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
+					}
+				}
+				return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'studentsAlreadyChosen' => $studentsAlreadyChosen, 'listId' => $listId])->with('name', $name);
+			}
+			else if($listId == 5)
+			{
+				$id = $user->id;
+				$title = "Future Extras";
+				$professional = User::find($id)->professional;
+				$professionalID = $professional->id;
+				$name = $professional->first_name." ".$professional->last_name;
+				$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+				$name = User::find($id)->professional->company_name;
+				$student = null;
+				$studentToSort = [];
+
+				if(count($extras) > 0)
+				{
+					$find = DB::table('extras_students')->where('extra_id', $extras[0]->id)
+						->where('doing', 1)->get();
+
+					if(count($find) == $extras[0]->number_persons)
+					{
+						$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
+
+					} else
+					{
+						$students = $extras[0]->students()->where('doing', 0)->get();
+
+						if(!empty($students))
+						{
+
+							foreach ($students as $student) {
+								$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
+								->where('professional_id', $professionalID)->value('number_extras');
+
+								$studentToSort[] = array($student, $numberExtra);
+							}
+
+							usort($studentToSort, function($a, $b)
+							{
+							    return $b[1] - $a[1];
+							});
 						}
 
-						usort($studentToSort, function($a, $b)
-						{
-						    return $b[1] - $a[1];
-						});
+						$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
 					}
-
-					$studentsAlreadyChosen = $extras[0]->students()->where('doing', 1)->get();
 				}
-			}
 
-			return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'students' => $studentToSort, 'studentsAlreadyChosen' => $studentsAlreadyChosen])->with('name', $name);
+				return view('user.list-content', ['name' => $name, 'extras' => $extras, 'user' => Auth::user(), 'professional' => $professional, 'username' => $id, 'student' => $student, 'title' => $title, 'students' => $studentToSort, 'studentsAlreadyChosen' => $studentsAlreadyChosen, 'listId' => $listId])->with('name', $name);
+			}
+		}
+		catch(\Exception $e)
+		{
+			dd($e);
 		}
 	}
 	public function loadStudent(Request $request){

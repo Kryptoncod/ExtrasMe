@@ -73,6 +73,16 @@
 
       <div class="row">
          <div class="small-4 columns">
+            <label for="address" class="right inline">CITY:</label>
+         </div>
+         <div class="small-6 end columns">
+            <input type="text" name="city" id="city" required />
+            <small class="error">City is required and must be valid.</small>
+         </div>
+      </div>
+
+      <div class="row">
+         <div class="small-4 columns">
             <label for="state" class="right inline">STATE:</label>
          </div>
          <div class="small-6 end columns">

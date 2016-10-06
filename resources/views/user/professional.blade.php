@@ -21,7 +21,15 @@
 
             <div class="medium-7 small-12 medium-uncentered small-centered columns">
                <ul class="personal-informations">
-                  <li class="title">{{ strtoupper($professional->company_name) }}</li>
+                  <li class="title" style="display: flex;">
+                     {{ strtoupper($professional->company_name) }}
+                     @if(Auth::user()->id == $username && empty($professional->description))
+                        <a href="{{ route('account', Auth::user()->id)}}" class="warning_register"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        <div class="warning_box">
+                           <p>@lang('professional.errorDescripton')</p>
+                     </div></a>
+                     @endif
+                  </li>
 
                @if(Auth::user()->id == $username)
                   <li><span class="info-label">@lang('professional.email')</span>
@@ -78,12 +86,10 @@
                         <label for="lastminute" class="right inline">@lang('professional.lookingForExtras.broadcastin') <span data-tooltip aria-haspopup="true" class="has-tip level-error" title=@lang('professional.explinationBroadcasting')>?</span> :</label>
                      </div>
                      <div class="large-9 columns">
-                        <input name="broadcast" id="lastMinuteRadio" class="pretty" value="last_minute" type="radio" required>
-                        <label class="pretty-label" for="lastMinuteRadio">@lang('professional.lookingForExtras.lastMinute')</label>
-
-
                         <input name="broadcast" id="normalRadio" class="pretty" value="normal" checked type="radio" required>
                         <label class="pretty-label" for="normalRadio">@lang('professional.lookingForExtras.normal')</label>
+                        <input name="broadcast" id="lastMinuteRadio" class="pretty" value="last_minute" type="radio" required>
+                        <label class="pretty-label" for="lastMinuteRadio">@lang('professional.lookingForExtras.lastMinute')</label>
 
                         <small class="error">@lang('professional.lookingForExtras.errorBroadcastin')</small>
                      </div>

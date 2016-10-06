@@ -150,7 +150,7 @@
               {{ $student_i->first_name . " " . $student_i->last_name }}
               </a>
             <div style="display: flex;">
-              <button style="margin-right: 20px;">@lang('myExtraList.decline')</button>
+              <button style="margin-right: 20px;"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extra->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <button><a href="{{ $extra->id.'/accept/'.$student_i->id }}">@lang('myExtraList.accept')</a></button>
               <input type="hidden" name="_token" value="{{ csrf_token() }}">

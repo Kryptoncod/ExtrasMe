@@ -11,7 +11,7 @@ class Student extends Model
     protected $fillable = [
         'last_name', 'first_name', 'nationality', 'school_year', 'phone', 
         'gender', 'birthdate','registration_done', 'user_id', 'group', 'zipcode', 'state', 
-        'country', 'address',
+        'country', 'address', 'city',
     ];
 
     public function user()

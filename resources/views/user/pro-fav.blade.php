@@ -5,12 +5,6 @@
 </div>
 <div class="summary-container cv-div" style="margin-top: 20px;">
    <ul class="personal-informations">
-      <li><span class="info-label">@lang('professional.email')</span>
-      {{ strtoupper($mail) }}</li>
-
-      <li><span class="info-label">@lang('professional.contactNumber')</span>
-      {{ strtoupper($professional->phone) }}</li>
-
       <li><span class="info-label">@lang('professional.referencePerson')</span>
       {{ strtoupper($professional->first_name.' '.$professional->last_name) }}</li>
 

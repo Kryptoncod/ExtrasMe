@@ -50,7 +50,7 @@
                            <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
                      </li>
                      <li>
-                        <input type="number" min="0" name="rate{{ $id }}" id="rate" required />
+                        <input type="number" min="0" max="5" name="rate{{ $id }}" id="rate" required />
                         <input type="hidden" name="studentID{{ $id }}" value="{{ $student->id }}">
                      </li>
                   </ul>

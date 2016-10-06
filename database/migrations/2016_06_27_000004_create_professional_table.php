@@ -22,6 +22,7 @@ class CreateProfessionalTable extends Migration
         $table->integer('zipcode');
         $table->string('state');
         $table->string('country');
+        $table->string('city');
         $table->string('address');
         $table->integer('credit');
         $table->text('description');

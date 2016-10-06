@@ -90,61 +90,68 @@ class ExtraController extends Controller
 	public function showList($username, $type_extra, $date)
 	{
 
-		$id = Auth::user()->id;
-		$type = User::find($id)->type;
-
-		if($type == 0)
+		try
 		{
-			$student = User::find($id)->student;
-			$first_name = $student->first_name;
-			$last_name = $student->last_name;
-			$name = $first_name . " " . $last_name;
+			$id = Auth::user()->id;
+			$type = User::find($id)->type;
 
-			$dateMinest = Carbon::createFromFormat('Y-m-d', $date)->subDays(3)->toDateString();
-			$datePlus = Carbon::createFromFormat('Y-m-d', $date)->addDays(3)->toDateString();
-
-			if($type_extra == 'Tout')
+			if($type == 0)
 			{
-				if($student->group == 1)
+				$student = User::find($id)->student;
+				$first_name = $student->first_name;
+				$last_name = $student->last_name;
+				$name = $first_name . " " . $last_name;
+
+				$dateMinest = Carbon::createFromFormat('Y-m-d', $date)->subDays(3)->toDateString();
+				$datePlus = Carbon::createFromFormat('Y-m-d', $date)->addDays(3)->toDateString();
+
+				if($type_extra == 'Tout')
 				{
-					$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
-				}
-				else
-				{
-					$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->where('open', 1)->get();
+					if($student->group == 1)
+					{
+						$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+					}
+					else
+					{
+						$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->where('open', 1)->get();
+					}
+
+				} else {
+					
+					if($student->group == 1)
+					{
+						$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+					}
+					else
+					{
+						$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+					}
 				}
 
-			} else {
-				
-				if($student->group == 1)
+	      //On récupère le nom des professionnels qui proposent des extras
+				$professionals = array();
+				for($i=0; $i < count($extras); $i++)
 				{
-					$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+					array_push($professionals, Professional::find($extras[$i]->professional_id));
 				}
-				else
+				$can_apply = 0;
+				$email_pro = null;
+
+				if($extras->first())
 				{
-					$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+					if(!$student->extras->contains('id', $extras[0]->id)){
+						$can_apply = 1;
+					}
+
+					$email_pro = User::find($professionals[0]->user_id)->email;
 				}
+
+				return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply, 'email' => $email_pro])->with('name', $name);
 			}
-
-      //On récupère le nom des professionnels qui proposent des extras
-			$professionals = array();
-			for($i=0; $i < count($extras); $i++)
-			{
-				array_push($professionals, Professional::find($extras[$i]->professional_id));
-			}
-			$can_apply = 0;
-			$email_pro = null;
-
-			if($extras->first())
-			{
-				if(!$student->extras->contains('id', $extras[0]->id)){
-					$can_apply = 1;
-				}
-
-				$email_pro = User::find($professionals[0]->user_id)->email;
-			}
-
-			return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply, 'email' => $email_pro])->with('name', $name);
+		}
+		catch(\Exception $e)
+		{
+			dd($e);
 		}
 	}
 
@@ -183,10 +190,10 @@ class ExtraController extends Controller
 
 		if($last_minute == 0)
 		{
-			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 1]);
+			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - $request->input('numberPerson')]);
 		} else
 		{
-			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - 3]);
+			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - (3 * $request->input('numberPerson'))]);
 		}
 
 		$extra = $this->extraRepository->store($extraInput);
@@ -243,6 +250,39 @@ class ExtraController extends Controller
 		$date = $date->toDateString();
 
 		return redirect()->route('extra_list', ['username' => Auth::user()->id, 'type_extra' => $input, 'date' => $date]);
+	}
+
+	public function cancelApplication($username, $id)
+	{
+		try
+		{
+			$student = Auth::user()->student;
+			DB::table('extras_students')->where('extra_id' , $id)
+					->where('student_id' , $student->id)->delete();
+
+			$find= DB::table('extras')->where('id', $id)->value('find');
+
+			if($find == 1)
+			{
+				DB::table('extras')->where('id', $id)->update(['find' => 0]);
+			}
+
+			$extra = Extra::find($id);
+			$professionalUser = $extra->professional->user;
+			$student_name = $student->first_name.' '.$student->last_name;
+			$notif_to_send = $student_name.' cancel his application to your Extra : '.$extra->type;
+
+			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
+				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
+			});
+
+			return redirect()->back();
+		}
+		catch (Exception $e)
+		{
+			dd($e);
+			abort(404);
+		}
 	}
 
 
@@ -314,6 +354,15 @@ class ExtraController extends Controller
 
 				$message->to($studentUser->email)->subject('New notification ExtrasMe');
 		});
+
+		return redirect()->back();
+	}
+
+	public function declineExtra($username, $extraID, $studentID)
+	{
+		DB::table('extras_students')->where('extra_id', $extraID)
+			->where('student_id', $studentID)
+			->delete();
 
 		return redirect()->back();
 	}
@@ -445,7 +494,9 @@ class ExtraController extends Controller
 		else if(User::find($id)->type == 1)
 		{
 			$name = User::find($id)->professional->company_name;
-			$results = DB::table('students')->where('first_name', 'LIKE', '%' . $favoriteName . '%')->orWhere('last_name', 'LIKE', '%' . $favoriteName . '%')->get();
+
+			$results = DB::table('students')->where('first_name', 'LIKE', '%' . $favoriteName . '%')->orWhere('last_name', 'LIKE', '%' . $favoriteName . '%')
+				->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE '%$favoriteName%'")->get();
 
 			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
 		}

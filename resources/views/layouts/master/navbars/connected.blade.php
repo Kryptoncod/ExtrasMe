@@ -25,8 +25,8 @@
    </nav>
 
    <ul id="menu-drop" class="menu-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
-      <li><a href="">ACCOUNT</a></li>
-      <li><a href="">HELP</a></li>
-      <li><a href="{{ url('/logout') }}">SIGN OUT</a></li>
+      <li><a href="{{ route('account', Auth::user()->id) }}">@lang('navbar.connected.account')</a></li>
+      <li><a href="">@lang('navbar.connected.help')</a></li>
+      <li><a href="{{ url('/logout') }}">@lang('navbar.connected.signOut')</a></li>
    </ul>
 </div>
