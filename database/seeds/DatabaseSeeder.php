@@ -154,7 +154,7 @@ class DatabaseSeeder extends Seeder
 				'extra_id' => $i,
 				'student_id' => rand(1, 5),
 				'rate' => 0,
-				'done' => 1,
+				'doing' => 1,
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 				]);

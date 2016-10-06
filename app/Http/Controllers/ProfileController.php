@@ -52,8 +52,6 @@ class ProfileController extends Controller
 
   public function show($username)
   {
-    try
-    {
       $id = Auth::user()->id;
       $type = User::find($username)->type;
       $favExtras = NULL;
@@ -133,10 +131,6 @@ class ProfileController extends Controller
 
         return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'username' => $username, 'AuthId' => $id, 'name' => $name]);
       }
-    } catch (\Exception $e) {
-       dd($e);
-       abort(404);
-    }
   }
 
 
