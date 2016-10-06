@@ -29,6 +29,7 @@ return [
       'selectType' => 'Selectionner',
       'errorType' => 'Le type est obligatoire.',
       'date' => 'DATE : ',
+      'errorDate' => 'La date est obligatoire et doit être supérieure à maintenant.',
       'duration' => 'DUREE : ',
       'errorDuration' => 'La durée est obligatoire et doit être au-dessus de 0.',
       'numberPerson' => 'NOMBRE DE PERSONNES : ',

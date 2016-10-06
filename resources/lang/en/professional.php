@@ -29,6 +29,7 @@ return [
       'selectType' => 'Select',
       'errorType' => 'Type is required.',
       'date' => 'DATE : ',
+      'errorDate' => 'Date is required and must be after the date and time of now.',
       'duration' => 'DURATION : ',
       'errorDuration' => 'Duration is requiered and must be above 0.',
       'numberPerson' => 'NUMBER OF PERSONS : ',

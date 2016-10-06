@@ -115,7 +115,8 @@
                         <label for="date" class="right inline">@lang('professional.lookingForExtras.date')</label>
                      </div>
                      <div class="large-9 end columns">
-                        <input type="text" class="span2" id="date" name="date">
+                        <input type="text" class="span2" id="date" name="date" required>
+                        <small class="error">@lang('professional.lookingForExtras.errorDate')</small>
                      </div>
                   </div>
 
