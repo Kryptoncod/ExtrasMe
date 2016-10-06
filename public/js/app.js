@@ -311,6 +311,24 @@ $(document).ready(function(){
     if(width <= 700){
         $('#logo-navbar').attr('src', '/images/logo.gif');
     }
+    // On passe chaque note à l'état grisé par défaut
+    $("ul.notes-echelle li label").removeClass("completed");
+    // Au survol de chaque note à la souris
+    $("ul.notes-echelle li").mouseover(function() {
+        // On passe les notes supérieures à l'état inactif (par défaut)
+        $(this).nextAll("li").children("label").removeClass("completed");
+        // On passe les notes inférieures à l'état actif
+        $(this).prevAll("li").children("label").addClass("completed");
+        // On passe la note survolée à l'état actif (par défaut)
+        $(this).children("label").addClass("completed");
+    });
+    // Lorsque l'on sort du sytème de notation à la souris
+    $("ul.notes-echelle").mouseout(function() {
+        // On passe toutes les notes à l'état inactif
+        $(this).children("label").removeClass("completed");
+        // On simule (trigger) un mouseover sur la note cochée s'il y a lieu
+        $(this).find("li input:checked").parent("li").trigger("mouseover");
+    });
 });
 
 $(window).resize(function(){

@@ -13,49 +13,55 @@
          <form action="{{ route('rate', [Auth::user()->id,
                        $extra->id]) }}" method="post">
 
-         <div class="row account-resume">
-            <div class="medium-9 small-12 medium-uncentered small-centered columns">
-               <ul class="personal-informations">
-                  <li class="title" style="display: flex;">@lang('rate.hours.title', ['type' => $extra->type])
-                  </li>
-                  <li>
-                     @lang('rate.hours.supposed', ['duration' => $extra->duration])
-                  </li>
-                  <li>
-                     @lang('rate.hours.reallyMade')<input type="number" min="0" name="hours" id="hours" required />
-                  </li>
-               </ul>
-            </div>
-         </div>
+         
 
          @foreach($studentToRate as $id => $student)
-            <div class="row account-resume">
-               <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
-                  @if(file_exists("uploads/pp/".$student->id.".png"))
-                     <img class="profile-picture" src=" uploads/pp/{{$student->user->id}}.png" alt="" />
-                  @else
-                     <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
-                  @endif
+               <div class="rating-container">
+                  <div class="profile-image-container">
+                     @if(file_exists("uploads/pp/".$student->id.".png"))
+                     <img src=" uploads/pp/{{$student->user->id}}.png" alt="" />
+                     @else
+                     <img src="{{ asset('images/user-student.png') }}" alt="" />
+                     @endif
+                  </div>
+                  <div class="marks-container">
+                     <div class="hours-done">
+                        <h2>@lang('rate.hours.title', ['type' => $extra->type])</h2>
+                        <h3>@lang('rate.hours.supposed', ['duration' => $extra->duration])</h3>
+                        <div class="nb-input-container">
+                           <h3>@lang('rate.hours.reallyMade')</h3>
+                           <input style="width: 100px;" type="number" min="0" name="hours" id="hours" required />
+                        </div>
+                     </div>
+                     <div class="mark-given">
+                        <h2>@lang('rate.content', array('student' => $student->first_name.' '.$student->last_name, 'type' => $extra->type))</h2>
+                        <div class="level-container">
+                           <ul class="notes-echelle">
+                              <li>
+                                 <label for="note01" title="Note&nbsp;: 1 sur 5"></label>
+                                 <input type="radio" name="note" id="note01" value="1" />
+                              </li>
+                              <li>
+                                 <label for="note02" title="Note&nbsp;: 2 sur 5"></label>
+                                 <input type="radio" name="note" id="note02" value="2" />
+                              </li>
+                              <li>
+                                 <label for="note03" title="Note&nbsp;: 3 sur 5"></label>
+                                 <input type="radio" name="note" id="note03" value="3" />
+                              </li>
+                              <li>
+                                 <label for="note04" title="Note&nbsp;: 4 sur 5"></label>
+                                 <input type="radio" name="note" id="note04" value="4" />
+                              </li>
+                              <li>
+                                 <label for="note05" title="Note&nbsp;: 5 sur 5"></label>
+                                 <input type="radio" name="note" id="note05" value="5" />
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
                </div>
-               <div class="medium-9 small-12 medium-uncentered small-centered columns">
-                  <ul class="personal-informations">
-                     <li class="title" style="display: flex;">@lang('rate.content', array('student' => $student->first_name.' '.$student->last_name, 'type' => $extra->type))
-                     </li>
-                     <li>
-                        <span class="info-label">EXTRASME LEVEL:</span>
-                           <span class="level-logo {{ $student->level > 0 ? 'completed' : '' }}"></span>
-                           <span class="level-logo {{ $student->level > 1 ? 'completed' : '' }}"></span>
-                           <span class="level-logo {{ $student->level > 2 ? 'completed' : '' }}"></span>
-                           <span class="level-logo {{ $student->level > 3 ? 'completed' : '' }}"></span>
-                           <span class="level-logo {{ $student->level > 4 ? 'completed' : '' }}"></span>
-                     </li>
-                     <li>
-                        <input type="number" min="0" max="5" name="rate{{ $id }}" id="rate" required />
-                        <input type="hidden" name="studentID{{ $id }}" value="{{ $student->id }}">
-                     </li>
-                  </ul>
-               </div>
-            </div>
          @endforeach
 
          <button class="submit-button right">@lang('rate.rate')</button>

@@ -7628,4 +7628,74 @@ ul.topnav li.icon {
       width: 100%;
       max-width: 750px; }
 
+.rating-container {
+  display: flex; }
+  .rating-container .profile-image-container {
+    width: 350px;
+    margin-right: 50px; }
+    .rating-container .profile-image-container img {
+      width: 100%; }
+  .rating-container .marks-container {
+    display: flex;
+    flex-direction: column; }
+    .rating-container .marks-container .hours-done {
+      display: flex;
+      flex-direction: column; }
+      .rating-container .marks-container .hours-done h2 {
+        color: white;
+        font-size: 35px;
+        font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+      .rating-container .marks-container .hours-done h3 {
+        font-size: 14px;
+        color: white;
+        font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        letter-spacing: 4px; }
+      .rating-container .marks-container .hours-done .nb-input-container {
+        display: flex; }
+        .rating-container .marks-container .hours-done .nb-input-container input {
+          margin-left: 5px; }
+    .rating-container .marks-container .mark-given {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px; }
+      .rating-container .marks-container .mark-given h2 {
+        color: white;
+        font-size: 35px;
+        font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+      .rating-container .marks-container .mark-given .level-container {
+        display: flex;
+        justify-content: center;
+        /* Correctif IE6 sur min-width & min-height */ }
+        .rating-container .marks-container .mark-given .level-container ul.notes-echelle {
+          margin: 0;
+          padding: 0;
+          font: .75em/1.2 Arial, Helvetica, sans-serif; }
+        .rating-container .marks-container .mark-given .level-container ul.notes-echelle li {
+          float: left;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          min-width: 20px;
+          min-height: 20px; }
+        .rating-container .marks-container .mark-given .level-container * html ul.notes-echelle.js li {
+          width: 20px;
+          height: 20px; }
+        .rating-container .marks-container .mark-given .level-container ul.notes-echelle li label {
+          display: block;
+          text-align: center;
+          line-height: 20px;
+          width: 75px;
+          height: 75px;
+          background-image: url(../images/level-logo.svg);
+          background-repeat: no-repeat;
+          cursor: pointer; }
+          .rating-container .marks-container .mark-given .level-container ul.notes-echelle li label.completed {
+            background-image: url(../images/level-logo-completed.svg); }
+        .rating-container .marks-container .mark-given .level-container ul.notes-echelle input {
+          position: absolute;
+          left: -999%; }
+        .rating-container .marks-container .mark-given .level-container .note-container {
+          display: flex;
+          flex-direction: column; }
+
 /*# sourceMappingURL=app.css.map */

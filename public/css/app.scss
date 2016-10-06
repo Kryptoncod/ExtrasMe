@@ -11311,3 +11311,93 @@ ul.topnav li.icon {display: none;}
     }
   }
 }
+
+.rating-container{
+   display: flex;
+  .profile-image-container{
+    width: 350px;
+    margin-right: 50px;
+    img{
+      width: 100%;
+    }
+  }
+  .marks-container{
+    display: flex;
+    flex-direction: column;
+    .hours-done{
+      display: flex;
+      flex-direction:column;
+      h2{
+        color: white;
+        font-size: 35px;
+        font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      }
+      h3{
+        font-size: 14px;
+        color: white;
+        font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        letter-spacing: 4px;
+      }
+      .nb-input-container{
+        display: flex;
+        input{
+          margin-left: 5px;
+        }
+      }
+    }
+    .mark-given{
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+      h2{
+        color: white;
+        font-size: 35px;
+        font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      }
+      .level-container{
+        display: flex;
+        justify-content: center;
+        ul.notes-echelle {
+          margin:0;
+          padding:0;
+          font:.75em/1.2 Arial, Helvetica, sans-serif;
+        }
+        ul.notes-echelle li {
+          float:left;
+          margin:0;
+          padding:0;
+          list-style:none;
+          min-width:20px;
+          min-height:20px;
+        }
+        /* Correctif IE6 sur min-width & min-height */
+        * html ul.notes-echelle.js li {
+          width:20px;
+          height:20px;
+        }
+        ul.notes-echelle li label {
+          display:block;
+          text-align:center;
+          line-height:20px;
+          width: 75px;
+          height: 75px;
+          background-image: url(../images/level-logo.svg);
+          background-repeat: no-repeat;
+          cursor:pointer;
+           &.completed {
+              background-image: url(../images/level-logo-completed.svg);
+            }
+        }
+        ul.notes-echelle input {
+          position:absolute;
+          left:-999%;
+        }
+
+      .note-container{
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+}
