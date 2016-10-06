@@ -280,7 +280,7 @@ class AccountController extends Controller
 			    $exp = explode(',', $encoded);
 			    //decode the image and finally save it
 			    $data = base64_decode($exp[1]);
-			    $file = "uploads/pp/$userIdpng";
+			    $file = "uploads/pp/$userId.png";
 			    //make sure you are the owner and have the rights to write content
 			    file_put_contents($file, $data);
 			}
