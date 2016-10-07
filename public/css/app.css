@@ -7698,4 +7698,12 @@ ul.topnav li.icon {
           display: flex;
           flex-direction: column; }
 
+.pagination .pager{
+  list-style: none;
+}
+
+.pagination .pager li{
+  display: inline;
+}
+
 /*# sourceMappingURL=app.css.map */

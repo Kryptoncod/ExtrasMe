@@ -12,6 +12,7 @@ return [
    'extrasmeLevel' => 'EXTRASME LEVEL : ',
    'notEnoughExtras' => 'NOT ENOUGH EXTRAS DONE YET',
    'moreDetails' => 'MORE DETAILS',
+   'lessDetails' => 'LESS DETAILS',
    'summary' => 'SUMMARY',
    'noSummary' => 'No Summary',
    'experience' => 'EXPERIENCES',

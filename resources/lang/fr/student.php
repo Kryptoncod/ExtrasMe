@@ -12,6 +12,7 @@ return [
    'extrasmeLevel' => 'LEVEL EXTRASME : ',
    'notEnoughExtras' => 'PAS ASSEZ D\'EXTRAS POUR LE MOMENT',
    'moreDetails' => 'PLUS DE DETAILS',
+   'lessDetails' => 'MOINS DE DETAILS',
    'summary' => 'RESUME',
    'noSummary' => 'Pas de résumé',
    'experience' => 'EXPERIENCES',

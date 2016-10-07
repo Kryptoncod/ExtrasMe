@@ -117,6 +117,9 @@
                                        </tr>
                                      </tbody>
                                    </table>
+                                   <div style="display:flex; align-items:center; margin-top: .5rem;">
+                                      <button><a href="{{ route('extra_cancel_application', ['username' => Auth::user()->id, 'id' => $extras[0]->id]) }}">@lang('card-content.alreadyApplied')</a></button>
+                                  </div>
               
                  </div>
                     @endif

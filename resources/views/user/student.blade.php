@@ -71,9 +71,15 @@
          </div>
 
          <div class="row details-button">
-            <div id="more-details"><span>@lang('student.moreDetails')</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+            @if(Auth::user()->id == $username)
+               <div id="more-details"><span>@lang('student.moreDetails')</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>
          </div>
          <div class="details-container">
+            @else
+               <div id="more-details"><span>@lang('student.lessDetails')</span> <i class="fa fa-caret-up" aria-hidden="true"></i></div>
+         </div>
+         <div class="details-container" style="max-height:3000px; opacity:1;">
+            @endif
             <div class="summary-container cv-div">
                <h2>@lang('student.summary')</h2>
                <p>
@@ -183,7 +189,7 @@
 
             <div id="to-load">
                <div class="row section-title">
-                  <div class="small-12 columns">
+                  <div class="small-8 columns">
                      <h2>@lang('student.extrasAvailable')</h2>
                      <div class="pagination">{{ $links }}</div>
                   </div>

@@ -145,9 +145,9 @@
                           </tbody>
                         </table>
                                   @if(Auth::user()->type == 0)
-                                    @if($listId == 3)
-                                      <div style="display:flex; align-items:center;">
-                                        <button><a style="pointer-events: none;cursor: default;" href="{{ route('extra_cancel_application', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@lang('card-content.alreadyApplied')</a></button>
+                                    @if($listId == 3 || $listId == 2)
+                                      <div style="display:flex; align-items:center; margin-top: .5rem;">
+                                        <button><a href="{{ route('extra_cancel_application', ['username' => Auth::user()->id, 'id' => $extras[0]->id]) }}">@lang('card-content.alreadyApplied')</a></button>
                                       </div>
                                     @endif
                                   @endif
