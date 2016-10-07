@@ -45,7 +45,7 @@
               <small class="error">EHL's year is required.</small>
           </div>
           <div id="change-password-div">
-            <button style="padding:10px; margin:10px auto 0px auto; background-color:#222;" id="change-password">@lang('account.modifyPassword')</button>
+            <button style="padding:10px; margin:10px auto 0px auto; background-color:#222;" id="change-password"><a href="{{ url(Auth::user()->id.'/password/reset') }}">@lang('account.modifyPassword')</a></button>
           </div>
           <div style="width:100%;display:flex; margin-top:10px; margin-bottom: 30px;">
             <input type="submit" name="go-register" class="submit-account" value="Update">

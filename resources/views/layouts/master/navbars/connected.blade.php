@@ -12,7 +12,7 @@
             <ul class="right">
                <li><a href="{{ route('home', Auth::user()->id) }}">
                @if(Auth::user()->type == 0)
-                  {{ strtoupper($name) }}
+                  {{ strtoupper(substr(Auth::user()->student->first_name, 0, 1).'. '.Auth::user()->student->last_name) }}
                @else
                   {{ strtoupper(Auth::user()->professional->company_name) }}
                @endif

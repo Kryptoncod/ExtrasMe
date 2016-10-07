@@ -23,8 +23,8 @@ return [
    'noCompetence' => 'Pas de competence',
    'language' => 'LANGUAGE',
    'noLanguage' => 'Pas de language',
-   'extrasInSpotlight' => 'EXTRAS FAVORIS',
+   'extrasInSpotlight' => 'EXTRAS <b>FAVORIS</b>',
    'noFavorite' => 'Vous n\'avez pas d\'extras favoris.',
    'noExtras' => 'il n\'y a pas d\'extras disponible. Veuillez revenir plus tard.',
-   'extrasAvailable' => 'EXTRAS DISPONIBLE',
+   'extrasAvailable' => 'EXTRAS <b>DISPONIBLE</b>',
 ];

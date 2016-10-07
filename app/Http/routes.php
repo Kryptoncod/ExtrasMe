@@ -38,6 +38,7 @@ Route::post('/register', ['as' => 'register_candidate', "uses" => "SignupControl
 
 Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
+   $app->get('password/reset/{token?}', ['as' => 'password_reset', "uses" => "PasswordController@showResetForm"]);
    $app->get('account', ['as' => 'account', "uses" => "AccountController@show"]);
    Route::group(['prefix' => 'mycredits'], function($app) {
       $app->get('/', ['as' => 'credits', "uses" => "CreditsController@show"]);
