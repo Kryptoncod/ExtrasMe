@@ -164,6 +164,7 @@ class AjaxController extends Controller
 				$extras = Professional::find($professionalID)->extra()->where('date', '<=', Carbon::now())->orderBy('date', 'ASC')->get();
 				$name = User::find($id)->professional->company_name;
 				$student = null;
+				$studentsAlreadyChosen = null;
 				$professionals = array();
 
 				if(count($extras) > 0)
@@ -188,6 +189,7 @@ class AjaxController extends Controller
 				$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
 				$name = User::find($id)->professional->company_name;
 				$student = null;
+				$studentsAlreadyChosen = null;
 				$studentToSort = [];
 
 				if(count($extras) > 0)

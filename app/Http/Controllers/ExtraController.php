@@ -293,6 +293,7 @@ class ExtraController extends Controller
 		$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
 		$name = User::find($id)->professional->company_name;
 		$students = null;
+		$studentsAlreadyChosen = null;
 		$studentToSort = [];
 
 		if(count($extras) > 0)
