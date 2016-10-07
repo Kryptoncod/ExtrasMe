@@ -37,7 +37,15 @@
                   <div class="fav-list-container" data-studid="{{$result->id}}" data-type=1 style="padding-left: 10px;">
                   @endif
                      <div>
-                        <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                        @if(file_exists("uploads/pp/".$user->id.".png"))
+                           <img class="profile-picture" src=" uploads/pp/{{$user->id}}.png" alt="" />
+                        @else
+                           @if($student->gender == 0)
+                              <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                           @else
+                              <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
+                           @endif
+                        @endif
                      </div>
                      <div style="display: flex;">
                         <div style="margin:auto; padding: 20px;">
