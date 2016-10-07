@@ -33,7 +33,7 @@
          @endif
 
       <div id="fullpage">
-      <div class="section">@include('index.section-error')</div>
+      <div class="section" style="background: url(images/error404.jpg) center center no-repeat; background-size: cover;">@include('index.section-error')</div>
       <div class="section fp-auto-height">@include('layouts.master.footer')</div>
    	</div>
       <div id="extraModal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"></div>

@@ -16,6 +16,11 @@
   src: url('../fonts/ostrich-rounded.ttf');
 }
 
+@font-face {
+  font-family: 'Helvetica-Light';
+  src: url('../fonts/HelveticaNeue-Light.otf');
+}
+
 .alert-box, body {
   position: relative;
   font-weight: 400;
@@ -8042,7 +8047,7 @@ blockquote {
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   h3 {
@@ -9790,10 +9795,10 @@ footer.footer {
 
         &.title {
           text-decoration: underline;
-          font-weight: 700;
-          font-size: 30px;
+          font-size: 15px;
           margin-bottom: .625rem;
-          font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          font-family: 'Helvetica-Light', Helvetica, Roboto, Arial, sans-serif;
+          letter-spacing: 3px;
         }
       }
 
@@ -9863,19 +9868,19 @@ footer.footer {
   }
 
   &.section-1 {
-    background: url(../images/section1_image-test.jpg) center center no-repeat;
+    background: url(../images/section1_test.jpg) center center no-repeat;
 
     transform: scale(1.02);
     background-size: cover;
 
     .section-content {
       position: relative;
-      top: 20vh;
+      top: 12vh;
     }
   }
 
   &.section-2 {
-    background: url(../images/section2_image-test.jpg) center top no-repeat;
+    background: url(../images/section2_test.jpg) center top no-repeat;
 
     transform: scale(1.02);
     background-size: cover;
@@ -9954,7 +9959,7 @@ footer.footer {
     background-size: cover;
     .section-content {
       position: relative;
-      top: 20vh;
+      top: 28vh;
     }
   }
 }
@@ -10217,8 +10222,8 @@ div.form {
     }
 
     .account-resume {
-      margin-top: 1.25rem;
-      margin-bottom: 1.25rem;
+      padding-top: 1.6rem;
+      padding-bottom: 2.5rem;
 
       .personal-informations {
         margin: 0;

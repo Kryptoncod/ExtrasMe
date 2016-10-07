@@ -2,7 +2,7 @@
 @section('section-content')
 
    <div class="row">
-      <div class="large-7 medium-8 small-12 columns">
+      <div class="large-6 medium-8 small-12 columns">
          <h2 class="section-title">@lang('index.section2.title')</h2>
       </div>
    </div>

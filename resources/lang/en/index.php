@@ -14,7 +14,7 @@ return [
       'moreInfos' => 'MORE INFOS',
    ],
    'section3'   => [
-      'content' => 'THE EXTRAS ME APP WILL BE AVAILABLE SOON'
+      'content' => 'THE APPLICATION IS NOT AVAILABLE AT THIS TIME, WE WOULD LIKE TO APOLOGIZE FOR THE INCONVENIENCE AND ADVISE YOU TO USE OUR WEBSITE'
    ],
    'section4'   => [
       'toEachItsTown'   => 'CONNECTING THE WORLD OF HOSPITALITY',

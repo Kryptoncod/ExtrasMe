@@ -162,7 +162,7 @@ $(".go-to-page").click(function(e){
 
 $("#more-details").click(function(){
     $this = $(this);
-    if($this.children("i").logo-navbarhasClass("fa-caret-down")){
+    if($this.children("i").hasClass("fa-caret-down")){
         $this.children("i").removeClass("fa-caret-down").addClass("fa-caret-up");
         $this.children("span").text("LESS DETAILS");
         $(".details-container").css({"max-height":"3000px", opacity:"1"});

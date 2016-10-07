@@ -2,18 +2,18 @@
 
 return [
 
-   'aboutUs'           => 'A propos de nous',
+   'aboutUs'           => 'A PROPOS DE NOUS',
    'ourPrinciples'     => 'Nos principes',
    'ourTeam'           => 'Notre equipe',
    'events'            => 'Evenements',
    'pressInfo'         => 'Info Press',
    'termsConditions'   => 'Termes et Conditions',
-   'yourExtrasMe'      => 'Votre Extras Me',
+   'yourExtrasMe'      => 'VOTRE EXTRAS ME',
    'account'           => 'Compte',
    'privacy'           => 'Droits',
    'settings'          => 'Paramètres',
    'helpCenter'        => 'Aide',
-   'contactUs'         => 'nous contacter',
+   'contactUs'         => 'NOUS CONTACTER',
    'emails'            => 'E-mails',
    'contactNumber'     => 'Numéro de contact',
    'becomeAnbassador'  => 'Devenir un ambassadeur',

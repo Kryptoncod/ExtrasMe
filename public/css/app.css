@@ -9,6 +9,9 @@
 @font-face {
   font-family: 'ostrich';
   src: url("../fonts/ostrich-rounded.ttf"); }
+@font-face {
+  font-family: 'Helvetica-Light';
+  src: url("../fonts/HelveticaNeue-Light.otf"); }
 .alert-box, body {
   position: relative;
   font-weight: 400; }
@@ -5265,7 +5268,7 @@ blockquote {
     font-size: 2.75rem; }
 
   h2 {
-    font-size: 24px; }
+    font-size: 20px; }
 
   h3 {
     font-size: 1.6875rem; }
@@ -6466,10 +6469,10 @@ footer.footer {
         margin-bottom: .1875rem; }
         footer.footer .informations ul li.title {
           text-decoration: underline;
-          font-weight: 700;
-          font-size: 30px;
+          font-size: 15px;
           margin-bottom: .625rem;
-          font-family: 'ostrich', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; }
+          font-family: 'Helvetica-Light', Helvetica, Roboto, Arial, sans-serif;
+          letter-spacing: 3px; }
       footer.footer .informations ul.socials-medias li {
         display: inline-block;
         margin: 0 5% .625rem; }
@@ -6511,14 +6514,14 @@ footer.footer {
       background-color: rgba(6, 11, 43, 0.4);
       padding: 20px; }
   .index-section.section-1 {
-    background: url(../images/section1_image-test.jpg) center center no-repeat;
+    background: url(../images/section1_test.jpg) center center no-repeat;
     transform: scale(1.02);
     background-size: cover; }
     .index-section.section-1 .section-content {
       position: relative;
-      top: 20vh; }
+      top: 12vh; }
   .index-section.section-2 {
-    background: url(../images/section2_image-test.jpg) center top no-repeat;
+    background: url(../images/section2_test.jpg) center top no-repeat;
     transform: scale(1.02);
     background-size: cover; }
     .index-section.section-2 .section-content {
@@ -6564,12 +6567,12 @@ footer.footer {
           font-family: 'gillsans', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
           letter-spacing: 9px; }
   .index-section.section-5 {
-    background: url(../images/section1_image-test.jpg) center center no-repeat;
+    background: url(../images/section1_image-mirroir.jpg) center center no-repeat;
     transform: scale(1.02);
     background-size: cover; }
     .index-section.section-5 .section-content {
       position: relative;
-      top: 20vh; }
+      top: 28vh; }
 
 .index-side-nav {
   position: fixed;
@@ -6754,8 +6757,8 @@ div.form {
           background-color: #222;
           margin-right: 30px; }
     .profile-container .panel-main .account-resume {
-      margin-top: 1.25rem;
-      margin-bottom: 1.25rem; }
+      padding-top: 1.6rem;
+      padding-bottom: 2.5rem; }
       .profile-container .panel-main .account-resume .personal-informations {
         margin: 0; }
         .profile-container .panel-main .account-resume .personal-informations li {
@@ -7697,13 +7700,5 @@ ul.topnav li.icon {
         .rating-container .marks-container .mark-given .level-container .note-container {
           display: flex;
           flex-direction: column; }
-
-.pagination .pager{
-  list-style: none;
-}
-
-.pagination .pager li{
-  display: inline;
-}
 
 /*# sourceMappingURL=app.css.map */
