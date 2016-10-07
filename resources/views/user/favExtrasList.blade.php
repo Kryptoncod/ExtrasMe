@@ -38,7 +38,7 @@
                   @endif
                      <div>
                         @if(file_exists("uploads/pp/".$result->user_id.".png"))
-                           <img class="profile-picture" src=" uploads/pp/{{$result->user_id}}.png" alt="" />
+                           <img class="profile-picture" src="{{ asset('uploads/pp/{{$result->user_id}}.png') }}" alt="" />
                         @else
                            @if($result->gender == 0)
                               <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
