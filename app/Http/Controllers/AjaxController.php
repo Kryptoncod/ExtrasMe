@@ -12,6 +12,7 @@ use Auth;
 use App\Models\Extra;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\Cv;
 use App\Models\Professional;
 
 use Carbon\Carbon;

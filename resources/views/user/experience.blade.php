@@ -45,7 +45,35 @@
                      <img src="{{ asset('images/right-arrow.png') }}" style="margin:auto; width:90%;">
                    </div>
                    <div style="display:flex; flex-direction:column; width:55%; align-items:center" id="card-container">
-                     <img src="{{ asset('images/extra-background.png') }}" class="background-image" style="width:90%;"/>
+                     <div class="row account-resume" style="width: 90%;">
+                        <div class="columns medium-3 medium-uncentered small-centered picture-column small-7" style="padding: 0;">
+                           @if(file_exists("uploads/pp/".$extras[0]->professional->user_id.".png"))
+                              <img class="profile-picture" src=" uploads/pp/{{$professional->user_id}}.png" alt="" />
+                           @else
+                              <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
+                           @endif
+                        </div>
+
+                        <div class="medium-7 small-12 medium-uncentered small-centered columns">
+                           <ul class="personal-informations">
+                              <li class="title">{{ strtoupper($extras[0]->professional->company_name) }}</li>
+
+                           @if(Auth::user()->id == $username)
+                              <li><span class="info-label">@lang('professional.email')</span>
+                              {{ strtoupper($user->email) }}</li>
+
+                              <li><span class="info-label">@lang('professional.contactNumber')</span>
+                              {{ strtoupper($extras[0]->professional->phone) }}</li>
+                           @endif
+
+                              <li><span class="info-label">@lang('professional.referencePerson')</span>
+                              {{ strtoupper($extras[0]->professional->first_name.' '.$extras[0]->professional->last_name) }}</li>
+
+                              <li><span class="info-label">@lang('professional.sector')</span>
+                              {{ strtoupper($extras[0]->professional->category) }}</li>
+                           </ul>
+                        </div>
+                     </div>
                                    <table style="width:90%;" class="card-info">
                                      <thead>
                                        <tr>

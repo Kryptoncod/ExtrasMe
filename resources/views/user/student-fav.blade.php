@@ -2,7 +2,15 @@
 <p>ETUDIANT A L'ECOLE DE LAUSANNE</p>
 <hr style="margin-top: 0px;">
 <div style="width: 40%;">
-   <img style="width: 100%;" class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+   @if(file_exists("uploads/pp/".$student->user_id.".png"))
+      <img class="profile-picture" src="{{ asset('uploads/pp/'.$student->user_id.'.png') }}" alt="" />
+   @else
+      @if($student->gender == 0)
+         <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+      @else
+         <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
+      @endif
+   @endif
 </div>
 <div class="summary-container cv-div" style="margin-top: 20px;">
    <h2>@lang('student.summary')</h2>
@@ -18,9 +26,9 @@
    <h2>@lang('student.experience')</h2>
    @if(count($experiences) != 0)
       @foreach($experiences as $experience)
-         <h3>{{ $experience->title }}</h3>
-         <h4>{{ $experience->from_date->format('F Y'). " - " .$experience->to_date->format('F Y') }}</h4>
-         <p>
+         <h3 style="color:white;">{{ $experience->title }}</h3>
+         <h4 style="color:white;">{{ $experience->from_date->format('F Y'). " - " .$experience->to_date->format('F Y') }}</h4>
+         <p style="color:white;">
             {{ $experience->summary }}
          </p>
       @endforeach
@@ -32,9 +40,9 @@
    <h2>@lang('student.education')</h2>
    @if(count($educations) != 0)
       @foreach($educations as $education)
-         <h3>{{ $education->title }}</h3>
-         <h4>{{ $education->from_date->format('F Y'). " - " .$education->to_date->format('F Y') }}</h4>
-         <p>
+         <h3 style="color:white;">{{ $education->title }}</h3>
+         <h4 style="color:white;">{{ $education->from_date->format('F Y'). " - " .$education->to_date->format('F Y') }}</h4>
+         <p style="color:white;"> 
             {{ $education->summary }}
          </p>
       @endforeach

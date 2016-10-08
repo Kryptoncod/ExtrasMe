@@ -56,6 +56,7 @@ class ProfileController extends Controller
       $type = User::find($username)->type;
       $favExtras = NULL;
       $linksFav = NULL;
+      $canDownloadCard = 0;
       $i = 0;
       $extrasSecondGroup = [];
       
@@ -130,6 +131,23 @@ class ProfileController extends Controller
         $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->where('finish', 0)->orderBy('date', 'ASC')->simplePaginate(3);
         $links = $extras->render();
         $results = null;
+
+        $extrasToDo = Professional::find($professionalID)->extra;
+
+        foreach ($extrasToDo as $extra) {
+          
+          $studentIfAccepted = DB::table('extras_students')->where('extra_id', $extra->id)
+                                ->where('doing', 1)->value('student_id');
+
+          if(User::find($username)->type == 0 && count($studentIfAccepted) != 0)
+          {
+            
+            if(User::find($username)->student->id == $studentIfAccepted)
+            {
+              $canDownloadCard = 1;
+            }
+          }
+        }
       }
 
       if($type == 0)
@@ -149,12 +167,12 @@ class ProfileController extends Controller
           $skills = null;
         }
 
-        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'canDownloadCard' => $canDownloadCard])->with('username', $username);
       }
       else if($type == 1)
       {
 
-        return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'username' => $username, 'AuthId' => $id, 'name' => $name]);
+        return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'links' => $links, 'username' => $username, 'AuthId' => $id, 'name' => $name]);
       }
   }
 

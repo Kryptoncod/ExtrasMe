@@ -145,7 +145,7 @@
                </ul>
                @endif
             </div>
-            @if(Auth::user()->type == 1 && $student->registration_done == 1)
+            @if(Auth::user()->type == 1 && $student->registration_done == 1 && $canDownloadCard == 1)
                <div class="export-ids">
                   <a href="uploads/{{$username}}/carte_id.jpg" download="carte_id_{{$student->first_name}}_{{$student->last_name}}">Download ID Card</a>
                   <a href="uploads/{{$username}}/avs.jpg" download="carte_avs_{{$student->first_name}}_{{$student->last_name}}">Download AVS Card</a>
