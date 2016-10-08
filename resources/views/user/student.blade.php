@@ -10,7 +10,7 @@
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
 
-         <div class="row account-resume" style="background: url(images/annexe_test.jpg) center center no-repeat; background-size: cover;">
+         <div class="row account-resume" style="background: url(images/annexe_test_blur.jpg) center center no-repeat; background-size: cover;">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
                @if(file_exists("uploads/pp/".$user->id.".png"))
                   <img class="profile-picture" src=" uploads/pp/{{$user->id}}.png" alt="" />
