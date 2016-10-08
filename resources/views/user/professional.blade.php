@@ -239,9 +239,16 @@
                   <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
 
                      @foreach ($extras as $extra)
-                        <li><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@include('user.card', ["extra" => $extra,
+                        <li><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">
+                        @if(file_exists("uploads/pp/".$user->id.".png"))
+                           @include('user.card', ["extra" => $extra,
+                                                "image" => asset("uploads/pp/".$user->id.".png"),
+                                                "id"  => $extra->id])
+                        @else
+                           @include('user.card', ["extra" => $extra,
                                                 "image" => asset("images/user-professional.png"),
                                                 "id"  => $extra->id])
+                        @endif
                         </a></li>
                      @endforeach
 

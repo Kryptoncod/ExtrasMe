@@ -58,6 +58,7 @@ class ProfileController extends Controller
       $linksFav = NULL;
       $canDownloadCard = 0;
       $i = 0;
+      $studentApply = 0;
       $extrasSecondGroup = [];
       
       if(User::find($id)->type == 0)
@@ -145,6 +146,18 @@ class ProfileController extends Controller
             if(User::find($username)->student->id == $studentIfAccepted)
             {
               $canDownloadCard = 1;
+            }
+          }
+
+          $studentDemandApply = DB::table('extras_students')->where('extra_id', $extra->id)
+                                ->where('doing', 0)->value('student_id');
+
+          if(User::find($username)->type == 0 && count($studentIfAccepted) != 0)
+          {
+            
+            if(User::find($username)->student->id == $studentIfAccepted)
+            {
+              $studentApply = 1;
             }
           }
         }
