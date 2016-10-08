@@ -467,7 +467,7 @@ class ExtraController extends Controller
 
 			$name = User::find($id)->professional->company_name;
 			$professionalID = User::find($id)->professional->id;
-			$results = Professional::find($professionalID)->students()->where('type', 1);
+			$results = Professional::find($professionalID)->students()->where('type', 1)->get();
 
 			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => false]);
 		}

@@ -33,9 +33,15 @@
                @foreach($results as $result)
                   @if(Auth::user()->type == 0)
                   <div class="fav-list-container" data-studid="{{$result->id}}" data-type=0 style="padding-left: 10px;">
+                     <div>
+                        @if(file_exists("uploads/pp/".$result->user_id.".png"))
+                           <img class="profile-picture" src="{{ asset('uploads/pp/'.$result->user_id.'.png') }}" alt="" />
+                        @else
+                           <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
+                        @endif
+                     </div>
                   @else
                   <div class="fav-list-container" data-studid="{{$result->id}}" data-type=1 style="padding-left: 10px;">
-                  @endif
                      <div>
                         @if(file_exists("uploads/pp/".$result->user_id.".png"))
                            <img class="profile-picture" src="{{ asset('uploads/pp/'.$result->user_id.'.png') }}" alt="" />
@@ -47,6 +53,7 @@
                            @endif
                         @endif
                      </div>
+                  @endif
                      <div style="display: flex;">
                         <div style="margin:auto; padding: 20px;">
                            <h2 class="name-list">

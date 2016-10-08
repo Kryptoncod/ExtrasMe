@@ -1,7 +1,11 @@
 <h2 class="name-list">{{ strtoupper($professional->company_name) }}</h2>
 <hr style="margin-top: 0px;">
 <div style="width: 40%;">
-   <img style="width: 100%;" class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+   @if(file_exists("uploads/pp/".$professional->user_id.".png"))
+      <img class="profile-picture" src="{{ asset('uploads/pp/'.$professional->user_id.'.png') }}" alt="" />
+   @else
+      <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
+   @endif
 </div>
 <div class="summary-container cv-div" style="margin-top: 20px;">
    <ul class="personal-informations">
