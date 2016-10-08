@@ -229,6 +229,7 @@
             <div class="row section-title">
                <div class="small-12 columns">
                   <h2>@lang('professional.myExtra')</h2>
+                  <div class="pagination">{{ $links }}</div>
                </div>
             </div>
 
