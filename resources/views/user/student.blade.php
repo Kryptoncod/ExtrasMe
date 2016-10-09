@@ -70,6 +70,13 @@
             </div>
          </div>
 
+         @if(Auth::user()->type == 1 && $student->registration_done == 1 && $studentApply == 1)
+            <button class="submit-button right"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extras[0]->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">@lang('myExtraList.accept')</a></button>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+         @endif
+
          <div class="row details-button">
             @if(Auth::user()->id == $username)
                <div id="more-details"><span>@lang('student.moreDetails')</span> <i class="fa fa-caret-down" aria-hidden="true"></i></div>

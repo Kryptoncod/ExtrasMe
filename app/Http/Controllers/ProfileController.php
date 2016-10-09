@@ -152,10 +152,10 @@ class ProfileController extends Controller
           $studentDemandApply = DB::table('extras_students')->where('extra_id', $extra->id)
                                 ->where('doing', 0)->value('student_id');
 
-          if(User::find($username)->type == 0 && count($studentIfAccepted) != 0)
+          if(User::find($username)->type == 0 && count($studentDemandApply) != 0)
           {
             
-            if(User::find($username)->student->id == $studentIfAccepted)
+            if(User::find($username)->student->id == $studentDemandApply)
             {
               $studentApply = 1;
             }
@@ -180,7 +180,7 @@ class ProfileController extends Controller
           $skills = null;
         }
 
-        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'canDownloadCard' => $canDownloadCard])->with('username', $username);
+        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'canDownloadCard' => $canDownloadCard, 'studentApply' => $studentApply])->with('username', $username);
       }
       else if($type == 1)
       {

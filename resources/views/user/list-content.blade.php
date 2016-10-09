@@ -36,7 +36,7 @@
                      <div class="row account-resume" style="width: 90%;">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7" style="padding: 0;">
                @if(file_exists("uploads/pp/".$extras[0]->professional->user_id.".png"))
-                  <img class="profile-picture" src=" uploads/pp/{{$professional->user_id}}.png" alt="" />
+                  <img class="profile-picture" src="{{ asset('uploads/pp/'.$extras[0]->professional->user_id.'.png') }}" alt="" />
                @else
                   <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
                @endif
@@ -155,26 +155,28 @@
                                    @if($extras[0]->find == 0)
                                     <ul style="width: 80%; margin:auto;">
                                       <li class="title list-stud-title">@lang('myExtraList.studentApplied')</li>
-                                      @foreach($students as $student)
-                                        <li class="student-applied-container">
-                                          <a href = "{{ route('home', $student->user_id) }}">
-                                          @if(file_exists("uploads/pp/".$student->user_id.".png"))
-                                              <img class="profile-picture" src=" uploads/pp/{{$student->user_id}}.png" alt="" />
-                                          @else
-                                          @if($student->gender == 0)
-                                                                 <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
-                                          @else
-                                                                 <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
-                                          @endif
-                                                           @endif
-                                          {{ $student->first_name . " " . $student->last_name }}
-                                          </a>
-                                          <button class="submit-button right"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extras[0]->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
-                                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                          <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">@lang('myExtraList.accept')</a></button>
-                                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        </li>
-                                      @endforeach
+                                      @if(!empty($students))
+                                        @foreach($students as $student)
+                                          <li class="student-applied-container">
+                                            <a href = "{{ route('home', $student->user_id) }}">
+                                            @if(file_exists("uploads/pp/".$student->user_id.".png"))
+                                                <img class="profile-picture" src="{{ asset('uploads/pp/'.$student->user_id.'.png') }}" alt="" />
+                                            @else
+                                            @if($student->gender == 0)
+                                                                   <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
+                                            @else
+                                                                   <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
+                                            @endif
+                                                             @endif
+                                            {{ $student->first_name . " " . $student->last_name }}
+                                            </a>
+                                            <button class="submit-button right"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extras[0]->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">@lang('myExtraList.accept')</a></button>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                          </li>
+                                        @endforeach
+                                      @endif
                                   </ul>
                                   @endif
                                     <ul style="width: 80%; margin: auto;">
