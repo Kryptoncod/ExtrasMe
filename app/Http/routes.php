@@ -44,6 +44,7 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->get('/', ['as' => 'credits', "uses" => "CreditsController@show"]);
       $app->get('/options/{data0}/{data1}', ['as' => 'options', "uses" => "CreditsController@options"]);
       $app->get('/options/payment/cash/{data0}/{data1}', ['as' => 'optionsPaymentCash', "uses" => "CreditsController@paymentOptionsCash"]);
+      $app->get('/options/payment/transfer/{data0}/{data1}', ['as' => 'optionsPaymentTransfer', "uses" => "CreditsController@paymentOptionsTransfer"]);
       $app->get('/confirm', ['as' => 'confirm', "uses" => "CreditsController@confirmation"]);
    });
    Route::group(['prefix' => 'extra'], function($app) {

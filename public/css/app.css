@@ -6241,6 +6241,22 @@ html.no-js .js-notice {
     color: #FFF;
     border-bottom: solid 1px #fff; }
 
+#paymentCashModal {
+  background-color: transparent;
+  box-shadow: none;
+  text-align: center; }
+  #paymentCashModal .signup-button p {
+    color: #FFF;
+    margin-bottom: 0; }
+
+#paymentTransferModal {
+  background-color: transparent;
+  box-shadow: none;
+  text-align: center; }
+  #paymentTransferModal .signup-button p {
+    color: #FFF;
+    margin-bottom: 0; }
+
 #extraModal .apply-button, form .submit-button {
   border-radius: 0;
   border-width: 0;

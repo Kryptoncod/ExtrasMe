@@ -365,6 +365,17 @@ class ExtraController extends Controller
 			->where('student_id', $studentID)
 			->delete();
 
+		$extra = Extra::find($extraID);
+		$professional = $extra->professional;
+		$studentUser = Student::find($studentID)->user;
+
+		$notif_to_send = $professional->company_name." declined your application for the Extra : ".$extra->type." the ".$extra->date." at ".$extra->date_time.".";
+
+		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
+
+				$message->to($studentUser->email)->subject('New notification ExtrasMe');
+		});
+
 		return redirect()->back();
 	}
 
@@ -427,6 +438,22 @@ class ExtraController extends Controller
 
 	public function deleteExtra($username, $extraID)
 	{
+		$extra = Extra::find($extraID);
+
+		foreach ($extra->students as $student) {
+
+			$studentUser = $student->user;
+			$extra = Extra::find($extraID);
+			$professional = $extra->professional;
+
+			$notif_to_send = $professional->company_name." deleted the Extra : ".$extra->type." the ".$extra->date." at ".$extra->date_time.".";
+
+			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
+
+					$message->to($studentUser->email)->subject('New notification ExtrasMe');
+			});
+		}
+
 		$this->extraRepository->destroy($extraID);
 
 		return redirect()->route('home', Auth::user()->id);

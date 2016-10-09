@@ -44,6 +44,16 @@ return [
         'cash' => 'JE PAYE EN ESPECE',
         'online' => 'JE PAYE EN LIGNE',
         'transfer' => 'JE PAYE PAR VIREMENT BANCAIRE',
+        'modalCash' => [
+            'title' => 'Payement par espèce',
+            'content' => 'Merci d’avoir choisi l’option de paiement en espèce. Nous reviendrons vers vous dans les plus brefs délais afin de collecter le montant correspondant au forfait de votre choix. Dans l’attente de cette collecte, nous vous mettons à disposition 1/5 des crédits du forfait que vous avez choisi afin que vous puissiez déjà utiliser nos services. Nous vous invitons à aller voir nos terms and conditions (a mettre en bleu et il clique dessus et arrive sur la page terms and conditions section paiement) pour les modalités et délais de paiement.',
+            'validate' => 'Valider',
+        ],
+        'modalTransfer' => [
+            'title' => 'Payement par virement',
+            'content' => 'Merci d’avoir choisi l’option de paiement par virement bancaire. Une fois votre paiement reçu, nous ajouterons les crédits correspondant au forfait que vous avez choisi sur votre compte Extras Me. Dans l’attente de la réception de votre paiement, nous vous mettons à disposition 1/5 de ces crédits. Nous vous invitons à aller voir nos terms and conditions (a mettre en bleu et il clique dessus et arrive sur la page terms and conditions section paiement) pour les modalités et délais de paiements.',
+            'validate' => 'Valider',
+        ],
     ],
 
 ];

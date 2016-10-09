@@ -36,12 +36,15 @@ class CreditsController extends Controller
 {
 
 	protected $invoiceRepository;
+	protected $professionalRepository;
 
-	public function __construct(InvoiceRepository $invoiceRepository)
+	public function __construct(InvoiceRepository $invoiceRepository,
+								ProfessionalRepository $professionalRepository)
 	{
 		$middleware = array('auth', 'credit');
 		$this->middleware($middleware);
 		$this->invoiceRepository = $invoiceRepository;
+		$this->professionalRepository = $professionalRepository;
 	}
 
 	public function show($username){
@@ -114,12 +117,45 @@ class CreditsController extends Controller
 			'number_announce' => $data0,
 			'price' => $data1,
 			'price_announce' => $data1 / $data0,
+			'type_payment' => 0,
 			'professional_id' => $professional->id,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
 			);
 
 		$invoice = $this->invoiceRepository->store($invoiceInputs);
+
+		$this->professionalRepository->update($professionalUser->professional->id, ['credit' => ($data0/5) + $professionalUser->professional->credit]);
+
+		return redirect()->route('credits', $username);
+	}
+
+	public function paymentOptionsTransfer($username, $data0, $data1)
+	{
+		$notif_to_send = "Your demand for ".$data0." Extras is now being processing. You will receive your credits as soon as the payment is effective.";
+
+		$professionalUser = User::find($username);
+
+		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
+			$message->to($professionalUser->email)->subject('New notification ExtrasMe');
+		});
+
+		$professional = $professionalUser->professional;
+
+		$invoiceInputs = array(
+			'paid' => 0,
+			'number_announce' => $data0,
+			'price' => $data1,
+			'price_announce' => $data1 / $data0,
+			'type_payment' => 1,
+			'professional_id' => $professional->id,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+			);
+
+		$invoice = $this->invoiceRepository->store($invoiceInputs);
+
+		$this->professionalRepository->update($professionalUser->professional->id, ['credit' => ($data0/5) + $professionalUser->professional->credit]);
 
 		return redirect()->route('credits', $username);
 	}

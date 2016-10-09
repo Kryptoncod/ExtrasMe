@@ -79,6 +79,10 @@ $(".signup-button").click(function(){
   $(".footer").addClass("blured");
 });
 
+$(".payment-button").click(function(){
+    $("#optionPayment").addClass("blured");
+});
+
 var modal = $("#signupModal, #signinModal");
 
 $(document).mouseup(function (e)
@@ -91,6 +95,16 @@ $(document).mouseup(function (e)
         $("#partners").removeClass("blured");
         $(".footer").removeClass("blured");
 
+    }
+});
+
+var modalPayment = $("#paymentCashModal, #paymentTransferModal");
+
+$(document).mouseup(function (e)
+{
+    if (!modalPayment.is(e.target)&& modalPayment.has(e.target).length === 0)
+    {
+        $("#optionPayment").removeClass("blured");
     }
 });
 
