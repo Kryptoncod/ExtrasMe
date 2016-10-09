@@ -46,12 +46,12 @@ return [
         'transfer' => 'I MAKE A TRANSFER',
         'modalCash' => [
             'title' => 'Payment by cash',
-            'content' => 'Thank you for choosing the payment by cash option. We will contact you as soon as possible to collect the amount corresponding to the package you have picked. Pending this collection, we will give you access to 1/5 of the credits of the package so that you can already use our services. We invite you to visit our terms and conditions (a to blue and it clicked and arrives on the page terms and conditions section payment) for the payment forms and deadlines.',
+            'content' => 'Thank you for choosing the payment by cash option. We will contact you as soon as possible to collect the amount corresponding to the package you have picked. Pending this collection, we will give you access to 1/5 of the credits of the package so that you can already use our services. We invite you to visit our <span style="color:#90aaff;"> terms and conditions </span> for the payment forms and deadlines.',
             'validate' => 'Validate',
         ],
         'modalTransfer' => [
             'title' => 'Payment by transfer',
-            'content' => 'Thank you for choosing the payment by bank transfer option. Once your payment received, we will add the credits corresponding to the package you have chosen on your Extras Me account. Pending the reception of your payment, we will give you access to 1/5 of these credits. We invite you to visit our terms and conditions (a to blue and it clicked and arrives on the page terms and conditions section payment) for the payment forms and deadlines.',
+            'content' => 'Thank you for choosing the payment by bank transfer option. Once your payment received, we will add the credits corresponding to the package you have chosen on your Extras Me account. Pending the reception of your payment, we will give you access to 1/5 of these credits. We invite you to visit our <span style="color:#90aaff;">terms and conditions</span> for the payment forms and deadlines.',
             'validate' => 'Validate',
         ],
     ],
