@@ -32,7 +32,7 @@
           <div class="row account-resume" style="width: 90%;">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7" style="padding: 0;">
                @if(file_exists("uploads/pp/".$professional[0]->user_id.".png"))
-                  <img class="profile-picture" src=" uploads/pp/{{$professional[0]->user_id}}.png" alt="" />
+                  <img class="profile-picture" src="{{ asset('uploads/pp/'.$professional[0]->user_id.'.png') }}" alt="" />
                @else
                   <img class="profile-picture" src="{{ asset('images/user-professional.png') }}" alt="" />
                @endif
