@@ -19,7 +19,7 @@
                <div class="rating-container">
                   <div class="profile-image-container">
                      @if(file_exists("uploads/pp/".$student->id.".png"))
-                     <img src=" uploads/pp/{{$student->user->id}}.png" alt="" />
+                     <img src="{{ asset('uploads/pp/'.$student->user->id.'.png') }}" alt="" />
                      @else
                      <img src="{{ asset('images/user-student.png') }}" alt="" />
                      @endif
@@ -39,29 +39,30 @@
                            <ul class="notes-echelle">
                               <li>
                                  <label for="note01" title="Note&nbsp;: 1 sur 5"></label>
-                                 <input type="radio" name="note" id="note01" value="1" />
+                                 <input type="radio" name="rate{{$id}}" id="note01" value="1" />
                               </li>
                               <li>
                                  <label for="note02" title="Note&nbsp;: 2 sur 5"></label>
-                                 <input type="radio" name="note" id="note02" value="2" />
+                                 <input type="radio" name="rate{{$id}}" id="note02" value="2" />
                               </li>
                               <li>
                                  <label for="note03" title="Note&nbsp;: 3 sur 5"></label>
-                                 <input type="radio" name="note" id="note03" value="3" />
+                                 <input type="radio" name="rate{{$id}}" id="note03" value="3" />
                               </li>
                               <li>
                                  <label for="note04" title="Note&nbsp;: 4 sur 5"></label>
-                                 <input type="radio" name="note" id="note04" value="4" />
+                                 <input type="radio" name="rate{{$id}}" id="note04" value="4" />
                               </li>
                               <li>
                                  <label for="note05" title="Note&nbsp;: 5 sur 5"></label>
-                                 <input type="radio" name="note" id="note05" value="5" />
+                                 <input type="radio" name="rate{{$id}}" id="note05" value="5" />
                               </li>
                            </ul>
                         </div>
                      </div>
                   </div>
                </div>
+               <input type="hidden" name="studentID{{$id}}" id="note05" value="{{$student->id}}" />
          @endforeach
 
          <button class="submit-button right">@lang('rate.rate')</button>

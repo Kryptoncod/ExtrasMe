@@ -13,7 +13,7 @@
          <div class="row account-resume" style="background: url(images/annexe_test_blur.jpg) center center no-repeat; background-size: cover;">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
                @if(file_exists("uploads/pp/".$user->id.".png"))
-                  <img class="profile-picture" src=" uploads/pp/{{$user->id}}.png" alt="" />
+                  <img class="profile-picture" src="{{ asset('uploads/pp/'.$user->id.'.png') }}" alt="" />
                @else
                   @if($student->gender == 0)
                      <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />

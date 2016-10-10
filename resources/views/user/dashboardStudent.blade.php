@@ -23,6 +23,13 @@
                         </div>
                      </div>
                   </div>
+                  @if($timeLeft <= 5)
+                     <a class="warning_register"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                     <div class="warning_box">
+                        <p style="color: white;">@lang('dashboardStudent.numberHoursLeft')</p>
+                     </div>
+                     </a></li>
+                  @endif
                   <div class="one-block">
                      <h2>@lang('dashboardStudent.totalHours')</h2>
                      <div class="stat-content">

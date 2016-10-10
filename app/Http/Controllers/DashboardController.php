@@ -49,8 +49,28 @@ class DashboardController extends Controller
 				$AuthID = Auth::user()->id;
 				$student = User::find($AuthID)->student;
 				$name = $student->first_name." ".$student->last_name;
+				$sumeTime = [];
+				$timeLeft = 15;
 
-				return view('user.dashboardStudent', ['name' => $name, 'dashboard' => Student::find($student->id)->dashboard]);
+				$extras = Student::find($student->id)->extras()->where('finish', 1)->get();
+
+				foreach ($extras as $extra) {
+					
+					$startDate = Carbon::parse($extra->date.' '.$extra->date_time);
+
+					if(Carbon::parse('this sunday')->diffInDays($startDate) <= 7)
+					{
+						$sumeTime[] = $extra->duration;
+					}
+				}
+
+				if(array_sum($sumeTime) >= 10)
+				{
+					$timeLeft = $timeLeft - array_sum($sumeTime);
+				}
+
+				return view('user.dashboardStudent', ['name' => $name, 'dashboard' => Student::find($student->id)->dashboard, 'timeLeft' => $timeLeft]);
+
 			} elseif (Auth::user()->type == 1)
 			{
 				$AuthID = Auth::user()->id;
@@ -101,7 +121,7 @@ class DashboardController extends Controller
 				DB::table('number_extras_establishement')->insert([
 					'student_id' => $studentID,
 					'professional_id' => $professionalID,
-					'number_extras' => 1
+					'number_extras' => 1,
 					]);
 
 			} else {
