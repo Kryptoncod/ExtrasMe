@@ -27,7 +27,7 @@ use App\Repositories\ProfessionalRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB;
+use Auth, DB, Session;
 
 class ProfileController extends Controller
 {
@@ -52,6 +52,10 @@ class ProfileController extends Controller
 
   public function show($username)
   {
+      $message = 'RAS';
+      if(session()->has('message')){
+        $message = session('message');
+      }
       $id = Auth::user()->id;
       $type = User::find($username)->type;
       $favExtras = NULL;
@@ -185,7 +189,7 @@ class ProfileController extends Controller
       else if($type == 1)
       {
 
-        return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'links' => $links, 'username' => $username, 'AuthId' => $id, 'name' => $name]);
+        return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'links' => $links, 'username' => $username, 'AuthId' => $id, 'name' => $name, 'message' => $message]);
       }
   }
 
