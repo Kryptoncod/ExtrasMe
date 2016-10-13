@@ -258,6 +258,7 @@ $("#modif-files").click(function(e){
     }else{
        //si c'est ok, on execute:
         var nextId = parseInt($(".education-title:last").data("education"));
+        alert($(".education-title:last").data("education"));
         nextId++;
         var toAppend = "<hr><input class=\"education-tile\" data-education=\""+nextId+"\" type=\"text\" name=\"education-title"+nextId+"\" placeholder=\"Titre de l'éducation\"><div style=\"display: flex; padding: 0; border:none; margin-bottom:0;\"><input type=\"text\" name=\"education-from"+nextId+"\" class=\"education-from date\" placeholder=\"Date début\" data-date-format=\"mm/yyyy\" data-start-view=\"year\" data-min-view=\"year\" style=\"width: 20%; margin-right:10px;\"><input type=\"text\" name=\"education-to"+nextId+"\" class=\"education-to date\" placeholder=\"Date fin\" data-date-format=\"mm/yyyy\" data-start-view=\"year\" data-min-view=\"year\" style=\"width: 20%\"></div><textarea name=\"education-description"+nextId+"\" class=\"education-description\" placeholder=\"Description de l'éducation\" rows=\"4\" style=\"margin:.3125rem 0\"></textarea>";
         $("#append-education").append(toAppend);
@@ -350,7 +351,7 @@ $(window).resize(function(){
     if(width <= 700){
         $('#logo-navbar').attr('src', '../images/logo.gif');
     }else{
-        $('#logo-navbar').attr('src', '../images/logo.gif');
+        $('#logo-navbar').attr('src', '../images/logo-long.gif');
     }
 });
 

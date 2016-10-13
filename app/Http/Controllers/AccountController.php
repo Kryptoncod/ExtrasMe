@@ -176,81 +176,90 @@ class AccountController extends Controller
 	public function cvUpdate(Request $request)
 	{
 
-		$i = 1;
+		try
+		{
+			$i = 1;
 		
-		$id = Auth::user()->id;
-		$student = User::find($id)->student;
-		$studentID = $student->id;
-		if($student->cv != null){
-			$student->cv->delete();
-		}
-		$cvInput = array(
-			'summary' => $request->input('resume'),
-			'student_id' => $studentID,
-			);
-
-		$cv = $this->cvRepository->store($cvInput);
-
-		while ($request->input('experience-title'.$i)) {
-			//dd($request->input('experience-from'.$i));
-			$experienceInput = array(
-				'title' => $request->input('experience-title'.$i),
-				'from_date' => Carbon::createFromFormat('m/Y', $request->input('experience-from'.$i)),
-				'to_date' => Carbon::createFromFormat('m/Y', $request->input('experience-to'.$i)),
-				'summary' => $request->input('experience-description'.$i),
-				'cv_id' => $cv->id,
+			$id = Auth::user()->id;
+			$student = User::find($id)->student;
+			$studentID = $student->id;
+			if($student->cv != null){
+				$student->cv->delete();
+			}
+			$cvInput = array(
+				'summary' => $request->input('resume'),
+				'student_id' => $studentID,
 				);
 
-			$experience = $this->experienceRepository->store($experienceInput);
+			$cv = $this->cvRepository->store($cvInput);
 
-			$i++;
+			while ($request->input('experience-title'.$i)) {
+				//dd($request->input('experience-from'.$i));
+				$experienceInput = array(
+					'title' => $request->input('experience-title'.$i),
+					'from_date' => Carbon::createFromFormat('m/Y', $request->input('experience-from'.$i)),
+					'to_date' => Carbon::createFromFormat('m/Y', $request->input('experience-to'.$i)),
+					'summary' => $request->input('experience-description'.$i),
+					'cv_id' => $cv->id,
+					);
+
+				$experience = $this->experienceRepository->store($experienceInput);
+
+				$i++;
+			}
+
+			$i = 1;
+
+			while ($request->input('education-title'.$i)) {
+				$educationInput = array(
+					'title' => $request->input('education-title'.$i),
+					'from_date' => Carbon::createFromFormat('m/Y', $request->input('education-from'.$i)),
+					'to_date' => Carbon::createFromFormat('m/Y', $request->input('education-to'.$i)),
+					'summary' => $request->input('education-description'.$i),
+					'cv_id' => $cv->id,
+					);
+
+				$education = $this->educationRepository->store($educationInput);
+
+				$i++;
+
+				dd($request->input('education-from'.$i));
+			}
+
+			$i = 1;
+
+			while ($request->input('skill'.$i)) {
+
+				$skillInput = array(
+					'title' => $request->input('skill'.$i),
+					'cv_id' => $cv->id,
+					);
+
+				$skill = $this->skillRepository->store($skillInput);
+
+				$i++;
+			}
+
+			$i = 1;
+
+			while ($request->input('language'.$i)) {
+
+				$languageInput = array(
+					'title' => $request->input('language'.$i),
+					'cv_id' => $cv->id,
+					);
+
+				$language = $this->languageRepository->store($languageInput);
+
+				$i++;
+			}
+			$message = "Vos modification ont bien été prises en compte";
+			return redirect()->route('account', $id)->with('message', $message);
 		}
-
-		$i = 1;
-
-		while ($request->input('education-title'.$i)) {
-			$educationInput = array(
-				'title' => $request->input('education-title'.$i),
-				'from_date' => Carbon::createFromFormat('m/Y', $request->input('education-from'.$i)),
-				'to_date' => Carbon::createFromFormat('m/Y', $request->input('education-to'.$i)),
-				'summary' => $request->input('education-description'.$i),
-				'cv_id' => $cv->id,
-				);
-
-			$education = $this->educationRepository->store($educationInput);
-
-			$i++;
+		catch(\Exception $e)
+		{
+			dd($e);
 		}
-
-		$i = 1;
-
-		while ($request->input('skill'.$i)) {
-
-			$skillInput = array(
-				'title' => $request->input('skill'.$i),
-				'cv_id' => $cv->id,
-				);
-
-			$skill = $this->skillRepository->store($skillInput);
-
-			$i++;
-		}
-
-		$i = 1;
-
-		while ($request->input('language'.$i)) {
-
-			$languageInput = array(
-				'title' => $request->input('language'.$i),
-				'cv_id' => $cv->id,
-				);
-
-			$language = $this->languageRepository->store($languageInput);
-
-			$i++;
-		}
-		$message = "Vos modification ont bien été prises en compte";
-		return redirect()->route('account', $id)->with('message', $message);
 	}
 
 	public function profileUpdate(Request $request)
