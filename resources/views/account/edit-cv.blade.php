@@ -71,13 +71,13 @@
       <ul>
         <div id="append-skill" style="display:flex; flex-wrap: wrap;">
           @if(count($skills) != 0)
-          <?php $i=0 ?>
-          @foreach($skills as $skill)
-          <?php $i++ ?>
-          <li class="li-edit-cv" style="padding:0"><input type="text" name="skill{{$i}}" placeholder="Compétence" class="competence" data-competence="{{$i}}" value="{{$skill->title}}"></li>
-          @endforeach
+            <?php $i=0 ?>
+            @foreach($skills as $skill)
+              <?php $i++ ?>
+              <li class="li-edit-cv" style="padding:0"><input type="text" name="skill0" placeholder="Compétence" class="competence" data-competence="0" value="{{$skill->title}}"></li>
+            @endforeach
           @else
-          <li class="li-edit-cv" style="padding:0"><input type="text" name="skill1" placeholder="Compétence" class="competence" data-competence="1"></li>
+            <li class="li-edit-cv" style="padding:0"><input type="text" name="skill1" placeholder="Compétence" class="competence" data-competence="1"></li>
           @endif
         </div>
         <button id="add-skill" style="margin:auto; margin-left:0;background-color: #222; padding :10px;"><i class="icon-plus-symbol" style="font-size: 10px;"></i></button>
@@ -88,13 +88,21 @@
       <ul>
         <div id="append-language" style="display:flex; flex-wrap: wrap;">
           @if(count($languages) != 0)
-          <?php $i=0 ?>
-          @foreach($languages as $language)
-          <?php $i++ ?>
-          <li class="li-edit-cv" style="padding:0"><input type="text" name="language{{$i}}" placeholder="Langue" class="langue" data-langue="{{$i}}" value="{{$language->title}}"></li>
-          @endforeach
+            <?php $i=0 ?>
+            @foreach($languages as $language)
+              <?php $i++ ?>
+              <li class="li-edit-cv" style="padding:0"><input type="text" name="language0" placeholder="Langue" class="langue" data-langue="0" value="{{$language->title}}"></li>
+            @endforeach
           @else
-          <li class="li-edit-cv" style="padding:0"><input type="text" name="language1" placeholder="Langue" class="langue" data-langue="1"></li>
+            <li class="li-edit-cv" style="padding:0">
+              <select class="langue" id="language" name="language1" aria-label="Language" data-langue="1">
+                   <option selected disabled value="">  @lang('professional.lookingForExtras.selectLanguage')
+                   </option>
+                   @foreach(config('international.language') as $id => $lang)
+                      <option value="{{ $id }}">{{ $lang }}</option>
+                   @endforeach
+              </select>
+            </li>
           @endif
         </div>
         <button id="add-language" style="margin:auto; margin-left: 0; background-color: #222; padding :8px;"><i class="icon-plus-symbol" style="font-size: 10px;"></i></button>

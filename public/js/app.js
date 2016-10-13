@@ -295,7 +295,14 @@ $("#modif-files").click(function(e){
         //si c'est ok, on execute:
         var nextId = parseInt($(".langue:last").data("langue"));
         nextId++;
-        var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><input class=\"langue\" data-langue=\""+nextId+"\"type=\"text\" name=\"language"+nextId+"\" placeholder=\"Langue\"></li>";
+        alert('swag');
+        var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><select class=\"langue\" id=\"language\" name=\"language1"+nextId+" aria-label=\"Language\" data-langue="+nextId+">"+
+                   "<option selected disabled value="">  @lang('professional.lookingForExtras.selectLanguage')"+
+                   "</option>"+
+                   "@foreach(config('international.language') as $id => $lang)"+
+                      "<option value=\"{{ $id }}\">{{ $lang }}</option>"+
+                   "@endforeach"+
+              "</select></li>";
         $("#append-language").append(toAppend);
     }
  });
