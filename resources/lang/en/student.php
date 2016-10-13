@@ -27,5 +27,10 @@ return [
    'noFavorite' => 'You don\'t have any favorite extras.',
    'noExtras' => 'There is no available extras. Please return in a moment.',
    'extrasAvailable' => 'EXTRAS AVAILABLE',
+   'adress' => 'Adress',
+   'city' => 'City',
+   'zipcode' => 'Zipcode',
+   'state' => 'State',
+   'country' => 'Country',
 
 ];

@@ -44,6 +44,26 @@
               </select>
               <small class="error">EHL's year is required.</small>
           </div>
+          <div>
+            <label for="adress">@lang('student.adress')</label><input type="text" name="adress" value="{{$student->address}}" required pattern="[1-9]+">
+            <small class="error">Adress is required and must be valid</small>
+          </div>
+          <div>
+            <label for="city">@lang('student.city')</label><input type="text" name="city" value="{{$student->city}}" required pattern="[1-9]+">
+            <small class="error">City is required and must be valid</small>
+          </div>
+          <div>
+            <label for="zipcode">@lang('student.zipcode')</label><input type="text" name="zipcode" value="{{$student->zipcode}}" required pattern="[1-9]+">
+            <small class="error">Zipcode is required and must be valid</small>
+          </div>
+          <div>
+            <label for="state">@lang('student.state')</label><input type="text" name="state" value="{{$student->state}}" required pattern="[1-9]+">
+            <small class="error">State is required and must be valid</small>
+          </div>
+          <div>
+            <label for="country">@lang('student.country')</label><input type="text" name="country" value="{{$student->country}}" required pattern="[1-9]+">
+            <small class="error">Country is required and must be valid</small>
+          </div>
           <div id="change-password-div">
             <button style="padding:10px; margin:10px auto 0px auto; background-color:#222;" id="change-password"><a href="{{ url(Auth::user()->id.'/password/reset') }}">@lang('account.modifyPassword')</a></button>
           </div>

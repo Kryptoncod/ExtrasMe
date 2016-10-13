@@ -27,4 +27,9 @@ return [
    'noFavorite' => 'Vous n\'avez pas d\'extras favoris.',
    'noExtras' => 'il n\'y a pas d\'extras disponible. Veuillez revenir plus tard.',
    'extrasAvailable' => 'EXTRAS <b>DISPONIBLE</b>',
+   'adress' => 'Adresse',
+   'city' => 'Ville',
+   'zipcode' => 'Code Postale',
+   'state' => 'Etat',
+   'country' => 'Pays',
 ];
