@@ -14,9 +14,9 @@
             <p>@lang('payment.option.content')</p>
 
             <div>
-               <button class="payment-button" data-reveal-id="paymentCashModal">@lang('payment.option.cash')</button>
                <button>@lang('payment.option.online')</button>
                <button style="width: 300px;" data-reveal-id="paymentTransferModal" class="payment-button">@lang('payment.option.transfer')</button>
+               <button class="payment-button" data-reveal-id="paymentCashModal">@lang('payment.option.cash')</button>
             </div>
          </div>
       </div>

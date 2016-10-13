@@ -133,6 +133,7 @@ class ProfileController extends Controller
             }
           }
         }
+
         $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->where('finish', 0)->orderBy('date', 'ASC')->simplePaginate(3);
         $links = $extras->render();
         $results = null;
@@ -144,7 +145,7 @@ class ProfileController extends Controller
           $studentIfAccepted = DB::table('extras_students')->where('extra_id', $extra->id)
                                 ->where('doing', 1)->value('student_id');
 
-          if(User::find($username)->type == 0 && count($studentIfAccepted) != 0)
+          if(User::find($username)->type == 0 && count($studentIfAccepted) != null)
           {
             
             if(User::find($username)->student->id == $studentIfAccepted)

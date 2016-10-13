@@ -273,6 +273,11 @@ class AccountController extends Controller
 				'last_name' => $request->input('last-name'),
 				'phone' => $request->input('phone'),
 				'school_year' => config('international.ehl_years')[$request->input('school_year')],
+				'address' => $request->input('address'),
+				'city' => $request->input('city'),
+				'zipcode' => $request->input('zipcode'),
+				'state' => $request->input('state'),
+				'country' => $request->input('country'),
 			);
 			
 			$student = $this->studentRepository->update($studentId, $studentInput);

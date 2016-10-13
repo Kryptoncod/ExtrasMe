@@ -45,11 +45,11 @@
               <small class="error">EHL's year is required.</small>
           </div>
           <div>
-            <label for="adress">@lang('student.adress')</label><input type="text" name="adress" value="{{$student->address}}" required pattern="[1-9]+">
+            <label for="address">@lang('student.adress')</label><input type="text" name="address" value="{{$student->address}}" required pattern="[a-zA-Z]+">
             <small class="error">Adress is required and must be valid</small>
           </div>
           <div>
-            <label for="city">@lang('student.city')</label><input type="text" name="city" value="{{$student->city}}" required pattern="[1-9]+">
+            <label for="city">@lang('student.city')</label><input type="text" name="city" value="{{$student->city}}" required pattern="[a-zA-Z]+">
             <small class="error">City is required and must be valid</small>
           </div>
           <div>
@@ -57,11 +57,11 @@
             <small class="error">Zipcode is required and must be valid</small>
           </div>
           <div>
-            <label for="state">@lang('student.state')</label><input type="text" name="state" value="{{$student->state}}" required pattern="[1-9]+">
+            <label for="state">@lang('student.state')</label><input type="text" name="state" value="{{$student->state}}" required pattern="[a-zA-Z]+">
             <small class="error">State is required and must be valid</small>
           </div>
           <div>
-            <label for="country">@lang('student.country')</label><input type="text" name="country" value="{{$student->country}}" required pattern="[1-9]+">
+            <label for="country">@lang('student.country')</label><input type="text" name="country" value="{{$student->country}}" required pattern="[a-zA-Z]+">
             <small class="error">Country is required and must be valid</small>
           </div>
           <div id="change-password-div">
