@@ -42,14 +42,6 @@
                <ul class="personal-informations">
                   <li class="title">{{ strtoupper($professional[0]->company_name) }}</li>
 
-               @if(Auth::user()->id == $username)
-                  <li><span class="info-label">@lang('professional.email')</span>
-                  {{ strtoupper($email) }}</li>
-
-                  <li><span class="info-label">@lang('professional.contactNumber')</span>
-                  {{ strtoupper($professional[0]->phone) }}</li>
-               @endif
-
                   <li><span class="info-label">@lang('professional.referencePerson')</span>
                   {{ strtoupper($professional[0]->first_name.' '.$professional[0]->last_name) }}</li>
 
