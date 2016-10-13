@@ -79,7 +79,7 @@ class AjaxController extends Controller
 				$studentsAlreadyChosen = $extra->students()->where('doing', 1)->get();
 			}
 			$can_apply = 0;
-			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, "email" => $email_pro, 'students' => $students, 'studentsAlreadyChosen' => $studentsAlreadyChosen]);
+			return view('user.card-content', ['extra' => $extra, 'user' => $user, 'student' => $student, 'can_apply' => $can_apply, 'search' => $request->input('search'), "professional" => $professional, "email" => $email_pro, 'students' => $studentToSort, 'studentsAlreadyChosen' => $studentsAlreadyChosen]);
 		}
 		
 	}

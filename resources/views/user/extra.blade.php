@@ -140,7 +140,7 @@
                   </div>
                 @else
                     <div style="width: 90%;">
-                      <a href="" class="apply-button right main-button" style="pointer-events: none;cursor: default;">@lang('card-content.alreadyApplied')</a>
+                      <a href="{{ route('extra_cancel_application', ['username' => Auth::user()->id, 'id' => $extras[0]->id]) }}" class="apply-button right main-button" style="pointer-events: none;cursor: default;">@lang('card-content.alreadyApplied')</a>
                   </div>
                 @endif
             @else

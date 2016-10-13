@@ -71,7 +71,7 @@ class ProfileController extends Controller
 
         if(Student::find($studentID)->group == 1)
         {
-          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->simplePaginate(3);
+          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('date', '>', Carbon::now())->simplePaginate(3);
           $links = $extras->render();
 
           $results = Student::find($studentID)->professionals()->where('type', 0)->get();
@@ -85,7 +85,7 @@ class ProfileController extends Controller
         else if(Student::find($studentID)->group == 2)
         {
 
-          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->simplePaginate(3);
+          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->where('date', '>', Carbon::now())->simplePaginate(3);
           
           $links = $extras->render();
 

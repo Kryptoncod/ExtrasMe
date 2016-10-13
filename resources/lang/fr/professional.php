@@ -17,7 +17,7 @@ return [
    'moreDetails' => 'PLUS DE DETAILS',
    'description' => 'Description',
    'noDescription' => 'Pas de Description',
-   'errorDescripton' => 'Nous vous invitons à mettre un descriptif de votre établissements afin que l’étudiant puisse se renseigner au préalable de son extra.',
+   'errorDescripton' => 'Nous vous invitons a mettre un descriptif de votre etablissements afin que l’etudiant puisse se renseigner au prealable de son extra.',
    'lookingForExtras' => [
       'title' => 'RECHERCHE UN EXTRA ?',
       'broadcastin' => 'DIFFUSION',
@@ -34,7 +34,7 @@ return [
       'errorDuration' => 'La durée est obligatoire et doit être au-dessus de 0.',
       'numberPerson' => 'NOMBRE DE PERSONNES : ',
       'errorNumberPerson' => 'Le nombre de personnes est obligatoire et doit être au-dessus de 0.',
-      'salary' => 'SALAIRE : ',
+      'salary' => 'SALAIRE BRUT : ',
       'errorSalary' => 'Le salaire est obligatoire et doit être au-dessus de 0.',
       'languageExtra' => 'LANGUAGE :',
       'selectLanguage' => 'Selectionner',

@@ -32,7 +32,10 @@
           <ul>
               @for($i=0; $i < count($extras); $i++)
                     <div style="width:100%; height:1px; background-color:white;"></div>
-                    <li data-cardid="{{$extras[$i]->id}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional->comany_name }}</li>
+                    <li data-cardid="{{$extras[$i]->id}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional->comany_name }}<br/>
+                    Date : {{ $extras[$i]->date }} <br/>
+                    Duration : {{ $extras[$i]->date_time }}
+                    </li>
                     <div style="width:100%; height:1px; background-color:white;"></div>
               @endfor
           </ul>

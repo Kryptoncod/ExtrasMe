@@ -297,9 +297,9 @@ $("#modif-files").click(function(e){
         nextId++;
         alert('swag');
         var toAppend = "<li class=\"li-edit-cv\" style=\"padding:0\"><select class=\"langue\" id=\"language\" name=\"language1"+nextId+" aria-label=\"Language\" data-langue="+nextId+">"+
-                   "<option selected disabled value="">  @lang('professional.lookingForExtras.selectLanguage')"+
+                   "<option selected disabled value=\"\">@lang(\'professional.lookingForExtras.selectLanguage\')"+
                    "</option>"+
-                   "@foreach(config('international.language') as $id => $lang)"+
+                   "@foreach(config(\'international.language\') as $id => $lang)"+
                       "<option value=\"{{ $id }}\">{{ $lang }}</option>"+
                    "@endforeach"+
               "</select></li>";

@@ -111,7 +111,7 @@
                     </div>
                   @else
                     <div style="width: 90%;">
-                      <a href="" class="apply-button right main-button" style="pointer-events: none;cursor: default;">@lang('card-content.alreadyApplied')</a>
+                      <a href="{{ route('extra_cancel_application', ['username' => Auth::user()->id, 'id' => $extra->id]) }}" class="apply-button right main-button" style="pointer-events: none;cursor: default;">@lang('card-content.alreadyApplied')</a>
                   </div>
                   @endif
               @else
@@ -132,22 +132,22 @@
         @if(!empty($student))
           @foreach($students as $student_i)
             <li class="student-applied-container">
-                <a href = "{{ route('home', $student_i->user->id) }}">
+                <a href = "{{ route('home', $student_i[0]->user->id) }}">
                   @if(file_exists("uploads/pp/".$user->id.".png"))
-                      <img class="profile-picture" src=" uploads/pp/{{$student_i->user->id}}.png" alt="" />
+                      <img class="profile-picture" src=" uploads/pp/{{$student_i[0]->user->id}}.png" alt="" />
                    @else
-                      @if($student_i->gender == 0)
+                      @if($student_i[0]->gender == 0)
                          <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />
                       @else
                          <img class="profile-picture" src="{{ asset('images/user-student-girl.jpg') }}" alt="" />
                       @endif
                    @endif
-                {{ $student_i->first_name . " " . $student_i->last_name }}
+                {{ $student_i[0]->first_name . " " . $student_i[0]->last_name }}
                 </a>
               <div style="display: flex;">
-                <button style="margin-right: 20px;"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extra->id, 'studentID' => $student_i->id]) }}">@lang('myExtraList.decline')</a></button>
+                <button style="margin-right: 20px;"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extra->id, 'studentID' => $student_i[0]->id]) }}">@lang('myExtraList.decline')</a></button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <button><a href="{{ $extra->id.'/accept/'.$student_i->id }}">@lang('myExtraList.accept')</a></button>
+                <button><a href="{{ $extra->id.'/accept/'.$student_i[0]->id }}">@lang('myExtraList.accept')</a></button>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
               </div>
             </li>
