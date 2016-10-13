@@ -42,21 +42,21 @@
       <h2>@lang('account.education')</h2>
       <div id="append-education">
         @if(count($educations) != 0)
-          <?php $i=0 ?>
+          <?php $i=0; ?>
           @foreach($educations as $education)
             <?php $i++ ?>
-            <input type="text" name="education-title0" placeholder="Titre de l'éducation" class="education-title" data-education="0" value="{{$education->title}}">
+            <input type="text" name="education-title0" placeholder="Titre de l'education" class="education-title" data-education="0" value="{{$education->title}}">
             <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
               <input type="text" name="education-from0" class="education-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" value="{{$education->from_date->format('m/Y')}}" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
               <input type="text" name="education-to0" class="education-to date" placeholder="Date fin" style="width: 20%" value="{{$education->to_date->format('m/Y')}}" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
             </div>
             <textarea name="education-description0" class="education-description" placeholder="Description de l'education" rows="4" style="margin:.3125rem 0">{{$education->summary}}</textarea>
-            @if(!($i == count($education)))
+            @if(!($i == count($educations)))
               <hr>
             @endif
           @endforeach
         @else
-          <input type="text" name="education-title1" placeholder="Titre de l'éducation" class="education-title" data-education="1">
+          <input type="text" name="education-title1" placeholder="Titre de l'education" class="education-title" data-education="1">
           <div style="display: flex; padding: 0; border:none; margin-bottom:0;">
             <input type="text" name="education-from1" class="education-from date" placeholder="Date début" style="width: 20%; margin-right:10px;" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
             <input type="text" name="education-to1" class="education-to date" placeholder="Date fin" style="width: 20%" data-date-format="mm/yyyy" data-start-view="year" data-min-view="year">
@@ -64,7 +64,7 @@
           <textarea name="education-description1" class="education-description" placeholder="Description de l'education" rows="4" style="margin:.3125rem 0"></textarea>
         @endif
       </div>
-      <button id="add-education" style="width:200px; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="icon-plus-symbol" style="font-size: 10px;"></i> @lang('account.ajouter')</button>
+      <button  id="add-education" style="width:200px; margin:auto; background-color: #222; padding :10px; margin-top: .3125rem"><i class="icon-plus-symbol" style="font-size: 10px;"></i> @lang('account.ajouter')</button>
     </div>
     <div class="skills-container cv-div">
       <h2 style="margin-bottom: 30px;">@lang('account.skills')</h2>

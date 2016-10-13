@@ -222,8 +222,6 @@ class AccountController extends Controller
 				$education = $this->educationRepository->store($educationInput);
 
 				$i++;
-
-				dd($request->input('education-from'.$i));
 			}
 
 			$i = 1;
