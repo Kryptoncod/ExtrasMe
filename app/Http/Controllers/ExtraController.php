@@ -208,7 +208,9 @@ class ExtraController extends Controller
 				$message->to($student->user->email)->subject('New notification ExtrasMe');
 			});
 		}
+
 		$message = "Votre Extras a bien été enregistré !";
+
 		return redirect()->route('home', Auth::user()->id)->with('message', $message);;
 	}
 
@@ -234,7 +236,9 @@ class ExtraController extends Controller
 				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
 			});
 
-			return redirect()->back();
+			$message = "Votre soumission à l'extra à bien été enregistrée!";
+
+			return redirect()->back()->with('message', $message);
 		}
 		catch (Exception $e)
 		{

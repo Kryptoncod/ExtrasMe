@@ -251,6 +251,7 @@ class AccountController extends Controller
 
 				$i++;
 			}
+			
 			$message = "Vos modification ont bien été prises en compte";
 			return redirect()->route('account', $id)->with('message', $message);
 		}
