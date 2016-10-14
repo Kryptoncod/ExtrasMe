@@ -5,7 +5,16 @@
       @include('user.sidebar')
 
       <div class="medium-10 small-12 columns panel-main">
-
+         @if($message != "RAS")
+          @if($message == "Vous ne pouvez pas avoir plus de 5 favoris.")
+            <div class="erreur-update" style="background-color: #960E0E;">{{$message}}</div>
+          @else
+            <div class="erreur-update" style="background-color: #00B143;">{{$message}}</div>
+          @endif
+        @elseif($message == "RAS")
+        @else
+            <div class="erreur-update" style="background-color: #960E0E;">Une erreur s'est produite.</div>
+        @endif
          <div class="row">
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>

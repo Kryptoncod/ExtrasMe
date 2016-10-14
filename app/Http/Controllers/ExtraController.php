@@ -211,7 +211,7 @@ class ExtraController extends Controller
 
 		$message = "Votre Extras a bien été enregistré !";
 
-		return redirect()->route('home', Auth::user()->id)->with('message', $message);;
+		return redirect()->route('home', Auth::user()->id)->with('message', $message);
 	}
 
 	public static function apply($username, $id)
@@ -467,7 +467,10 @@ class ExtraController extends Controller
 	{
 		$id = Auth::user()->id;
 		$results = null;
-
+		$message = 'RAS';
+		if(session()->has('message')){
+	        $message = session('message');
+	      }
 		if(User::find($id)->type == 0)
 		{
 			$name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
@@ -487,7 +490,7 @@ class ExtraController extends Controller
 	          $skills = null;
 	        }
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => false]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'student' => $student, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => false, 'message' => $message]);
 		}
 		else if(User::find($id)->type == 1)
 		{
@@ -500,7 +503,7 @@ class ExtraController extends Controller
 			$professionalID = User::find($id)->professional->id;
 			$results = Professional::find($professionalID)->students()->where('type', 1)->get();
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => false]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => false, 'message' => $message]);
 		}
 	}
 
@@ -515,13 +518,13 @@ class ExtraController extends Controller
 		$educations = null;
 		$languages = null;
 		$skills = null;
-
+		$message = "RAS";
 		if(User::find($id)->type == 0)
 		{
 			$name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
 			$results = DB::table('professionals')->where('company_name', 'LIKE', '%' . $favoriteName . '%')->get();
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true, 'message' => $message]);
 		}
 		else if(User::find($id)->type == 1)
 		{
@@ -530,7 +533,7 @@ class ExtraController extends Controller
 			$results = DB::table('students')->where('first_name', 'LIKE', '%' . $favoriteName . '%')->orWhere('last_name', 'LIKE', '%' . $favoriteName . '%')
 				->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE '%$favoriteName%'")->get();
 
-			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true]);
+			return view('user.favExtrasList', ['name' => $name, 'results' => $results, 'professional' => User::find($id)->professional,'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'back' => true, 'message' => $message]);
 		}
 	}
 
@@ -538,7 +541,7 @@ class ExtraController extends Controller
 	{
 		$AuthID = Auth::user()->id;
 		$test = NULL;
-
+		$message = "RAS";
 		if(User::find($AuthID)->type == 0)
 		{
 			$studentID = User::find($AuthID)->student->id;
@@ -553,6 +556,9 @@ class ExtraController extends Controller
 					'created_at' => Carbon::now(),
 					'updated_at' => Carbon::now(),
 					));
+				$message = "L'utilisateur a bien été ajouté dans vos favoris.";
+			}else{
+				$message = "Vous ne pouvez pas avoir plus de 5 favoris.";
 			}
 		}
 		else if(User::find($AuthID)->type == 1)
@@ -569,16 +575,19 @@ class ExtraController extends Controller
 					'updated_at' => Carbon::now(),
 					'created_at' => Carbon::now(),
 					));
+				$message = "L'utilisateur a bien été ajouté dans vos favoris.";
+			}else{
+				$message = "Vous ne pouvez pas avoir plus de 5 favoris.";
 			}
 		}
 
-		return redirect()->route('my_favorite_extras', Auth::user()->id);
+		return redirect()->route('my_favorite_extras', Auth::user()->id)->with('message', $message);
 	}
 
 	public static function favoriteDelete($username, $id)
 	{
 		$AuthID = Auth::user()->id;
-
+		$message = "RAS";
 		if(User::find($AuthID)->type == 0)
 		{
 			$studentID = User::find($AuthID)->student->id;
@@ -589,8 +598,8 @@ class ExtraController extends Controller
 			$professionalID = User::find($AuthID)->professional->id;
 			$results = Professional::find($professionalID)->students()->where('type', 1)->detach($id);
 		}
-
-		return redirect()->route('my_favorite_extras', Auth::user()->id);
+		$message = "L'utilisateur a bien été retiré de vos favoris.";
+		return redirect()->route('my_favorite_extras', Auth::user()->id)->with('message', $message);
 	}
 
 	public function rateStudents($username, $extraID, Request $request)
