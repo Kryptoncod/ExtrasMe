@@ -118,7 +118,7 @@ class AccountController extends Controller
 		$rule = 'required|file|mimes:jpeg,jpg,pdf|max:10000';
 		$validator = Validator::make($request->all(), [
 			'carte-nationalite' => $rule,
-			'avs'   => $rule,
+			'avs'   => 'file|mimes:jpeg,jpg,pdf|max:10000',
 			'permit' => $rule,
 			'iban' => $rule,
 			]);

@@ -71,7 +71,7 @@ class ProfileController extends Controller
 
         if(Student::find($studentID)->group == 1)
         {
-          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('date', '>', Carbon::now())->simplePaginate(3);
+          $extras = Extra::orderBy('date_start', 'ASC')->where('finish', 0)->where('find', 0)->where('date_start', '>', Carbon::now())->simplePaginate(3);
           $links = $extras->render();
 
           $results = Student::find($studentID)->professionals()->where('type', 0)->get();
@@ -85,7 +85,7 @@ class ProfileController extends Controller
         else if(Student::find($studentID)->group == 2)
         {
 
-          $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->where('date', '>', Carbon::now())->simplePaginate(3);
+          $extras = Extra::orderBy('date_start', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->where('date_start', '>', Carbon::now())->simplePaginate(3);
           
           $links = $extras->render();
 
@@ -109,10 +109,10 @@ class ProfileController extends Controller
 
         $name = User::find($id)->professional->company_name;
         $professionalID = User::find($id)->professional->id;
-        $extraToRate = Professional::find($professionalID)->extra()->where('date', '<', Carbon::now())->where('finish', 0)->orderBy('date', 'DESC')->get();
+        $extraToRate = Professional::find($professionalID)->extra()->where('date_start', '<', Carbon::now())->where('finish', 0)->orderBy('date_start', 'DESC')->get();
 
         foreach ($extraToRate as $extra) {
-          $startTime = new Carbon($extra->date.' '.$extra->date_time);
+          $startTime = new Carbon($extra->date_start.' '.$extra->date_start_time);
           $endTime = $startTime->addHours($extra->duration)->toDateTimeString();
 
           if($endTime < Carbon::now('UTC'))
@@ -134,7 +134,7 @@ class ProfileController extends Controller
           }
         }
 
-        $extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->where('finish', 0)->orderBy('date', 'ASC')->simplePaginate(3);
+        $extras = Professional::find($professionalID)->extra()->where('date_start', '>=', Carbon::now())->where('finish', 0)->orderBy('date_start', 'ASC')->simplePaginate(3);
         $links = $extras->render();
         $results = null;
 

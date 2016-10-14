@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class Extra extends Model
 {
     protected $fillable = [
-        'broadcast', 'type', 'date', 'date_time', 'duration', 'number_persons', 'salary', 'language', 'benefits', 'requirements', 'informations', 'professional_id', 'open'
+        'broadcast', 'type', 'date_start', 'date_start_time', 'date_finish', 'date_finish_time', 'duration', 'number_persons', 'salary', 'language', 'benefits', 'requirements', 'informations', 'professional_id', 'open'
     ];
 
     public function students()
@@ -22,14 +22,24 @@ class Extra extends Model
     	return $this->belongsTo('App\Models\Professional');
     }
 
-    public function dateExtra()
+    public function dateStartExtra()
     {
-        return Carbon::parse($this->date)->format('d/m/Y');
+        return Carbon::parse($this->date_start)->format('d/m/Y');
     }
 
-    public function timeExtra()
+    public function timeStartExtra()
     {
-        return Carbon::parse($this->date_time)->format('H:i');
+        return Carbon::parse($this->date_start_time)->format('H:i');
+    }
+
+    public function dateFinishExtra()
+    {
+        return Carbon::parse($this->date_finish)->format('d/m/Y');
+    }
+
+    public function timeFinishExtra()
+    {
+        return Carbon::parse($this->date_finish_time)->format('H:i');
     }
 
     public function getPaginate($n)

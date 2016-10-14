@@ -24,8 +24,8 @@
                            @for($i=0; $i < count($extras); $i++)
                                  <div style="width:100%; height:1px; background-color:white;"></div>
                                  <li data-cardid="{{$extras[$i]->id}}" class="showCard <?php if($i == 0){ echo "active"; }?>" style="list-style-type:none; padding-top:20px; padding-bottom :20px; cursor:pointer;">{{ $extras[$i]->type }} Extra: {{ $professional->company_name }}<br/>
-                                  Date : {{ $extras[$i]->date }} <br/>
-                                  Duration : {{ $extras[$i]->date_time }}
+                                  Date : {{ $extras[$i]->dateStartExtra() }} <br/>
+                                  Duration : {{ $extras[$i]->duration }} Hr(s)
                                  </li>
                                  <div style="width:100%; height:1px; background-color:white;"></div>
                            @endfor
@@ -114,7 +114,7 @@
                                 @lang('card-content.time')
                               </td>
                               <td>
-                                {{ $extras[0]->dateExtra().' at '.$extras[0]->timeExtra() }}
+                                {{ $extras[0]->dateStartExtra().' at '.$extras[0]->timeStartExtra() }}
                               </td>
                             </tr>
                             <tr>

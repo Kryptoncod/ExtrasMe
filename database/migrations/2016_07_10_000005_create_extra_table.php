@@ -16,8 +16,10 @@ class CreateExtraTable extends Migration
         $table->increments('id');
         $table->boolean('broadcast'); //1 pour last minute et 0 pour normal
         $table->string('type');
-        $table->date('date');
-        $table->time('date_time');
+        $table->date('date_start');
+        $table->time('date_start_time');
+        $table->date('date_finish');
+        $table->time('date_finish_time');
         $table->integer('duration');
         $table->integer('number_persons');
         $table->integer('salary');

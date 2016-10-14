@@ -51,12 +51,12 @@ class UpdateExtra extends Command
      */
     public function handle()
     {
-        $extras = Extra::orderBy('date', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 0)->get();
+        $extras = Extra::orderBy('date_start', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 0)->get();
 
         foreach ($extras as $extra) {
 
             $postDate = Carbon::parse($extra->created_at);
-            $startDate = Carbon::parse($extra->date.' '.$extra->date_time);
+            $startDate = Carbon::parse($extra->date_start.' '.$extra->date_start_time);
             
             $timeLeft = $postDate->diffInSeconds($startDate);
 
@@ -82,7 +82,7 @@ class UpdateExtra extends Command
             }
         }
 
-        $extraToRate = Extra::where('find', 1)->where('finish', 0)->where('date', '<=',Carbon::now()->toDateSting())->where('date_time', '<=', Carbon::now()->toTimeString())->get();
+        $extraToRate = Extra::where('find', 1)->where('finish', 0)->where('date_start', '<=',Carbon::now()->toDateSting())->where('date_start_time', '<=', Carbon::now()->toTimeString())->get();
 
         foreach ($extraToRate as $extra) {
 

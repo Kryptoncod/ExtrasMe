@@ -109,22 +109,22 @@ class ExtraController extends Controller
 				{
 					if($student->group == 1)
 					{
-						$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+						$extras = Extra::where('find', 0)->whereBetween('date_start', [$dateMinest, $datePlus])->get();
 					}
 					else
 					{
-						$extras = Extra::where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->where('open', 1)->get();
+						$extras = Extra::where('find', 0)->whereBetween('date_start', [$dateMinest, $datePlus])->where('open', 1)->get();
 					}
 
 				} else {
 					
 					if($student->group == 1)
 					{
-						$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+						$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date_start', [$dateMinest, $datePlus])->get();
 					}
 					else
 					{
-						$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date', [$dateMinest, $datePlus])->get();
+						$extras = Extra::where('type', $type_extra)->where('find', 0)->whereBetween('date_start', [$dateMinest, $datePlus])->get();
 					}
 				}
 
@@ -161,18 +161,26 @@ class ExtraController extends Controller
 		$professionalID = User::find($id)->professional->id;
 		$type = config('international.last_minute_types')[$request->input('type')];
 		$language = config('international.language')[$request->input('language')];
-		$date_time = preg_split("/[\s,]+/", $request->input('date'));
-		$date = Carbon::createFromFormat('d/m/Y', $date_time[0]);
-		$date->setTimezone('UTC');
-		$time = Carbon::createFromFormat('H:i', $date_time[1]);
-		$time->setTimezone('UTC');
+		$date_time_start = preg_split("/[\s,]+/", $request->input('date_start'));
+		$date_start = Carbon::createFromFormat('d/m/Y', $date_time_start[0]);
+		$date_start->setTimezone('UTC');
+		$time_start = Carbon::createFromFormat('H:i', $date_time_start[1]);
+		$time_start->setTimezone('UTC');
+		$date_time_finish = preg_split("/[\s,]+/", $request->input('date_finish'));
+		$date_finish = Carbon::createFromFormat('d/m/Y', $date_time_finish[0]);
+		$date_finish->setTimezone('UTC');
+		$time_finish = Carbon::createFromFormat('H:i', $date_time_finish[1]);
+		$time_finish->setTimezone('UTC');
 		$last_minute = $request->input('broadcast') == 'last_minute';
+		$duration = Carbon::parse($date_start.' '.$time_start)->diffInHours(Carbon::parse($date_finish.' '.$time_finish));
 		$extraInput = array(
 			'broadcast' => $last_minute,
 			'type' => $type,
-			'date' => $date->format('Y-m-d'),
-			'date_time' => $time->format('H:i'),
-			'duration' => $request->input('duration'),
+			'date_start' => $date_start->format('Y-m-d'),
+			'date_start_time' => $time_start->format('H:i'),
+			'date_finish' => $date_finish->format('Y-m-d'),
+			'date_finish_time' => $time_finish->format('H:i'),
+			'duration' => $duration,
 			'number_persons' => $request->input('numberPerson'),
 			'salary' => $request->input('salary'),
 			'language' => $language,
@@ -250,7 +258,7 @@ class ExtraController extends Controller
 	public function search(Request $request)
 	{
 		$input = config('international.last_minute_types')[$request->input('type')];
-		$date = Carbon::createFromFormat('d/m/Y', $request->input('date'));
+		$date = Carbon::createFromFormat('d/m/Y', $request->input('date_start'));
 		$date = $date->toDateString();
 
 		return redirect()->route('extra_list', ['username' => Auth::user()->id, 'type_extra' => $input, 'date' => $date]);
@@ -294,7 +302,7 @@ class ExtraController extends Controller
 	{
 		$id = Auth::user()->id;
 		$professionalID = User::find($id)->professional->id;
-		$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+		$extras = Professional::find($professionalID)->extra()->where('date_start', '>=', Carbon::now())->orderBy('date_start', 'ASC')->get();
 		$name = User::find($id)->professional->company_name;
 		$students = null;
 		$studentsAlreadyChosen = null;
@@ -353,7 +361,7 @@ class ExtraController extends Controller
 		$professional = $extra->professional;
 		$studentUser = Student::find($studentID)->user;
 
-		$notif_to_send = $professional->company_name." accepted you for the Extra : ".$extra->type." the ".$extra->date." at ".$extra->date_time.".";
+		$notif_to_send = $professional->company_name." accepted you for the Extra : ".$extra->type." the ".$extra->date_start." at ".$extra->date_start_time.".";
 
 		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
 
@@ -373,7 +381,7 @@ class ExtraController extends Controller
 		$professional = $extra->professional;
 		$studentUser = Student::find($studentID)->user;
 
-		$notif_to_send = $professional->company_name." declined your application for the Extra : ".$extra->type." the ".$extra->date." at ".$extra->date_time.".";
+		$notif_to_send = $professional->company_name." declined your application for the Extra : ".$extra->type." the ".$extra->date_start." at ".$extra->date_start_time.".";
 
 		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
 
@@ -400,29 +408,49 @@ class ExtraController extends Controller
 	public function modifyExtra($username, $extraID, Request $request)
 	{
 		$save = $request->input('save');
-		$date = [];
+		$date_start = [];
+		$date_finish = [];
 		$i = 0;
 
 		if($save == 1)
 		{
 			$type = config('international.last_minute_types')[$request->input('type')];
 			$language = config('international.language')[$request->input('language')];
-			$date_time = $request->input('date');
-			foreach(explode(' ', $date_time) as $info) 
+			$date_time_start = $request->input('dateStart');
+
+			foreach(explode(' ', $date_time_start) as $info) 
 			{
 				if($i == 0)
-					$date[$i] = Carbon::createFromFormat('d/m/Y', $info, 'America/Mexico_City');
+					$date_start[$i] = Carbon::createFromFormat('d/m/Y', $info);
 				elseif($i == 1)
-					$date[$i] = Carbon::createFromFormat('H:i', $info, 'America/Mexico_City');
+					$date_start[$i] = Carbon::createFromFormat('H:i', $info);
 
-				$date[$i]->setTimezone('UTC');
+				$date_start[$i]->setTimezone('UTC');
 				$i++;
 			}
+
+			$i = 0;
+			$date_time_finish = $request->input('dateFinish');
+			foreach(explode(' ', $date_time_finish) as $info) 
+			{
+				if($i == 0)
+					$date_finish[$i] = Carbon::createFromFormat('d/m/Y', $info);
+				elseif($i == 1)
+					$date_finish[$i] = Carbon::createFromFormat('H:i', $info);
+
+				$date_finish[$i]->setTimezone('UTC');
+				$i++;
+			}
+
+			$duration = Carbon::parse($date_start[0].' '.$date_start[1])->diffInHours(Carbon::parse($date_finish[0].' '.$date_finish[1]));
+
 			$extraInput = array(
 				'type' => $type,
-				'date' => $date[0]->format('Y-m-d'),
-				'date_time' => $date[1]->format('H:i'),
-				'duration' => $request->input('duration'),
+				'date_start' => $date_start[0]->format('Y-m-d'),
+				'date_start_time' => $date_start[1]->format('H:i'),
+				'date_finish' => $date_finish[0]->format('Y-m-d'),
+				'date_finish_time' => $date_finish[1]->format('H:i'),
+				'duration' => $duration,
 				'salary' => $request->input('salary'),
 				'language' => $language,
 				'requirements' => $request->input('requirements'),
@@ -450,7 +478,7 @@ class ExtraController extends Controller
 			$extra = Extra::find($extraID);
 			$professional = $extra->professional;
 
-			$notif_to_send = $professional->company_name." deleted the Extra : ".$extra->type." the ".$extra->date." at ".$extra->date_time.".";
+			$notif_to_send = $professional->company_name." deleted the Extra : ".$extra->type." the ".$extra->date_start." at ".$extra->date_start_time.".";
 
 			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
 

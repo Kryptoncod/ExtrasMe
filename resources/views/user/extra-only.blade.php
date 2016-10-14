@@ -89,10 +89,18 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           @lang('card-content.time')
+                                           @lang('card-content.timeStart')
                                          </td>
                                          <td id="extra_date">
-                                           {{ $extra->dateExtra().' at '.$extra->timeExtra() }}
+                                           {{ $extra->dateStartExtra().' at '.$extra->timeStartExtra() }}
+                                         </td>
+                                       </tr>
+                                       <tr>
+                                         <td>
+                                           @lang('card-content.timeFinish')
+                                         </td>
+                                         <td id="extra_date">
+                                           {{ $extra->dateFinishExtra().' at '.$extra->timeFinishExtra() }}
                                          </td>
                                        </tr>
                                        <tr>

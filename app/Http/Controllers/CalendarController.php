@@ -64,7 +64,7 @@ class CalendarController extends Controller
     $extras = $student->extras()->where('find', 1)->get();
 
     foreach ($extras as $extra) {
-      $start = new Carbon($extra->date.' '.$extra->date_time);
+      $start = new Carbon($extra->date_start.' '.$extra->date_start_time);
 
       $events[] = \Calendar::event(
           $extra->type, //event title
@@ -89,7 +89,7 @@ class CalendarController extends Controller
     $extras = Professional::find($professionalID)->extra;
 
     foreach ($extras as $extra) {
-      $start = new Carbon($extra->date.' '.$extra->date_time);
+      $start = new Carbon($extra->date_start.' '.$extra->date_start_time);
 
       $events[] = \Calendar::event(
           $extra->type, //event title

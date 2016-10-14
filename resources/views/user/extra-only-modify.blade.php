@@ -106,21 +106,20 @@
                                        </tr>
                                        <tr>
                                          <td>
-                                           @lang('card-content.time')
+                                           @lang('card-content.timeStart')
                                          </td>
                                          <td id="extra_date">
-                                            <input type="text" class="span2" id="date" name="date" value="{{ $extra->dateExtra().' '.$extra->timeExtra() }}">
+                                            <input type="text" class="span2" id="date" name="dateStart" value="{{ $extra->dateStartExtra().' '.$extra->timeStartExtra() }}">
                                          </td>
                                        </tr>
                                        <tr>
                                          <td>
-                                           @lang('card-content.duration')
+                                           @lang('card-content.timeFinish')
                                          </td>
                                          <td id="extra_date">
-                                            <input type="number" value="1" min="0" name="duration" id="duration" pattern="abovezero" value="{{ $extra->duration }}" />
+                                            <input type="text" class="span2" id="date" name="dateFinish" value="{{ $extra->dateFinishExtra().' '.$extra->timeFinishExtra() }}">
                                          </td>
                                        </tr>
-                                       <tr>
                                        <tr>
                                          <td>
                                            @lang('card-content.numberPerson')

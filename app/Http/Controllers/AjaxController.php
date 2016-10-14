@@ -99,7 +99,7 @@ class AjaxController extends Controller
 				$first_name = $student->first_name;
 				$last_name = $student->last_name;
 				$name = $first_name . " " . $last_name;
-			    $extras = $student->extras()->where('find', 1)->where('date', '<', Carbon::now())->orderBy('date', 'DESC')->get();
+			    $extras = $student->extras()->where('find', 1)->where('date_start', '<', Carbon::now())->orderBy('date_start', 'DESC')->get();
 			    $professionals = array();
 			    
 			    if(count($extras) > 0){
@@ -119,7 +119,7 @@ class AjaxController extends Controller
 				$first_name = $student->first_name;
 				$last_name = $student->last_name;
 				$name = $first_name . " " . $last_name;
-			    $extras = $student->extras()->where('doing', 1)->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+			    $extras = $student->extras()->where('doing', 1)->where('date_start', '>=', Carbon::now())->orderBy('date_start', 'ASC')->get();
 			    $professionals = array();
 			    if(count($extras) > 0){
 					for($i=0; $i < count($extras); $i++)
@@ -140,7 +140,7 @@ class AjaxController extends Controller
 					$first_name = $student->first_name;
 					$last_name = $student->last_name;
 					$name = $first_name . " " . $last_name;
-				    $extras = $student->extras()->where('doing', 0)->where('find', 0)->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+				    $extras = $student->extras()->where('doing', 0)->where('find', 0)->where('date_start', '>=', Carbon::now())->orderBy('date_start', 'ASC')->get();
 				    $professionals = array();
 				    if(count($extras) > 0){
 						for($i=0; $i < count($extras); $i++)
@@ -162,7 +162,7 @@ class AjaxController extends Controller
 				$professional = User::find($id)->professional;
 				$professionalID = $professional->id;
 				$name = $professional->first_name." ".$professional->last_name;
-				$extras = Professional::find($professionalID)->extra()->where('date', '<=', Carbon::now())->orderBy('date', 'ASC')->get();
+				$extras = Professional::find($professionalID)->extra()->where('date_start', '<=', Carbon::now())->orderBy('date_start', 'ASC')->get();
 				$name = User::find($id)->professional->company_name;
 				$student = null;
 				$studentsAlreadyChosen = null;
@@ -187,7 +187,7 @@ class AjaxController extends Controller
 				$professional = User::find($id)->professional;
 				$professionalID = $professional->id;
 				$name = $professional->first_name." ".$professional->last_name;
-				$extras = Professional::find($professionalID)->extra()->where('date', '>=', Carbon::now())->orderBy('date', 'ASC')->get();
+				$extras = Professional::find($professionalID)->extra()->where('date_start', '>=', Carbon::now())->orderBy('date_start', 'ASC')->get();
 				$name = User::find($id)->professional->company_name;
 				$student = null;
 				$studentsAlreadyChosen = null;
