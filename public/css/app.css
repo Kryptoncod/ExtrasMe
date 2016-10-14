@@ -2985,6 +2985,16 @@ fieldset {
   padding: .375rem .5625rem .5625rem;
   background: #f04124;
   color: #FFF; }
+  .help-block{
+  display: block;
+  font-size: .75rem;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin-top: -1px;
+  padding: .375rem .5625rem .5625rem;
+  background: #f04124;
+  color: #FFF; }
 [data-abide] small.error, [data-abide] span.error {
   display: block;
   font-size: .75rem;

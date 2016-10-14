@@ -62,7 +62,7 @@
                                            <select class="input" id="type" name="type" aria-label="Type of extra">
                                              <option selected disabled value="">@lang('professional.lookingForExtras.selectType')</option>
                                              @foreach(config('international.last_minute_types') as $id => $name)
-                                                <option value="{{ $id }}" selected="{{ $extra->type }}">{{ $name }}</option>
+                                                <option value="{{ $id }}" <?php if($extra->type == $name){ echo"selected";} ?>>{{ $name }}</option>
                                              @endforeach
                                           </select>
                                          </td>
@@ -99,7 +99,7 @@
                                            <select class="input" id="language" name="language" aria-label="Language of extra">
                                              <option selected disabled value="">@lang('professional.lookingForExtras.selectLanguage')</option>
                                              @foreach(config('international.language') as $id => $lang)
-                                                <option value="{{ $id }}">{{ $lang }}</option>
+                                                <option value="{{ $id }}" <?php if($extra->language == $lang){ echo"selected";} ?>>{{ $lang }}</option>
                                              @endforeach
                                           </select>
                                          </td>
