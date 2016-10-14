@@ -117,7 +117,7 @@
                                            @lang('card-content.timeFinish')
                                          </td>
                                          <td id="extra_date">
-                                            <input type="text" class="span2" id="date" name="dateFinish" value="{{ $extra->dateFinishExtra().' '.$extra->timeFinishExtra() }}">
+                                            <input type="text" class="span2" id="dateFinish" name="dateFinish" value="{{ $extra->dateFinishExtra().' '.$extra->timeFinishExtra() }}">
                                          </td>
                                        </tr>
                                        <tr>

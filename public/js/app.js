@@ -168,6 +168,20 @@ $(function(){
     });
 });
 
+$(function(){
+    $('#dateFinish').fdatepicker({
+        language: 'fr',
+        format: 'dd/mm/yyyy hh:ii',
+        disableDblClickSelection: true,
+        pickTime: true
+    });
+    $('.date').fdatepicker({
+        language: 'fr',
+        format: 'mm/yyyy',
+        disableDblClickSelection: true
+    });
+});
+
 $(".go-to-page").click(function(e){
     e.preventDefault();
     var url = $(this).attr('href');

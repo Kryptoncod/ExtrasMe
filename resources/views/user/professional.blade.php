@@ -130,7 +130,7 @@
                         <label for="date" class="right inline">@lang('professional.lookingForExtras.dateFinish')</label>
                      </div>
                      <div class="large-9 end columns">
-                        <input type="text" class="span2" id="date" name="date_finish" required>
+                        <input type="text" class="span2" id="dateFinish" name="date_finish" required>
                         <small class="error">@lang('professional.lookingForExtras.errorDate')</small>
                      </div>
                   </div>
