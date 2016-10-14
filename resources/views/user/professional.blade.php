@@ -122,6 +122,7 @@
                      <div class="large-9 end columns">
                         <input type="text" class="span2" id="date" name="date_start" required>
                         <small class="error">@lang('professional.lookingForExtras.errorDate')</small>
+                       {!! $errors->first('date_start', '<small class="help-block">:message</small>') !!}
                      </div>
                   </div>
 
@@ -132,6 +133,7 @@
                      <div class="large-9 end columns">
                         <input type="text" class="span2" id="dateFinish" name="date_finish" required>
                         <small class="error">@lang('professional.lookingForExtras.errorDate')</small>
+                        {!! $errors->first('date_start', '<small class="help-block">:message</small>') !!}
                      </div>
                   </div>
 
