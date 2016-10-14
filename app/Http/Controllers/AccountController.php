@@ -115,12 +115,12 @@ class AccountController extends Controller
 		$name = $first_name . " " . $last_name;
 		$message = "";
 
-
 		$rule = 'required|file|mimes:jpeg,jpg,pdf|max:10000';
 		$validator = Validator::make($request->all(), [
-			'carte-id'   => $rule,
+			'carte-nationalite' => $rule,
 			'avs'   => $rule,
 			'permit' => $rule,
+			'iban' => $rule,
 			]);
 
 		if ($validator->fails()) {
@@ -128,9 +128,9 @@ class AccountController extends Controller
 		}
 
 
-		if ($request->hasFile('carte-id'))
+		if ($request->hasFile('carte-nationalite'))
 		{
-			$image1 = $request->file('carte-id');
+			$image1 = $request->file('carte-nationalite');
 			if($image1->isValid())
 			{
 				if ($request->hasFile('avs'))
@@ -143,26 +143,33 @@ class AccountController extends Controller
 						{
 							$image3 = $request->file('permit');
 
-							if($image3->isValid())
-							{
-								$path = config('card.path')."/$id";
-								$name = "carte-id.".$image1->getClientOriginalExtension();
-								$image1->move("$path", $name);
-								$path = config('card.path')."/$id";
-								$name = "avs.".$image2->getClientOriginalExtension();
-								$image2->move("$path", $name);
-								$path = config('card.path')."/$id";
-								$name = "permit.".$image3->getClientOriginalExtension();
-								$image3->move("$path", $name);
-								$files = glob($path."/*");
-								Zipper::make("$path/cartes.zip")->add($files);
-								$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
-								//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
-								$studentInput = array(
-									'registration_done' => 1,
-									);
-								$student = $this->studentRepository->update($studentID, $studentInput);
+							if($request->hasFile('iban')){
+
+								$image4 = $request->file('iban');
+
+								if($image3->isValid())
+								{
+									$path = config('card.path')."/$id";
+									$name = "carte-nationalite.".$image1->getClientOriginalExtension();
+									$image1->move("$path", $name);
+									$name = "avs.".$image2->getClientOriginalExtension();
+									$image2->move("$path", $name);
+									$name = "permit.".$image3->getClientOriginalExtension();
+									$image3->move("$path", $name);
+									$name = "iban.".$image4->getClientOriginalExtension();
+									$image4->move("$path", $name);
+									$files = glob($path."/*");
+									Zipper::make("$path/cartes.zip")->add($files);
+									$message = "Super ! Vous avez importé tous les fichiers nécessaires.";
+									//ici on dit dans la DB que l'utilisateur à uploadé tous les fichiers
+									$studentInput = array(
+										'registration_done' => 1,
+										);
+									$student = $this->studentRepository->update($studentID, $studentInput);
+								}
 							}
+
+							
 						}
 					}
 				}
