@@ -157,69 +157,76 @@ class ExtraController extends Controller
 
 	public function submit(ExtraSubmitRequest $request)
 	{
-		$id = Auth::user()->id;
-		$professionalID = User::find($id)->professional->id;
-		$type = config('international.last_minute_types')[$request->input('type')];
-		$language = config('international.language')[$request->input('language')];
-		$date_time_start = preg_split("/[\s,]+/", $request->input('date_start'));
-		$date_start = Carbon::createFromFormat('d/m/Y', $date_time_start[0]);
-		$date_start->setTimezone('UTC');
-		$time_start = Carbon::createFromFormat('H:i', $date_time_start[1]);
-		$time_start->setTimezone('UTC');
-		$date_time_finish = preg_split("/[\s,]+/", $request->input('date_finish'));
-		$date_finish = Carbon::createFromFormat('d/m/Y', $date_time_finish[0]);
-		$date_finish->setTimezone('UTC');
-		$time_finish = Carbon::createFromFormat('H:i', $date_time_finish[1]);
-		$time_finish->setTimezone('UTC');
-		$last_minute = $request->input('broadcast') == 'last_minute';
-		$duration = Carbon::parse($date_start.' '.$time_start)->diffInHours(Carbon::parse($date_finish.' '.$time_finish));
-		$extraInput = array(
-			'broadcast' => $last_minute,
-			'type' => $type,
-			'date_start' => $date_start->format('Y-m-d'),
-			'date_start_time' => $time_start->format('H:i'),
-			'date_finish' => $date_finish->format('Y-m-d'),
-			'date_finish_time' => $time_finish->format('H:i'),
-			'duration' => $duration,
-			'number_persons' => $request->input('numberPerson'),
-			'salary' => $request->input('salary'),
-			'language' => $language,
-			'requirements' => $request->input('requirements'),
-			'benefits' => $request->input('benefits'),
-			'informations' => $request->input('informations'),
-			'professional_id' => $professionalID,
-			'find' => 0,
-			'open' => 0,
-			'created_at' => Carbon::now(),
-			'updated_at' => Carbon::now(),
-			);
-
-		$credit_left = Professional::find($professionalID)->credit;
-
-		if($last_minute == 0)
+		try
 		{
-			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - $request->input('numberPerson')]);
-		} else
+			$id = Auth::user()->id;
+			$professionalID = User::find($id)->professional->id;
+			$type = config('international.last_minute_types')[$request->input('type')];
+			$language = config('international.language')[$request->input('language')];
+			$date_time_start = preg_split("/[\s,]+/", $request->input('date_start'));
+			$date_start = Carbon::createFromFormat('d/m/Y', $date_time_start[0]);
+			$date_start->setTimezone('UTC');
+			$time_start = Carbon::createFromFormat('H:i', $date_time_start[1]);
+			$time_start->setTimezone('UTC');
+			$date_time_finish = preg_split("/[\s,]+/", $request->input('date_finish'));
+			$date_finish = Carbon::createFromFormat('d/m/Y', $date_time_finish[0]);
+			$date_finish->setTimezone('UTC');
+			$time_finish = Carbon::createFromFormat('H:i', $date_time_finish[1]);
+			$time_finish->setTimezone('UTC');
+			$last_minute = $request->input('broadcast') == 'last_minute';
+			$duration = Carbon::createFromFormat('d/m/Y H:i', $request->input('date_start'))->diffInHours(Carbon::createFromFormat('d/m/Y H:i', $request->input('date_finish')));
+			$extraInput = array(
+				'broadcast' => $last_minute,
+				'type' => $type,
+				'date_start' => $date_start->format('Y-m-d'),
+				'date_start_time' => $time_start->format('H:i'),
+				'date_finish' => $date_finish->format('Y-m-d'),
+				'date_finish_time' => $time_finish->format('H:i'),
+				'duration' => $duration,
+				'number_persons' => $request->input('numberPerson'),
+				'salary' => $request->input('salary'),
+				'language' => $language,
+				'requirements' => $request->input('requirements'),
+				'benefits' => $request->input('benefits'),
+				'informations' => $request->input('informations'),
+				'professional_id' => $professionalID,
+				'find' => 0,
+				'open' => 0,
+				'created_at' => Carbon::now(),
+				'updated_at' => Carbon::now(),
+				);
+
+			$credit_left = Professional::find($professionalID)->credit;
+
+			if($last_minute == 0)
+			{
+				$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - $request->input('numberPerson')]);
+			} else
+			{
+				$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - (3 * $request->input('numberPerson'))]);
+			}
+
+			$extra = $this->extraRepository->store($extraInput);
+
+			$students = Student::where('group', 1)->get();
+
+			foreach ($students as $student) {
+
+				$notif_to_send = User::find($id)->professional->company_name.' just posted an extra in '.$extra->type.'. To see the extra visit the link below  : '.route('show_extra', [$student->user->id, $extra->id]);
+
+				Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $student->user], function($message) use ($student){
+					$message->to($student->user->email)->subject('New notification ExtrasMe');
+				});
+			}
+
+			$message = "Votre Extras a bien été enregistré !";
+
+			return redirect()->route('home', Auth::user()->id)->with('message', $message);
+		}
+		catch(\Exception $e)
 		{
-			$professional = $this->professionalRepository->update($professionalID, ['credit' => $credit_left - (3 * $request->input('numberPerson'))]);
+			dd($e);
 		}
-
-		$extra = $this->extraRepository->store($extraInput);
-
-		$students = Student::where('group', 1)->get();
-
-		foreach ($students as $student) {
-
-			$notif_to_send = User::find($id)->professional->company_name.' just posted an extra in '.$extra->type.'. To see the extra visit the link below  : '.route('show_extra', [$student->user->id, $extra->id]);
-
-			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $student->user], function($message) use ($student){
-				$message->to($student->user->email)->subject('New notification ExtrasMe');
-			});
-		}
-
-		$message = "Votre Extras a bien été enregistré !";
-
-		return redirect()->route('home', Auth::user()->id)->with('message', $message);
 	}
 
 	public static function apply($username, $id)
@@ -442,7 +449,7 @@ class ExtraController extends Controller
 				$i++;
 			}
 
-			$duration = Carbon::parse($date_start[0].' '.$date_start[1])->diffInHours(Carbon::parse($date_finish[0].' '.$date_finish[1]));
+			$duration = Carbon::createFromFormat('d/m/Y H:i', $request->input('dateStart'))->diffInHours(Carbon::createFromFormat('d/m/Y H:i', $request->input('dateFinish')));
 
 			$extraInput = array(
 				'type' => $type,

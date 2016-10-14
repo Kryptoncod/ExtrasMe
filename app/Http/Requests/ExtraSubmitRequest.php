@@ -29,8 +29,8 @@ class ExtraSubmitRequest extends Request
         return [
             'broadcast'    => 'required|in:last_minute,normal',
             'type'         => "required|between:0,$types",
-            'date'         => "required|date_format:d/m/Y H:i|after:$date",
-            'duration'     => 'required|numeric|min:1',
+            'date_start'         => "required|date_format:d/m/Y H:i|after:$date",
+            'date_finish'         => "required|date_format:d/m/Y H:i|after:$date",
             'salary'       => 'required|numeric|min:1',
             'requirements' => 'required',
             'benefits'     => 'required',
