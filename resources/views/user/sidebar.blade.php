@@ -39,7 +39,7 @@
             </li>
 
             <li>
-               <input type="text" name="date" placeholder="DATE (dd/mm/yyyy)" aria-label="Date (mm/dd/yyyy)" value="{{ date('d/m/Y') }}" pattern="month_day_year" data-abide-validator="after_now" required>
+               <input type="text" name="date_start" placeholder="DATE (dd/mm/yyyy)" aria-label="Date (mm/dd/yyyy)" value="{{ date('d/m/Y') }}" pattern="month_day_year" data-abide-validator="after_now" required>
                <small class="error">@lang('sidebar.errorDate')</small>
             </li>
 
