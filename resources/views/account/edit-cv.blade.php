@@ -94,15 +94,7 @@
               <li class="li-edit-cv" style="padding:0"><input type="text" name="language0" placeholder="Langue" class="langue" data-langue="0" value="{{$language->title}}"></li>
             @endforeach
           @else
-            <li class="li-edit-cv" style="padding:0">
-              <select class="langue" id="language" name="language1" aria-label="Language" data-langue="1">
-                   <option selected disabled value="">  @lang('professional.lookingForExtras.selectLanguage')
-                   </option>
-                   @foreach(config('international.language') as $id => $lang)
-                      <option value="{{ $id }}">{{ $lang }}</option>
-                   @endforeach
-              </select>
-            </li>
+            <li class="li-edit-cv" style="padding:0"><input type="text" name="language1" placeholder="Langue" class="langue" data-langue="1"></li>
           @endif
         </div>
         <button id="add-language" style="margin:auto; margin-left: 0; background-color: #222; padding :8px;"><i class="icon-plus-symbol" style="font-size: 10px;"></i></button>

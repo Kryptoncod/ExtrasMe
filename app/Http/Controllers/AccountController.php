@@ -250,7 +250,7 @@ class AccountController extends Controller
 			while ($request->input('language'.$i)) {
 
 				$languageInput = array(
-					'title' => config('international.language')[$request->input('language'.$i)],
+					'title' => $request->input('language'.$i),
 					'cv_id' => $cv->id,
 					);
 
