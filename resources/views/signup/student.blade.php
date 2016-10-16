@@ -249,9 +249,8 @@
          </div>
       </div>
 
-      <div class="row">
-         <div class="small-6 columns end">
-            <button type="submit" class="submit-button">BEGIN YOUR JOURNEY</button>
+      <div class="row" style="display: flex;">
+            <button style="margin: auto; margin-top: 20px; margin-bottom: 20px;" type="submit" class="submit-button">BEGIN YOUR JOURNEY</button>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
          </div>
       </div>
