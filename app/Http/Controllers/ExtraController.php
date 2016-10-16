@@ -94,7 +94,10 @@ class ExtraController extends Controller
 		{
 			$id = Auth::user()->id;
 			$type = User::find($id)->type;
-
+			$message = 'RAS';
+		      if(session()->has('message')){
+		        $message = session('message');
+		      }
 			if($type == 0)
 			{
 				$student = User::find($id)->student;
@@ -146,7 +149,7 @@ class ExtraController extends Controller
 					$email_pro = User::find($professionals[0]->user_id)->email;
 				}
 
-				return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply, 'email' => $email_pro])->with('name', $name);
+				return view('user.extra', ['extras' => $extras, 'user' => Auth::user(), 'professional' => $professionals, 'username' => $id, 'student' => $student, 'can_apply' => $can_apply, 'email' => $email_pro, 'message' => $message])->with('name', $name);
 			}
 		}
 		catch(\Exception $e)
