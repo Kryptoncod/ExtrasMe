@@ -3,7 +3,7 @@
      <div class="modal-buttons">
        <span class="button">
 			<p>@lang('payment.option.modalCash.content')</p>
-			<form>
+			<form style="margin-top: 20px;">
 				<button type="submit" class="submit-button"><a type="submit" href="{{ route('optionsPaymentCash', ['username' => Auth::user()->id, 'data0' => $data0, 'data1' => $data1]) }}" >@lang('payment.option.modalCash.validate')</a></button>
             	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			</form>
