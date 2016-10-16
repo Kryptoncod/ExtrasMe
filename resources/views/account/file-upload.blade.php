@@ -5,8 +5,6 @@
 </div>
 <div class="row register-form-container">
   <form method="POST" action="{{ route('register_update' , Auth::user()->id) }}" enctype="multipart/form-data">
-    {{ csrf_field() }}
-
     <div class="file-container">
      <input type="file" name="avs" id="avs-file" class="input-file">
      <div class="fake-input-file">
@@ -51,6 +49,7 @@
   </div>
 <div style="width:100%;display:flex;">
   <input type="submit" name="go-register" class="submit-account" value="Update">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 </div>
 </form>
 </div>

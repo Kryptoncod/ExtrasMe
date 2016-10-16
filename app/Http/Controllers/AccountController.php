@@ -115,10 +115,10 @@ class AccountController extends Controller
 		$name = $first_name . " " . $last_name;
 		$message = "";
 
-		$rule = 'required|file|mimes:jpeg,jpg,pdf|max:10000';
+		$rule = 'required|file|mimes:jpeg,jpg,pdf,png,gif,bmp|max:10000';
 		$validator = Validator::make($request->all(), [
 			'carte-nationalite' => $rule,
-			'avs'   => 'file|mimes:jpeg,jpg,pdf|max:10000',
+			'avs'   => 'file|mimes:jpeg,jpg,pdf,png,gif,bmp|max:10000',
 			'permit' => $rule,
 			'iban' => $rule,
 			]);
@@ -150,7 +150,7 @@ class AccountController extends Controller
 								if($image3->isValid())
 								{
 									$path = config('card.path')."/$id";
-									$name = "carte-nationalite.".$image1->getClientOriginalExtension();
+									$name = "carte-id.".$image1->getClientOriginalExtension();
 									$image1->move("$path", $name);
 									$name = "avs.".$image2->getClientOriginalExtension();
 									$image2->move("$path", $name);
@@ -353,9 +353,12 @@ class AccountController extends Controller
 			'registration_done' => 0,
 			);
 		$student = $this->studentRepository->update($studentID, $studentInput);
-		unlink("uploads/$id/carte-id.jpg");
-		unlink("uploads/$id/avs.jpg");
-		unlink("uploads/$id/permit.jpg");
+		$dir = "uploads/$id";
+		$files = array_diff(scandir($dir), array('.','..')); 
+	    foreach ($files as $file) { 
+	      (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file"); 
+	    }
+		rmdir($dir);
 		return redirect()->route('account', $id);
 	}
 
