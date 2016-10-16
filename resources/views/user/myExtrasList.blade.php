@@ -5,7 +5,13 @@
       @include('user.sidebar')
 
       <div class="medium-10 small-12 columns panel-main">
-        
+        @if(Session::has('message'))
+          @if(strpos(Session::get('message'), 'accepted') == true)
+            <div class="erreur-update" style="background-color: #00B143;">{{Session::get('message')}}</div>
+          @else
+             <div class="erreur-update" style="background-color: #960E0E;">{{Session::get('message')}}</div>
+          @endif
+        @endif
         <div class="row">
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
          </div>
@@ -156,7 +162,7 @@
                           </tbody>
                         </table>
                         @if($extras[0]->find == 0)
-                          <ul style="width: 80%; margin:auto;">
+                          <ul style="width: 80%; margin-left: auto; margin-right: auto;">
                               <li class="title list-stud-title">@lang('myExtraList.studentApplied')</li>
                               @if(!empty($students))
                                 @foreach($students as $student)
@@ -173,16 +179,18 @@
                                                      @endif
                                     {{ $student->first_name . " " . $student->last_name }}
                                     </a>
-                                    <button class="submit-button right"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extras[0]->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">@lang('myExtraList.accept')</a></button>
+                                    <div style="display:flex; align-items:center;">
+                                      <button class="submit-button right" style="margin-right: 20px;"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extras[0]->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
+                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                      <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">@lang('myExtraList.accept')</a></button>
+                                    </div>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                   </li>
                                 @endforeach
                               @endif
                           </ul>
                         @endif
-                          <ul style="width: 80%; margin: auto;">
+                          <ul style="width: 80%; margin-left: auto; margin-right: auto;">
                               <li class="title list-stud-title">@lang('myExtraList.studentChosen')</li>
                               @foreach($studentsAlreadyChosen as $student)
                                 <li class="student-applied-container">

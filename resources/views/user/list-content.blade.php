@@ -149,7 +149,7 @@
                         @if(Auth::user()->type == 1)
                           @if($listId == 4 || $listId == 5)
                             @if($extras[0]->find == 0)
-                              <ul style="width: 80%; margin:auto;">
+                              <ul style="width: 80%; margin-left: auto; margin-right: auto;">
                                 <li class="title list-stud-title">
                                   @lang('myExtraList.studentApplied')
                                 </li>
@@ -177,7 +177,7 @@
                                 @endif
                               </ul>
                             @endif
-                            <ul style="width: 80%; margin: auto;">
+                            <ul style="width: 80%; margin-left: auto; margin-right: auto;">
                               <li class="title list-stud-title">
                                 @lang('myExtraList.studentChosen')
                               </li>

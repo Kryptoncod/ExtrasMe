@@ -127,7 +127,7 @@
 @elseif($user->type == 1)     
   @if($extra->find == 0)
     @if(count($extra->students) != 0)
-      <ul style="width: 80%; margin:auto;">
+      <ul style="width: 80%; margin-left: auto; margin-right: auto;">
         <li class="title list-stud-title">@lang('myExtraList.studentApplied')</li>
         @if(!empty($student))
           @foreach($students as $student_i)
@@ -156,7 +156,7 @@
       </ul>
       @endif
   @endif
-      <ul style="width:80%; margin:auto;">
+      <ul style="width:80%; margin-left: auto; margin-right: auto;">
         <li class="title list-stud-title">@lang('myExtraList.studentChosen')</li>
                               @foreach($studentsAlreadyChosen as $student)
                                 <li class="student-applied-container">

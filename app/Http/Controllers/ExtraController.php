@@ -378,7 +378,8 @@ class ExtraController extends Controller
 				$message->to($studentUser->email)->subject('New notification ExtrasMe');
 		});
 
-		return redirect()->back();
+		$message = "You accepted ".Student::find($studentID)->first_name." ".Student::find($studentID)->last_name." for your extra !";
+		return redirect()->back()->with('message', $message);
 	}
 
 	public function declineExtra($username, $extraID, $studentID)
@@ -397,8 +398,8 @@ class ExtraController extends Controller
 
 				$message->to($studentUser->email)->subject('New notification ExtrasMe');
 		});
-
-		return redirect()->back();
+		$message = "You declined ".Student::find($studentID)->first_name." ".Student::find($studentID)->last_name." for your extra !";
+		return redirect()->back()->with('message', $message);
 	}
 
 	public function showModifyExtra($username, $extraID)
