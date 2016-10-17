@@ -188,8 +188,7 @@
                <label for="email_address" class="right inline">EMAIL ADDRESS:</label>
             </div>
             <div class="small-6 end columns">
-               <input type="email" name="email_address" id="email_address" required pattern="" required/>
-               <!--.+@ehl.ch$-->
+               <input type="email" name="email_address" id="email_address" required pattern=".+@ehl.ch$" required/>
                <small class="error">Email address must end with @ehl.ch.</small>
             </div>
          </div>
