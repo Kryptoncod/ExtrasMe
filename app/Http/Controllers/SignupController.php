@@ -17,7 +17,7 @@ use App\Repositories\CandidateRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB;
+use Auth, DB, Mail;
 
 class SignupController extends Controller
 {
@@ -82,10 +82,13 @@ class SignupController extends Controller
      */
     public function registerStudent(Request $request)
     {
+        $confirmation_code = str_random(30);
+
         $userInputs = array(
             'email' => $request->input('email_address'),
             'password' => $request->input('password'),
             'type' => 0,
+            'confirmation_code' => $confirmation_code,
             );
 
         $user = $this->userRepository->store($userInputs);
@@ -122,6 +125,12 @@ class SignupController extends Controller
         $dashBoard = $this->dashboardRepository->store($dashBoardInput);
 
         session()->put('signUpAuthorization', 'no');
+
+        $notif_to_send = "Please click here to verify your account : ".route('confirmation_account', $confirmation_code);
+
+        Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $user], function($message) use ($student){
+            $message->to($student->user->email)->subject('New notification ExtrasMe');
+          });
 
         return redirect()->route('index');
     }

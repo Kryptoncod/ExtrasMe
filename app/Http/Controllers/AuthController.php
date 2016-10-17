@@ -92,4 +92,37 @@ class AuthController extends Controller
             return redirect()->route('index_admin', Auth::user()->id);
         }
     }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function getCredentials(Request $request)
+    {
+        return $credentials = ['email' => $request->input('email'), 'password' => $request->input('password'), 'confirmed' => 1];
+    }
+
+    //Confirm the users
+    public function confirmAccount($confirmation_code)
+    {
+      if(!$confirmation_code)
+      {
+          throw new InvalidConfirmationCodeException;
+      }
+
+      $user = User::whereConfirmationCode($confirmation_code)->first();
+
+      if (!$user)
+      {
+          throw new InvalidConfirmationCodeException;
+      }
+
+      $user->confirmed = 1;
+      $user->confirmation_code = null;
+      $user->save();
+
+      return redirect()->route('login_form');
+    }
 }

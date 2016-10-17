@@ -19,6 +19,7 @@ Route::get('logout', ['as' => 'logout', "uses" => "AuthController@logout"]);
 Route::post('password/email', ['as' => 'email', "uses" => "PasswordController@sendResetLinkEmail"]);
 Route::post('password/reset', ['as' => 'reset', "uses" => "PasswordController@reset"]);
 Route::get('password/reset/{token?}', ['as' => 'password_reset', "uses" => "PasswordController@showResetForm"]);
+Route::get('account/confirm/{confirmation_code}', ['as' => 'confirmation_account', "uses" => "AuthController@confirmAccount"]);
 
 Route::get('about', ['as' => 'about', "uses" => "DocumentsController@about"]);
 Route::get('/missionStatement', ['as' => 'missionStatement', "uses" => "IndexController@missionStatement"]);
