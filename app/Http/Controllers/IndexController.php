@@ -66,4 +66,9 @@ class IndexController extends Controller
     {
         return view('documents.legal');
     }
+
+    public function charter()
+    {
+        return view('documents.charter');
+    }
 }

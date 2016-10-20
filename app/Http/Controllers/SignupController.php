@@ -55,7 +55,7 @@ class SignupController extends Controller
       if($email == 'extrasmeEHL2016')
       {
         $request->session()->put('signUpAuthorization', $email);
-        return redirect()->route('signUp_student');
+        return redirect()->route('charter');
       }
       else
       {
