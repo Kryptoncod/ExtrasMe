@@ -28,6 +28,7 @@ return [
 				Bon Extra !<br/><br/>
 
 				L’équipe Extras Me',
+	'conditions' => 'J\'ACCEPTE LES CONDITIONS CI-DESSUS',
 	'next' => 'SUIVANT',
 	'previous' => 'RETOUR',
 ];

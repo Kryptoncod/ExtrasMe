@@ -28,6 +28,7 @@ Route::get('/ourTeam', ['as' => 'ourTeam', "uses" => "IndexController@ourTeam"])
 Route::get('/amabassador', ['as' => 'ambassador', "uses" => "IndexController@ambassador"]);
 Route::get('/legal', ['as' => 'legal', "uses" => "IndexController@legal"]);
 Route::get('/charter', ['as' => 'charter', "uses" => "IndexController@charter"]);
+Route::get('/charter/verification', ['as' => 'verification_conditions', "uses" => "SignupController@verificationConditions"]);
 
 Route::get('404', function(){
    return view('errors.404');

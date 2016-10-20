@@ -29,6 +29,7 @@ return [
 
 				The Extras Team Me<br/><br/>
 				',
+	'conditions' => 'I AGREE ON THE TERMS ABOVE',
 	'next' => 'NEXT',
 	'previous' => 'PREVIOUS',
 ];

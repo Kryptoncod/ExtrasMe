@@ -75,6 +75,16 @@ class SignupController extends Controller
         return view('signup.student');
     }
 
+    public function verificationConditions(Request $request)
+    {
+      
+      $this->validate($request, [
+          'conditions' => 'required',
+      ]);
+
+      return redirect()->route('signUp_student');
+    }
+
     /**
      * Checks the submitted form and saves the resource
      *

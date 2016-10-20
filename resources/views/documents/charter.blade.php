@@ -17,9 +17,25 @@
       
       </div>
       <div>
-         <button><a href="{{ route('signUp_student') }}">@lang('charte.previous')</a></button>
-         <button><a href="{{ route('index') }}">@lang('charte.next')</a></button>
-      </div>
+         <form method="get">
+            <div class="form-group">
+               <div class="row">
+                  <div class="small-offset-1 small-3 columns">
+                     <input type="checkbox" class="checkbox-right" name="conditions" id="conditions">
+                  </div>
+                  <div class="small-5 columns end">
+                     <label for="conditions" class="inline">I ACCEPT ALL OF THE CONDITIONS</label>
+                  </div>
+                  {!! $errors->first('conditions', '<small class="help-block">:message</small>') !!}
+               </div>
 
+               <div class="row" style="display: flex;">
+                     <button style="margin: auto; margin-top: 20px; margin-bottom: 20px;" type="submit" class="submit-button" formaction="{{ route('index') }}">@lang('charte.previous')</button>
+                     <button style="margin: auto; margin-top: 20px; margin-bottom: 20px;" type="submit" class="submit-button" formaction="{{ route('verification_conditions') }}">@lang('charte.next')</button>
+                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+               </div>
+            </div>
+         </form>
+      </div>
    </div>
 @endsection
