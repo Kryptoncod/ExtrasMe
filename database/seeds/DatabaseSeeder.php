@@ -12,27 +12,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->delete();
+    	$confirmation_code = str_random(30);
 
-		for($i = 0; $i < 5; ++$i)
-		{
-			DB::table('users')->insert([
-				'email' => 'email' . $i . '@ehl.ch',
-				'password' => bcrypt('password' . $i),
-				'type' => 0,
-			]);
-		}
+		DB::table('users')->insert([
+			'email' => 'Virginie.BROSEHERBINET@ehl.ch',
+			'password' => bcrypt('ehlextrasme'),
+			'type' => 1,
+			'confirmation_code' => $confirmation_code,
+		]);
+		
 
-		for($i = 5; $i < 10; ++$i)
-		{
-			DB::table('users')->insert([
-				'email' => 'email' . $i . '@gmail.com',
-				'password' => bcrypt('password' . $i),
-				'type' => 1,
-			]);
-		}
+		DB::table('professionals')->delete();
 
-		DB::table('students')->delete();
+		DB::table('professionals')->insert([
+			'company_name' => 'Ecole Hoteliere de lausanne',
+			'category' => 'Ecole',
+			'first_name' => 'Virginie',
+			'last_name' => 'Brose Herbinet',
+			'phone' => '+41 21 785 16 24',
+			'zipcode' => 1000,
+			'state' => 'Vaud',
+			'country' => 'Suisse',
+			'city' => 'Lausanne',
+			'address' => 'Route de Cojonnex 18',
+			'credit' => 250,
+			'user_id' => 19,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
+		]);
+		
+
+		/*DB::table('students')->delete();
 
 		for($i = 0; $i < 5; ++$i)
 		{
@@ -168,5 +178,5 @@ class DatabaseSeeder extends Seeder
 				'updated_at' => Carbon::now(),
 				]);
 		}
-    }
+    }*/
 }
