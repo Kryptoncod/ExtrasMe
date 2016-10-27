@@ -142,7 +142,7 @@ class SignupController extends Controller
             $message->to($student->user->email)->subject('New notification ExtrasMe');
           });
 
-        return redirect()->route('index');
+        return redirect()->route('confirm_email_view');
     }
 
     /**
@@ -191,6 +191,6 @@ class SignupController extends Controller
 
         $professional = $this->professionalRepository->store($professionalInputs);
 
-        return redirect()->route('index');
+        return redirect()->route('confirm_email_view');
     }
 }

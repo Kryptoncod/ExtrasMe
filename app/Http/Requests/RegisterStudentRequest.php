@@ -35,7 +35,7 @@ class RegisterStudentRequest extends Request
            'nationality'           => "required|between:0,$nationalities",
            'school_year'           => 'required|between:0,3',
            'phone'                 => 'required',
-           'email_address'         => 'required|email|regex:/.+@ehl\.ch$/|confirmed', //only @ehl.com addresses
+           'email_address'         => 'required|unique:users|email|regex:/.+@ehl\.ch$/|confirmed', //only @ehl.com addresses
            'password'              => 'required|min:8|confirmed',
            'conditions'            => 'required',
         ];

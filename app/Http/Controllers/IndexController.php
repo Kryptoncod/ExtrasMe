@@ -71,4 +71,9 @@ class IndexController extends Controller
     {
         return view('documents.charter');
     }
+
+    public function confirmEmailView()
+    {
+      return view('signup.confirmEmail');
+    }
 }

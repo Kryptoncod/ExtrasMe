@@ -35,6 +35,7 @@ Route::get('404', function(){
 });
 
 Route::get('/signUp/student', ['as' => 'signUp_student', "uses" => "SignupController@showStudent"]);
+Route::get('/signUp/student/confirm', ['as' => 'confirm_email_view', "uses" => "IndexController@confirmEmailView"]);
 Route::post('/signUp/student', ['as' => 'register_student', "uses" => "SignupController@registerStudent"]);
 Route::post('/register', ['as' => 'register_candidate', "uses" => "SignupController@registerCandidate"]);
 
