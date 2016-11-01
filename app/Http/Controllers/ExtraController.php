@@ -158,7 +158,7 @@ class ExtraController extends Controller
 		}
 	}
 
-	public function submit(ExtraSubmitRequest $request)
+	public function submit(Request $request)
 	{
 		try
 		{
