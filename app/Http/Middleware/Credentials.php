@@ -2,12 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
-
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class Credit
+class Credentials
 {
     /**
      * Handle an incoming request.
@@ -16,9 +13,9 @@ class Credit
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->check())
+        if(Auth::guard($guard)->check())
         {
             if(Auth::user()->type != 1)
             {
@@ -26,7 +23,7 @@ class Credit
             }
             else
             {
-                if(session()->has('what_payment'))
+                if(session()->has('credentialsConfirm'))
                 {
                     return $next($request);
                 }

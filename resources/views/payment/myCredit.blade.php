@@ -70,7 +70,7 @@
                   </thead>
                   <tr>
                      <td>
-                        <input type="radio" name="what_payment" value="25 227">
+                        <input type="radio" name="what_payment" value="1">
                      </td>
                      <td>
                         25
@@ -84,7 +84,7 @@
                   </tr>
                   <tr>
                      <td>
-                        <input type="radio" name="what_payment" value="50 433">
+                        <input type="radio" name="what_payment" value="2">
                      </td>
                      <td>
                         50
@@ -98,7 +98,7 @@
                   </tr>
                   <tr>
                      <td>
-                        <input type="radio" name="what_payment" value="100 743">
+                        <input type="radio" name="what_payment" value="3">
                      </td>
                      <td>
                         100
@@ -112,7 +112,7 @@
                   </tr>
                   <tr>
                      <td>
-                        <input type="radio" name="what_payment" value="250 1548">
+                        <input type="radio" name="what_payment" value="4">
                      </td>
                      <td>
                         250
@@ -126,6 +126,7 @@
                   </tr>
                </table>
                <button>@lang('payment.myCredit.recharge.pay')</button>
+               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
            
          </div>

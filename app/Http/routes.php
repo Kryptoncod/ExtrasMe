@@ -44,13 +44,16 @@ Route::group(['prefix' => '{username}'], function($app) {
    $app->get('/', ['as' => 'home', "uses" => "ProfileController@show"]);
    $app->get('password/reset/{token?}', ['as' => 'password_reset', "uses" => "PasswordController@showResetForm"]);
    $app->get('account', ['as' => 'account', "uses" => "AccountController@show"]);
+
    Route::group(['prefix' => 'mycredits'], function($app) {
       $app->get('/', ['as' => 'credits', "uses" => "CreditsController@show"]);
-      $app->get('/options/{data0}/{data1}', ['as' => 'options', "uses" => "CreditsController@options"]);
-      $app->get('/options/payment/cash/{data0}/{data1}', ['as' => 'optionsPaymentCash', "uses" => "CreditsController@paymentOptionsCash"]);
-      $app->get('/options/payment/transfer/{data0}/{data1}', ['as' => 'optionsPaymentTransfer', "uses" => "CreditsController@paymentOptionsTransfer"]);
+      $app->get('/options', ['as' => 'options', "uses" => "CreditsController@options"])->middleware('credit', 'credentials');
+      $app->get('/options/payment/cash', ['as' => 'optionsPaymentCash', "uses" => "CreditsController@paymentOptionsCash"])->middleware('credit', 'credentials');
+      $app->get('/options/payment/transfer', ['as' => 'optionsPaymentTransfer', "uses" => "CreditsController@paymentOptionsTransfer"])->middleware('credit', 'credentials');
+      $app->get('/confirmForm', ['as' => 'confirm_form', "uses" => "CreditsController@confirmationView"])->middleware('credit');
       $app->get('/confirm', ['as' => 'confirm', "uses" => "CreditsController@confirmation"]);
    });
+
    Route::group(['prefix' => 'extra'], function($app) {
       $app->get('/rate/{id}', ['as' => 'extra_rate', "uses" => "ExtraController@rateOneExtra"]);
       $app->get('{id}/apply', ['as' => 'extra_apply', 'uses' => 'ExtraController@apply']);

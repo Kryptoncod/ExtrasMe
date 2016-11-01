@@ -50,13 +50,14 @@
             </div>
          </div>
          <div class="confirm-container">
-            <h4>@lang('payment.confirmation.select', array('number' => $data[0], 'price' => $data[1]))</h4>
-            <form action="{{ route('options', ['username' => Auth::user()->id, 'data0' => $data[0], 'data1' => $data[1]]) }}" method="get">
+            <h4>@lang('payment.confirmation.select', array('number' => session()->get('what_payment')[0], 'price' => session()->get('what_payment')[1]))</h4>
+            <form action="{{ route('options', Auth::user()->id) }}" method="get">
                <label>@lang('payment.confirmation.emailAddress')</label>
                <input type="text" name="mail">
                <label>@lang('payment.confirmation.password')</label>
                <input type="password" name="password">
                <button>@lang('payment.confirmation.pay')</button>
+               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
          </div>
 

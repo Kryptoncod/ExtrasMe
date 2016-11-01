@@ -30,7 +30,7 @@ use App\Repositories\InvoiceRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB, Mail, Password;
+use Auth, DB, Mail, Password, Log;
 
 class CreditsController extends Controller
 {
@@ -41,7 +41,7 @@ class CreditsController extends Controller
 	public function __construct(InvoiceRepository $invoiceRepository,
 								ProfessionalRepository $professionalRepository)
 	{
-		$middleware = array('auth', 'credit');
+		$middleware = array('auth');
 		$this->middleware($middleware);
 		$this->invoiceRepository = $invoiceRepository;
 		$this->professionalRepository = $professionalRepository;
@@ -50,6 +50,8 @@ class CreditsController extends Controller
 	public function show($username){
 		$user = User::find($username);
 		$professional = $user->professional;
+
+		session()->forget('what_payment');
 
 		$dueInvoices = DB::table('invoices')->where('professional_id', $professional->id)
 			->where('paid', 0)->get();
@@ -60,20 +62,21 @@ class CreditsController extends Controller
 		return view('payment.myCredit', ['user' => $user, 'professional' => $professional, 'username' => $username, 'dueInvoices' => $dueInvoices, 'pastInvoices' => $pastInvoices]);
 	}
 
-	public function options($username, Request $request, $data0, $data1){
+	public function options($username, Request $request){
 		$user = User::find($username);
 		$professional = $user->professional;
-
+		
 		$this->validate($request, [
 	        'mail' => 'required|email',
 	        'password' => 'required',
     	]);
 
-    	$credentials = array('email' => $request->input('mail'),'password' => $request->input('password'));
-
-		if(Auth::attempt(['email' => $request->input('mail'),'password' => $request->input('password')]))
+		if(Auth::validate(['email' => $request->input('mail'), 'password' => $request->input('password')]) && $user->email == $request->input('mail'))
 		{
-		    return view('payment.options', ['user' => $user, 'professional' => $professional, 'username' => $username, 'data1' => $data1, 'data0' => $data0]);
+			session()->flash('credentialsConfirm', 1);
+			session()->reflash();
+
+		    return view('payment.options', ['user' => $user, 'professional' => $professional, 'username' => $username]);
 		}
 		else {
 
@@ -81,28 +84,45 @@ class CreditsController extends Controller
     	}
 	}
 
-	public function confirmation($username, TypeCreditRequest $request){
-		$user = User::find($username);
-		$professional = $user->professional;
-		$data = [];
-		$i = 0;
+	public function confirmation($username, TypeCreditRequest $request)
+	{
+		$whatPayment = $request->input('what_payment');
 
-		$radio = $request->input('what_payment');
-
-		foreach(explode(' ', $radio) as $info) 
-		{
-			$data[$i] = $info;
-			$i++;
+		switch ($whatPayment) {
+			case 1:
+				session()->flash('what_payment', [25, 227]);
+				break;
+			case 2:
+				session()->flash('what_payment', [50, 433]);
+				break;
+			case 3:
+				session()->flash('what_payment', [100, 743]);
+				break;
+			case 4:
+				session()->flash('what_payment', [250, 1548]);
+				break;
 		}
 
-		session()->put('inProgressPayment', 'true');
+		$user = User::find($username);
+		$professional = $user->professional;
 
-		return view('payment.confirmation', ['user' => $user, 'professional' => $professional, 'username' => $username, 'data' => $data]);
+		return redirect()->route('confirm_form', Auth::user()->id);
 	}
 
-	public function paymentOptionsCash($username, $data0, $data1)
+	public function confirmationView($username)
 	{
-		$notif_to_send = "Your demand for ".$data0." Extras is now being processing. You will receive your credits as soon as the payment is effective.";
+		$user = User::find($username);
+		$professional = $user->professional;
+
+		session()->reflash();
+
+		return view('payment.confirmation', ['user' => $user, 'professional' => $professional, 'username' => $username]);
+	}
+
+	public function paymentOptionsCash($username)
+	{
+
+		$notif_to_send = "Your demand for ".session()->get('what_payment')[0]." Extras is now being processing. You will receive your credits as soon as the payment is effective.";
 
 		$professionalUser = User::find($username);
 
@@ -114,9 +134,9 @@ class CreditsController extends Controller
 
 		$invoiceInputs = array(
 			'paid' => 0,
-			'number_announce' => $data0,
-			'price' => $data1,
-			'price_announce' => $data1 / $data0,
+			'number_announce' => session()->get('what_payment')[0],
+			'price' => session()->get('what_payment')[1],
+			'price_announce' => session()->get('what_payment')[1] / session()->get('what_payment')[0],
 			'type_payment' => 0,
 			'professional_id' => $professional->id,
 			'created_at' => Carbon::now(),
@@ -125,14 +145,16 @@ class CreditsController extends Controller
 
 		$invoice = $this->invoiceRepository->store($invoiceInputs);
 
-		$this->professionalRepository->update($professionalUser->professional->id, ['credit' => ($data0/5) + $professionalUser->professional->credit]);
+		$this->professionalRepository->update($professionalUser->professional->id, ['credit' => (session()->get('what_payment')[0]/5) + $professionalUser->professional->credit]);
 
 		return redirect()->route('credits', $username);
 	}
 
-	public function paymentOptionsTransfer($username, $data0, $data1)
+	public function paymentOptionsTransfer($username)
 	{
-		$notif_to_send = "Your demand for ".$data0." Extras is now being processing. You will receive your credits as soon as the payment is effective.";
+		\Log::info(session()->get('what_payment'));
+
+		$notif_to_send = "Your demand for ".session()->get('what_payment')[0]." Extras is now being processing. You will receive your credits as soon as the payment is effective.";
 
 		$professionalUser = User::find($username);
 
@@ -144,9 +166,9 @@ class CreditsController extends Controller
 
 		$invoiceInputs = array(
 			'paid' => 0,
-			'number_announce' => $data0,
-			'price' => $data1,
-			'price_announce' => $data1 / $data0,
+			'number_announce' => session()->get('what_payment')[0],
+			'price' => session()->get('what_payment')[1],
+			'price_announce' => session()->get('what_payment')[1] / session()->get('what_payment')[0],
 			'type_payment' => 1,
 			'professional_id' => $professional->id,
 			'created_at' => Carbon::now(),
@@ -155,7 +177,7 @@ class CreditsController extends Controller
 
 		$invoice = $this->invoiceRepository->store($invoiceInputs);
 
-		$this->professionalRepository->update($professionalUser->professional->id, ['credit' => ($data0/5) + $professionalUser->professional->credit]);
+		$this->professionalRepository->update($professionalUser->professional->id, ['credit' => (session()->get('what_payment')[0]/5) + $professionalUser->professional->credit]);
 
 		return redirect()->route('credits', $username);
 	}

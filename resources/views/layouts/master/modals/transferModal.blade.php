@@ -7,7 +7,7 @@
         <img style="margin: auto; max-width: 100%;" src="{{asset('images/iban.jpg')}}">
       </div>
 			<form style="margin-top: 20px;">
-				<button type="submit" class="submit-button"><a href="{{ route('optionsPaymentTransfer', ['username' => Auth::user()->id, 'data0' => $data0, 'data1' => $data1]) }}">@lang('payment.option.modalTransfer.validate')</a></button>
+				<button type="submit" class="submit-button"><a href="{{ route('optionsPaymentTransfer', ['username' => Auth::user()->id]) }}">@lang('payment.option.modalTransfer.validate')</a></button>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 			</form>
        </span>
