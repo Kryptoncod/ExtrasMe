@@ -5,7 +5,7 @@ return [
     'myExtrasme' => 'MY EXTRASME',
     'home' => 'HOME',
     'account' => 'ACCOUNT',
-    'myExperices' => 'MY EXPERIENCES',
+    'myExperiences' => 'MY EXPERIENCES',
     'myCredit' => 'MY CREDIT',
     'myExtras' => 'MY EXTRAS',
     'dashboard' => 'DASHBOARD',

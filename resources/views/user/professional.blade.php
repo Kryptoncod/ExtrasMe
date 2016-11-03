@@ -12,7 +12,7 @@
              <div class="erreur-update" style="background-color: #960E0E;">Une erreur s'est produite.</div>
         @endif
          <div class="row">
-            <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
+            <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ Carbon\Carbon::now('Europe/Paris')->formatLocalized('%A %d %B %Y') }}</a></span>
          </div>
 
          <div class="row account-resume" style="background: url(images/annexe_test_blur.jpg) center center no-repeat; background-size: cover;">
@@ -88,7 +88,7 @@
 
                   <div class="row">
                      <div class="large-3 columns">
-                        <label for="lastminute" class="right inline">@lang('professional.lookingForExtras.broadcastin') <span data-tooltip aria-haspopup="true" class="has-tip level-error" title=@lang('professional.explinationBroadcasting')>?</span> :</label>
+                        <label for="lastminute" class="right inline">@lang('professional.lookingForExtras.broadcastin') <span data-tooltip aria-haspopup="true" class="has-tip level-error" title="@lang('professional.lookingForExtras.explinationBroadcasting')">?</span> :</label>
                      </div>
                      <div class="large-9 columns">
                         <input name="broadcast" id="normalRadio" class="pretty" value="normal" checked type="radio" required>

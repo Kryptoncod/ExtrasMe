@@ -12,7 +12,7 @@
             <div class="erreur-update" style="background-color: #960E0E;">Une erreur s'est produite.</div>
       @endif
       <div class="row">
-            <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ strtoupper(date('h:i A D j M Y')) }}</a></span>
+            <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ Carbon\Carbon::now('Europe/Paris')->formatLocalized('%A %d %B %Y') }}</a></span>
          </div>
 
       <div class="liste-extra-container">

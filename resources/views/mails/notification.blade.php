@@ -17,7 +17,7 @@
       	<tr >
       		<td>
       			<div style="margin-top: 50px;margin-bottom: 50px; display: flex;">
-      				<a href="{{ 'www.extrasme.com/'.$user->id }}" style="margin-left: auto;margin-right: auto;color: white;padding:15px;background-color: #0E0E0E; text-decoration: none;">Accéder à mon compte</a>
+      				<a href="{{ 'http://www.extrasme.com/'.$user->id }}" style="margin-left: auto;margin-right: auto;color: white;padding:15px;background-color: #0E0E0E; text-decoration: none;">Accéder à mon compte</a>
       			</div>
       		</td>
       	</tr>
