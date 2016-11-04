@@ -10,6 +10,14 @@
          <div class="row">
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ Carbon\Carbon::now('Europe/Paris')->formatLocalized('%A %d %B %Y') }}</a></span>
          </div>
+         @if(session()->has('message'))
+            @if(session()->get('message') == 'RAS')
+            @elseif(session()->get('message') == 'error')
+              <div class="erreur-update" style="background-color: #960E0E;">Une erreur s'est produite.</div>
+            @else
+              <div class="erreur-update" style="background-color: #00B143;">{{ session()->get('message') }}</div>
+            @endif
+          @endif
 
          <div class="extra-container">
          <div class="row account-resume">

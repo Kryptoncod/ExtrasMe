@@ -255,10 +255,11 @@ class ExtraController extends Controller
 			});
 
 			$message = "Votre soumission à l'extra à bien été enregistrée!";
+			session()->flash('message', $message);
 
-			return redirect()->back()->with('message', $message);
+			return redirect()->back();
 		}
-		catch (Exception $e)
+		catch (\Exception $e)
 		{
 			dd($e);
 			abort(404);
@@ -297,6 +298,9 @@ class ExtraController extends Controller
 			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
 				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
 			});
+
+			$message = "You cancel your application.";
+			session()->flash('message', $message);
 
 			return redirect()->back();
 		}
@@ -356,6 +360,8 @@ class ExtraController extends Controller
 
 	public static function acceptExtra($extraID, $studentID)
 	{
+		$students = Extra::find($extraID)->students()->where('doing', 0)->get();
+
 		DB::table('extras_students')->where('extra_id', $extraID)
 			->where('student_id', $studentID)
 			->update(['doing' => 1]);
@@ -365,6 +371,19 @@ class ExtraController extends Controller
 		if(count($numberStudent) == Extra::find($extraID)->number_persons)
 		{
 			DB::table('extras')->where('id', $extraID)->update(['find' => 1]);
+
+			foreach ($students as $student) {
+
+				$extra = Extra::find($extraID);
+				$professional = $extra->professional;
+
+				$notif_to_send = $professional->company_name." has accepted all the students for the Extra : ".$extra->type." the ".$extra->date_start." at ".$extra->date_start_time.". We are sorry that you weren't selected.";
+
+				Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $student->user], function($message) use ($student){
+
+						$message->to($student->user->email)->subject('New notification ExtrasMe');
+				});
+			}
 		}
 
 		$extra = Extra::find($extraID);
@@ -398,8 +417,11 @@ class ExtraController extends Controller
 
 				$message->to($studentUser->email)->subject('New notification ExtrasMe');
 		});
+		
 		$message = "You declined ".Student::find($studentID)->first_name." ".Student::find($studentID)->last_name." for your extra !";
-		return redirect()->back()->with('message', $message);
+		session()->flash('message', $message);
+
+		return redirect()->back();
 	}
 
 	public function showModifyExtra($username, $extraID)
@@ -473,6 +495,12 @@ class ExtraController extends Controller
 			$this->extraRepository->update($extraID, $extraInput);
 		}
 
+		$notif_to_send ='Your modifications for the extra : '.$type.' have be been registered.';
+
+		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => User::find($username)], function($message){
+			$message->to(User::find($username)->email)->subject('New notification ExtrasMe');
+		});
+
 		if(session('returnAfterModifyExtra') == 'show_extra')
 		{
 			return redirect()->route('show_extra', ['username' => Auth::user()->id, 'id' => $extraID]);
@@ -496,6 +524,12 @@ class ExtraController extends Controller
 					$message->to($studentUser->email)->subject('New notification ExtrasMe');
 			});
 		}
+
+		$notif_to_send ='Your extra : '.$type.' have be been deleted.';
+
+		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => User::find($username)], function($message){
+			$message->to(User::find($username)->email)->subject('New notification ExtrasMe');
+		});
 
 		$this->extraRepository->destroy($extraID);
 

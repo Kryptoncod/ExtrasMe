@@ -52,145 +52,150 @@ class ProfileController extends Controller
 
   public function show($username)
   {
-      $message = 'RAS';
-      if(session()->has('message')){
-        $message = session('message');
-      }
-      $id = Auth::user()->id;
-      $type = User::find($username)->type;
-      $favExtras = NULL;
-      $linksFav = NULL;
-      $canDownloadCard = 0;
-      $i = 0;
-      $studentApply = 0;
-      $extrasSecondGroup = [];
-      
-      if(User::find($id)->type == 0)
-      {
-        $studentID = User::find($id)->student->id;
-
-        if(Student::find($studentID)->group == 1)
-        {
-          $extras = Extra::orderBy('date_start', 'ASC')->where('finish', 0)->where('find', 0)->where('date_start', '>', Carbon::now())->simplePaginate(3);
-          $links = $extras->render();
-
-          $results = Student::find($studentID)->professionals()->where('type', 0)->get();
-
-          foreach($results as $result)
-          {
-            $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->get();
-            $i++;
-          }
+      try{
+        $message = 'RAS';
+        if(session()->has('message')){
+          $message = session('message');
         }
-        else if(Student::find($studentID)->group == 2)
+        $id = Auth::user()->id;
+        $type = User::find($username)->type;
+        $favExtras = NULL;
+        $linksFav = NULL;
+        $canDownloadCard = 0;
+        $i = 0;
+        $studentApply = 0;
+        $extrasSecondGroup = [];
+        
+        if(User::find($id)->type == 0)
         {
+          $studentID = User::find($id)->student->id;
 
-          $extras = Extra::orderBy('date_start', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->where('date_start', '>', Carbon::now())->simplePaginate(3);
-          
-          $links = $extras->render();
-
-          $results = Student::find($studentID)->professionals()->where('type', 0)->get();
-
-          foreach($results as $result)
+          if(Student::find($studentID)->group == 1)
           {
-            $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->where('open', 1)->get();
-            $i++;
-          }
-        }
-        else
-        {
-          $extras = null;
-          $links = null;
-        }
+            $extras = Extra::orderBy('date_start', 'ASC')->where('finish', 0)->where('find', 0)->where('date_start', '>', Carbon::now())->simplePaginate(3);
+            $links = $extras->render();
 
-        $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
-      }
-      else if(User::find($id)->type == 1){
+            $results = Student::find($studentID)->professionals()->where('type', 0)->get();
 
-        $name = User::find($id)->professional->company_name;
-        $professionalID = User::find($id)->professional->id;
-        $extraToRate = Professional::find($professionalID)->extra()->where('date_start', '<', Carbon::now())->where('finish', 0)->orderBy('date_start', 'DESC')->get();
-
-        foreach ($extraToRate as $extra) {
-          $startTime = new Carbon($extra->date_start.' '.$extra->date_start_time);
-          $endTime = $startTime->addHours($extra->duration)->toDateTimeString();
-
-          if($endTime < Carbon::now('UTC'))
-          {
-
-            $find = DB::table('extras_students')->where('extra_id', $extra->id)
-              ->where('doing', 1)->get();
-
-            if(!empty($find))
+            foreach($results as $result)
             {
-                foreach($find as $f)
-                {
-                  $studentToRate[] = Student::find($f->student_id);
-                }
-                
-                return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
-                'AuthId' => $id, 'name' => $name, 'studentToRate' => $studentToRate, 'extra' => $extra]);
+              $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->get();
+              $i++;
             }
           }
-        }
-
-        $extras = Professional::find($professionalID)->extra()->where('date_start', '>=', Carbon::now())->where('finish', 0)->orderBy('date_start', 'ASC')->simplePaginate(3);
-        $links = $extras->render();
-        $results = null;
-
-        $extrasToDo = Professional::find($professionalID)->extra;
-
-        foreach ($extrasToDo as $extra) {
-          
-          $studentIfAccepted = DB::table('extras_students')->where('extra_id', $extra->id)
-                                ->where('doing', 1)->value('student_id');
-
-          if(User::find($username)->type == 0 && count($studentIfAccepted) != null)
+          else if(Student::find($studentID)->group == 2)
           {
+            $extras = Extra::orderBy('date_start', 'ASC')->where('finish', 0)->where('find', 0)->where('open', 1)->where('date_start', '>', Carbon::now())->simplePaginate(3);
             
-            if(User::find($username)->student->id == $studentIfAccepted)
+            $links = $extras->render();
+
+            $results = Student::find($studentID)->professionals()->where('type', 0)->get();
+
+            foreach($results as $result)
             {
-              $canDownloadCard = 1;
+              $favExtras[$i] = Extra::where('professional_id', $result->id)->where('finish', 0)->where('find', 0)->where('open', 1)->get();
+              $i++;
             }
           }
-
-          $studentDemandApply = DB::table('extras_students')->where('extra_id', $extra->id)
-                                ->where('doing', 0)->value('student_id');
-
-          if(User::find($username)->type == 0 && count($studentDemandApply) != 0)
+          else
           {
-            
-            if(User::find($username)->student->id == $studentDemandApply)
+            $extras = null;
+            $links = null;
+          }
+
+          $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
+        }
+        else if(User::find($id)->type == 1){
+
+          $name = User::find($id)->professional->company_name;
+          $professionalID = User::find($id)->professional->id;
+          $extraToRate = Professional::find($professionalID)->extra()->where('date_start', '<', Carbon::now())->where('finish', 0)->orderBy('date_start', 'DESC')->get();
+
+          foreach ($extraToRate as $extra) {
+            $startTime = new Carbon($extra->date_start.' '.$extra->date_start_time);
+            $endTime = $startTime->addHours($extra->duration)->toDateTimeString();
+
+            if($endTime < Carbon::now('UTC'))
             {
-              $studentApply = 1;
+
+              $find = DB::table('extras_students')->where('extra_id', $extra->id)
+                ->where('doing', 1)->get();
+
+              if(!empty($find))
+              {
+                  foreach($find as $f)
+                  {
+                    $studentToRate[] = Student::find($f->student_id);
+                  }
+                  
+                  return view('user.rating', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'username' => $username,
+                  'AuthId' => $id, 'name' => $name, 'studentToRate' => $studentToRate, 'extra' => $extra]);
+              }
+            }
+          }
+
+          $extras = Professional::find($professionalID)->extra()->where('date_start', '>=', Carbon::now())->where('finish', 0)->orderBy('date_start', 'ASC')->simplePaginate(3);
+          $links = $extras->render();
+          $results = null;
+
+          $extrasToDo = Professional::find($professionalID)->extra;
+
+          foreach ($extrasToDo as $extra) {
+            
+            $studentIfAccepted = DB::table('extras_students')->where('extra_id', $extra->id)
+                                  ->where('doing', 1)->value('student_id');
+
+            if(User::find($username)->type == 0 && count($studentIfAccepted) != null)
+            {
+              
+              if(User::find($username)->student->id == $studentIfAccepted)
+              {
+                $canDownloadCard = 1;
+              }
+            }
+
+            $studentDemandApply = DB::table('extras_students')->where('extra_id', $extra->id)
+                                  ->where('doing', 0)->value('student_id');
+
+            if(User::find($username)->type == 0 && count($studentDemandApply) != 0)
+            {
+              
+              if(User::find($username)->student->id == $studentDemandApply)
+              {
+                $studentApply = 1;
+              }
             }
           }
         }
-      }
 
-      if($type == 0)
-      {
-        $user_student = User::find($username);
-        $student = $user_student->student;
-        try{
-          $cvID = $student->cv->id;
-          $experiences = Cv::find($cvID)->experiences;
-          $educations = Cv::find($cvID)->educations;
-          $languages = Cv::find($cvID)->languages;
-          $skills = Cv::find($cvID)->skills;
-        } catch(\Exception $e){
-          $experiences = null;
-          $educations = null;
-          $languages = null;
-          $skills = null;
+        if($type == 0)
+        {
+          $user_student = User::find($username);
+          $student = $user_student->student;
+          try{
+            $cvID = $student->cv->id;
+            $experiences = Cv::find($cvID)->experiences;
+            $educations = Cv::find($cvID)->educations;
+            $languages = Cv::find($cvID)->languages;
+            $skills = Cv::find($cvID)->skills;
+          } catch(\Exception $e){
+            $experiences = null;
+            $educations = null;
+            $languages = null;
+            $skills = null;
+          }
+
+          return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'canDownloadCard' => $canDownloadCard, 'studentApply' => $studentApply])->with('username', $username);
         }
+        else if($type == 1)
+        {
 
-        return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'canDownloadCard' => $canDownloadCard, 'studentApply' => $studentApply])->with('username', $username);
+          return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'links' => $links, 'username' => $username, 'AuthId' => $id, 'name' => $name, 'message' => $message]);
+        }
       }
-      else if($type == 1)
+      catch(\Exception $e)
       {
-
-        return view('user.professional', ['user' => User::find($username), 'professional' => User::find($username)->professional, 'extras' => $extras, 'links' => $links, 'username' => $username, 'AuthId' => $id, 'name' => $name, 'message' => $message]);
+        return view('errors.404');
       }
   }
 

@@ -147,11 +147,11 @@ return [
    |
    */
   'professionals_categories' => [
-     'Hôtel',
+     'Hotel',
      'Restaurant',
      'Boite de Nuit',
      'Bar',
-     'Ecole Hôtelière',
+     'Ecole Hoteliere',
      'Autre',
   ],
 

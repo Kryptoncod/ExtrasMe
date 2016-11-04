@@ -20,13 +20,12 @@ class DatabaseSeeder extends Seeder
 			'type' => 1,
 			'confirmation_code' => $confirmation_code,
 		]);
-		
 
-		DB::table('professionals')->delete();
+		$category = Config::get('international.professionals_categories')[4];
 
 		DB::table('professionals')->insert([
 			'company_name' => 'Ecole Hoteliere de lausanne',
-			'category' => 'Ecole',
+			'category' => $category,
 			'first_name' => 'Virginie',
 			'last_name' => 'Brose Herbinet',
 			'phone' => '+41 21 785 16 24',
@@ -36,7 +35,7 @@ class DatabaseSeeder extends Seeder
 			'city' => 'Lausanne',
 			'address' => 'Route de Cojonnex 18',
 			'credit' => 250,
-			'user_id' => 19,
+			'user_id' => 30,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
 		]);
