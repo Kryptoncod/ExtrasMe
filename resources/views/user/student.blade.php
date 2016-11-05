@@ -9,6 +9,14 @@
          <div class="row">
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ Carbon\Carbon::now('Europe/Paris')->formatLocalized('%A %d %B %Y') }}</a></span>
          </div>
+         @if(session()->has('message'))
+            @if(session()->get('message') == 'RAS')
+            @elseif(session()->get('message') == 'error')
+              <div class="erreur-update" style="background-color: #960E0E;">Une erreur s'est produite.</div>
+            @else
+              <div class="erreur-update" style="background-color: #00B143;">{{ session()->get('message') }}</div>
+            @endif
+          @endif
 
          <div class="row account-resume" style="background: url(images/annexe_test_blur.jpg) center center no-repeat; background-size: cover;">
             <div class="columns medium-3 medium-uncentered small-centered picture-column small-7">
@@ -71,10 +79,15 @@
          </div>
 
          @if(Auth::user()->type == 1 && $student->registration_done == 1 && $studentApply == 1)
-            <button class="submit-button right"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extras[0]->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <button class="submit-button right"><a href="{{ $extras[0]->id.'/accept/'.$student->id }}">@lang('myExtraList.accept')</a></button>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            @foreach($extrasWhereStudentApplied as $extra)
+               <p style="color: white;">This student asked for the extras : {{ $extra->type }} the {{ $extra->dateStartExtra() }} at {{ $extra->timeStartExtra() }} : </p>
+               <div style="margin-left: 5px;">
+                  <button class="submit-button"><a href="{{ route('accept_extra', ['username' => Auth::user()->id, 'extraID' => $extra->id, 'studentID' => $student->id]) }}">@lang('myExtraList.accept')</a></button>
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <button class="submit-button"><a href="{{ route('decline_application', ['username' => Auth::user()->id, 'extraID' => $extra->id, 'studentID' => $student->id]) }}">@lang('myExtraList.decline')</a></button>
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+               </div>
+            @endforeach
          @endif
 
          <div class="row details-button">

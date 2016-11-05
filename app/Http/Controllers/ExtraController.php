@@ -358,7 +358,7 @@ class ExtraController extends Controller
 		return view('user.myExtrasList', ['user' => Auth::user(), 'professional' => User::find($id)->professional, 'extras' => $extras, 'username' => $id, 'name' => $name, 'studentsAlreadyChosen' => $studentsAlreadyChosen, 'students' => $students]);
 	}
 
-	public static function acceptExtra($extraID, $studentID)
+	public static function acceptExtra($username, $extraID, $studentID)
 	{
 		$students = Extra::find($extraID)->students()->where('doing', 0)->get();
 
@@ -398,7 +398,9 @@ class ExtraController extends Controller
 		});
 
 		$message = "You accepted ".Student::find($studentID)->first_name." ".Student::find($studentID)->last_name." for your extra !";
-		return redirect()->back()->with('message', $message);
+		session()->flash('message', $message);
+		
+		return redirect()->back();
 	}
 
 	public function declineExtra($username, $extraID, $studentID)

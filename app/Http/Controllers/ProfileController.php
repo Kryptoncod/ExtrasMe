@@ -64,6 +64,7 @@ class ProfileController extends Controller
         $canDownloadCard = 0;
         $i = 0;
         $studentApply = 0;
+        $extrasWhereStudentApplied = null;
         $extrasSecondGroup = [];
         
         if(User::find($id)->type == 0)
@@ -102,8 +103,6 @@ class ProfileController extends Controller
             $extras = null;
             $links = null;
           }
-
-          
 
           $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
         }
@@ -165,6 +164,7 @@ class ProfileController extends Controller
               if(User::find($username)->student->id == $studentDemandApply)
               {
                 $studentApply = 1;
+                $extrasWhereStudentApplied[] = $extra;
               }
             }
           }
@@ -187,7 +187,7 @@ class ProfileController extends Controller
             $skills = null;
           }
 
-          return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'canDownloadCard' => $canDownloadCard, 'studentApply' => $studentApply])->with('username', $username);
+          return view('user.student', ['user' => User::find($username), 'student' => $student, 'extras' => $extras, 'AuthId' => $id, 'name' => $name, 'links' => $links, 'favExtras' => $favExtras, 'linksFav' => $linksFav, 'favPro' => $results, 'experiences' => $experiences, 'educations' => $educations, 'languages' => $languages, 'skills' => $skills, 'canDownloadCard' => $canDownloadCard, 'studentApply' => $studentApply, 'extrasWhereStudentApplied' => $extrasWhereStudentApplied])->with('username', $username);
         }
         else if($type == 1)
         {

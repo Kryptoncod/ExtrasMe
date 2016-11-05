@@ -66,9 +66,7 @@ Route::group(['prefix' => '{username}'], function($app) {
       $app->get ('deleteextra/{id}', ['as' => 'delete_extra', "uses" => "ExtraController@deleteExtra"]);
       $app->get ('{id}/modify', ['as' => 'modify_extra', "uses" => "ExtraController@showModifyExtra"]);
       $app->post ('{id}/modify', ['as' => 'modify_extra_post', "uses" => "ExtraController@modifyExtra"]);
-      $app->get('{extraID}/accept/{studentID}', function($username, $extraID, $studentID){
-      return App\Http\Controllers\ExtraController::acceptExtra($extraID, $studentID);
-   });
+      $app->get('{extraID}/accept/{studentID}', ['as' => 'accept_extra', "uses" => "ExtraController@acceptExtra"]);
       $app->get('{ExtraID}/decline/{studentID}', ['as' => 'decline_application', "uses" => "ExtraController@declineExtra"]);
       Route::group(['prefix' => 'favorite'], function($app) {
          $app->get ('/', ['as' => 'my_favorite_extras', "uses" => "ExtraController@showFavorite"]);
