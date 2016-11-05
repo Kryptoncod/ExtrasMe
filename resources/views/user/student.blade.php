@@ -183,15 +183,8 @@
                               @for($i = 0; $i < count($favExtras); $i++)
                                  @foreach ($favExtras[$i] as $favExtra)
                                     <li class="extra-available"><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $favExtra->id]) }}">
-                                    @if(file_exists("uploads/pp/".$favExtra->user_id.".png"))
                                        @include('user.card', ["extra" => $favExtra,
-                                                               "image" => asset("uploads/pp/".$favExtras->user_id.".png"),
                                                                "id"  => $favExtra->id])
-                                    @else
-                                       @include('user.card', ["extra" => $favExtra,
-                                                               "image" => asset("images/user-professional.png"),
-                                                               "id"  => $favExtra->id])
-                                    @endif
                                     </a></li>
                                  @endforeach
                               @endfor
@@ -218,15 +211,8 @@
                         @else
                            @foreach ($extras as $extra)
                            <li class="extra-available"><a href="{{ route('show_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">
-                           @if(file_exists("uploads/pp/".$extra->professional->user_id.".png"))
                                        @include('user.card', ["extra" => $extra,
-                                                               "image" => asset("uploads/pp/".$extra->professional->user_id.".png"),
                                                                "id"  => $extra->id])
-                                    @else
-                                       @include('user.card', ["extra" => $extra,
-                                                               "image" => asset("images/user-professional.png"),
-                                                               "id"  => $extra->id])
-                                    @endif
                            </a></li>
                            @endforeach
                         @endif

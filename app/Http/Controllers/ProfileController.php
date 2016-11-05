@@ -103,6 +103,8 @@ class ProfileController extends Controller
             $links = null;
           }
 
+          
+
           $name = User::find($id)->student->first_name." ".User::find($id)->student->last_name;
         }
         else if(User::find($id)->type == 1){
