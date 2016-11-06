@@ -221,4 +221,19 @@ class ProfileController extends Controller
 
     return view('user.applicationDownload', ['name' => $name]);
   }
+
+  public function helpForm()
+  {
+    if(Auth::user()->type == 0){
+
+      return view('documents.helpStudent');
+
+    } else {
+
+      return view('documents.helpProfessional');
+
+    }
+
+    return view('errors.404');
+  }
 }
