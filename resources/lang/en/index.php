@@ -31,7 +31,7 @@ return [
    ],
 
    'ambassador' => [
-      'title' => 'Ambassadeurs Extras Me',
+      'title' => 'Extras Me ambassadors',
       'content' => 'The Extras Me team decided to use a system of ambassadors to develop its model abroad. Thus, in each hospitality school we will work with, several students will have to run the relationship with their school heads and to solicit the students and the professionals located in their region.
       <br/><br/>
          These students will be remunerated in proportion to the school size and the number of professionals they solicit. 

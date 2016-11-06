@@ -2,7 +2,7 @@
 
 return [
 
-   'title' => 'Mentions légales site Extras Me',
+   'title' => 'Extras Me\'s Privacy Policy',
    'content' => 'Conception, Développement et Directeur de la publication : Bruce Pauker et Baptiste Arnaud. 
    <br/><br/>
       210 Hébergement du site 
