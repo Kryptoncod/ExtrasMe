@@ -4,7 +4,7 @@ return [
 
    'iAmPro'     => 'Je suis un professionel',
    'iAmStudent' => 'Je suis un etudiant',
-   'notDeploy' => 'Les inscriptions sur la plateforme d’Extras Me seront bientôt accessibles, contactez nous au +41 79 732 16 09 ou à contact@extrasme.com pour plus de renseignements.',
+   'notDeploy' => 'Les inscriptions sur la plateforme d’Extras Me seront bientôt accessibles, contactez nous au +41 79 732 16 09 ou à contact@extrasme.com pour plus de renseignements.<br>Pour être informé des nouvelles, entrez votre email :',
    'section1'   => [
       'title'     => 'NOUS METTONS EN RELATION LES ÉTUDIANTS D\'ÉCOLES HOTELIÈRES AVEC LES PROFESSIONNELS DU MONDE DE L\'ACCUEIL AFIN QUE LES ÉTUDIANTS PUISSENT RÉPONDRE À DES MISSIONS TEMPORAIRES',
       'signUp' => 'S\'INSCRIRE' ,
@@ -84,5 +84,5 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
 Ayant vécu aux Etats-Unis et en Australie, Paul a su développer une ouverture culturelle, une capacité d’adaptation et un tempérament autonome, responsable et débrouillard. Son sens du détail qualifié de « perfectionniste » par ses associés leur permettra de mener à bien leur projet en transformant cette idée innovante en une entreprise profitable.',
       ],
    ],
-
+   'validate'=>'VALIDER',
 ];

@@ -4,7 +4,7 @@ return [
 
    'iAmPro'     => 'I\'m a professional',
    'iAmStudent' => 'I\'m a student',
-   'notDeploy' => 'Inscriptions on the Extras Me plateform will be soon available, please contact us +41 79 732 16 09 or at contact@extrasme.com if you should have any inquieries.',
+   'notDeploy' => 'Inscriptions on the Extras Me plateform will be soon available, please contact us +41 79 732 16 09 or at contact@extrasme.com if you should have any inquieries. <br>To be noticed about news, enter your email :',
    'section1'   => [
       'title'     => 'BRINGING TOGETHER STUDENTS AND PROFESSIONALS OF THE HOSPITALITY INDUSTRY WITH SHORT-TERM MISSIONS',
       'signUp' => 'SIGN UP NOW',
@@ -82,5 +82,5 @@ return [
          'content' => 'Paul is a 21 years old French citizen. He is also studying at the Ecole Hôtelière de Lausanne. The hospitality industry has always attracted him because it represents one of the largest service industries in the world. Coming from a family of entrepreneurs, he naturally oriented himself in the start-ups environment. Having lived in the United States and Australia, Paul has developed a cultural openness, adaptability and self-temperament, which allow him to cope with problems and evolve smoothly in the entrepreneurship world. Called « perfectionist » by his two associates through its pronounced sense of detail, Paul aims to carry out their project transforming this innovative idea into a profitable company.',
       ],
    ],
-
+   'validate'=>'VALIDATE'
 ];
