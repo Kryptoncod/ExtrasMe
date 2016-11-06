@@ -3,32 +3,33 @@
 return [
 
    'title' => 'Extras Me\'s Privacy Policy',
-   'content' => 'Conception, Développement et Directeur de la publication : Bruce Pauker et Baptiste Arnaud. 
-   <br/><br/>
-      210 Hébergement du site 
-      <br/>
-      214 OVH 
-      www.ovh.com
-      <br/><br/>
-      220 Declaration  
-      <br/>
-      224 Conformément aux articles 39 et suivants de la loi n° 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, toute personne peut obtenir communication et, le cas échéant, rectification ou suppression des informations la concernant, en s’adressant au service client. Toute personne peut également, pour des motifs légitimes, s’opposer au traitement des données la concernant.  
-      <br/><br/>
-      228 Extras Me décline toute responsabilité en cas d\'interruption ou de non-disponibilité du service.  
-      <br/><br/>
-      232 Extras Me ne saurait en aucun cas être tenu pour responsable d\'erreurs de transmission de données quelles qu\'elles soient, telles que perte ou détérioration de données ou modification de quelque nature que ce soit, comprenant, notamment, une détérioration directe ou indirecte résultant de l\'utilisation des services fournis sur ce site. 
-      <br/><br/>
-      238 Virus et défaillances techniques. 
-      <br/>
-       242 Extras Me ne garantit pas que le contenu de ce site soit exempt d\'infections, de virus, de vers, de chevaux de Troie et/ou d\'autres codes informatiques ayant des propriétés contaminatrices ou destructrices. Il est de la responsabilité de l\'utilisateur du site de prendre des mesures de protection. 
-       <br/><br/>
-       247 Société éditrice. 
-       <br/><br/>
-       251 Extras Me
-       <br/>  
-      254 Société à responsabilité limité au capital de 12 000 € 
-      <br/>
-      257 Siège social : 35 Grande Rue de La Croix-Rousse 69004 Lyon  
-      <br/>
-      260 RCS Lyon 822 341 558',
+   'content' => 'Design, Development and Publishing Director: Bruce Pauker and Baptiste Arnaud.
+<br><br>
+Website Hosting
+<br><br>
+OVH<br>
+www.ovh.com
+<br><br>
+Declaration
+<br><br>
+In accordance with Articles 39 and following of the law 78-17 of 6 January 1978 on computers, files and freedoms, any person may obtain and, if necessary, correct or delete information about it, by contacting customer service. Anyone can also, for legitimate reasons, oppose the processing of data concerning.
+<br><br>
+Extras Me is not responsible for any interruption or unavailability of service.
+<br><br>
+Extras Me shall in no way be held responsible for errors in data transmission of any kind, such as lost or damaged data or modification of any nature whatsoever, including, in particular, direct or indirect damage resulting from the use of the services provided on this website.
+<br><br>
+
+
+Virus and technical failures.
+<br><br>
+ Extras Me does not guarantee that the content of this website is free of infection, viruses, worms, Trojan horses and / or other computer codes that have contaminating or destructive properties. It is the responsibility of the user of the site to take protective measures.
+<br><br>
+
+Publishing Company.
+<br><br>
+Extras Me <br>
+Limited liability company with a capital of € 12,000<br>
+Registered office: 35 Grande Rue La Croix Rousse 69004 Lyon<br>
+RCS Lyon 260 822 341 558<br>
+',
 ];
