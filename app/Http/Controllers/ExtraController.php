@@ -360,11 +360,11 @@ class ExtraController extends Controller
 
 	public static function acceptExtra($username, $extraID, $studentID)
 	{
-		$students = Extra::find($extraID)->students()->where('doing', 0)->get();
-
 		DB::table('extras_students')->where('extra_id', $extraID)
 			->where('student_id', $studentID)
 			->update(['doing' => 1]);
+
+		$students = Extra::find($extraID)->students()->where('doing', 0)->get();
 
 		$numberStudent = DB::table('extras_students')->where('extra_id', $extraID)->where('doing', 1)->get();
 
@@ -527,9 +527,9 @@ class ExtraController extends Controller
 			});
 		}
 
-		$notif_to_send ='Your extra : '.$type.' have be been deleted.';
+		$notif_to_send ='Your extra : '.$extra->type.' have be been deleted.';
 
-		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => User::find($username)], function($message){
+		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => User::find($username)], function($message) use ($username){
 			$message->to(User::find($username)->email)->subject('New notification ExtrasMe');
 		});
 
