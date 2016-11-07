@@ -495,13 +495,13 @@ class ExtraController extends Controller
 				);
 
 			$this->extraRepository->update($extraID, $extraInput);
+
+			$notif_to_send ='Your modifications for the extra : '.$type.' have be been registered.';
+
+			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => User::find($username)], function($message) use ($username){
+				$message->to(User::find($username)->email)->subject('New notification ExtrasMe');
+			});
 		}
-
-		$notif_to_send ='Your modifications for the extra : '.$type.' have be been registered.';
-
-		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => User::find($username)], function($message){
-			$message->to(User::find($username)->email)->subject('New notification ExtrasMe');
-		});
 
 		if(session('returnAfterModifyExtra') == 'show_extra')
 		{
