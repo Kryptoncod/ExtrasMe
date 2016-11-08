@@ -134,7 +134,7 @@
             <li class="student-applied-container">
                 <a href = "{{ route('home', $student_i[0]->user->id) }}">
                   @if(file_exists("uploads/pp/".$user->id.".png"))
-                      <img class="profile-picture" src=" uploads/pp/{{$student_i[0]->user->id}}.png" alt="" />
+                      <img class="profile-picture" src="{{ asset('uploads/pp/'.$student_i[0]->user_id.'.png') }}" alt="" />
                    @else
                       @if($student_i[0]->gender == 0)
                          <img class="profile-picture" src="{{ asset('images/user-student.png') }}" alt="" />

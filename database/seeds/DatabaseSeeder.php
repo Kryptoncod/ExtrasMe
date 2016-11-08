@@ -12,29 +12,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    	$confirmation_code = str_random(30);
-
 		DB::table('users')->insert([
-			'email' => 'Virginie.BROSEHERBINET@ehl.ch',
+			'email' => 'Philippe.GOBET@ehl.ch',
 			'password' => bcrypt('ehlextrasme'),
 			'type' => 1,
-			'confirmation_code' => $confirmation_code,
+			'confirmation_code' =>  null,
 		]);
 
 		$category = Config::get('international.professionals_categories')[4];
 
 		DB::table('professionals')->insert([
-			'company_name' => 'Ecole Hoteliere de lausanne',
+			'company_name' => 'Ecole Hoteliere de lausanne Cuisine',
 			'category' => $category,
-			'first_name' => 'Virginie',
-			'last_name' => 'Brose Herbinet',
-			'phone' => '+41 21 785 16 24',
+			'first_name' => 'Philippe',
+			'last_name' => 'Gobet',
+			'phone' => '+41 21 785 16 52',
 			'zipcode' => 1000,
 			'state' => 'Vaud',
 			'country' => 'Suisse',
 			'city' => 'Lausanne',
 			'address' => 'Route de Cojonnex 18',
-			'credit' => 250,
+			'credit' => 125,
 			'user_id' => 30,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),

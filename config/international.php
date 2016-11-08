@@ -147,12 +147,13 @@ return [
    |
    */
   'professionals_categories' => [
-     'Hotel',
-     'Restaurant',
-     'Boite de Nuit',
-     'Bar',
-     'Ecole Hoteliere',
-     'Autre',
+      'Finger food service',
+      'Hotel',
+      'Restaurant',
+      'Boite de Nuit',
+      'Bar',
+      'Ecole Hoteliere',
+      'Autre',
   ],
 
     /*
