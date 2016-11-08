@@ -36,6 +36,34 @@ class DatabaseSeeder extends Seeder
 			'user_id' => 30,
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
+		]);*/
+
+		$confirmation_code2 = str_random(30);
+
+		DB::table('users')->insert([
+			'email' => 'gobet@ehl.ch',
+			'password' => bcrypt('ehlextrasme'),
+			'type' => 1,
+			'confirmation_code' => $confirmation_code2,
+		]);
+
+		$category = Config::get('international.professionals_categories')[4];
+
+		DB::table('professionals')->insert([
+			'company_name' => 'Ecole Hoteliere de Lausanne Kitchen',
+			'category' => $category,
+			'first_name' => 'Philippe',
+			'last_name' => 'Gobet',
+			'phone' => '+41 21 785 16 52',
+			'zipcode' => 1000,
+			'state' => 'Vaud',
+			'country' => 'Suisse',
+			'city' => 'Lausanne',
+			'address' => 'Route de Cojonnex 18',
+			'credit' => 125,
+			'user_id' => 30,
+			'created_at' => Carbon::now(),
+			'updated_at' => Carbon::now(),
 		]);
 		
 
