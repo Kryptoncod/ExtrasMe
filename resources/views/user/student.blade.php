@@ -167,10 +167,7 @@
             </div>
             @if(Auth::user()->type == 1 && $student->registration_done == 1 && $canDownloadCard == 1)
                <div class="export-ids">
-                  <a href="uploads/{{$username}}/avs.jpg" download="carte_id_{{$student->first_name}}_{{$student->last_name}}">Download AVS Card</a>
-                  <a href="uploads/{{$username}}/carte-nationalite.jpg" download="carte_nationalite_{{$student->first_name}}_{{$student->last_name}}">Download Nationality Card</a>
-                  <a href="uploads/{{$username}}/permit.jpg" download="permit_{{$student->first_name}}_{{$student->last_name}}">Download Permit</a>
-                  <a href="uploads/{{$username}}/iban.jpg" download="iban_{{$student->first_name}}_{{$student->last_name}}">Download IBAN</a>
+                  <a href="{{ asset('uploads/'.$student->user_id.'/cartes.zip') }}" download="Official_Documents_{{$student->last_name}}">CARTES</a>
                </div>
             @endif
          </div>

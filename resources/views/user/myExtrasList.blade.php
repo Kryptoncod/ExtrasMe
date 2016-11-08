@@ -207,7 +207,7 @@
                                   {{ $student->first_name . " " . $student->last_name }}
                                   </a>
                                   <div style="display:flex; align-items:center;">
-                                    <button class="submit-button right" style="margin-right: 20px;"><a href="{{ asset('uploads/'.$student->user_id.'/cartes.zip') }}" download="carte_{{$student->first_name}}_{{$student->last_name}}">CARTES</a></button>
+                                    <button class="submit-button right" style="margin-right: 20px;"><a href="{{ asset('uploads/'.$student->user_id.'/cartes.zip') }}" download="Official_Documents_{{$student->last_name}}">CARTES</a></button>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button class="submit-button right"><a href="{{ asset('uploads/contrat/contrat.pdf') }}">CONTRAT</a></button>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
