@@ -116,9 +116,11 @@
                   @foreach($experiences as $experience)
                      <h3>{{ $experience->title }}</h3>
                      <h4>{{ $experience->from_date->format('F Y'). " - " .$experience->to_date->format('F Y') }}</h4>
+                     <hr>
                      <p>
                         {{ $experience->summary }}
                      </p>
+                     <hr>
                   @endforeach
                @else
                   <p>@lang('student.noExperience')</p>
@@ -130,9 +132,11 @@
                   @foreach($educations as $education)
                      <h3>{{ $education->title }}</h3>
                      <h4>{{ $education->from_date->format('F Y'). " - " .$education->to_date->format('F Y') }}</h4>
+                     <hr>
                      <p>
                         {{ $education->summary }}
                      </p>
+                     <hr>
                   @endforeach
                @else
                   <p>@lang('student.noEducation')</p>

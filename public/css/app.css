@@ -5072,8 +5072,8 @@ a img {
   border: none; }
 
 p {
+  letter-spacing: 0.3px;
   font-size: 1rem;
-  margin-bottom: 1.25rem;
   text-rendering: optimizeLegibility; }
 
 .subheader, h1, h2, h3, h4, h5, h6 {
@@ -5092,7 +5092,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #222;
   font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-style: normal;
-  letter-spacing: 9px;
+  letter-spacing: 4px;
   line-height: 1.4;
   text-rendering: optimizeLegibility; }
 
@@ -5124,7 +5124,7 @@ b, em, i, small, strong {
   line-height: inherit; }
 
 hr {
-  border: solid #DDD;
+  border: solid #404040;
   border-width: 1px 0 0;
   height: 0;
   margin: 1.25rem 0 1.1875rem; }
