@@ -24,7 +24,7 @@
          <ul class="form">
             <li class="head highlight">@lang('sidebar.findExtras')</li>
             <li>
-               <select class="input" name="type" aria-label="Type of extra" required>
+               <select style="background-color: #222;" name="type" aria-label="Type of extra" required>
                   <option selected disabled value="">@lang('sidebar.typeExtras')</option>
                   @foreach(config('international.last_minute_types') as $id => $nameType)
                      <option value="{{ $id }}">{{ $nameType }}</option>

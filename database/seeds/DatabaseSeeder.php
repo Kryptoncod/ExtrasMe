@@ -12,62 +12,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-		DB::table('users')->insert([
-			'email' => 'Philippe.GOBET@ehl.ch',
-			'password' => bcrypt('ehlextrasme'),
-			'type' => 1,
-			'confirmation_code' =>  null,
-		]);
+    	$confirmation_code = str_random(30);
+    	for($i = 0; $i < 5; ++$i){
+    		$email = "email$i@ehl.ch";
+    		$password = "password$i";
+    		DB::table('users')->insert([
+				'email' => $email,
+				'password' => bcrypt($password),
+				'type' => 0,
+				'confirmation_code' =>  $confirmation_code,
+				'confirmed' => 1,
+			]);
+    	}
 
-		$category = Config::get('international.professionals_categories')[4];
+    	for($i = 5; $i < 10; ++$i){
+    		$email = "email$i@gmail.com";
+    		$password = "password$i";
+    		DB::table('users')->insert([
+				'email' => $email,
+				'password' => bcrypt($password),
+				'type' => 1,
+				'confirmation_code' =>  $confirmation_code,
+				'confirmed' => 1,
+			]);
+    	}
 
-		DB::table('professionals')->insert([
-			'company_name' => 'Ecole Hoteliere de lausanne Cuisine',
-			'category' => $category,
-			'first_name' => 'Philippe',
-			'last_name' => 'Gobet',
-			'phone' => '+41 21 785 16 52',
-			'zipcode' => 1000,
-			'state' => 'Vaud',
-			'country' => 'Suisse',
-			'city' => 'Lausanne',
-			'address' => 'Route de Cojonnex 18',
-			'credit' => 125,
-			'user_id' => 30,
-			'created_at' => Carbon::now(),
-			'updated_at' => Carbon::now(),
-		]);*/
-
-		$confirmation_code2 = str_random(30);
-
-		DB::table('users')->insert([
-			'email' => 'gobet@ehl.ch',
-			'password' => bcrypt('ehlextrasme'),
-			'type' => 1,
-			'confirmation_code' => $confirmation_code2,
-		]);
-
-		$category = Config::get('international.professionals_categories')[4];
-
-		DB::table('professionals')->insert([
-			'company_name' => 'Ecole Hoteliere de Lausanne Kitchen',
-			'category' => $category,
-			'first_name' => 'Philippe',
-			'last_name' => 'Gobet',
-			'phone' => '+41 21 785 16 52',
-			'zipcode' => 1000,
-			'state' => 'Vaud',
-			'country' => 'Suisse',
-			'city' => 'Lausanne',
-			'address' => 'Route de Cojonnex 18',
-			'credit' => 125,
-			'user_id' => 30,
-			'created_at' => Carbon::now(),
-			'updated_at' => Carbon::now(),
-		]);
-		
-
-		/*DB::table('students')->delete();
+		DB::table('students')->delete();
 
 		for($i = 0; $i < 5; ++$i)
 		{
@@ -202,6 +172,6 @@ class DatabaseSeeder extends Seeder
 				'created_at' => Carbon::now(),
 				'updated_at' => Carbon::now(),
 				]);
-		}*/
+		}
     }
 }
