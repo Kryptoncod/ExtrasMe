@@ -14,6 +14,7 @@ return [
    */
   'last_minute_types' => [
      'Tout',
+     'Finger food service',
      'Service en restaurant',
      'Réception',
      'Housekeeping',
@@ -147,7 +148,6 @@ return [
    |
    */
   'professionals_categories' => [
-      'Finger food service',
       'Hotel',
       'Restaurant',
       'Boite de Nuit',

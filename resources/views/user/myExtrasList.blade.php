@@ -15,6 +15,7 @@
         <div class="row">
             <span class="profile-date"><a href="{{ route('calendar', Auth::user()->id) }}">{{ Carbon\Carbon::now('Europe/Paris')->formatLocalized('%A %d %B %Y') }}</a></span>
          </div>
+         <hr style="margin: 0;" />
 
       <div class="liste-extra-container">
 
@@ -133,7 +134,7 @@
                             </tr>
                             <tr>
                               <td>
-                                @lang('card-content.time')
+                                @lang('card-content.timeStart')
                               </td>
                               <td>
                                 {{ $extras[0]->dateStartExtra().' at '.$extras[0]->timeStartExtra() }}

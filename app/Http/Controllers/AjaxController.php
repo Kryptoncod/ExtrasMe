@@ -162,7 +162,7 @@ class AjaxController extends Controller
 				$professional = User::find($id)->professional;
 				$professionalID = $professional->id;
 				$name = $professional->first_name." ".$professional->last_name;
-				$extras = Professional::find($professionalID)->extra()->where('date_start', '<=', Carbon::now())->orderBy('date_start', 'ASC')->get();
+				$extras = Professional::find($professionalID)->extra()->where('date_start', '<=', Carbon::now())->orderBy('date_start', 'DESC')->get();
 				$name = User::find($id)->professional->company_name;
 				$student = null;
 				$studentsAlreadyChosen = null;

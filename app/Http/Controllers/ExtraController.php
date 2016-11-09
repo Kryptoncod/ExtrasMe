@@ -218,7 +218,7 @@ class ExtraController extends Controller
 				$notif_to_send = User::find($id)->professional->company_name.' just posted an extra in '.$extra->type.'. To see the extra visit the link below  : '.route('show_extra', [$student->user->id, $extra->id]);
 
 				Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $student->user], function($message) use ($student){
-					$message->to($student->user->email)->subject('New notification ExtrasMe');
+					$message->to($student->user->email)->subject('New notification Extras Me');
 				});
 			}
 
@@ -251,7 +251,7 @@ class ExtraController extends Controller
 			$notif_to_send = $student_name.' subscribed to your Extra : '.$extra->type;
 
 			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
-				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
+				$message->to($professionalUser->email)->subject('New notification Extras Me');
 			});
 
 			$message = "Votre soumission à l'extra à bien été enregistrée!";
@@ -296,7 +296,7 @@ class ExtraController extends Controller
 			$notif_to_send = $student_name.' cancel his application to your Extra : '.$extra->type;
 
 			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
-				$message->to($professionalUser->email)->subject('New notification ExtrasMe');
+				$message->to($professionalUser->email)->subject('New notification Extras Me');
 			});
 
 			$message = "You cancel your application.";
@@ -381,7 +381,7 @@ class ExtraController extends Controller
 
 				Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $student->user], function($message) use ($student){
 
-						$message->to($student->user->email)->subject('New notification ExtrasMe');
+						$message->to($student->user->email)->subject('New notification Extras Me');
 				});
 			}
 		}
@@ -394,7 +394,7 @@ class ExtraController extends Controller
 
 		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
 
-				$message->to($studentUser->email)->subject('New notification ExtrasMe');
+				$message->to($studentUser->email)->subject('New notification Extras Me');
 		});
 
 		$message = "You accepted ".Student::find($studentID)->first_name." ".Student::find($studentID)->last_name." for your extra !";
@@ -417,7 +417,7 @@ class ExtraController extends Controller
 
 		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
 
-				$message->to($studentUser->email)->subject('New notification ExtrasMe');
+				$message->to($studentUser->email)->subject('New notification Extras Me');
 		});
 		
 		$message = "You declined ".Student::find($studentID)->first_name." ".Student::find($studentID)->last_name." for your extra !";
@@ -499,7 +499,7 @@ class ExtraController extends Controller
 			$notif_to_send ='Your modifications for the extra : '.$type.' have be been registered.';
 
 			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => User::find($username)], function($message) use ($username){
-				$message->to(User::find($username)->email)->subject('New notification ExtrasMe');
+				$message->to(User::find($username)->email)->subject('New notification Extras Me');
 			});
 		}
 
@@ -523,14 +523,14 @@ class ExtraController extends Controller
 
 			Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $studentUser], function($message) use ($studentUser){
 
-					$message->to($studentUser->email)->subject('New notification ExtrasMe');
+					$message->to($studentUser->email)->subject('New notification Extras Me');
 			});
 		}
 
 		$notif_to_send ='Your extra : '.$extra->type.' have be been deleted.';
 
 		Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => User::find($username)], function($message) use ($username){
-			$message->to(User::find($username)->email)->subject('New notification ExtrasMe');
+			$message->to(User::find($username)->email)->subject('New notification Extras Me');
 		});
 
 		$this->extraRepository->destroy($extraID);

@@ -26,7 +26,7 @@
               <small class="error">Company name is required and must contain only alphanumerics characters.</small>
             </div>
             <div>
-            <label for="name">C@lang('professional.category')</label><select name="category">
+            <label for="name">@lang('professional.sector')</label><select name="category">
                    @foreach(config('international.professionals_categories') as $id => $cat)
                       <option value="{{ $id }}" <?php if($professional->category == $cat){ echo"selected";} ?>>{{ $cat }}</option>
                    @endforeach
