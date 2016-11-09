@@ -70,7 +70,7 @@ class UpdateExtra extends Command
 
               foreach ($students as $student) {
 
-                $notif_to_send = 'The extra '.$extra->type.' for '.$extra->professional->company_name.' is available. See the link : www.extrasme.com/'.$student->user->id.'/extra/'.$extra->id;
+                $notif_to_send = 'The extra '.$extra->type.' for '.$extra->professional->company_name.' is available. See the link : http://www.extrasme.com/'.$student->user->id.'/extra/'.$extra->id;
 
                 $professionalUser = $extra->professional->user;
 
@@ -88,7 +88,7 @@ class UpdateExtra extends Command
 
             $professionalUser = $extra->professional->user;
 
-            $notif_to_send = 'The extra '.$extra->type.' has started. Rate the student(s) at this link : www.extrasme.com/'.$professionalUser->id.'/extra/rate/'.$extra->id;
+            $notif_to_send = 'The extra '.$extra->type.' has started. Rate the student(s) at this link : http://www.extrasme.com/'.$professionalUser->id.'/extra/rate/'.$extra->id;
 
             Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
                 $message->to($professionalUser->email)->subject('New notification ExtrasMe');

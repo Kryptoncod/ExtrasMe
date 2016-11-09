@@ -18,7 +18,7 @@
          @foreach($studentToRate as $id => $student)
                <div class="rating-container">
                   <div class="profile-image-container">
-                     @if(file_exists("uploads/pp/".$student->id.".png"))
+                     @if(file_exists("uploads/pp/".$student->user->id.".png"))
                         <img src="{{ asset('uploads/pp/'.$student->user->id.'.png') }}" alt="" />
                      @else
                         <img src="{{ asset('images/user-student.png') }}" alt="" />
