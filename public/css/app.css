@@ -16,6 +16,11 @@
   position: relative;
   font-weight: 400; }
 
+body
+{
+   overflow-x: hidden;
+}
+
 .accordion:after, .clearfix:after {
   clear: both; }
 

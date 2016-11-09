@@ -190,18 +190,29 @@ class AccountController extends Controller
 			$id = Auth::user()->id;
 			$student = User::find($id)->student;
 			$studentID = $student->id;
+
 			if($student->cv != null){
-				$student->cv->delete();
+
+				$cvInput = array(
+				'summary' => $request->input('resume'),
+				);
+
+				$cv = $student->cv;
+
+				$this->cvRepository->update($cv->id, $cvInput);
 			}
-			$cvInput = array(
+			else
+			{
+				$cvInput = array(
 				'summary' => $request->input('resume'),
 				'student_id' => $studentID,
 				);
 
-			$cv = $this->cvRepository->store($cvInput);
+				$cv = $this->cvRepository->store($cvInput);
+			}
 
 			while ($request->input('experience-title'.$i)) {
-				//dd($request->input('experience-from'.$i));
+				
 				$experienceInput = array(
 					'title' => $request->input('experience-title'.$i),
 					'from_date' => Carbon::createFromFormat('m/Y', $request->input('experience-from'.$i)),
@@ -260,6 +271,7 @@ class AccountController extends Controller
 			}
 			
 			$message = "Vos modifications ont bien été prises en compte";
+
 			return redirect()->route('account', $id)->with('message', $message);
 		}
 		catch(\Exception $e)

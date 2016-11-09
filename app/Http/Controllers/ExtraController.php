@@ -673,7 +673,9 @@ class ExtraController extends Controller
 			$professionalID = User::find($AuthID)->professional->id;
 			$results = Professional::find($professionalID)->students()->where('type', 1)->detach($id);
 		}
+
 		$message = "L'utilisateur a bien été retiré de vos favoris.";
+		
 		return redirect()->route('my_favorite_extras', Auth::user()->id)->with('message', $message);
 	}
 
