@@ -2942,8 +2942,6 @@ textarea {
   color: #666; }
 
 select {
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
   background-color: #FAFAFA;
   background-position: 100% center;
   background-repeat: no-repeat;
@@ -2981,16 +2979,6 @@ fieldset {
     padding: 0 .1875rem; }
 
 [data-abide] .error small.error, [data-abide] .error span.error {
-  display: block;
-  font-size: .75rem;
-  font-style: italic;
-  font-weight: 400;
-  margin-bottom: 1rem;
-  margin-top: -1px;
-  padding: .375rem .5625rem .5625rem;
-  background: #f04124;
-  color: #FFF; }
-  .help-block{
   display: block;
   font-size: .75rem;
   font-style: italic;
@@ -5089,8 +5077,8 @@ a img {
   border: none; }
 
 p {
+  letter-spacing: 0.3px;
   font-size: 1rem;
-  margin-bottom: 1.25rem;
   text-rendering: optimizeLegibility; }
 
 .subheader, h1, h2, h3, h4, h5, h6 {
@@ -5109,7 +5097,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #222;
   font-family: 'grotesqueregular', "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-style: normal;
-  letter-spacing: 9px;
+  letter-spacing: 4px;
   line-height: 1.4;
   text-rendering: optimizeLegibility; }
 
@@ -5141,7 +5129,7 @@ b, em, i, small, strong {
   line-height: inherit; }
 
 hr {
-  border: solid #DDD;
+  border: solid #404040;
   border-width: 1px 0 0;
   height: 0;
   margin: 1.25rem 0 1.1875rem; }
@@ -6255,22 +6243,6 @@ html.no-js .js-notice {
   #signupModal h2.title {
     color: #FFF;
     border-bottom: solid 1px #fff; }
-
-#paymentCashModal {
-  background-color: transparent;
-  box-shadow: none;
-  text-align: center; }
-  #paymentCashModal .signup-button p {
-    color: #FFF;
-    margin-bottom: 0; }
-
-#paymentTransferModal {
-  background-color: transparent;
-  box-shadow: none;
-  text-align: center; }
-  #paymentTransferModal .signup-button p {
-    color: #FFF;
-    margin-bottom: 0; }
 
 #extraModal .apply-button, form .submit-button {
   border-radius: 0;
@@ -7645,7 +7617,7 @@ ul.topnav li.icon {
       font-size: 15px; } }
 
 .error-log {
-  color: white; }
+  color: #F22222; }
 
 .extrasme-app-container {
   width: 100%;
@@ -7731,13 +7703,5 @@ ul.topnav li.icon {
         .rating-container .marks-container .mark-given .level-container .note-container {
           display: flex;
           flex-direction: column; }
-
-.pagination .pager{
-  list-style: none;
-}
-
-.pagination .pager li{
-  display: inline;
-}
 
 /*# sourceMappingURL=app.css.map */
