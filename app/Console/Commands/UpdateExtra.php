@@ -95,6 +95,8 @@ class UpdateExtra extends Command
             Mail::send('mails.notification', ['notification' => $notif_to_send, 'user' => $professionalUser], function($message) use ($professionalUser){
                 $message->to($professionalUser->email)->subject('New notification ExtrasMe');
             });
+
+            \Log::info('Professional Email : '.$professionalUser->email);
         }
     }
 }
