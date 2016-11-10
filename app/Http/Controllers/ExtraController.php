@@ -53,6 +53,9 @@ class ExtraController extends Controller
 		$id = Auth::user()->id;
 		$modif = 0;
 		$can_apply = null;
+		$students = null;
+		$studentsAlreadyChosen = null;
+		$studentToSort = null;
 
 		if(Auth::user()->type == 0)
 		{
@@ -80,11 +83,42 @@ class ExtraController extends Controller
 
 		if($professional->user_id == $id){
 			$modif = 1;
+
+			$find = DB::table('extras_students')->where('extra_id', $extra->id)
+				->where('doing', 1)->get();
+
+			if(count($find) == $extra->number_persons)
+			{
+				$studentsAlreadyChosen = $extra->students()->where('doing', 1)->get();
+			}
+			else
+			{
+				$students = $extra->students()->where('doing', 0)->get();
+
+				if(count($students) != 0)
+				{
+
+					foreach ($students as $student) {
+						$numberExtra = DB::table('number_extras_establishement')->where('student_id', $student->id)
+						->where('professional_id', $professional->id)->value('number_extras');
+
+						$studentToSort[] = array($student, $numberExtra);
+					}
+
+					usort($studentToSort, function($a, $b)
+					{
+					    return $b[1] - $a[1];
+					});
+				}
+
+				$studentsAlreadyChosen = $extra->students()->where('doing', 1)->get();
+			}
+			
 		}
 
 		session()->put('returnAfterModifyExtra', Route::current()->getName());
 
-		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif, 'student' => $student, 'can_apply' => $can_apply])->with('name', $name);
+		return view('user.extra-only', ['username' => $username, 'user' => Auth::user(), 'professional' => $professional, 'extra' => $extra, 'email' => $email_pro, 'edit_ok' => $modif, 'student' => $student, 'can_apply' => $can_apply, 'students' => $students, 'studentsAlreadyChosen' => $studentsAlreadyChosen])->with('name', $name);
 	}
 
 	public function showList($username, $type_extra, $date)
@@ -490,7 +524,7 @@ class ExtraController extends Controller
 				'language' => $language,
 				'requirements' => $request->input('requirements'),
 				'benefits' => $request->input('benefits'),
-				'number_persons' => $request->input('numberPeron'),
+				'number_persons' => $request->input('numberPerson'),
 				'informations' => $request->input('informations'),
 				);
 
