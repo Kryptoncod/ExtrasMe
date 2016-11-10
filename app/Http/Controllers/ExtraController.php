@@ -31,7 +31,7 @@ use App\Repositories\LanguageRepository;
 
 use Carbon\Carbon;
 
-use Auth, DB, Validator, Mail, Route;
+use Auth, DB, Validator, Mail, Route, Lang;
 
 class ExtraController extends Controller
 {
@@ -164,7 +164,7 @@ class ExtraController extends Controller
 		{
 			$id = Auth::user()->id;
 			$professionalID = User::find($id)->professional->id;
-			$type = config('international.last_minute_types')[$request->input('type')];
+			$type = Lang::get('typeExtra')[$request->input('type')];
 			$language = config('international.language')[$request->input('language')];
 			$date_time_start = preg_split("/[\s,]+/", $request->input('date_start'));
 			$date_start = Carbon::createFromFormat('d/m/Y', $date_time_start[0]);
@@ -449,7 +449,7 @@ class ExtraController extends Controller
 
 		if($save == 1)
 		{
-			$type = config('international.last_minute_types')[$request->input('type')];
+			$type = Lang::get('typeExtra')[$request->input('type')];
 			$language = config('international.language')[$request->input('language')];
 			$date_time_start = $request->input('dateStart');
 

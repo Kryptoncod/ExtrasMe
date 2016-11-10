@@ -61,7 +61,7 @@
                                          <td id="extra_type">
                                            <select class="input" id="type" name="type" aria-label="Type of extra">
                                              <option selected disabled value="">@lang('professional.lookingForExtras.selectType')</option>
-                                             @foreach(config('international.last_minute_types') as $id => $name)
+                                             @foreach(trans('typeExtra') as $id => $name)
                                                 <option value="{{ $id }}" <?php if($extra->type == $name){ echo"selected";} ?>>{{ $name }}</option>
                                              @endforeach
                                           </select>

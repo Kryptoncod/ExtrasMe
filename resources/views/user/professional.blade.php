@@ -107,7 +107,7 @@
                      <div class="large-9 end columns">
                         <select class="input" id="type" name="type" aria-label="Type of extra" required>
                            <option selected disabled value="">@lang('professional.lookingForExtras.selectType')</option>
-                           @foreach(config('international.last_minute_types') as $id => $name)
+                           @foreach(trans('typeExtra') as $id => $name)
                               <option value="{{ $id }}">{{ $name }}</option>
                            @endforeach
                         </select>
