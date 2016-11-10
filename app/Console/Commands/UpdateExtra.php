@@ -82,7 +82,7 @@ class UpdateExtra extends Command
             }
         }
 
-        $extraToRate = Extra::where('find', 1)->where('finish', 0)->where('date_start', '<=',Carbon::now()->toDateSting())->where('date_start_time', '<=', Carbon::now()->toTimeString())->get();
+        $extraToRate = Extra::where('find', 1)->where('finish', 0)->where('date_start', '<=',Carbon::now()->toDateString())->where('date_start_time', '<=', Carbon::now()->toTimeString())->get();
 
         \Log::info('Extra to rate : '.$extraToRate);
 
