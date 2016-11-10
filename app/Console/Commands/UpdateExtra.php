@@ -13,7 +13,7 @@ use App\Models\User;
 
 use Carbon\Carbon;
 
-use Mail, Route;
+use Mail, Route, Log;
 
 class UpdateExtra extends Command
 {
@@ -83,6 +83,8 @@ class UpdateExtra extends Command
         }
 
         $extraToRate = Extra::where('find', 1)->where('finish', 0)->where('date_start', '<=',Carbon::now()->toDateSting())->where('date_start_time', '<=', Carbon::now()->toTimeString())->get();
+
+        \Log::info('Extra to rate : '.$extraToRate);
 
         foreach ($extraToRate as $extra) {
 
