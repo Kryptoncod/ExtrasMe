@@ -207,11 +207,12 @@
                               </li>
                             @endforeach
                         </ul>
+                        <div style="display: flex;">
+                           <button style="margin-left: auto;"><a href="{{ route('modify_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@lang('card-content.modify')</a></button>
+                           <button style="margin-left:20px;" id="delete-extra"><a id="delete-link" href="{{ route('delete_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@lang('card-content.delete')</a></button>
+                        </div>
                     </div>
-                <div style="display: flex;">
-                   <button style="margin-left: auto;"><a href="{{ route('modify_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@lang('card-content.modify')</a></button>
-                   <button style="margin-left:20px;" id="delete-extra"><a href="{{ route('delete_extra', ['username' => Auth::user()->id, 'id' => $extra->id]) }}">@lang('card-content.delete')</a></button>
-                </div>
+                
               @endif
             </div>
          </div>

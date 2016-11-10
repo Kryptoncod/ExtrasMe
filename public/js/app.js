@@ -256,6 +256,12 @@ $("#modif-files").click(function(e){
     return false;
 });
 
+$("#delete-link").click(function(e){
+    var href = $(this).attr('href');
+    swal({  title: "Are you sure ?",   text: "",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#060b2b",   confirmButtonText: "Yes!",   closeOnConfirm: false }, function(){   window.location.href = href; });
+    return false;
+});
+
  $("#add-experience").click(function(e){
     e.preventDefault();
     //ici on fait des vérifs dynamique
