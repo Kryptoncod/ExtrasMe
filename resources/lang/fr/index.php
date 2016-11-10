@@ -37,7 +37,7 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
       <br/><br/>
          Ces étudiants seront rémunérés au prorata de la taille de l’école et du nombre de professionnels qu’ils démarcheront.
       <br/><br/>
-   Etant des représentants de la société, les ambassadeurs d’Extras Me seront sélectionnés avec précaution et ne devront donc commettre aucun impaire.
+   Etant des représentants de la société, les ambassadeurs d’Extras Me seront sélectionnés avec précaution et ne devront donc commettre aucun impair.
       <br/><br/>
    Si vous êtes intéressés pour participer à l’aventure d’une start-up innovante, n’hésitez pas à nous contacter au +41 79 732 16 09 ou par email à contact@extrasme.com.',
    ],
@@ -70,12 +70,12 @@ Les particuliers et entreprises peuvent également utiliser nos services pour de
    'ourTeam' => [
       'mayeul' => [
          'title' => 'Mayeul Desombre : Co-Fondateur',
-         'content' => 'Mayeul est un lyonnais de 20 ans qui étudie à l’école Hôtelière de Lausanne. Il a toujours aimé le contact humain et a donc choisis l’hôtellerie. Grâce à sa motivation personnelle ainsi que ses expériences passées dans le monde de la compétition sportive, il est prêt à relever les challenges avec joie. Sa passion pour l’alpinisme lui procure la persévérance nécessaire à la réussite de l’entreprise. La pratique de la voile lui fait garder les pieds sur terre et être conscient des risques. Il est autonome, entreprenant et aventurier.',
+         'content' => 'Mayeul est un lyonnais de 20 ans qui étudie à l’école Hôtelière de Lausanne. Il a toujours aimé le contact humain et a donc choisi l’hôtellerie. Grâce à sa motivation personnelle ainsi que ses expériences passées dans le monde de la compétition sportive, il est prêt à relever les challenges avec joie. Sa passion pour l’alpinisme lui procure la persévérance nécessaire à la réussite de l’entreprise. La pratique de la voile lui fait garder les pieds sur terre et être conscient des risques. Il est autonome, entreprenant et aventurier.',
       ],
 
       'benjamin' => [
          'title' => 'Benjamin Farhi : Co-Fondateur',
-         'content' => 'Benjamin est parisien, il a 20 ans et étudie à l’Ecole Hôtelière de Lausanne. Son père et son grand père ayant créé leur société, il baigne dans un milieu entrepreneurial depuis tout petit et a donc une vision réaliste et stratégique d’une entreprise. Ouverture sur le monde et rigueur sont ses maîtres mots car elles représentent des qualités nécessaires à la bonne gestion d’une entreprise. La pratique du golf en compétition lui a permis d’acquérir cette rigueur. En effet, c’est un sport où l’on ne doit rien laisser au hasard, la moindre erreur dans ce sport coute chère, tout comme dans la gestion d’une société. L’ouverture d’esprit est également primordiale car elle accroit la créativité en entreprise et représente un facteur de réussite.',
+         'content' => 'Benjamin est parisien, il a 20 ans et étudie à l’Ecole Hôtelière de Lausanne. Son père et son grand père ayant créé leur société, il baigne dans un milieu entrepreneurial depuis tout petit et a donc une vision réaliste et stratégique d’une entreprise. Ouverture sur le monde et rigueur sont ses maîtres mots car elles représentent des qualités nécessaires à la bonne gestion d’une entreprise. La pratique du golf en compétition lui a permis d’acquérir cette rigueur. En effet, c’est un sport où l’on ne doit rien laisser au hasard, la moindre erreur dans ce sport coûte chère, tout comme dans la gestion d’une société. L’ouverture d’esprit est également primordiale car elle accroit la créativité en entreprise et représente un facteur de réussite.',
       ],
 
       'paul' => [
