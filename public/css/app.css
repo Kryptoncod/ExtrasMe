@@ -16,11 +16,6 @@
   position: relative;
   font-weight: 400; }
 
-body
-{
-   overflow-x: hidden;
-}
-
 .accordion:after, .clearfix:after {
   clear: both; }
 
@@ -4349,9 +4344,9 @@ table {
 
 .has-tip {
   border-bottom: dotted 1px #CCC;
-  color: #333;
+  color: orange;
   cursor: help;
-  font-weight: 700; }
+  font-weight: 900; }
   .has-tip:focus, .has-tip:hover {
     border-bottom: dotted 1px #040521;
     color: #080c4a; }
