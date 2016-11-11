@@ -7057,7 +7057,8 @@ option {
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
-    background-color: #171717; }
+    background: url('../images/peninsula-dashboard-mrSpock.png') center center no-repeat; 
+    background-size: cover;}
     .dashboard-container .dashboard-rightpan .two-blocks {
       display: flex;
       justify-content: space-around;

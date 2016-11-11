@@ -18,7 +18,6 @@
                @endif
                </a></li>
             <li><a data-dropdown="menu-drop" data-options="is_hover:true;" aria-controls="menu-drop" aria-expanded="false" class="menu-button"></a></li>
-
          </ul>
 
       </section>

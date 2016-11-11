@@ -8,7 +8,7 @@
    </div>
    <div class="row" style="display: flex; margin-top: 60px;">
       <div class="large-3 medium-8 small-12 columns" style="margin: auto;">
-         <a href="/signup" data-reveal-id="signupModal" class="button signup-button" style="letter-spacing: 12px;">@lang('index.section1.signUp')</a>
+         <a href="" data-reveal-id="signupModal" class="button signup-button" style="letter-spacing: 12px;">@lang('index.section1.signUp')</a>
       </div>
    </div>
    
