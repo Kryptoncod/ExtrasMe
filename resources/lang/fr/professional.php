@@ -48,5 +48,7 @@ return [
       'submitExtra' => 'POSTER EXTRA',
    ],
    'myExtra' => 'MES EXTRAS',
-   'noExtra' => 'Vous n\'avez pas poster d\'extras.'
+   'noExtra' => 'Vous n\'avez pas poster d\'extras.',
+   'categories' => [
+   ],
 ];

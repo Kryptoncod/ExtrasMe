@@ -12,9 +12,6 @@
 
          <form action="{{ route('rate', [Auth::user()->id,
                        $extra->id]) }}" method="post">
-
-         
-
          @foreach($studentToRate as $id => $student)
                <div class="rating-container">
                   <div class="profile-image-container">

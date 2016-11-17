@@ -355,6 +355,7 @@ $(document).ready(function(){
     if(width <= 700){
         $('#logo-navbar').attr('src', '/extrasme/public/images/logo.gif');
     }
+    
     // On passe chaque note à l'état grisé par défaut
     $("ul.notes-echelle li label").removeClass("completed");
     // Au survol de chaque note à la souris

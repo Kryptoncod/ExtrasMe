@@ -48,5 +48,7 @@ return [
       'submitExtra' => 'SUBMIT EXTRA',
    ],
    'myExtra' => 'MY EXTRAS',
-   'noExtra' => 'You didn\'t submit any extra.'
+   'noExtra' => 'You didn\'t submit any extra.',
+   'categories' => [
+   ],
 ];

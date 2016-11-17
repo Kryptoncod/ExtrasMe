@@ -128,7 +128,6 @@
                <button>@lang('payment.myCredit.recharge.pay')</button>
                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
-           
          </div>
 
          <div class="row section-title">

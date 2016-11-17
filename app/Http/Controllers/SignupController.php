@@ -172,7 +172,6 @@ class SignupController extends Controller
         $id = $user->id;
 
         $category = config('international.professionals_categories')[$request->input('category')];
-        $country = config('international.countries')[$request->input('country')];
 
         $professionalInputs = array(
             'company_name'             => $request->input('company_name'),
@@ -185,6 +184,7 @@ class SignupController extends Controller
             'city' => $request->input('city'),
             'zipcode' => $request->input('zipcode'),
             'state' => $request->input('state'),
+            'country' => config('international.countries')[$request->input('country')],
             'user_id' =>$id,
             'credit' => 100,
             );

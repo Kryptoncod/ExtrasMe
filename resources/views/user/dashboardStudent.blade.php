@@ -14,7 +14,7 @@
                <div class="two-blocks" style="margin-top:30px; margin-bottom:30px;">
                   <div class="one-block">
                      <h2>@lang('dashboardStudent.totalEarned')</h2>
-                     <div class="stat-content" style=" flex-direction:column;">
+                     <div class="stat-content" style="flex-direction:column;">
                         <div style="display:flex; justify-content:center; width: 80%; margin: 0 auto 0 auto;">
                            <blockquote>{{ $dashboard->total_earned }}</blockquote>
                         </div>
